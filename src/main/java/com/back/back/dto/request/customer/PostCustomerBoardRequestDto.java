@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PostCustomerBoardRequestDto {
+public class PostDesignerBoardRequestDto {
     @NotBlank
     private String designerBoardTitle;
     @NotBlank
