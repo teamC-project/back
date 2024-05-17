@@ -23,4 +23,5 @@ public class UserEntity {
     private Integer userAge;
     private String userImage;
     private String userComponyName;
+    
 }
