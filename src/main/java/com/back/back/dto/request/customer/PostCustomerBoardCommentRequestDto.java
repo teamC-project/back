@@ -1,8 +1,8 @@
-package com.back.back.dto.request.designer;
+package com.back.back.dto.request.customer;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class PostDesignerBoardCommentRequestDto {
+public class PostCustomerBoardCommentRequestDto {
     @NotBlank
-    private String designerBoardComment;
+    private String customerBoardComment;
 }

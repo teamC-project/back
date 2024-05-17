@@ -1,4 +1,4 @@
-package com.back.back.dto.request.designer;
+package com.back.back.dto.request.customer;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -8,11 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PutDesignerBoardRequestDto {
+public class PutCustomerBoardRequestDto {
     @NotBlank
-    private String designerBoardTitle;
+    private String customerBoardTitle;
     @NotBlank
-    private String designerBoardCotents;
+    private String customerBoardCotents;
 
 
 }
