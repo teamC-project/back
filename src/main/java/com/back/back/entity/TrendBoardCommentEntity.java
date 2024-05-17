@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity(name = "trendBoardComment")
-@Table(name = "trendBoardComment")
+@Table(name = "trend_board_comment")
 @Getter
 @Setter
 @NoArgsConstructor
