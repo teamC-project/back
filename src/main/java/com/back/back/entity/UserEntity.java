@@ -23,5 +23,6 @@ public class UserEntity {
     private Integer userAge;
     private String userImage;
     private String userComponyName;
-    
+    private String userRole;
+    private String joinPath;
 }
