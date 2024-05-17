@@ -22,6 +22,6 @@ public class CustomerBoardCommentEntity {
   private Integer customerBoardCommentNumber;
   private Integer customerBoardNumber;
   private String customerBoardCommentWriterId;
-  private String customerBoardCommentcontents;
+  private String customerBoardCommentContents;
   private String customerBoardCommentWriteDatetime;
 }

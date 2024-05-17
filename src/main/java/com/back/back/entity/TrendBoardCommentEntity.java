@@ -22,6 +22,6 @@ public class TrendBoardCommentEntity {
   private Integer trendBoardCommentNumber;
   private Integer trandBoardNumber;
   private String trendBoardCommentWriterId;
-  private String trendBoardCommentcontents;
+  private String trendBoardCommentContents;
   private String trendBoardCommentWriteDatetime;
 }
