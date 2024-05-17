@@ -52,7 +52,7 @@ public class DesignerBoardEntity {
 
     public void update (PutDesignerBoardRequestDto dto) {
         this.designerBoardTitle = dto.getDesignerBoardTitle();
-        this.designerBoardContents = dto.getDesignerBoardCotents();
+        this.designerBoardContents = dto.getDesignerBoardContents();
     }
 
 }
