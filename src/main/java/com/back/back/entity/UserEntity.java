@@ -22,7 +22,7 @@ public class UserEntity {
     private String userGender;
     private Integer userAge;
     private String userImage;
-    private String userComponyName;
+    private String userCompanyName;
     private String userRole;
     private String joinPath;
 }
