@@ -12,6 +12,7 @@ public class InformationUpdateRequestDto {
     @NotBlank
     private String userId;
     private String userEmail;
+    private String authNumber;
     private String userGender;
     private String userAge;
     private String userImage;
