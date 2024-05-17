@@ -58,4 +58,5 @@ public class TrendBoardEntity {
 		this.trendBoardTitle = dto.getTrendBoardTitle();
 		this.trendBoardContents = dto.getTrendBoardContents();
 	}
+
 }
