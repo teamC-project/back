@@ -17,11 +17,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DesignerBoardCommentEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer designerBoardCommentNumber;
-  private Integer designerBoardNumber;
-  private String designerBoardCommentWriterId;
-  private String designerBoardCommentContents;
-  private String designerBoardCommentWriteDatetime;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer designerBoardCommentNumber;
+    private Integer designerBoardNumber;
+    private String designerBoardCommentWriterId;
+    private String designerBoardCommentContents;
+    private String designerBoardCommentWriteDatetime;
 }
