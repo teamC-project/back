@@ -1,5 +1,12 @@
 package com.back.back.entity;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+
+import com.back.back.dto.request.qna.PostQnaBoardRequestDto;
+import com.back.back.dto.request.qna.PutQnaBoardRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,4 +34,28 @@ public class QnaBoardEntity {
 	private String qnaBoardWriteDateTime;
 	private Integer qnaBoardViewCount;
 	private String qnaBoardComment;
+
+	public QnaBoardEntity(PostQnaBoardRequestDto dto, String userId) {
+		Date now =Date.from(Instant.now());
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss"
+		);
+		String writeDatetime = simpleDateFormat.format(now);
+
+		this.qnaBoardTitle = dto.getQnaBoardTitle();
+		this.qnaBoardStatus = false;
+		this.qnaBoardContents = dto.getQnaBoardContents();
+		this.qnaBoardWriterId = userId;
+		this.qnaBoardWriteDateTime = writeDatetime;
+		this.qnaBoardViewCount = 0;
+	}
+
+	public void increaseQnaViewCount () {
+		this.qnaBoardViewCount++;
+	}
+
+	public void updateQnaBoard(PutQnaBoardRequestDto dto) {
+		this.qnaBoardTitle = dto.getQnaBoardTitle();
+		this.qnaBoardContents =  dto.getQnaBoardContents();
+	}
 }

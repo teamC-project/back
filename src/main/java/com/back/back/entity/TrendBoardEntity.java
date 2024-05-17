@@ -1,5 +1,12 @@
 package com.back.back.entity;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+
+import com.back.back.dto.request.trend.PostTrendBoardRequestDto;
+import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,10 +27,35 @@ public class TrendBoardEntity {
   @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer trendBoardNumber;
-	private String trendBoardTitleImage;
 	private String trendBoardTitle;
 	private String trendBoardContents;
 	private String trendBoardWriterId;
-	private String trendBoardDateTime;
+	private String trendBoardWriteDateTime;
 	private Integer trendBoardLikeCount;
+
+
+	public TrendBoardEntity(PostTrendBoardRequestDto dto , String userId) {
+		Date now = Date.from(Instant.now());
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String trendBoardWriteDatetime = simpleDateFormat.format(now);
+
+		this.trendBoardTitle = dto.getTrendBoardTitle();
+		this.trendBoardContents = dto.getTrendBoardContents();
+		this.trendBoardWriterId = userId;
+		this.trendBoardWriteDateTime = trendBoardWriteDatetime;
+		this.trendBoardLikeCount = 0;
+	} 
+
+	public void TrendIncreaseLikeCount() {
+		this.trendBoardLikeCount++;
+	}
+
+	public void TrendDecreaseLikeCount() {
+		this.trendBoardLikeCount--;
+	}
+
+	public void updateTrendBoard (PutTrendBoardRequestDto dto ) {
+		this.trendBoardTitle = dto.getTrendBoardTitle();
+		this.trendBoardContents = dto.getTrendBoardContents();
+	}
 }
