@@ -1,16 +1,16 @@
 package com.back.back.dto.response.designerboard;
 
-import java.util.List;
+// import java.util.List;
 
-import com.back.back.common.object.DesignerBoardListItem;
-import com.back.back.dto.response.ResponseDto;
+// import com.back.back.common.object.DesignerBoardListItem;
+// import com.back.back.dto.response.ResponseDto;
 
-import lombok.Getter;
+// import lombok.Getter;
 
-@Getter
-public class GetDesignerBoardListResponseDto extends ResponseDto {
+// // @Getter
+// // public class GetDesignerBoardListResponseDto extends ResponseDto {
     
-    private List<DesignerBoardListItem> designerboardList;
+// //     private List<DesignerBoardListItem> designerboardList;
 
     
-} 
+// // } 
