@@ -32,5 +32,5 @@ public class CustomerSignUpRequestDto {
     private String userRole;
     @NotBlank 
     private String joinPath;
+    private String snsId;
 }
-

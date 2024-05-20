@@ -7,9 +7,12 @@ import com.back.back.entity.UserEntity;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
-    boolean existsByUserId(String userId);
-    boolean existsByUserEmail(String userEmail);
+  boolean existsByUserId(String userId);
 
-    UserEntity findByUserId(String userId);
+  boolean existsByUserEmail(String userEmail);
+
+  UserEntity findBySnsId(String snsId);
+
+  UserEntity findByUserId(String userId);
 
 }
