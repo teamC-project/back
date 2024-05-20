@@ -46,14 +46,16 @@ public class OAuth2UserServiceImplimentation extends DefaultOAuth2UserService {
 
     boolean isExistUser = userRepository.existsByUserId(userId);
     if (!isExistUser) {
-      String email = id + "@" + oAuthClientName.toLowerCase() + ".com";
-      String password = passwordEncoder.encode(id);
+      String userEmail = id + "@" + oAuthClientName.toLowerCase() + ".com";
+      String userPassword = passwordEncoder.encode(id);
 
-      EmailAuthNumberEntity emailAuthNumberEntity = new EmailAuthNumberEntity(email, "0000");
+
+      EmailAuthNumberEntity emailAuthNumberEntity = new EmailAuthNumberEntity(userEmail, "0000");
       emailAuthNumberRepository.save(emailAuthNumberEntity);
 
-      UserEntity userEntity = new UserEntity(userId, password, email, "ROLE_USER", oAuthClientName);
+      UserEntity userEntity = new UserEntity(userId, userPassword, userEmail, userGender, "1", "1", "1", "1", "1");
       userRepository.save(userEntity);
+
     }
     return new CustomOAuth2User(userId, oAuth2User.getAttributes());
   }
