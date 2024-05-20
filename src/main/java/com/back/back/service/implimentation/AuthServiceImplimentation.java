@@ -10,7 +10,7 @@ import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
-import com.back.back.dto.request.auth.SignUpRequestDto;
+import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.entity.EmailAuthNumberEntity;
@@ -132,7 +132,7 @@ public class AuthServiceImplimentation implements AuthService {
     }
 
     @Override
-    public ResponseEntity<ResponseDto> signUp(SignUpRequestDto dto) {
+    public ResponseEntity<ResponseDto> signUp(DesginerSignUpRequestDto dto) {
     
         try {
 
