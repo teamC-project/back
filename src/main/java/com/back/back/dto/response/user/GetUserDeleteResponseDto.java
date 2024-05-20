@@ -16,15 +16,15 @@ public class GetUserDeleteResponseDto {
     private String userId;
     private String userRole;
 
-    private GetUserDeleteResponseDto(UserEntity userEntity) {
-        super (ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        this.userId = userEntity.getUserId();
-        this.userRole = userEntity.getUserRole();
-    }
+    // private GetUserDeleteResponseDto(UserEntity userEntity) {
+    //     super (ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+    //     this.userId = userEntity.getUserId();
+    //     this.userRole = userEntity.getUserRole();
+    // }
     
-    public static ResponseEntity<GetSignInUserResponseDto> success (UserEntity userEntity){
-        GetSignInUserResponseDto responseBody = new GetUserDeleteResponseDto(userEntity);
-        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-    }
+    // public static ResponseEntity<GetSignInUserResponseDto> success (UserEntity userEntity){
+    //     GetSignInUserResponseDto responseBody = new GetUserDeleteResponseDto(userEntity);
+    //     return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    // }
 
 }

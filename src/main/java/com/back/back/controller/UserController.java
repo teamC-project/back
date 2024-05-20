@@ -27,11 +27,11 @@ public class UserController {
       return response;
   }
 
-  @DeleteMapping("/")
-  public ResponseEntity<?> getUserDelete (
-    @AuthenticationPrincipal String userId
-  ) {
-    ResponseEntity<?> response = userService.
-  }
+  // @DeleteMapping("/")
+  // public ResponseEntity<?> getUserDelete (
+  //   @AuthenticationPrincipal String userId
+  // ) {
+  //   ResponseEntity<?> response = userService.
+  // }
 
 }

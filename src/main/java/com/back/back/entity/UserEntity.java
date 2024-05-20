@@ -20,7 +20,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity {
-<<<<<<< HEAD
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String userId;
@@ -33,19 +32,6 @@ public class UserEntity {
   private String userRole;
   private String joinPath;
   private String snsId;
-=======
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String userId;
-    private String userPassword;
-    private String userEmail;
-    private String userGender;
-    private String userAge;
-    private String userImage;
-    private String userCompanyName;
-    private String userRole;
-    private String joinPath;
->>>>>>> 31982f94a35b5e3b78129b3cbc1c51736af8a4cb
 
   public UserEntity(CustomerSignUpRequestDto customerDto) {
     this.userId = customerDto.getUserId();
