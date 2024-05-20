@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SignUpRequestDto {
+public class DesginerSignUpRequestDto {
     @NotBlank
     private String userId;
     @NotBlank
@@ -26,7 +26,7 @@ public class SignUpRequestDto {
     private Integer userAge;
     @NotBlank
     private String userImage;
-    @NotBlank 
+    @NotBlank
     String userCompanyName;
     @NotBlank
     private String userRole;

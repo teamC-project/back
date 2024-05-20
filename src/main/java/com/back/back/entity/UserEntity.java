@@ -1,8 +1,11 @@
 package com.back.back.entity;
 
-import com.back.back.dto.request.auth.SignUpRequestDto;
+import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
+import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -18,6 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserEntity {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private String userId;
     private String userPassword;
     private String userEmail;
@@ -29,11 +33,25 @@ public class UserEntity {
     private String joinPath;
 
 
-  public UserEntity (SignUpRequestDto dto) {
-    this.userId = dto.getUserId();
-    this.userPassword = dto.getUserPassword();
-    this.userEmail = dto.getUserEmail();
+  public UserEntity (CustomerSignUpRequestDto customerDto) {
+    this.userId = customerDto.getUserId();
+    this.userPassword = customerDto.getUserPassword();
+    this.userEmail = customerDto.getUserEmail();
+    this.userGender = customerDto.getUserGender();
+    this.userAge = customerDto.getUserAge();
     this.userRole = "ROLE_USER";
     this.joinPath = "HOME";
-  }
+    }
+
+    public UserEntity (DesginerSignUpRequestDto desginerDto) {
+    this.userId = desginerDto.getUserId();
+    this.userPassword = desginerDto.getUserPassword();
+    this.userEmail = desginerDto.getUserEmail();
+    this.userGender = desginerDto.getUserGender();
+    this.userAge = desginerDto.getUserAge();
+    this.userCompanyName = desginerDto.getUserCompanyName();
+    this.userImage = desginerDto.getUserImage();
+    this.userRole = "ROLE_USER";
+    this.joinPath = "HOME";
+    }
 }

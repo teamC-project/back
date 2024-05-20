@@ -10,6 +10,7 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
+
 @Component
 @RequiredArgsConstructor
 public class MailProvider {
@@ -17,7 +18,6 @@ public class MailProvider {
     @Value("${spring.mail.username}")
     private String from;
     private final JavaMailSender javaMailSender;
-
 
     public void mailAuthSend (String to, String authNumber) throws MessagingException {
 
