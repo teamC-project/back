@@ -1,5 +1,7 @@
 package com.back.back.entity;
 
+import com.back.back.dto.request.auth.SignUpRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -25,4 +27,13 @@ public class UserEntity {
     private String userCompanyName;
     private String userRole;
     private String joinPath;
+
+
+  public UserEntity (SignUpRequestDto dto) {
+    this.userId = dto.getUserId();
+    this.userPassword = dto.getUserPassword();
+    this.userEmail = dto.getUserEmail();
+    this.userRole = "ROLE_USER";
+    this.joinPath = "HOME";
+  }
 }
