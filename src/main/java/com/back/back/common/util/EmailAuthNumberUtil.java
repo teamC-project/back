@@ -30,5 +30,4 @@ public class EmailAuthNumberUtil {
         }
         return null;
     }
-
 }
