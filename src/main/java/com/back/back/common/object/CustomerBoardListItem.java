@@ -1,5 +1,8 @@
 package com.back.back.common.object;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import com.back.back.entity.CustomerBoardEntity;
 
 import lombok.Getter;
@@ -14,5 +17,16 @@ public class CustomerBoardListItem {
 
     private CustomerBoardListItem(CustomerBoardEntity customerBoardEntity) throws Exception {
 
+    }
+
+    public static List<CustomerBoardListItem>getList(List<CustomerBoardEntity> customerBoardEntities) throws Exception {
+        List<CustomerBoardListItem> customerBoardList = new ArrayList<>();
+
+        for (CustomerBoardEntity customerBoardEntity: customerBoardEntities) {
+            CustomerBoardListItem customerBoardListItem = new CustomerBoardListItem(customerBoardEntity);
+            customerBoardList.add(customerBoardListItem);
+        }
+
+        return customerBoardList;
     }
 }
