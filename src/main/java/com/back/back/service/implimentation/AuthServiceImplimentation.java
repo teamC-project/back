@@ -10,7 +10,8 @@ import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
-import com.back.back.dto.request.auth.SignUpRequestDto;
+import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
+import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.entity.EmailAuthNumberEntity;
@@ -131,15 +132,18 @@ public class AuthServiceImplimentation implements AuthService {
 
     }
 
-    @Override
-    public ResponseEntity<ResponseDto> signUp(SignUpRequestDto dto) {
     
+    @Override
+    public ResponseEntity<ResponseDto> signUp(CustomerSignUpRequestDto dto) {
+
         try {
 
             String userId = dto.getUserId();
             String userPassword = dto.getUserPassword();
             String userEmail = dto.getUserEmail();
-            String AuthNumber = dto.getAuthNumber();
+            String authNumber = dto.getAuthNumber();
+            String userGender = dto.getUserGender();
+            String userAge = dto.getUserAge();
 
             boolean existedUser = userRepository.existsById(userId);
             if (existedUser) return ResponseDto.duplicatedId();
@@ -147,13 +151,61 @@ public class AuthServiceImplimentation implements AuthService {
             boolean existedEmail = userRepository.existsByUserEmail(userEmail);
             if (existedEmail) return ResponseDto.duplicatedEmail();
 
-            boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, AuthNumber);
+            boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
             if(!isMatched) return ResponseDto.authenticationFailed();
 
             String encodeedPassword = passwordEncoder.encode(userPassword);
             dto.setUserPassword(encodeedPassword);
 
-            UserEntity userEntity = new UserEntity(dto);
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUserId(userId);
+            userEntity.setUserPassword(encodeedPassword);
+            userEntity.setUserEmail(userEmail);
+            userEntity.setUserGender(userGender);
+            userEntity.setUserAge(userAge);
+            
+            userRepository.save(userEntity);
+
+        }catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return ResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<ResponseDto> signUp(DesginerSignUpRequestDto dto) {
+    
+        try {
+
+            String userId = dto.getUserId();
+            String userPassword = dto.getUserPassword();
+            String userEmail = dto.getUserEmail();
+            String authNumber = dto.getAuthNumber();
+            String userGender= dto.getUserGender();
+            String userAge = dto.getUserAge();
+            String userImage = dto.getUserImage();
+            String userCompanyName = dto.getUserCompanyName();
+
+            boolean existedUser = userRepository.existsById(userId);
+            if (existedUser) return ResponseDto.duplicatedId();
+
+            boolean existedEmail = userRepository.existsByUserEmail(userEmail);
+            if (existedEmail) return ResponseDto.duplicatedEmail();
+
+            boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
+            if(!isMatched) return ResponseDto.authenticationFailed();
+
+            String encodeedPassword = passwordEncoder.encode(userPassword);
+            dto.setUserPassword(encodeedPassword);
+
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUserGender(userGender);
+            userEntity.setUserAge(userAge);
+            userEntity.setUserImage(userImage);
+            userEntity.setUserCompanyName(userCompanyName);
+            
             userRepository.save(userEntity);
 
         }catch (Exception exception) {
@@ -164,5 +216,6 @@ public class AuthServiceImplimentation implements AuthService {
         return ResponseDto.success();
 
     }
+
     
 }
