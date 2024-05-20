@@ -26,7 +26,7 @@ public class UserEntity {
     private String userPassword;
     private String userEmail;
     private String userGender;
-    private Integer userAge;
+    private String userAge;
     private String userImage;
     private String userCompanyName;
     private String userRole;
