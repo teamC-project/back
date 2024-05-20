@@ -4,8 +4,8 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
-import com.back.back.dto.request.qna.PostQnaBoardRequestDto;
-import com.back.back.dto.request.qna.PutQnaBoardRequestDto;
+import com.back.back.dto.request.announcement.PostAnnouncementBoardRequestDto;
+import com.back.back.dto.request.announcement.PutAnnouncementBoardRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,15 +33,15 @@ public class AnnouncementBoardEntity {
 	private String announceMentBoardWriteDateTime;
 	private Integer announceMentBoardViewCount;
 
-	public AnnouncementBoardEntity(PostQnaBoardRequestDto dto, String userId) {
+	public AnnouncementBoardEntity(PostAnnouncementBoardRequestDto dto, String userId) {
 		Date now =Date.from(Instant.now());
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss"
 		);
 		String writeDatetime = simpleDateFormat.format(now);
 
-		this.announceMentBoardTitle = dto.getQnaBoardTitle();
-		this.announceMentBoardContents = dto.getQnaBoardContents();
+		this.announceMentBoardTitle = dto.getAnnouncementBoardTitle();
+		this.announceMentBoardContents = dto.getAnnouncementBoardContents();
 		this.announceMentBoardWriterId = userId;
 		this.announceMentBoardWriteDateTime = writeDatetime;
 		this.announceMentBoardViewCount = 0;
@@ -51,8 +51,8 @@ public class AnnouncementBoardEntity {
 		this.announceMentBoardViewCount++;
 	}
 
-	public void updateQnaBoard(PutQnaBoardRequestDto dto) {
-		this.announceMentBoardTitle = dto.getQnaBoardTitle();
-		this.announceMentBoardContents =  dto.getQnaBoardContents();
+	public void updateAnnouncementBoard(PutAnnouncementBoardRequestDto dto) {
+		this.announceMentBoardTitle = dto.getAnnouncementBoardTitle();
+		this.announceMentBoardContents =  dto.getAnnouncementBoardContents();
 	}
 }

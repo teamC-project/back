@@ -14,17 +14,17 @@ import com.back.back.entity.AnnouncementBoardEntity;
 import lombok.Getter;
 
 @Getter
-public class GetSearchAnnouncementBoardLIstResponseDto extends ResponseDto {
+public class GetSearchAnnouncementBoardListResponseDto extends ResponseDto {
 			private List<AnnounceMentBoardListItem> announceMentBoardList;
 		
-			private GetSearchAnnouncementBoardLIstResponseDto(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {
+			private GetSearchAnnouncementBoardListResponseDto(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {
 				super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 				this.announceMentBoardList = AnnounceMentBoardListItem.getAnnouncementBoardList(announcementBoardEntities);
 			}
 
-			public static ResponseEntity<GetSearchAnnouncementBoardLIstResponseDto>
+			public static ResponseEntity<GetSearchAnnouncementBoardListResponseDto>
 			success (List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception{
-				GetSearchAnnouncementBoardLIstResponseDto responseBody = new GetSearchAnnouncementBoardLIstResponseDto(announcementBoardEntities);
+				GetSearchAnnouncementBoardListResponseDto responseBody = new GetSearchAnnouncementBoardListResponseDto(announcementBoardEntities);
 				return ResponseEntity.status(HttpStatus.OK).body(responseBody);
 			}
 }
