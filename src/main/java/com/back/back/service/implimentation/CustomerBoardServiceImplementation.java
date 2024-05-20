@@ -8,6 +8,10 @@ import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.repository.CustomerBoardRepository;
 import com.back.back.service.CustomerBoardService;
+import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
+import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -42,6 +46,18 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         }
 
         return ResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<? super GetCustomerBoardListResponseDto> getCustomerBoardList() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCustomerBoardList'");
+    }
+
+    @Override
+    public ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchCustomerBoardList(String searchWord) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getSearchCustomerBoardList'");
     }
     
 }

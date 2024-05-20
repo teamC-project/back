@@ -12,6 +12,6 @@ import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListRespon
 public interface CustomerBoardService {
     ResponseEntity<ResponseDto> postCustomerBoard(PostCustomerBoardRequestDto dto, String userId);
     ResponseEntity<ResponseDto> postCustomerBoardComment(PostCustomerBoardCommentRequestDto dto, int customerBoardNumber);
-    ResponseEntity<? super GetCustomerBoardListResponseDto> getBoardList();
+    ResponseEntity<? super GetCustomerBoardListResponseDto> getCustomerBoardList();
     ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchCustomerBoardList(String searchWord);
 }
