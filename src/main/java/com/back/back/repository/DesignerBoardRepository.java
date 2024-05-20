@@ -16,5 +16,9 @@ public interface DesignerBoardRepository extends JpaRepository<DesignerBoardEnti
     @Query(nativeQuery = true)
     List<DesignerBoardEntity> findByTitleOrContentContainsOrderByDesignerBoardNumberDesc(@Param("keyword") String keyword);
     DesignerBoardEntity findByDesignerBoardNumber(Integer designerBoardNumber);
+
+    //!!!! 수정 필요
+    @Query(nativeQuery = true)
+    List<DesignerBoardEntity> findByTitleContainsOrContentContainsOrderByDesignerBoardNumberDesc(String keyword, String keyword);
     
 }
