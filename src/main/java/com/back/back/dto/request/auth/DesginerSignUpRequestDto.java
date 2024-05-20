@@ -23,7 +23,7 @@ public class DesginerSignUpRequestDto {
     @NotBlank
     private String userGender;
     @NotBlank
-    private Integer userAge;
+    private String userAge;
     @NotBlank
     private String userImage;
     @NotBlank
