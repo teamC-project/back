@@ -27,7 +27,7 @@ public class QnaBoardEntity {
   @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer qnaBoardNumber;
-	private boolean qnaBoardStatus;
+	private Boolean qnaBoardStatus;
 	private String qnaBoardTitle;
 	private String qnaBoardContents;
 	private String qnaBoardWriterId;
