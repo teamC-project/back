@@ -1,5 +1,6 @@
 package com.back.back.dto.response.designerboard;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -38,4 +39,6 @@ public class GetDesignerBoardResponseDto extends ResponseDto {
         GetDesignerBoardResponseDto responseBody = new GetDesignerBoardResponseDto(designerBoardEntity);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
+
+
 }
