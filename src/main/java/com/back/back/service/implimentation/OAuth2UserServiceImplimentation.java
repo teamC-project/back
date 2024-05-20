@@ -49,7 +49,6 @@ public class OAuth2UserServiceImplimentation extends DefaultOAuth2UserService {
       String userEmail = id + "@" + oAuthClientName.toLowerCase() + ".com";
       String userPassword = passwordEncoder.encode(id);
 
-
       EmailAuthNumberEntity emailAuthNumberEntity = new EmailAuthNumberEntity(userEmail, "0000");
       emailAuthNumberRepository.save(emailAuthNumberEntity);
 

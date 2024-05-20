@@ -1,5 +1,6 @@
 package com.back.back.entity;
 
+import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
 
 import jakarta.persistence.Entity;
@@ -32,11 +33,25 @@ public class UserEntity {
     private String joinPath;
 
 
-  public UserEntity (DesginerSignUpRequestDto dto) {
-    this.userId = dto.getUserId();
-    this.userPassword = dto.getUserPassword();
-    this.userEmail = dto.getUserEmail();
+  public UserEntity (CustomerSignUpRequestDto customerDto) {
+    this.userId = customerDto.getUserId();
+    this.userPassword = customerDto.getUserPassword();
+    this.userEmail = customerDto.getUserEmail();
+    this.userGender = customerDto.getUserGender();
+    this.userAge = customerDto.getUserAge();
     this.userRole = "ROLE_USER";
     this.joinPath = "HOME";
-  }
+    }
+
+    public UserEntity (DesginerSignUpRequestDto desginerDto) {
+    this.userId = desginerDto.getUserId();
+    this.userPassword = desginerDto.getUserPassword();
+    this.userEmail = desginerDto.getUserEmail();
+    this.userGender = desginerDto.getUserGender();
+    this.userAge = desginerDto.getUserAge();
+    this.userCompanyName = desginerDto.getUserCompanyName();
+    this.userImage = desginerDto.getUserImage();
+    this.userRole = "ROLE_USER";
+    this.joinPath = "HOME";
+    }
 }
