@@ -9,6 +9,5 @@ import com.back.back.entity.DesignerBoardEntity;
 
 @Repository
 public interface DesignerBoardRepository extends JpaRepository<DesignerBoardEntity, Integer> {
-    
     List<DesignerBoardEntity> findByOrdreByDesignerBoardNumberDesc();
 }

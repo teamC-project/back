@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.back.back.common.object.CustomOAuth2User;
-import com.back.back.entity.EmailAuthNumberEntity;
 import com.back.back.entity.UserEntity;
 import com.back.back.repository.EmailAuthNumberRepository;
 import com.back.back.repository.UserRepository;
@@ -32,28 +31,14 @@ public class OAuth2UserServiceImplimentation extends DefaultOAuth2UserService {
     OAuth2User oAuth2User = super.loadUser(userRequest);
     String oAuthClientName = userRequest.getClientRegistration().getClientName().toUpperCase();
 
-
     String id = getId(oAuth2User, oAuthClientName);
-    String userId = oAuthClientName + "_" + id.substring(0, 10);
 
-    boolean isExistUser = userRepository.existsByUserId(userId);
-    if (!isExistUser) {
-      String userEmail = id + "@" + oAuthClientName.toLowerCase() + ".com";
-      String userPassword = passwordEncoder.encode(id);
-
-<<<<<<< HEAD
-      
-=======
->>>>>>> 6d5ac340992b56e82d0870e7c6c5320b5b0e9ebc
-      EmailAuthNumberEntity emailAuthNumberEntity = new EmailAuthNumberEntity(userEmail, "0000");
-      emailAuthNumberRepository.save(emailAuthNumberEntity);
-
-      String userGender;
-      UserEntity userEntity = new UserEntity(userId, userPassword, userEmail, userGender, "1", "1", "1", "1", "1");
-      userRepository.save(userEntity);
-
+    UserEntity userEntity = userRepository.findBySnsId(id);
+    if (userEntity == null) {
+      return new CustomOAuth2User(id, oAuth2User.getAttributes(), false, oAuthClientName);
+    } else {
+      return new CustomOAuth2User(userEntity.getUserId(), oAuth2User.getAttributes(), true, null);
     }
-    return new CustomOAuth2User(userId, oAuth2User.getAttributes());
   }
 
   private String getId(OAuth2User oAuth2User, String oAuthClientName) {
