@@ -13,6 +13,8 @@ import com.back.back.entity.DesignerBoardEntity;
 
 import lombok.Getter;
 
+// import lombok.Getter;
+
 @Getter
 public class GetDesignerBoardListResponseDto extends ResponseDto {
     
