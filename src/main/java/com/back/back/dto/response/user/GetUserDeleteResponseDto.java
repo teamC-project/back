@@ -15,8 +15,21 @@ public static ResponseEntity<GetSignInUserResponseDto> success(UserEntity userEn
     return ResponseEntity.status(HttpStatus.OK).body(responseBody);
 }
 
+<<<<<<< HEAD
+    // private GetUserDeleteResponseDto(UserEntity userEntity) {
+    //     super (ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+    //     this.userId = userEntity.getUserId();
+    //     this.userRole = userEntity.getUserRole();
+    // }
+    
+    // public static ResponseEntity<GetSignInUserResponseDto> success (UserEntity userEntity){
+    //     GetSignInUserResponseDto responseBody = new GetUserDeleteResponseDto(userEntity);
+    //     return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    // }
+=======
 public static ResponseEntity<GetSignInUserResponseDto> failure() {
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 }
+>>>>>>> cd9c83afba0ee5b86e48ee59496b2eca67a60864
 
     }
