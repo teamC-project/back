@@ -11,12 +11,13 @@ import com.back.back.service.CustomerBoardService;
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
-
+import com.back.back.entity.CustomerBoardEntity;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+
 public class CustomerBoardServiceImplementation implements CustomerBoardService {
 
     private final CustomerBoardRepository customerBoardRepository;
@@ -59,5 +60,23 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getSearchCustomerBoardList'");
     }
+    @Override
+    public  ResponseEntity<? super GetCustomerBoardListResponseDto> getCustomerBoard(int customerBoardNumber)   {
+        try{
+
+            CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByOrdreByCustomerBoardNumberDesc(customerBoardNumber);
+            if (customerBoardEntity == null) return ResponseDto.noExistBoard();
+
+            return GetCustomerBoardResponseDto.success(customerBoardEntity);
+
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+    
+        }
+
+    }
+
     
 }

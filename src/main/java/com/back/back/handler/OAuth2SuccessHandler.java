@@ -19,16 +19,24 @@ import lombok.RequiredArgsConstructor;
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
   private final JwtProvider jwtProvider;
-  
+
   @Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-		
-    CustomOAuth2User oAuth2User = (CustomOAuth2User)authentication.getPrincipal();
-    String userId = oAuth2User.getName();
-    String token = jwtProvider.create(userId);
+  public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+      Authentication authentication) throws IOException, ServletException {
 
-    response.sendRedirect("http://localhost:3000/sns/" + token + "/36000");
+    CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+    boolean isStatus = oAuth2User.isStatus();
 
-	}
+    if (isStatus) {
+      String userId = oAuth2User.getName();
+      String token = jwtProvider.create(userId);
+      response.sendRedirect("http://localhost:3200/sns/" + token + "/3600");
+    } else {
+      String snsId = oAuth2User.getName();
+      String joinPath = oAuth2User.getJoinPath();
+      response.sendRedirect("http://localhost:3200/authentication?snsId=" + snsId + "&joinPath=" + joinPath);
+    }
+
+  }
 
 }
