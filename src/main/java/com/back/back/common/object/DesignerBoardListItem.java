@@ -3,6 +3,7 @@ package com.back.back.common.object;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.DesignerBoardEntity;
 
 import lombok.Getter;
@@ -16,6 +17,18 @@ public class DesignerBoardListItem {
     private Integer designerBoardViewCount;
 
     private DesignerBoardListItem(DesignerBoardEntity designerBoardEntity) throws Exception {
+        String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(designerBoardEntity.getDesignerBoardWriteDatetime());
+
+        String writerId = designerBoardEntity.getDesignerBoardWriterId();
+        writerId =
+        writerId.substring(0, 1) + 
+        "*".repeat(writerId.length() - 1);
+
+        this.designerBoardNumber = designerBoardEntity.getDesignerBoardNumber();
+        this.designerBoardTitle = designerBoardEntity.getDesignerBoardTitle();
+        this.designerBoardWriterId = writerId;
+        this.designerBoardWriteDatetime = writeDatetime;
+        this.designerBoardViewCount = designerBoardEntity.getDesignerBoardViewCount();
 
     }
 
