@@ -1,20 +1,20 @@
-package com.back.back.repository;
+// package com.back.back.repository;
 
-import java.util.List;
+// import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+// import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.data.jpa.repository.Query;
+// import org.springframework.data.repository.query.Param;
+// import org.springframework.stereotype.Repository;
 
-import com.back.back.entity.DesignerBoardEntity;
+// import com.back.back.entity.DesignerBoardEntity;
 
-@Repository
-public interface DesignerBoardRepository extends JpaRepository<DesignerBoardEntity, Integer> {
-    List<DesignerBoardEntity> findByOrdreByDesignerBoardNumberDesc();
+// @Repository
+// public interface DesignerBoardRepository extends JpaRepository<DesignerBoardEntity, Integer> {
+//     List<DesignerBoardEntity> findByOrdreByDesignerBoardNumberDesc();
 
-    @Query(nativeQuery = true)
-    List<DesignerBoardEntity> findByTitleContainsOrContentContainsOrderByDesignerBoardNumberDesc(String keyword, String keyword);
+//     @Query(nativeQuery = true)
+//     List<DesignerBoardEntity> findByTitleOrContentContainsOrderByDesignerBoardNumberDesc(String keyword, String keyword);
 
-    DesignerBoardEntity findByDesignerBoardNumber(Integer designerBoardNumber);
-}
+//     DesignerBoardEntity findByDesignerBoardNumber(Integer designerBoardNumber);
+// }
