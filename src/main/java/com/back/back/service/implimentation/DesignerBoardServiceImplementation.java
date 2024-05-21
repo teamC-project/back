@@ -75,7 +75,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         
         try {
 
-            List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByOrdreByDesignerBoardNumberDesc();
+            List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByOrderByDesignerBoardNumberDesc();
             return GetDesignerBoardListResponseDto.success(designerBoardEntities);
             
         } catch (Exception exception) {
@@ -86,11 +86,11 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
     }
 
     @Override
-    public ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesignerBoardList(String searchWord) {
+    public ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesignerBoardList(String designerSearchWord) {
         
         try {
 
-            List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByDesignerBoardTitleContainsOrDesignerBoardContentContainsOrderByDesignerBoardNumberDesc(searchWord);
+            List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByDesignerBoardTitleContainsOrderByDesignerBoardNumberDesc(designerSearchWord);
             return GetSearchDesignerBoardListResponseDto.success(designerBoardEntities);
             
         } catch (Exception exception) {
@@ -221,7 +221,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
             if (designerBoardEntity == null) return ResponseDto.noExistBoard();
 
-            designerBoardEntity.DesignerIncreaseViewCount();
+            designerBoardEntity.designerIncreaseViewCount();
             designerBoardRepository.save(designerBoardEntity);
             
         } catch (Exception exception) {
