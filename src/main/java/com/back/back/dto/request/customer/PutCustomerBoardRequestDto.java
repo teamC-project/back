@@ -12,7 +12,7 @@ public class PutCustomerBoardRequestDto {
     @NotBlank
     private String customerBoardTitle;
     @NotBlank
-    private String customerBoardCotents;
+    private String customerBoardContents;
 
 
 }
