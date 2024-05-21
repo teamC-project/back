@@ -90,9 +90,9 @@ public class ResponseDto {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
     }
 
-      public static ResponseEntity<ResponseDto> IdNonexistent() {
+      public static ResponseEntity<ResponseDto> UpDateInfo() {
         ResponseDto responseBody =
-            new ResponseDto(ResponseCode.Id_Nonexistent, ResponseMessage.Id_Nonexistent);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
+            new ResponseDto(ResponseCode.Up_Date_Info, ResponseMessage.Up_Date_Info);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
       }
 }

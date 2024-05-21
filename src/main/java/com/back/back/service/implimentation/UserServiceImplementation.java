@@ -21,7 +21,7 @@ public class UserServiceImplementation implements UserService {
   public ResponseEntity<? super DeleteUserDeleteResponseDto> getdeleteUser(String userId) {
     try {
       UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.IdNonexistent();
+      if (userEntity == null) return ResponseDto.authorizationFailed();
 
       userRepository.delete(userEntity);
     
@@ -29,10 +29,7 @@ public class UserServiceImplementation implements UserService {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
-
     return ResponseDto.success();
   }
-
-
 
 }

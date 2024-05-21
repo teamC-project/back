@@ -6,5 +6,6 @@ import com.back.back.dto.response.user.DeleteUserDeleteResponseDto;
 
 public interface UserService {
 
-    ResponseEntity<? super DeleteUserDeleteResponseDto> getdeleteUser(String userId);
+    ResponseEntity<? super DeleteUserDeleteResponseDto> deleteUser(String userId);
+
 }
