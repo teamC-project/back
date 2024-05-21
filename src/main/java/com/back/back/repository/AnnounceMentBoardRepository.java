@@ -9,9 +9,8 @@ import com.back.back.entity.AnnouncementBoardEntity;
 
 
 @Repository
-public interface AnnounceMentBoardRepository extends JpaRepository <AnnouncementBoardEntity, Integer> {
+public interface AnnouncementBoardRepository extends JpaRepository <AnnouncementBoardEntity, Integer> {
 
-    List<AnnouncementBoardEntity> findByOrderByAnnouncementNumberDesc();
-    List<AnnouncementBoardEntity> findByTitleContainsOrderByAnnouncementBoardNumberDesc(String announceMentTitle);
-    AnnouncementBoardEntity findByAnnouncementBoardNumber(Integer announceMentNumber);
-}
+    List<AnnouncementBoardEntity> findByOrderByAnnouncementBoardNumberDesc();
+    List<AnnouncementBoardEntity> findByAnnouncementBoardTitleOrderByAnnouncementBoardNumberDesc(String announcementBoardTitle);
+    AnnouncementBoardEntity findByAnnouncementBoardNumber(Integer announcementBoardNumber);}

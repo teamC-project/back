@@ -14,23 +14,23 @@ import lombok.Getter;
 
 @Getter
 public class GetAnnouncementBoardResponseDto extends ResponseDto {
-	private Integer announceMentBoardNumber;
-	private String announceMentBoardTitle;
-	private String announceMentBoardContents;
-	private String announceMentBoardWriterId;
-	private String announceMentBoardWriteDateTime;
-	private Integer announceMentBoardViewCount;
+	private Integer announcementBoardNumber;
+	private String announcementBoardTitle;
+	private String announcementBoardContents;
+	private String announcementBoardWriterId;
+	private String announcementBoardWriteDateTime;
+	private Integer announcementBoardViewCount;
 
 	private GetAnnouncementBoardResponseDto(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(announcementBoardEntity.getAnnounceMentBoardWriteDateTime());
+		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDateTime());
 
-		this.announceMentBoardNumber = announcementBoardEntity.getAnnounceMentBoardNumber();
-		this.announceMentBoardTitle = announcementBoardEntity.getAnnounceMentBoardTitle();
-		this.announceMentBoardWriterId = announcementBoardEntity.getAnnounceMentBoardWriterId();
-		this.announceMentBoardWriteDateTime = writeDateTime;
-		this.announceMentBoardViewCount = announcementBoardEntity.getAnnounceMentBoardViewCount();
-		this.announceMentBoardContents = announcementBoardEntity.getAnnounceMentBoardContents();
+		this.announcementBoardNumber = announcementBoardEntity.getAnnouncementBoardNumber();
+		this.announcementBoardTitle = announcementBoardEntity.getAnnouncementBoardTitle();
+		this.announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
+		this.announcementBoardWriteDateTime = writeDateTime;
+		this.announcementBoardViewCount = announcementBoardEntity.getAnnouncementBoardViewCount();
+		this.announcementBoardContents = announcementBoardEntity.getAnnouncementBoardContents();
 	}
 
 		public static ResponseEntity<GetAnnouncementBoardResponseDto> success (AnnouncementBoardEntity announcementBoardEntity) throws Exception {
