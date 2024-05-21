@@ -23,14 +23,10 @@ public class CustomerSignUpRequestDto {
     @NotBlank
     private String userGender;
     @NotBlank
-    private String userAge;
-
-    private String userImage;
-    String userCompanyName;
-
+    private String userAge; 
     @NotBlank
     private String userRole;
-    @NotBlank 
+    @NotBlank
     private String joinPath;
     private String snsId;
 }

@@ -27,11 +27,12 @@ public class DesginerSignUpRequestDto {
   @NotBlank
   private String userImage;
   @NotBlank
-  String userCompanyName;
-  @NotBlank
   private String userRole;
   @NotBlank
   private String joinPath;
+  @NotBlank
+  String userCompanyName;
+
 
   private String snsId;
 }

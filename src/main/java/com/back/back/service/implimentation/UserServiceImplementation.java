@@ -38,7 +38,13 @@ public class UserServiceImplementation implements UserService {
   public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String UserId) {
     try{
       UserEntity userEntity = userRepository.findByUserId(UserId);
+      return null;
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
+
+    return ResponseDto.success();
   }
     
 }

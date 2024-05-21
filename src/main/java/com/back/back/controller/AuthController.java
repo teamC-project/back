@@ -64,6 +64,7 @@ public class AuthController {
         @RequestBody @Valid CustomerSignUpRequestDto requestBody
     ) {
         ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
+        // System.out.println(requestBody);
         return response;
     }
 
