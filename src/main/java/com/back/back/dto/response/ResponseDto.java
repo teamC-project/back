@@ -89,4 +89,10 @@ public class ResponseDto {
             new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
     }
+
+      public static ResponseEntity<ResponseDto> IdNonexistent() {
+        ResponseDto responseBody =
+            new ResponseDto(ResponseCode.Id_Nonexistent, ResponseMessage.Id_Nonexistent);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
+      }
 }
