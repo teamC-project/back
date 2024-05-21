@@ -46,7 +46,7 @@ public class CustomerBoardEntity {
         this.customerBoardViewCount = 0;
     }
 
-    public void CustomerIncreaseViewCount() {
+    public void increaseViewCount() {
         this.customerBoardViewCount++;  
     }
 

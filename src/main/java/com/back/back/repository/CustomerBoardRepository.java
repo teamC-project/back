@@ -10,5 +10,10 @@ import com.back.back.entity.CustomerBoardEntity;
 @Repository
 public interface CustomerBoardRepository extends JpaRepository<CustomerBoardEntity, Integer> {
     
-    List<CustomerBoardEntity> findByOrdreByCustomerBoardNumberDesc();
+    List<CustomerBoardEntity> findByOrderByCustomerBoardNumberDesc();
+    
+    List<CustomerBoardEntity> findByTitleContainsOrContentContainsOrderByCustomerBoardNumberDesc(String title, String content);
+    
+    CustomerBoardEntity findByCustomerBoardNumber(int customerBoardNumber);
+    
 }

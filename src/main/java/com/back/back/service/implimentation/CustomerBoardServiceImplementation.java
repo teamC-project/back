@@ -75,7 +75,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         
         try {
 
-            List<CustomerBoardEntity> customerBoardEntities = customerBoardRepository.findByOrdreByCustomerBoardNumberDesc();
+            List<CustomerBoardEntity> customerBoardEntities = customerBoardRepository.findByOrderByCustomerBoardNumberDesc();
             return GetCustomerBoardListResponseDto.success(customerBoardEntities);
             
         } catch (Exception exception) {
@@ -90,7 +90,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         
         try {
 
-            List<CustomerBoardEntity> customerBoardEntities = customerBoardRepository.findByTitleContainsOrContentContainsOrderByCustomerBoardNumberDesc(searchWord);
+            List<CustomerBoardEntity> customerBoardEntities = customerBoardRepository.findByTitleContainsOrContentContainsOrderByCustomerBoardNumberDesc(searchWord, searchWord);
             return GetSearchCustomerBoardListResponseDto.success(customerBoardEntities);
             
         } catch (Exception exception) {
@@ -221,7 +221,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
             if (customerBoardEntity == null) return ResponseDto.noExistBoard();
 
-            customerBoardEntity.CustomerIncreaseViewCount();
+            customerBoardEntity.increaseViewCount();
             customerBoardRepository.save(customerBoardEntity);
             
         } catch (Exception exception) {
