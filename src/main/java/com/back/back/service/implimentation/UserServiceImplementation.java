@@ -4,7 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.user.DeleteUserDeleteResponseDto;
 import com.back.back.entity.UserEntity;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.UserService;
@@ -19,7 +18,7 @@ public class UserServiceImplementation implements UserService {
 
   @Override
   public ResponseEntity<ResponseDto> deleteUser(String userId) {
-    
+
     try {
       UserEntity userEntity = userRepository.findByUserId(userId);
       if (userEntity == null) return ResponseDto.authorizationFailed();
