@@ -2,9 +2,9 @@ package com.back.back.service;
 
 import org.springframework.http.ResponseEntity;
 
-import com.back.back.dto.response.user.GetSignInUserResponseDto;
+import com.back.back.dto.response.user.GetUserDeleteResponseDto;
 
 public interface UserDeleteService {
-  
-  RepositoryEntity<? super GetSignInUserResponseDto> getUserDelete (String userId);
+  ResponseEntity<? super GetUserDeleteResponseDto> getdeleteUser(String userId);
 }
+
