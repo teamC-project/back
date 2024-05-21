@@ -12,7 +12,7 @@ public interface CustomerBoardRepository extends JpaRepository<CustomerBoardEnti
     
     List<CustomerBoardEntity> findByOrderByCustomerBoardNumberDesc();
     
-    List<CustomerBoardEntity> findByCustomerBoardTitleOrCustomerBoardContentsOrderByCustomerBoardNumberDesc(String title, String content);
+    List<CustomerBoardEntity> findByCustomerBoardTitleContainsOrderByCustomerBoardNumberDesc(String customertitle);
     
     CustomerBoardEntity findByCustomerBoardNumber(int customerBoardNumber);
     
