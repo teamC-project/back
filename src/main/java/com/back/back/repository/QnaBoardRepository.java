@@ -9,8 +9,6 @@
 // @Repository
 // public interface QnaBoardRepository extends JpaRepository <QnaBoardEntity, Integer> {
 
-
-// }
 // List<QnaBoardEntity> findByOrderByQnaBoardNumberDesc();
 // List<QnaBoardEntity> findByTitleContainsOrderByQnaBoardNumberDesc(String qnaTitle);
 // QnaBoardEntity findByQnaNumber(Integer qnaBoardNumber);

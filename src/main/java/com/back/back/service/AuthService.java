@@ -22,5 +22,5 @@ public interface AuthService {
     ResponseEntity<ResponseDto> signUp (DesignerSignUpRequestDto dto);
     
     ResponseEntity<? super GetFindIdResponseDto> findId (FindIdRequestDto dto);
-    ResponseEntity<GetFindPasswordResponseDto> findPassword (FindPasswordDto dto);
+    // ResponseEntity<GetFindPasswordResponseDto> findPassword (FindPasswordDto dto);
 }
