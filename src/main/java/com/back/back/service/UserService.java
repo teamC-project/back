@@ -1,10 +1,10 @@
-package com.back.back.service;
+// package com.back.back.service;
 
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 
-import com.back.back.dto.response.user.GetSignInUserResponseDto;
+// import com.back.back.dto.response.user.GetSignInUserResponseDto;
 
-public interface UserService {
+// public interface UserService {
     
-    ResponseEntity<? super GetSignInUserResponseDto> getSignInUser (String userId);
-}
+//     ResponseEntity<? super GetSignInUserResponseDto> getSignInUser (String userId);
+// }
