@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.back.back.common.util.EmailAuthNumberUtil;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
-import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
@@ -36,25 +35,6 @@ public class AuthServiceImplimentation implements AuthService {
   private final JwtProvider jwtProvider;
 
   private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-  @Override
-  public ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto) {
-
-    try {
-
-      String userId = dto.getUserId();
-      boolean existedUser = userRepository.existsByUserId(userId);
-      if (existedUser)
-        return ResponseDto.duplicatedId();
-
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-
-    return ResponseDto.success();
-
-  }
 
   @Override
   public ResponseEntity<? super SignInResponseDto> signIn(SignInRequestDto dto) {

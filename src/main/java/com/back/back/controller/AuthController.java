@@ -10,7 +10,6 @@ import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
-import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 
 import com.back.back.dto.response.ResponseDto;
@@ -32,14 +31,6 @@ public class AuthController {
         @RequestBody @Valid SignInRequestDto requestBody
     ) {
         ResponseEntity<? super SignInResponseDto> response = authService.signIn(requestBody);
-        return response;
-    }
-
-    @PostMapping("/id-check")
-    public ResponseEntity<ResponseDto> idCheck (
-        @RequestBody @Valid IdCheckRequestDto requestBody
-    ) {
-        ResponseEntity<ResponseDto> response = authService.idCheck(requestBody);
         return response;
     }
 
