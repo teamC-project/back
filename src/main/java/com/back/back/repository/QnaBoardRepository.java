@@ -9,13 +9,7 @@
 // @Repository
 // public interface QnaBoardRepository extends JpaRepository <QnaBoardEntity, Integer> {
 
-<<<<<<< HEAD
 // List<QnaBoardEntity> findByOrderByQnaBoardNumberDesc();
 // List<QnaBoardEntity> findByTitleContainsOrderByQnaBoardNumberDesc(String qnaTitle);
 // QnaBoardEntity findByQnaNumber(Integer qnaBoardNumber);
-=======
-// 	List<QnaBoardEntity> findByOrderByQnaBoardNumberDesc();
-// 	List<QnaBoardEntity> findByTitleContainsOrderByQnaBoardNumberDesc(String qnaTitle);
-// 	QnaBoardEntity findByQnaNumber(Integer qnaBoardNumber);
->>>>>>> 46d127bca4f7792c7ccf748287f2c28b8df1d82b
 // }

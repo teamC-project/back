@@ -90,11 +90,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         
         try {
 
-<<<<<<< HEAD
             List<CustomerBoardEntity> customerBoardEntities = customerBoardRepository.findByCustomerBoardTitleContainsOrderByCustomerBoardNumberDesc(customersearchWord);
-=======
-            List<CustomerBoardEntity> customerBoardEntities = customerBoardRepository.findByCustomerBoardTitleOrCustomerBoardContentsOrderByCustomerBoardNumberDesc(searchWord, searchWord);
->>>>>>> 46d127bca4f7792c7ccf748287f2c28b8df1d82b
             return GetSearchCustomerBoardListResponseDto.success(customerBoardEntities);
             
         } catch (Exception exception) {
