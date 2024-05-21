@@ -4,6 +4,8 @@ import org.springframework.http.ResponseEntity;
 
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
+import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
+import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
@@ -11,7 +13,17 @@ import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListRespon
 
 public interface CustomerBoardService {
     ResponseEntity<ResponseDto> postCustomerBoard(PostCustomerBoardRequestDto dto, String userId);
-    ResponseEntity<ResponseDto> postCustomerBoardComment(PostCustomerBoardCommentRequestDto dto, int customerBoardNumber);
+    ResponseEntity<ResponseDto> postCustomerBoardComment(PostCustomerBoardCommentRequestDto dto, int customerBoardNumber, String userId);
+
     ResponseEntity<? super GetCustomerBoardListResponseDto> getCustomerBoardList();
     ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchCustomerBoardList(String searchWord);
+    ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber);
+
+    ResponseEntity<ResponseDto> putCustomerBoard(PutCustomerBoardRequestDto dto, int customerBoardNumber, String userId);
+    ResponseEntity<ResponseDto> putCustomerBoardComment(PutCustomerBoardCommentRequestDto dto, int customerBoardCommentNumber, String userId);
+
+    ResponseEntity<ResponseDto> deleteCustomerBoard(int customerBoardNumber, String userId);
+    ResponseEntity<ResponseDto> deleteCustomerBoardComment(int customerBoardCommentNumber, String userId);
+
+    ResponseEntity<ResponseDto> increaseViewCount(int customerBoardNumber);
 }

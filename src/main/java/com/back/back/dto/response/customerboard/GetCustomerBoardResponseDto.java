@@ -1,5 +1,6 @@
 package com.back.back.dto.response.customerboard;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -38,4 +39,6 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
         GetCustomerBoardResponseDto responseBody = new GetCustomerBoardResponseDto(customerBoardEntity);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
+
+
 }

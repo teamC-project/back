@@ -52,7 +52,7 @@ public class CustomerBoardEntity {
 
     public void update (PutCustomerBoardRequestDto dto) {
         this.customerBoardTitle = dto.getCustomerBoardTitle();
-        this.customerBoardContents = dto.getCustomerBoardCotents();
+        this.customerBoardContents = dto.getCustomerBoardContents();
     }
 
 }
