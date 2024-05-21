@@ -16,12 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
-
-
-
-
 @Entity(name = "qnaBoard")
 @Table(name = "qna_board")
 @Getter
@@ -47,7 +41,7 @@ public class QnaBoardEntity {
 		);
 		String writeDatetime = simpleDateFormat.format(now);
 
-		this.qnaBoardTitle = dto.getQnaBoardTitle();x
+		this.qnaBoardTitle = dto.getQnaBoardTitle();
 		this.qnaBoardStatus = false;
 		this.qnaBoardContents = dto.getQnaBoardContents();
 		this.qnaBoardWriterId = userId;
