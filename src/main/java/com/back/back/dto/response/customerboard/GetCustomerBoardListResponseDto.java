@@ -13,8 +13,6 @@ import com.back.back.entity.CustomerBoardEntity;
 
 import lombok.Getter;
 
-// import lombok.Getter;
-
 @Getter
 public class GetCustomerBoardListResponseDto extends ResponseDto {
     

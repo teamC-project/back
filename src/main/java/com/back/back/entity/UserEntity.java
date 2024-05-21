@@ -1,5 +1,7 @@
 package com.back.back.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
 
@@ -20,8 +22,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity {
+
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String userId;
   private String userPassword;
   private String userEmail;
