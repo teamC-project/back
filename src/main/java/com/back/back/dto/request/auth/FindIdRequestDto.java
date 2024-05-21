@@ -1,4 +1,4 @@
-package com.back.back.dto.request.Find;
+package com.back.back.dto.request.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -8,9 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FindPasswordDto {
+public class FindIdRequestDto {
   @NotBlank
-  public String userEmail;
+  private String userEmail;
   @NotBlank
-  public String authNumber;
+  private String authNumber;
 }
