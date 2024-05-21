@@ -222,12 +222,13 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindPasswordResponseDto> findPassword(FindPasswordDto dto) {
+  public ResponseEntity<ResponseDto> findPassword(FindPasswordDto dto) {
     
     try {
       
       String userEmail = dto.getUserEmail();
       String authNumber = dto.getAuthNumber();
+      String userPassword = dto.getUserPassword();
 
       UserEntity userEntity = userRepository.findByByUserEmail(userEmail);
       if (userEntity == null)
@@ -238,12 +239,17 @@ public class AuthServiceImplimentation implements AuthService {
         return ResponseDto.authenticationFailed();
 
       String encodeedPassword = passwordEncoder.encode(userPassword);
-      dto.setUserPassword(encodeedPassword);
+      dto.getUserPassword(encodeedPassword);
+
+      
+      UserEntity userEntity = new UserEntity(dto);
+      userRepository.save(userEntity);
 
     } catch (Exception exception) {
       exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
-
+      return ResponseDto.success();
   }
 
 }

@@ -32,7 +32,6 @@ public class UserServiceImplementation implements UserService {
     return ResponseDto.success();
   }
 
-<<<<<<< HEAD
   @Override
   public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String userId) {
     try{
@@ -51,8 +50,3 @@ public class UserServiceImplementation implements UserService {
   }
 
 }
-=======
-
-
-}
->>>>>>> 7207cadaa94963e683c86236a04ec80c3940c66a
