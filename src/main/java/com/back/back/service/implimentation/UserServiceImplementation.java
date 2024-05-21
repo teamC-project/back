@@ -18,7 +18,7 @@ public class UserServiceImplementation implements UserService {
   private final UserRepository userRepository;
 
   @Override
-  public ResponseEntity<? super DeleteUserDeleteResponseDto> getdeleteUser(String userId) {
+  public ResponseEntity<? super DeleteUserDeleteResponseDto> deleteUser(String userId) {
     try {
       UserEntity userEntity = userRepository.findByUserId(userId);
       if (userEntity == null) return ResponseDto.authorizationFailed();
