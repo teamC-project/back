@@ -9,5 +9,5 @@ public interface UserService {
 
     ResponseEntity<? super DeleteUserDeleteResponseDto> getdeleteUser(String userId);
 
-    ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String UserId);
+
 }

@@ -28,5 +28,5 @@ public interface ResponseCode {
   String TOKEN_CREATION_FAILED = "TF";
   String MAIL_SEND_FAILED = "MF";
   String DATABASE_ERROR = "DBE";
-  String Id_Nonexistent = "INX";
+  String Up_Date_Info = "UDI";
 }
