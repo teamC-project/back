@@ -8,17 +8,17 @@ import com.back.back.dto.response.ResponseCode;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.ResponseMessage;
 import com.back.back.entity.AnnouncementBoardEntity;
-import com.back.back.common.object.AnnounceMentBoardListItem;
+import com.back.back.common.object.AnnouncementBoardListItem;
 
 import lombok.Getter;
 
 @Getter
 public class GetAnnouncementBoardListResponseDto extends ResponseDto {
-	private List<AnnounceMentBoardListItem> announceMentBoardList;
+	private List<AnnouncementBoardListItem> announcementBoardList;
 
 	private GetAnnouncementBoardListResponseDto(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		this.announceMentBoardList = AnnounceMentBoardListItem.getAnnouncementBoardList(announcementBoardEntities);
+		this.announcementBoardList = AnnouncementBoardListItem.getAnnouncementBoardList(announcementBoardEntities);
 	}
 
 	public static ResponseEntity<GetAnnouncementBoardListResponseDto> success(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {
