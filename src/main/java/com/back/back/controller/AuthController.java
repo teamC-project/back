@@ -74,10 +74,10 @@ public class AuthController {
     }
 
     @DeleteMapping("/")
-    public ResponseEntity<? super DeleteUserDeleteResponseDto> deleteUser (
+    public ResponseEntity<ResponseDto> deleteUser (
         @AuthenticationPrincipal String userId
     ) {
-        ResponseEntity<? super DeleteUserDeleteResponseDto> response = userService.deleteUser(userId);
+        ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
         return response;
     }
 
