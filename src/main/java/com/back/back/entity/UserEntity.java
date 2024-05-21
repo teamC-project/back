@@ -1,7 +1,7 @@
 package com.back.back.entity;
 
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
-import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
+import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -42,7 +42,7 @@ public class UserEntity {
     this.snsId = customerDto.getSnsId();
   }
 
-  public UserEntity(DesginerSignUpRequestDto desginerDto) {
+  public UserEntity(DesignerSignUpRequestDto desginerDto) {
     this.userId = desginerDto.getUserId();
     this.userPassword = desginerDto.getUserPassword();
     this.userEmail = desginerDto.getUserEmail();
