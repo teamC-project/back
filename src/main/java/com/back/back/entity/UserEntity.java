@@ -1,5 +1,7 @@
 package com.back.back.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
 
@@ -27,7 +29,7 @@ public class UserEntity {
   private String userEmail;
   private String userGender;
   private String userAge;
-  private String userImage;
+  private String userImage; 
   private String userCompanyName;
   private String userRole;
   private String joinPath;
@@ -40,7 +42,7 @@ public class UserEntity {
     this.userGender = customerDto.getUserGender();
     this.userAge = customerDto.getUserAge();
     this.userRole = "ROLE_CUSTOMER";
-    this.joinPath = customerDto.getJoinPath();
+    this.joinPath = "HOME";
     this.snsId = customerDto.getSnsId();
   }
 
@@ -53,7 +55,7 @@ public class UserEntity {
     this.userCompanyName = desginerDto.getUserCompanyName();
     this.userImage = desginerDto.getUserImage();
     this.userRole = "ROLE_DESIGNER";
-    this.joinPath = desginerDto.getJoinPath();
+    this.joinPath = "HOME";
     this.snsId = desginerDto.getSnsId();
   }
 }
