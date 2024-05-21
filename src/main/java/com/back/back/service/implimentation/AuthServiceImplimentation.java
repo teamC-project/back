@@ -201,6 +201,9 @@ public class AuthServiceImplimentation implements AuthService {
             dto.setUserPassword(encodeedPassword);
 
             UserEntity userEntity = new UserEntity();
+            userEntity.setUserId(userId);
+            userEntity.setUserPassword(encodeedPassword);
+            userEntity.setUserEmail(userEmail);
             userEntity.setUserGender(userGender);
             userEntity.setUserAge(userAge);
             userEntity.setUserImage(userImage);
