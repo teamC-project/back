@@ -27,5 +27,4 @@ public interface ResponseMessage {
   String TOKEN_CREATION_FAILED = "Token creation Failed.";
   String MAIL_SEND_FAILED = "Mail send Failed.";
   String DATABASE_ERROR = "Database Error.";
-  String Id_Nonexistent = "Id Nonexistent.";
 }

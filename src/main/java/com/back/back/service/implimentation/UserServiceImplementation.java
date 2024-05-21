@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.user.DeleteUserDeleteResponseDto;
-import com.back.back.dto.response.user.GetInformationUpdateResponseDto;
 import com.back.back.entity.UserEntity;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.UserService;
@@ -22,7 +21,7 @@ public class UserServiceImplementation implements UserService {
   public ResponseEntity<? super DeleteUserDeleteResponseDto> getdeleteUser(String userId) {
     try {
       UserEntity userEntity = userRepository.findBySnsId(userId);
-      if (userEntity == null) return ResponseDto.IdNonexistent();
+      if (userEntity == null) return ResponseDto.authorizationFailed();
 
       userRepository.save(userEntity);
     
@@ -30,10 +29,10 @@ public class UserServiceImplementation implements UserService {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
-
     return ResponseDto.success();
   }
 
+<<<<<<< HEAD
   @Override
   public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String userId) {
     try{
@@ -52,3 +51,8 @@ public class UserServiceImplementation implements UserService {
   }
 
 }
+=======
+
+
+}
+>>>>>>> 7207cadaa94963e683c86236a04ec80c3940c66a
