@@ -8,6 +8,7 @@ import lombok.Getter;
 
 @Getter
 public class AnnouncementBoardListItem {
+<<<<<<< HEAD
 	private Integer announceMentBoardNumber;
 	private String announceMentBoardTitle;
 	private String announceMentBoardContents;
@@ -17,27 +18,46 @@ public class AnnouncementBoardListItem {
 
 private AnnouncementBoardListItem(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
 	String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(announcementBoardEntity.getAnnounceMentBoardWriteDateTime());
+=======
+	private Integer announcementBoardNumber;
+	private String announcementBoardTitle;
+	private String announcementBoardContents;
+	private String announcementBoardWriterId;
+	private String announcementBoardWriteDateTime;
+	private Integer announcementBoardViewCount;
 
-	String announceMentBoardWriterId = announcementBoardEntity.getAnnounceMentBoardWriterId();
-	announceMentBoardWriterId = announceMentBoardWriterId.substring(0,1) + " +".repeat(announceMentBoardWriterId.length() -1);
+private AnnouncementBoardListItem(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
+	String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDateTime());
+>>>>>>> 97a21643a440a31601363b460738b873ee41fbf9
 
-	this.announceMentBoardNumber = announcementBoardEntity.getAnnounceMentBoardNumber();
-	this.announceMentBoardTitle = announcementBoardEntity.getAnnounceMentBoardTitle();
-	this.announceMentBoardContents = announcementBoardEntity.getAnnounceMentBoardContents();
-	this.announceMentBoardWriterId = announcementBoardEntity.getAnnounceMentBoardWriterId();
-	this.announceMentBoardWriteDateTime = writeDatetime;
-	this.announceMentBoardViewCount = announcementBoardEntity.getAnnounceMentBoardViewCount();
+	String announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
+	announcementBoardWriterId = announcementBoardWriterId.substring(0,1) + " +".repeat(announcementBoardWriterId.length() -1);
+
+	this.announcementBoardNumber = announcementBoardEntity.getAnnouncementBoardNumber();
+	this.announcementBoardTitle = announcementBoardEntity.getAnnouncementBoardTitle();
+	this.announcementBoardContents = announcementBoardEntity.getAnnouncementBoardContents();
+	this.announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
+	this.announcementBoardWriteDateTime = writeDatetime;
+	this.announcementBoardViewCount = announcementBoardEntity.getAnnouncementBoardViewCount();
 }
 
 public static List<AnnouncementBoardListItem> getAnnouncementBoardList(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {
+<<<<<<< HEAD
 	List<AnnouncementBoardListItem> announceMentBoardList = new ArrayList<>();
 
 	for (AnnouncementBoardEntity announcementBoardEntity : announcementBoardEntities) {
 		AnnouncementBoardListItem announceMentBoardListItem = new AnnouncementBoardListItem(announcementBoardEntity);
 		announceMentBoardList.add(announceMentBoardListItem);
+=======
+	List<AnnouncementBoardListItem> announcementBoardList = new ArrayList<>();
+
+	for (AnnouncementBoardEntity announcementBoardEntity : announcementBoardEntities) {
+		AnnouncementBoardListItem announcementBoardListItem = new AnnouncementBoardListItem(announcementBoardEntity);
+		announcementBoardList.add(announcementBoardListItem);
+>>>>>>> 97a21643a440a31601363b460738b873ee41fbf9
 
 	}
-	return announceMentBoardList;
+	return announcementBoardList;
 } 
 
 }

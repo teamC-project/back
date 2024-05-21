@@ -26,12 +26,12 @@ import lombok.Setter;
 public class AnnouncementBoardEntity {
   @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer announceMentBoardNumber;
-	private String announceMentBoardTitle;
-	private String announceMentBoardContents;
-	private String announceMentBoardWriterId;
-	private String announceMentBoardWriteDateTime;
-	private Integer announceMentBoardViewCount;
+	private Integer announcementBoardNumber;
+	private String  announcementBoardTitle;
+	private String announcementBoardContents;
+	private String announcementBoardWriterId;
+	private String announcementBoardWriteDateTime;
+	private Integer announcementBoardViewCount;
 
 	public AnnouncementBoardEntity(PostAnnouncementBoardRequestDto dto, String userId) {
 		Date now =Date.from(Instant.now());
@@ -40,19 +40,19 @@ public class AnnouncementBoardEntity {
 		);
 		String writeDatetime = simpleDateFormat.format(now);
 
-		this.announceMentBoardTitle = dto.getAnnouncementBoardTitle();
-		this.announceMentBoardContents = dto.getAnnouncementBoardContents();
-		this.announceMentBoardWriterId = userId;
-		this.announceMentBoardWriteDateTime = writeDatetime;
-		this.announceMentBoardViewCount = 0;
+		this.announcementBoardTitle = dto.getAnnouncementBoardTitle();
+		this.announcementBoardContents = dto.getAnnouncementBoardContents();
+		this.announcementBoardWriterId = userId;
+		this.announcementBoardWriteDateTime = writeDatetime;
+		this.announcementBoardViewCount = 0;
 	}
 
 	public void increaseAnnoucementBoardViewCount () {
-		this.announceMentBoardViewCount++;
+		this.announcementBoardViewCount++;
 	}
 
 	public void updateAnnouncementBoard(PutAnnouncementBoardRequestDto dto) {
-		this.announceMentBoardTitle = dto.getAnnouncementBoardTitle();
-		this.announceMentBoardContents =  dto.getAnnouncementBoardContents();
+		this.announcementBoardTitle = dto.getAnnouncementBoardTitle();
+		this.announcementBoardContents =  dto.getAnnouncementBoardContents();
 	}
 }
