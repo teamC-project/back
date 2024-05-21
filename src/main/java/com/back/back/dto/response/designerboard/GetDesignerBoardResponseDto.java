@@ -19,7 +19,6 @@ public class GetDesignerBoardResponseDto extends ResponseDto {
     private String designerBoardContents;
     private String designerBoardWriterId;
     private String designerBoardWriteDatetime;
-    private String designerBoardComment;
     private Integer designerBoardViewCount;
 
     private GetDesignerBoardResponseDto(DesignerBoardEntity designerBoardEntity) throws Exception {
@@ -32,7 +31,6 @@ public class GetDesignerBoardResponseDto extends ResponseDto {
         this.designerBoardWriteDatetime = designerWriteDatetime;
         this.designerBoardViewCount = designerBoardEntity.getDesignerBoardViewCount();
         this.designerBoardContents = designerBoardEntity.getDesignerBoardContents();
-        this.designerBoardComment = designerBoardEntity.getDesignerBoardComment();
     }
 
     public static ResponseEntity<GetDesignerBoardResponseDto> success(DesignerBoardEntity designerBoardEntity) throws Exception {

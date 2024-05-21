@@ -46,13 +46,13 @@ public class CustomerBoardEntity {
         this.customerBoardViewCount = 0;
     }
 
-    public void CustomerIncreaseViewCount() {
+    public void increaseViewCount() {
         this.customerBoardViewCount++;  
     }
 
     public void update (PutCustomerBoardRequestDto dto) {
         this.customerBoardTitle = dto.getCustomerBoardTitle();
-        this.customerBoardContents = dto.getCustomerBoardCotents();
+        this.customerBoardContents = dto.getCustomerBoardContents();
     }
 
 }

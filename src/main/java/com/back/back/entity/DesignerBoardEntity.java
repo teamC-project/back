@@ -17,7 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "designer_board")
+@Entity(name = "designerBoard")
 @Table(name = "designer_board")
 @Getter
 @Setter
@@ -31,7 +31,6 @@ public class DesignerBoardEntity {
     private String designerBoardContents;
     private String designerBoardWriterId;
     private String designerBoardWriteDatetime;
-    private String designerBoardComment;
     private Integer designerBoardViewCount;
 
     public DesignerBoardEntity(PostDesignerBoardRequestDto dto, String userId) {
@@ -46,7 +45,7 @@ public class DesignerBoardEntity {
         this.designerBoardViewCount = 0;
     }
 
-    public void DesignerIncreaseViewCount() {
+    public void designerIncreaseViewCount() {
         this.designerBoardViewCount++;  
     }
 
