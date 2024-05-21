@@ -81,9 +81,11 @@ public class AuthController {
         return response;
     }
 
-    @GetMapping("/")
-    public ResponseEntity< GetInformationUpdateResponseDto> getUserUpdate (
+
+
+    // @GetMapping("/")
+    // public ResponseEntity< GetInformationUpdateResponseDto> getUserUpdate (
         
-    )
+    // )
 
 }
