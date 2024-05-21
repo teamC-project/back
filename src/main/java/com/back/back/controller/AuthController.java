@@ -73,8 +73,8 @@ public class AuthController {
     ) {
         ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
         return response;
-  }
+    }
 
-  
+
 
 }

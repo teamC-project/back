@@ -90,7 +90,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         
         try {
 
-            List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByTitleOrContentContainsOrderByDesignerBoardNumberDesc(searchWord);
+            List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByDesignerBoardTitleContainsOrDesignerBoardContentContainsOrderByDesignerBoardNumberDesc(searchWord);
             return GetSearchDesignerBoardListResponseDto.success(designerBoardEntities);
             
         } catch (Exception exception) {
