@@ -20,10 +20,10 @@ public class UserServiceImplementation implements UserService {
   @Override
   public ResponseEntity<? super DeleteUserDeleteResponseDto> getdeleteUser(String userId) {
     try {
-      UserEntity userEntity = userRepository.findBySnsId(userId);
+      UserEntity userEntity = userRepository.findByUserId(userId);
       if (userEntity == null) return ResponseDto.IdNonexistent();
 
-      userRepository.save(userEntity);
+      userRepository.delete(userEntity);
     
     } catch (Exception exception) {
       exception.printStackTrace();
