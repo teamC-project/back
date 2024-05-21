@@ -9,7 +9,6 @@ import com.back.back.entity.AnnouncementBoardEntity;
 
 
 @Repository
-<<<<<<< HEAD
 public interface AnnouncementBoardRepository extends JpaRepository <AnnouncementBoardEntity, Integer> {
 
     List<AnnouncementBoardEntity> findByOrderByAnnouncementNumberDesc();
@@ -21,6 +20,7 @@ public interface AnnouncementBoardRepository extends JpaRepository <Announcement
 
     List<AnnouncementBoardEntity> findByOrderByAnnouncementBoardNumberDesc();
     List<AnnouncementBoardEntity> findByAnnouncementBoardTitleOrderByAnnouncementBoardNumberDesc(String announcementBoardTitle);
+<<<<<<< HEAD
     AnnouncementBoardEntity findByAnnouncementBoardNumber(Integer announcementBoardNumber);
 =======
 public interface AnnounceMentBoardRepository extends JpaRepository <AnnouncementBoardEntity, Integer> {
@@ -31,3 +31,6 @@ public interface AnnounceMentBoardRepository extends JpaRepository <Announcement
 >>>>>>> 44fca5349da5c0d03521ca57b33ed5892a9027a6
 >>>>>>> 97a21643a440a31601363b460738b873ee41fbf9
 }
+=======
+    AnnouncementBoardEntity findByAnnouncementBoardNumber(Integer announcementBoardNumber);}
+>>>>>>> f1092834252e6f8764dc4e797fab3c1bc49173f8
