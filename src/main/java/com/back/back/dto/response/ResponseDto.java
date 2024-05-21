@@ -3,8 +3,6 @@ package com.back.back.dto.response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.back.back.dto.response.auth.GetFindIdResponseDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

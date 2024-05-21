@@ -204,7 +204,7 @@ public class AuthServiceImplimentation implements AuthService {
       String userEmail = dto.getUserEmail();
       String authNumber = dto.getAuthNumber();
 
-      UserEntity userEntity = userRepository.findByByUserEmail(userEmail);
+      UserEntity userEntity = userRepository.findByUserEmail(userEmail);
       if (userEntity == null)
         return ResponseDto.duplicatedEmail();
 

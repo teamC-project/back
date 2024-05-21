@@ -11,11 +11,9 @@ import lombok.Getter;
 public class DeleteUserDeleteResponseDto extends ResponseDto {
 
     private String userId;
-    private String userRole;
 
     private DeleteUserDeleteResponseDto(UserEntity userEntity) {
         super (ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
         this.userId = userEntity.getUserId();
-        this.userRole = userEntity.getUserRole();
     }
 }
