@@ -35,10 +35,13 @@ public class UserServiceImplementation implements UserService {
   }
 
   @Override
-  public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String UserId) {
+  public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String userId) {
     try{
-      UserEntity userEntity = userRepository.findByUserId(UserId);
-      return null;
+      UserEntity userEntity = userRepository.findByUserId(userId);
+      if (userEntity == null) return ResponseDto.
+
+      userRepository.save(userEntity);
+
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
@@ -46,5 +49,5 @@ public class UserServiceImplementation implements UserService {
 
     return ResponseDto.success();
   }
-    
+
 }
