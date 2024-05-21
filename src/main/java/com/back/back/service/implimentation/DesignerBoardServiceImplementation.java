@@ -1,6 +1,7 @@
 package com.back.back.service.implimentation;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -57,8 +58,12 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
             boolean isExistUser = userRepository.existsById(userId);
             if (!isExistUser) return ResponseDto.authenticationFailed();
+            Optional<DesignerBoardEntity> designerBoardOptional = designerBoardRepository.findById(designerBoardNumber);
+        
+            // 디자이너 보드 엔티티가 존재하지 않으면 오류 응답 반환
+            if (!designerBoardOptional.isPresent()) return ResponseDto.noExistBoard();
 
-            DesignerBoardCommentEntity designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, userId);
+            DesignerBoardCommentEntity designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId);
             designerBoardCommentRepository.save(designerBoardCommentEntity);
             
         } catch (Exception exception) {

@@ -21,6 +21,7 @@ import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardResponseDto;
 import com.back.back.dto.response.designerboard.GetSearchDesignerBoardListResponseDto;
+import com.back.back.entity.DesignerBoardEntity;
 import com.back.back.service.DesignerBoardService;
 
 import jakarta.validation.Valid;
@@ -103,9 +104,9 @@ public class DesignerBoardController {
         return response;
     }
 
-    @DeleteMapping("/{designerBoardNumber}/comment")
+    @DeleteMapping("/{designerBoardCommentNumber}/comment")
     public ResponseEntity<ResponseDto> deleteDesignerBoardComment (
-        @PathVariable("designerBoardNumber") int designerBoardCommentNumber,
+        @PathVariable("designerBoardCommentNumber") int designerBoardCommentNumber,
         @AuthenticationPrincipal String userId
     ) {
         ResponseEntity<ResponseDto> response =  designerBoardService.deleteDesignerBoardComment(designerBoardCommentNumber, userId);
