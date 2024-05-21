@@ -19,8 +19,7 @@ public class UserDeleteServiceImplementation implements UserDeleteService {
 
   @Override
   public ResponseEntity<? super GetUserDeleteResponseDto> deleteUser(String userId) {
-    
-    
+
     try {
       UserEntity userEntity = userRepository.findBySnsId(userId);
       if (userEntity == null) return ResponseDto.IdNonexistent();
