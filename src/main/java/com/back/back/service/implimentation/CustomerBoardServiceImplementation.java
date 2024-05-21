@@ -86,11 +86,11 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
     }
 
     @Override
-    public ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchCustomerBoardList(String searchWord) {
+    public ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchCustomerBoardList(String customersearchWord) {
         
         try {
 
-            List<CustomerBoardEntity> customerBoardEntities = customerBoardRepository.findByCustomerBoardTitleOrCustomerBoardContentsOrderByCustomerBoardNumberDesc(searchWord, searchWord);
+            List<CustomerBoardEntity> customerBoardEntities = customerBoardRepository.findByCustomerBoardTitleContainsOrderByCustomerBoardNumberDesc(customersearchWord);
             return GetSearchCustomerBoardListResponseDto.success(customerBoardEntities);
             
         } catch (Exception exception) {
