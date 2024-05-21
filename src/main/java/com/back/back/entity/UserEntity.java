@@ -22,14 +22,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity {
+
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String userId;
   private String userPassword;
   private String userEmail;
   private String userGender;
   private String userAge;
-  private String userImage; 
+  private String userImage;
   private String userCompanyName;
   private String userRole;
   private String joinPath;
@@ -42,7 +42,7 @@ public class UserEntity {
     this.userGender = customerDto.getUserGender();
     this.userAge = customerDto.getUserAge();
     this.userRole = "ROLE_CUSTOMER";
-    this.joinPath = "HOME";
+    this.joinPath = customerDto.getJoinPath();
     this.snsId = customerDto.getSnsId();
   }
 
@@ -55,7 +55,7 @@ public class UserEntity {
     this.userCompanyName = desginerDto.getUserCompanyName();
     this.userImage = desginerDto.getUserImage();
     this.userRole = "ROLE_DESIGNER";
-    this.joinPath = "HOME";
+    this.joinPath = desginerDto.getJoinPath();
     this.snsId = desginerDto.getSnsId();
   }
 }
