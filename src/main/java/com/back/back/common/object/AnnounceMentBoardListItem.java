@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import lombok.Getter;
 
 @Getter
-public class AnnounceMentBoardListItem {
+public class AnnouncementBoardListItem {
 	private Integer announceMentBoardNumber;
 	private String announceMentBoardTitle;
 	private String announceMentBoardContents;
@@ -15,7 +15,7 @@ public class AnnounceMentBoardListItem {
 	private String announceMentBoardWriteDateTime;
 	private Integer announceMentBoardViewCount;
 
-private AnnounceMentBoardListItem(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
+private AnnouncementBoardListItem(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
 	String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(announcementBoardEntity.getAnnounceMentBoardWriteDateTime());
 
 	String announceMentBoardWriterId = announcementBoardEntity.getAnnounceMentBoardWriterId();
@@ -29,11 +29,11 @@ private AnnounceMentBoardListItem(AnnouncementBoardEntity announcementBoardEntit
 	this.announceMentBoardViewCount = announcementBoardEntity.getAnnounceMentBoardViewCount();
 }
 
-public static List<AnnounceMentBoardListItem> getAnnouncementBoardList(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {
-	List<AnnounceMentBoardListItem> announceMentBoardList = new ArrayList<>();
+public static List<AnnouncementBoardListItem> getAnnouncementBoardList(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {
+	List<AnnouncementBoardListItem> announceMentBoardList = new ArrayList<>();
 
 	for (AnnouncementBoardEntity announcementBoardEntity : announcementBoardEntities) {
-		AnnounceMentBoardListItem announceMentBoardListItem = new AnnounceMentBoardListItem(announcementBoardEntity);
+		AnnouncementBoardListItem announceMentBoardListItem = new AnnouncementBoardListItem(announcementBoardEntity);
 		announceMentBoardList.add(announceMentBoardListItem);
 
 	}

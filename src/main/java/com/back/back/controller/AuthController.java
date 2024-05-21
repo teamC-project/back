@@ -59,9 +59,9 @@ public class AuthController {
         return response;
     }
 
-    @PostMapping("/designer-sign-up")
+    @PostMapping("/desginer-sign-up")
     public ResponseEntity<ResponseDto> signUp (
-        @RequestBody @Valid DesignerSignUpRequestDto requestBody
+        @RequestBody @Valid DesignerSignUpRequestDto  requestBody
     ) {
         ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
         return response;

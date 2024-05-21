@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.user.DeleteUserDeleteResponseDto;
-import com.back.back.dto.response.user.GetInformationUpdateResponseDto;
 import com.back.back.entity.UserEntity;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.UserService;
@@ -34,20 +33,6 @@ public class UserServiceImplementation implements UserService {
     return ResponseDto.success();
   }
 
-  @Override
-  public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String userId) {
-    try{
-      UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.
-
-      userRepository.save(userEntity);
-
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-
-    return ResponseDto.success();
-  }
+  
 
 }
