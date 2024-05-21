@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
-import com.back.back.dto.request.auth.DesginerSignUpRequestDto;
+import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
@@ -59,9 +59,9 @@ public class AuthController {
         return response;
     }
 
-    @PostMapping("/desginer-sign-up")
+    @PostMapping("/designer-sign-up")
     public ResponseEntity<ResponseDto> signUp (
-        @RequestBody @Valid DesginerSignUpRequestDto requestBody
+        @RequestBody @Valid DesignerSignUpRequestDto requestBody
     ) {
         ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
         return response;

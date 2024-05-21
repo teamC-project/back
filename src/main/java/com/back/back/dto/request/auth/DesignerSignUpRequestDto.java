@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class DesginerSignUpRequestDto {
+public class DesignerSignUpRequestDto {
   @NotBlank
   private String userId;
   @NotBlank
