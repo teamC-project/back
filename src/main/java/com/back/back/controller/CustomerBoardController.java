@@ -60,4 +60,11 @@ public class CustomerBoardController {
         ResponseEntity<? super GetSearchCustomerBoardListResponseDto> response = customerBoardService.getSearchCustomerBoardList(word);
         return response;
     }
+    @GetMapping("/{customerBoardNumber}")
+    public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard (
+        @PathVariable("customerBoardNumber") int customerBoardNumber
+    ) {
+        ResponseEntity<? super GetCustomerBoardResponseDto> response = customerBoardService.getCustomerBoard(customerBoardNumber);
+        return response;
+    }
 }
