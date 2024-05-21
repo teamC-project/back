@@ -3,6 +3,7 @@ package com.back.back.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -53,11 +54,11 @@ public class AnnouncementBoardController {
 	return response;
 	}
 
-    @GetMapping("/list/{searchWord}")
+    @GetMapping("/list/search")
     public ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(
-        @RequestParam("searchWord") String searchWord
+        @RequestParam("word") String word
     ) {
-        ResponseEntity <? super GetSearchAnnouncementBoardListResponseDto> response = announcementBoardService.getSearchAnnouncementBoardList(searchWord);
+        ResponseEntity <? super GetSearchAnnouncementBoardListResponseDto> response = announcementBoardService.getSearchAnnouncementBoardList(word);
         return response;
     }
 
@@ -69,5 +70,11 @@ public class AnnouncementBoardController {
         return response;
     }
 
-
+		@PatchMapping("/{announcementBoardNumber}/increase-view-count") 
+		public ResponseEntity<ResponseDto> increaseAnnouncementBoardViewCount (
+			@PathVariable("announcementBoardNumber") int announcementBoardNumber
+		) {
+			ResponseEntity<ResponseDto> response  = announcementBoardService.increaseAnnouncementBoardViewCount(announcementBoardNumber);
+			return response;
+		}
 }
