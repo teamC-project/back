@@ -84,10 +84,10 @@ public class DesignerBoardController {
         return response;
     }
 
-    @PutMapping("/{designerBoardNumber}/comment")
+    @PutMapping("/{designerBoardCommentNumber}/comment")
     public ResponseEntity<ResponseDto> putDesignerBoardComment (
         @RequestBody @Valid PutDesignerBoardCommentRequestDto requestBody,
-        @PathVariable("designerBoardNumber") int designerBoardCommentNumber,
+        @PathVariable("designerBoardCommentNumber") int designerBoardCommentNumber,
         @AuthenticationPrincipal String userId
     ) {
         ResponseEntity<ResponseDto> response = designerBoardService.putDesignerBoardComment(requestBody, designerBoardCommentNumber, userId);
