@@ -196,7 +196,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindIdResponseDto> findId(FindIdRequestDto dto) {
+  public ResponseEntity<? super GetFindIdResponseDto> idFound(FindIdRequestDto dto) {
 
     String userId = null;
     try {
