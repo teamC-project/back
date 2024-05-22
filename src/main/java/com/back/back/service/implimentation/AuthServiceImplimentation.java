@@ -8,16 +8,14 @@ import org.springframework.stereotype.Service;
 import com.back.back.common.util.EmailAuthNumberUtil;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
-import com.back.back.dto.request.auth.FindIdRequestDto;
 import com.back.back.dto.request.auth.FindPasswordDto;
-// import com.back.back.dto.request.auth.FindPasswordDto;
+import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
-// import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.entity.EmailAuthNumberEntity;
 import com.back.back.entity.UserEntity;
@@ -198,7 +196,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindIdResponseDto> findId(FindIdRequestDto dto) {
+  public ResponseEntity<? super GetFindIdResponseDto> findId(IdFoundRequestDto dto) {
 
     String userId = null;
     try {
@@ -234,7 +232,7 @@ public class AuthServiceImplimentation implements AuthService {
       String userPassword = dto.getUserPassword();
 
       boolean existedUser = userRepository.existsById(userId);
-      if (existedUser) return ResponseDto.duplicatedId();
+      if (!existedUser) return ResponseDto.noExistId();
 
       UserEntity userEntity = userRepository.findByUserEmail(userEmail);
       if (userEntity == null)
@@ -245,10 +243,9 @@ public class AuthServiceImplimentation implements AuthService {
         return ResponseDto.authenticationFailed();
 
       String encodeedPassword = passwordEncoder.encode(userPassword);
-      dto.getUserPassword(encodeedPassword);
+      dto.setUserPassword(encodeedPassword);
       
-      UserEntity userEntity = new UserEntity(dto);
-      userRepository.save(userEntity);
+      userPassword = userEntity.getUserPassword();
 
     } catch (Exception exception) {
       exception.printStackTrace();
