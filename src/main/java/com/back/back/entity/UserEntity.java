@@ -1,7 +1,9 @@
 package com.back.back.entity;
 
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
+import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
+import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -42,16 +44,28 @@ public class UserEntity {
     this.snsId = customerDto.getSnsId();
   }
 
-  public UserEntity(DesignerSignUpRequestDto desginerDto) {
-    this.userId = desginerDto.getUserId();
-    this.userPassword = desginerDto.getUserPassword();
-    this.userEmail = desginerDto.getUserEmail();
-    this.userGender = desginerDto.getUserGender();
-    this.userAge = desginerDto.getUserAge();
-    this.userCompanyName = desginerDto.getUserCompanyName();
-    this.userImage = desginerDto.getUserImage();
+  public UserEntity(DesignerSignUpRequestDto designerDto) {
+    this.userId = designerDto.getUserId();
+    this.userPassword = designerDto.getUserPassword();
+    this.userEmail = designerDto.getUserEmail();
+    this.userGender = designerDto.getUserGender();
+    this.userAge = designerDto.getUserAge();
+    this.userCompanyName = designerDto.getUserCompanyName();
+    this.userImage = designerDto.getUserImage();
     this.userRole = "ROLE_DESIGNER";
-    this.joinPath = desginerDto.getJoinPath();
-    this.snsId = desginerDto.getSnsId();
+    this.joinPath = designerDto.getJoinPath();
+    this.snsId = designerDto.getSnsId();
+  }
+
+  public void update(CustomerUpdateRequestDto dto) {
+    this.userAge = dto.getUserAge();
+    this.userGender = dto.getUserGender();
+  }
+
+  public void update(DesignerUpdateRequestDto dto) {
+    this.userAge = dto.getUserAge();
+    this.userGender = dto.getUserGender();
+    this.userImage = dto.getUserImage();
+    this.userCompanyName =dto.getUserCompanyName();
   }
 }

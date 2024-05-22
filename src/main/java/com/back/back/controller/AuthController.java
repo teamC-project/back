@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
+import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
+import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
-import com.back.back.dto.request.user.CustomerUpdateRequestDto;
-import com.back.back.dto.request.user.DesginerUpdateRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
@@ -61,19 +61,19 @@ public class AuthController {
     return response;
   }
 
-    @PostMapping("/designer-sign-up")
-    public ResponseEntity<ResponseDto> signUp(
-        @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
-        ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
-        return response;
-    }
+  @PostMapping("/designer-sign-up")
+  public ResponseEntity<ResponseDto> signUp(
+      @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
+    ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
+    return response;
+  }
 
-    @DeleteMapping("/")
-    public ResponseEntity<ResponseDto> deleteUser(
-        @AuthenticationPrincipal String userId) {
-        ResponseEntity<ResponseDto> response = authService.deleteUser(userId);
-        return response;
-    }
+  @DeleteMapping("/")
+  public ResponseEntity<ResponseDto> deleteUser(
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = authService.deleteUser(userId);
+    return response;
+  }
 
     @PostMapping("/id-found")
     public ResponseEntity<? super GetFindIdResponseDto> idFound(
@@ -85,7 +85,7 @@ public class AuthController {
     @PostMapping("/password-found")
     public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
         @RequestBody @Valid PasswordFoundRequestDto requestBody) {
-        ResponseEntity<? super GetFindPasswordResponseDto> response = authService.findPassword(requestBody);
+        ResponseEntity<? super GetFindPasswordResponseDto> response = authService.passwordFound(requestBody);
         return response;
     }
 
@@ -96,10 +96,10 @@ public class AuthController {
         return response;
     }
 
-    @PostMapping("/desginer-update")
-    public ResponseEntity<ResponseDto> desginerUpdate(
-        @RequestBody @Valid DesginerUpdateRequestDto requestBody) {
-        ResponseEntity<ResponseDto> response = authService.desginerUpdate(requestBody);
+    @PostMapping("/designer-update")
+    public ResponseEntity<ResponseDto> designerUpdate(
+        @RequestBody @Valid DesignerUpdateRequestDto requestBody) {
+        ResponseEntity<ResponseDto> response = authService.designerUpdate(requestBody);
         return response;
     }
 

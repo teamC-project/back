@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Entity(name = "qnaBoard")
 @Table(name = "qna_board")
 @Getter
@@ -24,37 +25,36 @@ import lombok.Setter;
 @AllArgsConstructor
 public class QnaBoardEntity {
   @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer qnaBoardNumber;
-	private Boolean qnaBoardStatus;
-	private String qnaBoardTitle;
-	private String qnaBoardContents;
-	private String qnaBoardWriterId;
-	private String qnaBoardWriteDatetime;
-	private Integer qnaBoardViewCount;
-	private String qnaBoardComment;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer qnaBoardNumber;
+  private Boolean qnaBoardStatus;
+  private String qnaBoardTitle;
+  private String qnaBoardContents;
+  private String qnaBoardWriterId;
+  private String qnaBoardWriteDatetime;
+  private Integer qnaBoardViewCount;
+  private String qnaBoardComment;
 
-	public QnaBoardEntity(PostQnaBoardRequestDto dto, String userId) {
-		Date now =Date.from(Instant.now());
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss"
-		);
-		String writeDatetime = simpleDateFormat.format(now);
+  public QnaBoardEntity(PostQnaBoardRequestDto dto, String userId) {
+    Date now = Date.from(Instant.now());
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+        "yyyy-MM-dd HH:mm:ss");
+    String writeDatetime = simpleDateFormat.format(now);
 
-		this.qnaBoardTitle = dto.getQnaBoardTitle();
-		this.qnaBoardStatus = false;
-		this.qnaBoardContents = dto.getQnaBoardContents();
-		this.qnaBoardWriterId = userId;
-		this.qnaBoardWriteDatetime = writeDatetime;
-		this.qnaBoardViewCount = 0;
-	}
+    this.qnaBoardTitle = dto.getQnaBoardTitle();
+    this.qnaBoardStatus = false;
+    this.qnaBoardContents = dto.getQnaBoardContents();
+    this.qnaBoardWriterId = userId;
+    this.qnaBoardWriteDatetime = writeDatetime;
+    this.qnaBoardViewCount = 0;
+  }
 
-	public void increaseQnaViewCount () {
-		this.qnaBoardViewCount++;
-	}
+  public void increaseQnaViewCount() {
+    this.qnaBoardViewCount++;
+  }
 
-	public void updateQnaBoard(PutQnaBoardRequestDto dto) {
-		this.qnaBoardTitle = dto.getQnaBoardTitle();
-		this.qnaBoardContents =  dto.getQnaBoardContents();
-	}
+  public void updateQnaBoard(PutQnaBoardRequestDto dto) {
+    this.qnaBoardTitle = dto.getQnaBoardTitle();
+    this.qnaBoardContents = dto.getQnaBoardContents();
+  }
 }
