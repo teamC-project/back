@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
+import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
@@ -36,4 +37,6 @@ public interface AuthService {
   ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto);
 
   ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto);
+  
+  ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto);
 }

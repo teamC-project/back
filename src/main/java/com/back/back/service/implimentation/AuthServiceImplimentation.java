@@ -1,6 +1,7 @@
 package com.back.back.service.implimentation;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.back.back.common.util.EmailAuthNumberUtil;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
+import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
@@ -132,7 +134,7 @@ public class AuthServiceImplimentation implements AuthService {
       String userEmail = dto.getUserEmail();
       String authNumber = dto.getAuthNumber();
 
-      boolean existedUser = userRepository.existsById(userId);
+      boolean existedUser = userRepository.existsByUserId(userId);
       if (existedUser)
         return ResponseDto.duplicatedId();
 
@@ -169,7 +171,7 @@ public class AuthServiceImplimentation implements AuthService {
       String userEmail = dto.getUserEmail();
       String authNumber = dto.getAuthNumber();
 
-      boolean existedUser = userRepository.existsById(userId);
+      boolean existedUser = userRepository.existsByUserId(userId);
       if (existedUser)
         return ResponseDto.duplicatedId();
 
@@ -233,7 +235,7 @@ public class AuthServiceImplimentation implements AuthService {
       String authNumber = dto.getAuthNumber();
       String userPassword = dto.getUserPassword();
 
-      boolean existedUser = userRepository.existsById(userId);
+      boolean existedUser = userRepository.existsByUserId(userId);
       if (!existedUser)
         return ResponseDto.noExistId();
 
@@ -306,6 +308,23 @@ public class AuthServiceImplimentation implements AuthService {
 
       userEntity.update(dto);
       userRepository.save(userEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
+
+  @Override
+  public ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto) {
+    try {
+
+      String userId = dto.getUserId();
+
+      Boolean userEntity = userRepository.existsByUserId(userId);
+      if (! userEntity)
+        return ResponseDto.duplicatedId();
 
     } catch (Exception exception) {
       exception.printStackTrace();
