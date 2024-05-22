@@ -16,13 +16,12 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
-
+import com.back.back.dto.request.user.CustomerUpdateRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.service.AuthService;
-import com.back.back.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
-  private final UserService userService;
   private final AuthService authService;
 
   @PostMapping("/sign-in")
@@ -69,12 +67,12 @@ public class AuthController {
     return response;
   }
 
-  @DeleteMapping("/")
-  public ResponseEntity<ResponseDto> deleteUser(
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
-    return response;
-  }
+    @DeleteMapping("/")
+    public ResponseEntity<ResponseDto> deleteUser(
+        @AuthenticationPrincipal String userId) {
+        ResponseEntity<ResponseDto> response = authService.deleteUser(userId);
+        return response;
+    }
 
   @PostMapping("/id_found")
   public ResponseEntity<? super GetFindIdResponseDto> idFound(
@@ -83,11 +81,4 @@ public class AuthController {
     return response;
   }
 
-  @PostMapping("/password_found")
-  public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
-      @RequestBody @Valid PasswordFoundRequestDto requestBody) {
-    ResponseEntity<? super GetFindPasswordResponseDto> response = authService.findPassword(requestBody);
-    return response;
-  }
 
-}
