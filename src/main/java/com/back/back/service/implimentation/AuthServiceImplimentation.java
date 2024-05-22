@@ -1,5 +1,7 @@
 package com.back.back.service.implimentation;
 
+import javax.swing.text.html.parser.Entity;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,12 +10,14 @@ import org.springframework.stereotype.Service;
 import com.back.back.common.util.EmailAuthNumberUtil;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
+import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
+import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.entity.EmailAuthNumberEntity;
 import com.back.back.entity.UserEntity;
@@ -219,41 +223,37 @@ public class AuthServiceImplimentation implements AuthService {
     return GetFindIdResponseDto.success(userId);
   }
 
-  // @Override
-  // public ResponseEntity<? super GetFindPasswordResponseDto>
-  // findPassword(FindPasswordDto dto) {
+  @Override
+  public ResponseEntity<? super GetFindPasswordResponseDto> findPassword(PasswordFoundRequestDto dto) {
 
-  // try {
+  try {
 
-  // String userId = dto.getUserId();
-  // String userEmail = dto.getUserEmail();
-  // String authNumber = dto.getAuthNumber();
-  // String userPassword = dto.getUserPassword();
+  String userId = dto.getUserId();
+  String userEmail = dto.getUserEmail();
+  String authNumber = dto.getAuthNumber();
+  String userPassword = dto.getUserPassword();
 
-  // boolean existedUser = userRepository.existsById(userId);
-  // if (existedUser)
-  // return ResponseDto.duplicatedId();
+  boolean existedUser = userRepository.existsById(userId);
+  if (!existedUser) return ResponseDto.noExistId();
 
-  // UserEntity userEntity = userRepository.findByUserEmail(userEmail);
-  // if (userEntity == null)
-  // return ResponseDto.noExistEmail();
+  UserEntity userEntity = userRepository.findByUserEmail(userEmail);
+  if (userEntity == null)
+  return ResponseDto.noExistEmail();
 
-  // boolean isMatched =
-  // emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
-  // if (!isMatched)
-  // return ResponseDto.authenticationFailed();
+  boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
+  if (!isMatched)
+  return ResponseDto.authenticationFailed();
+      
+  String encodeedPassword = passwordEncoder.encode(userPassword);
+  dto.setUserPassword(encodeedPassword);
+  
+  userPassword = userEntity.getUserPassword();
 
-  // String encodeedPassword = passwordEncoder.encode(userPassword);
-  // dto.getUserPassword(encodeedPassword);
-
-  // UserEntity userEntity = new UserEntity(dto);
-  // userRepository.save(userEntity);
-
-  // } catch (Exception exception) {
-  // exception.printStackTrace();
-  // return ResponseDto.databaseError();
-  // }
-  // return ResponseDto.success();
-  // }
+  } catch (Exception exception) {
+  exception.printStackTrace();
+  return ResponseDto.databaseError();
+  }
+  return ResponseDto.success();
+  }
 
 }

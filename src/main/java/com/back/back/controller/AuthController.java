@@ -14,10 +14,12 @@ import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
+import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
+import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.service.AuthService;
 import com.back.back.service.UserService;
@@ -60,26 +62,32 @@ public class AuthController {
     return response;
   }
 
-  @PostMapping("/designer-sign-up")
-  public ResponseEntity<ResponseDto> signUp(
-      @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
-    ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
-    return response;
-  }
+    @PostMapping("/designer-sign-up")
+    public ResponseEntity<ResponseDto> signUp(
+        @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
+        ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
+        return response;
+    }
 
-  @DeleteMapping("/")
-  public ResponseEntity<ResponseDto> deleteUser(
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
-    return response;
-  }
+    @DeleteMapping("/")
+    public ResponseEntity<ResponseDto> deleteUser(
+        @AuthenticationPrincipal String userId) {
+        ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
+        return response;
+    }
 
-  @PostMapping("/id_found")
-  public ResponseEntity<? super GetFindIdResponseDto> idFound(
-      @RequestBody @Valid IdFoundRequestDto requestBody) {
-    ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
-    return response;
-  }
+    @PostMapping("/id_found")
+    public ResponseEntity<? super GetFindIdResponseDto> idFound(
+        @RequestBody @Valid IdFoundRequestDto requestBody) {
+        ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
+        return response;
+    }
 
+    @PostMapping("/password_found")
+    public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
+        @RequestBody @Valid PasswordFoundRequestDto requestBody) {
+        ResponseEntity<? super GetFindPasswordResponseDto> response = authService.findPassword(requestBody);
+        return response;
+    }
 
 }
