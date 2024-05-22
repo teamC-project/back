@@ -30,7 +30,7 @@ public class QnaBoardEntity {
 	private String qnaBoardTitle;
 	private String qnaBoardContents;
 	private String qnaBoardWriterId;
-	private String qnaBoardWriteDateTime;
+	private String qnaBoardWriteDatetime;
 	private Integer qnaBoardViewCount;
 	private String qnaBoardComment;
 
@@ -45,7 +45,7 @@ public class QnaBoardEntity {
 		this.qnaBoardStatus = false;
 		this.qnaBoardContents = dto.getQnaBoardContents();
 		this.qnaBoardWriterId = userId;
-		this.qnaBoardWriteDateTime = writeDatetime;
+		this.qnaBoardWriteDatetime = writeDatetime;
 		this.qnaBoardViewCount = 0;
 	}
 

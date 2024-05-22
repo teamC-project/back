@@ -67,11 +67,11 @@ public class QnaBoardController {
 				return response;
 			}
 
-			@GetMapping("/list/{searchword}") 
+			@GetMapping("/list/search") 
 			public ResponseEntity<? super GetSearchQnaBoardListResponseDto> getSearchBoardList(
-					@RequestParam("searchword") String searchWord
+					@RequestParam("word") String word
 			) {
-					ResponseEntity< ? super  GetSearchQnaBoardListResponseDto> response  = qnaBoardService.getSearchQnaBoardList(searchWord);
+					ResponseEntity< ? super  GetSearchQnaBoardListResponseDto> response  = qnaBoardService.getSearchQnaBoardList(word);
 					return response;
 			}
 

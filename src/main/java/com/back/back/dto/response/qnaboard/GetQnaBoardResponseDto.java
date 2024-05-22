@@ -25,7 +25,7 @@ public class GetQnaBoardResponseDto extends ResponseDto{
 
 	private GetQnaBoardResponseDto(QnaBoardEntity qnaBoardEntity) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(qnaBoardEntity.getQnaBoardWriteDateTime());
+		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(qnaBoardEntity.getQnaBoardWriteDatetime());
 
 		this.qnaBoardNumber = qnaBoardEntity.getQnaBoardNumber();
 		this.qnaBoardStatus = qnaBoardEntity.getQnaBoardStatus();
