@@ -19,7 +19,6 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
     private String customerBoardContents;
     private String customerBoardWriterId;
     private String customerBoardWriteDatetime;
-    private String customerBoardComment;
     private Integer customerBoardViewCount;
 
     private GetCustomerBoardResponseDto(CustomerBoardEntity customerBoardEntity) throws Exception {
@@ -32,7 +31,6 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
         this.customerBoardWriteDatetime = customerWriteDatetime;
         this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
         this.customerBoardContents = customerBoardEntity.getCustomerBoardContents();
-        this.customerBoardComment = customerBoardEntity.getCustomerBoardComment();
     }
 
     public static ResponseEntity<GetCustomerBoardResponseDto> success(CustomerBoardEntity customerBoardEntity) throws Exception {

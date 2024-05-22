@@ -8,9 +8,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FindIdRequestDto {
+public class DesignerUpdateRequestDto {
   @NotBlank
-  private String userEmail;
+  private String userId;
   @NotBlank
-  private String authNumber;
+  private String userGender;
+  @NotBlank
+  private String userAge;
+  @NotBlank
+  private String userImage;
+  @NotBlank
+  private String userCompanyName;
 }

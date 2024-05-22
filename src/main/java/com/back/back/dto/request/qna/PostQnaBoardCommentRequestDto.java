@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class PostQnaBoardCommentRequestDto {
+public class PostQnaBoardCommentRequestDto {
 @NotBlank
-public String qnaBoardComment;
+private String qnaBoardComment;
 }

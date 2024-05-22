@@ -1,6 +1,7 @@
 package com.back.back.service.implimentation;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -58,7 +59,13 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             boolean isExistUser = userRepository.existsById(userId);
             if (!isExistUser) return ResponseDto.authenticationFailed();
 
-            CustomerBoardCommentEntity customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, userId);
+            Optional<CustomerBoardEntity> customerBoardOptional = customerBoardRepository.findById(customerBoardNumber);
+
+      // 커스터머 보드 엔티티가 존재하지 않으면 오류 응답 반환
+        if (!customerBoardOptional.isPresent())
+        return ResponseDto.noExistBoard();
+
+            CustomerBoardCommentEntity customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId);
             customerBoardCommentRepository.save(customerBoardCommentEntity);
             
         } catch (Exception exception) {
