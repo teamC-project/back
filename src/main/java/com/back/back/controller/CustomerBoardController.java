@@ -84,10 +84,10 @@ public class CustomerBoardController {
         return response;
     }
 
-    @PutMapping("/{customerBoardNumber}/comment")
+    @PutMapping("/{customerBoardCommentNumber}/comment")
     public ResponseEntity<ResponseDto> putCustomerBoardComment (
         @RequestBody @Valid PutCustomerBoardCommentRequestDto requestBody,
-        @PathVariable("customerBoardNumber") int customerBoardCommentNumber,
+        @PathVariable("customerBoardCommentNumber") int customerBoardCommentNumber,
         @AuthenticationPrincipal String userId
     ) {
         ResponseEntity<ResponseDto> response = customerBoardService.putCustomerBoardComment(requestBody, customerBoardCommentNumber, userId);
@@ -103,9 +103,9 @@ public class CustomerBoardController {
         return response;
     }
 
-    @DeleteMapping("/{customerBoardNumber}/comment")
+    @DeleteMapping("/{customerBoardCommentNumber}/comment")
     public ResponseEntity<ResponseDto> deleteCustomerBoardComment (
-        @PathVariable("customerBoardNumber") int customerBoardCommentNumber,
+        @PathVariable("customerBoardCommentNumber") int customerBoardCommentNumber,
         @AuthenticationPrincipal String userId
     ) {
         ResponseEntity<ResponseDto> response =  customerBoardService.deleteCustomerBoardComment(customerBoardCommentNumber, userId);

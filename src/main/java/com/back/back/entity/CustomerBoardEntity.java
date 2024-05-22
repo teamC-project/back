@@ -31,7 +31,6 @@ public class CustomerBoardEntity {
     private String customerBoardContents;
     private String customerBoardWriterId;
     private String customerBoardWriteDatetime;
-    private String customerBoardComment;
     private Integer customerBoardViewCount;
 
     public CustomerBoardEntity(PostCustomerBoardRequestDto dto, String userId) {
