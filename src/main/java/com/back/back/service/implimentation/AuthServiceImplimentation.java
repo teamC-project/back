@@ -281,6 +281,11 @@ public class AuthServiceImplimentation implements AuthService {
       UserEntity userEntity = userRepository.findByUserId(userId);
       if (userEntity == null) return ResponseDto.noExistId();
 
+      userEntity.setUserId(dto.getUserId());
+      userEntity.setUserEmail(dto.getUserEmail());
+      userEntity.setUserGender(dto.getUserGender());
+      userEntity.setUserAge(dto.getUserAge());
+
       userRepository.save(userEntity);
 
     } catch (Exception exception) {

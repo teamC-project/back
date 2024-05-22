@@ -75,28 +75,28 @@ public class AuthController {
         return response;
     }
 
-    @PostMapping("/id_found")
+    @PostMapping("/id-found")
     public ResponseEntity<? super GetFindIdResponseDto> idFound(
         @RequestBody @Valid IdFoundRequestDto requestBody) {
         ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
         return response;
     }
 
-    @PostMapping("/password_found")
+    @PostMapping("/password-found")
     public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
         @RequestBody @Valid PasswordFoundRequestDto requestBody) {
         ResponseEntity<? super GetFindPasswordResponseDto> response = authService.findPassword(requestBody);
         return response;
     }
 
-    @PostMapping("/customer_update")
+    @PostMapping("/customer-update")
     public ResponseEntity<ResponseDto> customerUpdate(
         @RequestBody @Valid CustomerUpdateRequestDto requestBody) {
         ResponseEntity<ResponseDto> response = authService.customerUpdate(requestBody);
         return response;
     }
 
-    @PostMapping("/desginer_update")
+    @PostMapping("/desginer-update")
     public ResponseEntity<ResponseDto> desginerUpdate(
         @RequestBody @Valid DesginerUpdateRequestDto requestBody) {
         ResponseEntity<ResponseDto> response = authService.desginerUpdate(requestBody);
