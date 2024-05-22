@@ -14,7 +14,7 @@ import lombok.Getter;
 public class GetFindPasswordResponseDto extends ResponseDto {
   private String userPassword;
 
-  private GetFindPasswordResponseDto(UserEntity userEntity) {
+  private GetFindPasswordResponseDto(String userPassword) {
     super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
     this.userPassword = userPassword;
   }
