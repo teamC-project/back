@@ -42,6 +42,18 @@ public class ResponseDto {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 
+      public static ResponseEntity<ResponseDto> noExistEmail() {
+        ResponseDto responseBody = 
+            new ResponseDto(ResponseCode.NO_EXIST_EMAIL, ResponseMessage.NO_EXIST_EMAIL);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }
+
+      public static ResponseEntity<ResponseDto> noExistId() {
+        ResponseDto responseBody = 
+            new ResponseDto(ResponseCode.NO_EXIST_ID, ResponseMessage.NO_EXIST_ID);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }
+
       public static ResponseEntity<ResponseDto> writtenComment() {
         ResponseDto responseBody = 
             new ResponseDto(ResponseCode.WRITTEN_COMMENT, ResponseMessage.WRITTEN_COMMENT);

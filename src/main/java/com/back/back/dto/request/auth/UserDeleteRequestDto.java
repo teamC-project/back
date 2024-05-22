@@ -1,6 +1,5 @@
-package com.back.back.dto.request.user;
+package com.back.back.dto.request.auth;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,13 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class InformationUpdateRequestDto {
-    @NotBlank
+public class UserDeleteRequestDto {
     private String userId;
+    private String userPassword;
     private String userEmail;
-    private String authNumber;
     private String userGender;
     private String userAge;
-    private String userImage;
     private String userCompanyName;
+    private String userImage;
 }
