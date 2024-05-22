@@ -8,16 +8,12 @@ import org.springframework.stereotype.Service;
 import com.back.back.common.util.EmailAuthNumberUtil;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
-import com.back.back.dto.request.auth.FindIdRequestDto;
-import com.back.back.dto.request.auth.FindPasswordDto;
-// import com.back.back.dto.request.auth.FindPasswordDto;
+import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
-import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
-// import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.entity.EmailAuthNumberEntity;
 import com.back.back.entity.UserEntity;
@@ -198,7 +194,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindIdResponseDto> findId(FindIdRequestDto dto) {
+  public ResponseEntity<? super GetFindIdResponseDto> idFound(IdFoundRequestDto dto) {
 
     String userId = null;
     try {
@@ -212,7 +208,7 @@ public class AuthServiceImplimentation implements AuthService {
 
       boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
       if (!isMatched)
-        return ResponseDto.authenticationFailed();        
+        return ResponseDto.authenticationFailed();
 
       userId = userEntity.getUserId();
 
@@ -223,39 +219,41 @@ public class AuthServiceImplimentation implements AuthService {
     return GetFindIdResponseDto.success(userId);
   }
 
-  @Override
-  public ResponseEntity<? super GetFindPasswordResponseDto> findPassword(FindPasswordDto dto) {
-    
-    try {
-      
-      String userId = dto.getUserId();
-      String userEmail = dto.getUserEmail();
-      String authNumber = dto.getAuthNumber();
-      String userPassword = dto.getUserPassword();
+  // @Override
+  // public ResponseEntity<? super GetFindPasswordResponseDto>
+  // findPassword(FindPasswordDto dto) {
 
-      boolean existedUser = userRepository.existsById(userId);
-      if (existedUser) return ResponseDto.duplicatedId();
+  // try {
 
-      UserEntity userEntity = userRepository.findByUserEmail(userEmail);
-      if (userEntity == null)
-        return ResponseDto.noExistEmail();
+  // String userId = dto.getUserId();
+  // String userEmail = dto.getUserEmail();
+  // String authNumber = dto.getAuthNumber();
+  // String userPassword = dto.getUserPassword();
 
-      boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
-      if (!isMatched)
-        return ResponseDto.authenticationFailed();
+  // boolean existedUser = userRepository.existsById(userId);
+  // if (existedUser)
+  // return ResponseDto.duplicatedId();
 
-      String encodeedPassword = passwordEncoder.encode(userPassword);
-      dto.getUserPassword(encodeedPassword);
-      
-      UserEntity userEntity = new UserEntity(dto);
-      userRepository.save(userEntity);
+  // UserEntity userEntity = userRepository.findByUserEmail(userEmail);
+  // if (userEntity == null)
+  // return ResponseDto.noExistEmail();
 
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-      return ResponseDto.success();
-  }
+  // boolean isMatched =
+  // emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
+  // if (!isMatched)
+  // return ResponseDto.authenticationFailed();
 
+  // String encodeedPassword = passwordEncoder.encode(userPassword);
+  // dto.getUserPassword(encodeedPassword);
+
+  // UserEntity userEntity = new UserEntity(dto);
+  // userRepository.save(userEntity);
+
+  // } catch (Exception exception) {
+  // exception.printStackTrace();
+  // return ResponseDto.databaseError();
+  // }
+  // return ResponseDto.success();
+  // }
 
 }
