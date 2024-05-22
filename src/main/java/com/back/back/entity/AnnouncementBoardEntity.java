@@ -27,7 +27,7 @@ public class AnnouncementBoardEntity {
   @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer announcementBoardNumber;
-	private String  announcementBoardTitle;
+	private String announcementBoardTitle;
 	private String announcementBoardContents;
 	private String announcementBoardWriterId;
 	private String announcementBoardWriteDateTime;
