@@ -224,36 +224,37 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindPasswordResponseDto> findPassword(PasswordFoundRequestDto dto) {
+  public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(PasswordFoundRequestDto dto) {
 
-  try {
+    try {
 
-  String userId = dto.getUserId();
-  String userEmail = dto.getUserEmail();
-  String authNumber = dto.getAuthNumber();
-  String userPassword = dto.getUserPassword();
+      String userId = dto.getUserId();
+      String userEmail = dto.getUserEmail();
+      String authNumber = dto.getAuthNumber();
+      String userPassword = dto.getUserPassword();
 
-  boolean existedUser = userRepository.existsById(userId);
-  if (!existedUser) return ResponseDto.noExistId();
+      boolean existedUser = userRepository.existsById(userId);
+      if (!existedUser)
+        return ResponseDto.noExistId();
 
-  UserEntity userEntity = userRepository.findByUserEmail(userEmail);
-  if (userEntity == null)
-  return ResponseDto.noExistEmail();
+      UserEntity userEntity = userRepository.findByUserEmail(userEmail);
+      if (userEntity == null)
+        return ResponseDto.noExistEmail();
 
-  boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
-  if (!isMatched)
-  return ResponseDto.authenticationFailed();
-      
-  String encodeedPassword = passwordEncoder.encode(userPassword);
-  dto.setUserPassword(encodeedPassword);
-  
-  userPassword = userEntity.getUserPassword();
+      boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
+      if (!isMatched)
+        return ResponseDto.authenticationFailed();
 
-  } catch (Exception exception) {
-  exception.printStackTrace();
-  return ResponseDto.databaseError();
-  }
-  return ResponseDto.success();
+      String encodeedPassword = passwordEncoder.encode(userPassword);
+      dto.setUserPassword(encodeedPassword);
+
+      userPassword = userEntity.getUserPassword();
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
   }
 
   @Override
@@ -261,10 +262,11 @@ public class AuthServiceImplimentation implements AuthService {
 
     try {
       UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.authorizationFailed();
+      if (userEntity == null)
+        return ResponseDto.authorizationFailed();
 
       userRepository.delete(userEntity);
-    
+
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
@@ -274,13 +276,15 @@ public class AuthServiceImplimentation implements AuthService {
 
   @Override
   public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto) {
-    
+
     try {
       String userId = dto.getUserId();
 
       UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.noExistId();
+      if (userEntity == null)
+        return ResponseDto.noExistId();
 
+      userEntity.update(dto);
       userRepository.save(userEntity);
 
     } catch (Exception exception) {
@@ -297,11 +301,13 @@ public class AuthServiceImplimentation implements AuthService {
       String userId = dto.getUserId();
 
       UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.noExistId();
+      if (userEntity == null)
+        return ResponseDto.noExistId();
 
+      userEntity.update(dto);
       userRepository.save(userEntity);
 
-    } catch(Exception exception) {
+    } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
