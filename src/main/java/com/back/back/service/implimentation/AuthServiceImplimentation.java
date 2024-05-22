@@ -11,10 +11,10 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
-import com.back.back.dto.request.user.CustomerUpdateRequestDto;
-import com.back.back.dto.request.user.DesginerUpdateRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
+import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
+import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
@@ -295,7 +295,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<ResponseDto> desginerUpdate(DesginerUpdateRequestDto dto) {
+  public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto) {
     try {
 
       String userId = dto.getUserId();
