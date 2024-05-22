@@ -284,6 +284,7 @@ public class AuthServiceImplimentation implements AuthService {
       if (userEntity == null)
         return ResponseDto.noExistId();
 
+      userEntity.update(dto);
       userRepository.save(userEntity);
 
     } catch (Exception exception) {
@@ -303,6 +304,7 @@ public class AuthServiceImplimentation implements AuthService {
       if (userEntity == null)
         return ResponseDto.noExistId();
 
+      userEntity.update(dto);
       userRepository.save(userEntity);
 
     } catch (Exception exception) {

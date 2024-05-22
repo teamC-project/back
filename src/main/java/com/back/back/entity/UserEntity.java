@@ -2,6 +2,8 @@ package com.back.back.entity;
 
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
+import com.back.back.dto.request.user.CustomerUpdateRequestDto;
+import com.back.back.dto.request.user.DesginerUpdateRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -53,5 +55,17 @@ public class UserEntity {
     this.userRole = "ROLE_DESIGNER";
     this.joinPath = desginerDto.getJoinPath();
     this.snsId = desginerDto.getSnsId();
+  }
+
+  public void update(CustomerUpdateRequestDto dto) {
+    this.userAge = dto.getUserAge();
+    this.userGender = dto.getUserGender();
+  }
+
+  public void update(DesginerUpdateRequestDto dto) {
+    this.userAge = dto.getUserAge();
+    this.userGender = dto.getUserGender();
+    this.userImage = dto.getUserImage();
+    this.userCompanyName =dto.getUserCompanyName();
   }
 }
