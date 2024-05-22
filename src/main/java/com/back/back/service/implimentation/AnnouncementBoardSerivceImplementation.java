@@ -45,7 +45,6 @@ public class AnnouncementBoardSerivceImplementation implements AnnouncementBoard
         try {
             List<AnnouncementBoardEntity> announcementBoardEntity = announcementBoardRepository.findByOrderByAnnouncementBoardNumberDesc();
             return GetAnnouncementBoardListResponseDto.success(announcementBoardEntity);
-
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -53,11 +52,11 @@ public class AnnouncementBoardSerivceImplementation implements AnnouncementBoard
 
     }
     @Override
-    public ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(String announcementSearchWord) {
+    public ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord) {
 		try {
 
-			List<AnnouncementBoardEntity> announcementBoardEntity = announcementBoardRepository.findByAnnouncementBoardTitleOrderByAnnouncementBoardNumberDesc(announcementSearchWord);
-			return GetSearchAnnouncementBoardListResponseDto.success(announcementBoardEntity);
+			List<AnnouncementBoardEntity> announcementBoardEntities = announcementBoardRepository.findByAnnouncementBoardTitleOrderByAnnouncementBoardNumberDesc(announcementBoardSearchWord);
+			return GetSearchAnnouncementBoardListResponseDto.success(announcementBoardEntities);
 
 	} catch (Exception exception) {
 			exception.printStackTrace();

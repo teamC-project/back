@@ -13,4 +13,5 @@ public interface AnnouncementBoardRepository extends JpaRepository <Announcement
 
     List<AnnouncementBoardEntity> findByOrderByAnnouncementBoardNumberDesc();
     List<AnnouncementBoardEntity> findByAnnouncementBoardTitleOrderByAnnouncementBoardNumberDesc(String announcementBoardTitle);
-    AnnouncementBoardEntity findByAnnouncementBoardNumber(Integer announcementBoardNumber);}
+    AnnouncementBoardEntity findByAnnouncementBoardNumber(Integer announcementBoardNumber);
+}

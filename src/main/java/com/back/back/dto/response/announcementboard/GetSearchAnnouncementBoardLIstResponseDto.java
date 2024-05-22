@@ -21,6 +21,7 @@ public class GetSearchAnnouncementBoardListResponseDto extends ResponseDto {
 				super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 				this.announcementBoardList = AnnouncementBoardListItem.getAnnouncementBoardList(announcementBoardEntities);
 			}
+<<<<<<< HEAD
 
 			public static ResponseEntity<GetSearchAnnouncementBoardListResponseDto>
 			success (List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception{
@@ -28,3 +29,13 @@ public class GetSearchAnnouncementBoardListResponseDto extends ResponseDto {
 				return ResponseEntity.status(HttpStatus.OK).body(responseBody);
 			}
 }
+=======
+      
+      public static ResponseEntity<GetSearchAnnouncementBoardListResponseDto>
+      success (List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception{
+        GetSearchAnnouncementBoardListResponseDto responseBody = new GetSearchAnnouncementBoardListResponseDto(announcementBoardEntities);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+      }
+    }
+    
+>>>>>>> 97c62b7b9db2154356dd05eedaa9b3680e541b98

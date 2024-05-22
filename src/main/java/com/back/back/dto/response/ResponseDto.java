@@ -89,10 +89,4 @@ public class ResponseDto {
             new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
     }
-
-      public static ResponseEntity<ResponseDto> UpDateInfo() {
-        ResponseDto responseBody =
-            new ResponseDto(ResponseCode.Up_Date_Info, ResponseMessage.Up_Date_Info);
-        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-      }
 }
