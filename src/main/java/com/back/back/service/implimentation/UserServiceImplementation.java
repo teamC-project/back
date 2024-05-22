@@ -32,21 +32,21 @@ public class UserServiceImplementation implements UserService {
     return ResponseDto.success();
   }
 
-  // @Override
-  // public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String userId) {
-  //   try{
-  //     UserEntity userEntity = userRepository.findByUserId(userId);
-  //     if (userEntity == null) return ResponseDto.
+//   @Override
+//   public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String userId) {
+//     try{
+//       UserEntity userEntity = userRepository.findByUserId(userId);
+//       // if (userEntity == null) return ResponseDto.
 
-  //     userRepository.save(userEntity);
+//       // userRepository.save(userEntity);
 
-  //   } catch (Exception exception) {
-  //     exception.printStackTrace();
-  //     return ResponseDto.databaseError();
-  //   }
+//     } catch (Exception exception) {
+//       exception.printStackTrace();
+//       // return ResponseDto.databaseError();
+//     }
 
-  //   return ResponseDto.success();
-	// 	return null;
-  // }
+//     // return ResponseDto.success();
+// 		return null;
+//   }
 
 }

@@ -141,8 +141,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
       String writerId = designerBoardEntity.getDesignerBoardWriterId();
       boolean isWriter = userId.equals(writerId);
-      if (!isWriter)
-        return ResponseDto.authorizationFailed();
+      if (!isWriter) return ResponseDto.authorizationFailed();
 
       designerBoardEntity.update(dto);
       designerBoardRepository.save(designerBoardEntity);
