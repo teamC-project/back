@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
-import com.back.back.dto.request.auth.FindPasswordDto;
+import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
@@ -21,6 +21,6 @@ public interface AuthService {
     ResponseEntity<ResponseDto> signUp (CustomerSignUpRequestDto dto);
     ResponseEntity<ResponseDto> signUp (DesignerSignUpRequestDto dto);
     
-    ResponseEntity<? super GetFindIdResponseDto> findId (IdFoundRequestDto dto);
-    ResponseEntity<? super GetFindPasswordResponseDto> findPassword (FindPasswordDto dto);
+    ResponseEntity<? super GetFindIdResponseDto> idFound (IdFoundRequestDto dto);
+    ResponseEntity<? super GetFindPasswordResponseDto> findPassword (PasswordFoundRequestDto dto);
 }

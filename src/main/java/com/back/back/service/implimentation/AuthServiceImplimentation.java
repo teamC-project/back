@@ -1,5 +1,7 @@
 package com.back.back.service.implimentation;
 
+import javax.swing.text.html.parser.Entity;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.back.back.common.util.EmailAuthNumberUtil;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
-import com.back.back.dto.request.auth.FindPasswordDto;
+import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
@@ -196,7 +198,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindIdResponseDto> findId(IdFoundRequestDto dto) {
+  public ResponseEntity<? super GetFindIdResponseDto> idFound(IdFoundRequestDto dto) {
 
     String userId = null;
     try {
@@ -210,7 +212,7 @@ public class AuthServiceImplimentation implements AuthService {
 
       boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
       if (!isMatched)
-        return ResponseDto.authenticationFailed();        
+        return ResponseDto.authenticationFailed();
 
       userId = userEntity.getUserId();
 
@@ -222,37 +224,36 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindPasswordResponseDto> findPassword(FindPasswordDto dto) {
-    
-    try {
+  public ResponseEntity<? super GetFindPasswordResponseDto> findPassword(PasswordFoundRequestDto dto) {
+
+  try {
+
+  String userId = dto.getUserId();
+  String userEmail = dto.getUserEmail();
+  String authNumber = dto.getAuthNumber();
+  String userPassword = dto.getUserPassword();
+
+  boolean existedUser = userRepository.existsById(userId);
+  if (!existedUser) return ResponseDto.noExistId();
+
+  UserEntity userEntity = userRepository.findByUserEmail(userEmail);
+  if (userEntity == null)
+  return ResponseDto.noExistEmail();
+
+  boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
+  if (!isMatched)
+  return ResponseDto.authenticationFailed();
       
-      String userId = dto.getUserId();
-      String userEmail = dto.getUserEmail();
-      String authNumber = dto.getAuthNumber();
-      String userPassword = dto.getUserPassword();
+  String encodeedPassword = passwordEncoder.encode(userPassword);
+  dto.setUserPassword(encodeedPassword);
+  
+  userPassword = userEntity.getUserPassword();
 
-      boolean existedUser = userRepository.existsById(userId);
-      if (!existedUser) return ResponseDto.noExistId();
-
-      UserEntity userEntity = userRepository.findByUserEmail(userEmail);
-      if (userEntity == null)
-        return ResponseDto.noExistEmail();
-
-      boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
-      if (!isMatched)
-        return ResponseDto.authenticationFailed();
-
-      String encodeedPassword = passwordEncoder.encode(userPassword);
-      dto.setUserPassword(encodeedPassword);
-      
-      userPassword = userEntity.getUserPassword();
-
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-      return ResponseDto.success();
+  } catch (Exception exception) {
+  exception.printStackTrace();
+  return ResponseDto.databaseError();
   }
-
+  return ResponseDto.success();
+  }
 
 }
