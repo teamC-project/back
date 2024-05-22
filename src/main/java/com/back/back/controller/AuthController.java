@@ -3,7 +3,6 @@ package com.back.back.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,51 +26,50 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
-  private final UserService userService;
-  private final AuthService authService;
+    private final UserService userService;
+    private final AuthService authService;
 
-  @PostMapping("/sign-in")
-  public ResponseEntity<? super SignInResponseDto> signIn(
-      @RequestBody @Valid SignInRequestDto requestBody) {
+    @PostMapping("/sign-in")
+    public ResponseEntity<? super SignInResponseDto> signIn(
+    @RequestBody @Valid SignInRequestDto requestBody) {
     ResponseEntity<? super SignInResponseDto> response = authService.signIn(requestBody);
     return response;
-  }
+}
 
-  @PostMapping("/email-auth")
-  public ResponseEntity<ResponseDto> emailAuth(
-      @RequestBody @Valid EmailAuthRequestDto requestBody) {
+    @PostMapping("/email-auth")
+    public ResponseEntity<ResponseDto> emailAuth(
+    @RequestBody @Valid EmailAuthRequestDto requestBody) {
     ResponseEntity<ResponseDto> response = authService.emailAuth(requestBody);
     return response;
-  }
+}
 
-  @PostMapping("/email-auth-check")
-  public ResponseEntity<ResponseDto> emailAuthCheck(
-      @RequestBody @Valid EmailAuthCheckRequestDto requestBody) {
+    @PostMapping("/email-auth-check")
+    public ResponseEntity<ResponseDto> emailAuthCheck(
+    @RequestBody @Valid EmailAuthCheckRequestDto requestBody) {
     ResponseEntity<ResponseDto> response = authService.emailAuthCheck(requestBody);
     return response;
-  }
+}
 
-  @PostMapping("/customer-sign-up")
-  public ResponseEntity<ResponseDto> signUp(
-      @RequestBody @Valid CustomerSignUpRequestDto requestBody) {
+    @PostMapping("/customer-sign-up")
+    public ResponseEntity<ResponseDto> signUp(
+    @RequestBody @Valid CustomerSignUpRequestDto requestBody) {
     ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
     return response;
-  }
+    }
 
-  @PostMapping("/designer-sign-up")
-  public ResponseEntity<ResponseDto> signUp(
-      @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
+    @PostMapping("/designer-sign-up")
+    public ResponseEntity<ResponseDto> signUp(
+    @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
     ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
     return response;
-  }
+    }
 
-  @DeleteMapping("/")
-  public ResponseEntity<ResponseDto> deleteUser(
-      @AuthenticationPrincipal String userId) {
+    @DeleteMapping("/")
+    public ResponseEntity<ResponseDto> deleteUser(
+    @AuthenticationPrincipal String userId) {
     ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
     return response;
-  }
-
-  
+    }
 
 }
+
