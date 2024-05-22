@@ -46,11 +46,11 @@ public class TrendBoardEntity {
 		this.trendBoardLikeCount = 0;
 	} 
 
-	public void TrendIncreaseLikeCount() {
+	public void increaseTrendBoardLikeCount() {
 		this.trendBoardLikeCount++;
 	}
 
-	public void TrendDecreaseLikeCount() {
+	public void decreaseTrendBoardLikeCount() {
 		this.trendBoardLikeCount--;
 	}
 

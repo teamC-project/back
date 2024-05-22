@@ -21,6 +21,12 @@ public class TrendBoardImageEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer trendBoardImageNumber;
 	private String trendBoardImageUrl;
+	private Integer trendBoardNumber;
 
-
+	public TrendBoardImageEntity(Integer trendBoardImageNumber, String trendBoardImageUrl) {
+		this.trendBoardImageNumber = trendBoardImageNumber;
+		this.trendBoardImageUrl = trendBoardImageUrl;
+	}
 }
+
+
