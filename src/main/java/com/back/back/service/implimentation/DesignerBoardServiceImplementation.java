@@ -33,209 +33,227 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
     @Override
     public ResponseEntity<ResponseDto> postDesignerBoard(PostDesignerBoardRequestDto dto, String userId) {
-        
-        try {
 
-            boolean isExistUser = userRepository.existsById(userId);
-            if (!isExistUser) return ResponseDto.authenticationFailed();
+    try {
 
-            DesignerBoardEntity designerBoardEntity = new DesignerBoardEntity(dto, userId);
-            designerBoardRepository.save(designerBoardEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+        boolean isExistUser = userRepository.existsById(userId);
+        if (!isExistUser)
+        return ResponseDto.authenticationFailed();
 
-        return ResponseDto.success();
+        DesignerBoardEntity designerBoardEntity = new DesignerBoardEntity(dto, userId);
+        designerBoardRepository.save(designerBoardEntity);
+
+    } catch (Exception exception) {
+        exception.printStackTrace();
+        return ResponseDto.databaseError();
+    }
+
+    return ResponseDto.success();
 
     }
 
     @Override
-    public ResponseEntity<ResponseDto> postDesignerBoardComment(PostDesignerBoardCommentRequestDto dto, int designerBoardNumber, String userId) {
-        
-        try {
+    public ResponseEntity<ResponseDto> postDesignerBoardComment(PostDesignerBoardCommentRequestDto dto,
+        int designerBoardNumber, String userId) {
 
-            boolean isExistUser = userRepository.existsById(userId);
-            if (!isExistUser) return ResponseDto.authenticationFailed();
-            Optional<DesignerBoardEntity> designerBoardOptional = designerBoardRepository.findById(designerBoardNumber);
-        
-            // 디자이너 보드 엔티티가 존재하지 않으면 오류 응답 반환
-            if (!designerBoardOptional.isPresent()) return ResponseDto.noExistBoard();
+    try {
 
-            DesignerBoardCommentEntity designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId);
-            designerBoardCommentRepository.save(designerBoardCommentEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+        boolean isExistUser = userRepository.existsById(userId);
+        if (!isExistUser)
+        return ResponseDto.authenticationFailed();
+        Optional<DesignerBoardEntity> designerBoardOptional = designerBoardRepository.findById(designerBoardNumber);
 
-        return ResponseDto.success();
+        if (!designerBoardOptional.isPresent())
+        return ResponseDto.noExistBoard();
+
+        DesignerBoardCommentEntity designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber,
+            userId);
+        designerBoardCommentRepository.save(designerBoardCommentEntity);
+
+    } catch (Exception exception) {
+        exception.printStackTrace();
+        return ResponseDto.databaseError();
+    }
+
+    return ResponseDto.success();
 
     }
 
     @Override
     public ResponseEntity<? super GetDesignerBoardListResponseDto> getDesignerBoardList() {
-        
-        try {
 
-            List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByOrderByDesignerBoardNumberDesc();
-            return GetDesignerBoardListResponseDto.success(designerBoardEntities);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+    try {
+
+        List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByOrderByDesignerBoardNumberDesc();
+        return GetDesignerBoardListResponseDto.success(designerBoardEntities);
+
+    } catch (Exception exception) {
+        exception.printStackTrace();
+        return ResponseDto.databaseError();
+    }
 
     }
 
-    @Override
-    public ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesignerBoardList(String designerSearchWord) {
-        
-        try {
+  @Override
+  public ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesignerBoardList(
+      String designerSearchWord) {
 
-            List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByDesignerBoardTitleContainsOrderByDesignerBoardNumberDesc(designerSearchWord);
-            return GetSearchDesignerBoardListResponseDto.success(designerBoardEntities);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
-        
+    try {
+
+      List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository
+          .findByDesignerBoardTitleContainsOrderByDesignerBoardNumberDesc(designerSearchWord);
+      return GetSearchDesignerBoardListResponseDto.success(designerBoardEntities);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
 
-    @Override
-    public ResponseEntity<? super GetDesignerBoardResponseDto> getDesignerBoard(int designerBoardNumber) {
-        
-        try {
+  }
 
-            DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
-            if (designerBoardEntity == null) return ResponseDto.noExistBoard();
+  @Override
+  public ResponseEntity<? super GetDesignerBoardResponseDto> getDesignerBoard(int designerBoardNumber) {
 
-            return GetDesignerBoardResponseDto.success(designerBoardEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+    try {
 
+      DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
+      if (designerBoardEntity == null)
+        return ResponseDto.noExistBoard();
+
+      return GetDesignerBoardResponseDto.success(designerBoardEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
 
-    @Override
-    public ResponseEntity<ResponseDto> putDesignerBoard(PutDesignerBoardRequestDto dto, int designerBoardNumber, String userId) {
-        
-        try {
+  }
 
-            DesignerBoardEntity designerBoardEntity =  designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
-            if (designerBoardEntity == null) return ResponseDto.noExistBoard();
+  @Override
+  public ResponseEntity<ResponseDto> putDesignerBoard(PutDesignerBoardRequestDto dto, int designerBoardNumber,
+      String userId) {
 
-            String writerId = designerBoardEntity.getDesignerBoardWriterId();
-            boolean isWriter = userId.equals(writerId);
-            if (!isWriter) return ResponseDto.authorizationFailed();
+    try {
 
-            designerBoardEntity.update(dto);
-            designerBoardRepository.save(designerBoardEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+      DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
+      if (designerBoardEntity == null)
+        return ResponseDto.noExistBoard();
 
-        return ResponseDto.success();
+      String writerId = designerBoardEntity.getDesignerBoardWriterId();
+      boolean isWriter = userId.equals(writerId);
+      if (!isWriter)
+        return ResponseDto.authorizationFailed();
 
+      designerBoardEntity.update(dto);
+      designerBoardRepository.save(designerBoardEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
 
-    @Override
-    public ResponseEntity<ResponseDto> putDesignerBoardComment(PutDesignerBoardCommentRequestDto dto, int designerBoardCommentNumber, String userId) {
-        
-        try {
+    return ResponseDto.success();
 
-            DesignerBoardCommentEntity designerBoardCommentEntity = designerBoardCommentRepository.findByDesignerBoardCommentNumber(designerBoardCommentNumber);
-            if (designerBoardCommentEntity == null) return ResponseDto.noExistBoard();
+  }
 
-            String writerId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
-            boolean isWriter = userId.equals(writerId);
-            if (!isWriter) return ResponseDto.authorizationFailed();
+  @Override
+  public ResponseEntity<ResponseDto> putDesignerBoardComment(PutDesignerBoardCommentRequestDto dto,
+      int designerBoardCommentNumber, String userId) {
 
-            designerBoardCommentEntity.update(dto);
-            designerBoardCommentRepository.save(designerBoardCommentEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+    try {
 
-        return ResponseDto.success();
+      DesignerBoardCommentEntity designerBoardCommentEntity = designerBoardCommentRepository
+          .findByDesignerBoardCommentNumber(designerBoardCommentNumber);
+      if (designerBoardCommentEntity == null)
+        return ResponseDto.noExistBoard();
 
+      String writerId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
+      boolean isWriter = userId.equals(writerId);
+      if (!isWriter)
+        return ResponseDto.authorizationFailed();
+
+      designerBoardCommentEntity.update(dto);
+      designerBoardCommentRepository.save(designerBoardCommentEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
 
+    return ResponseDto.success();
 
-    @Override
-    public ResponseEntity<ResponseDto> deleteDesignerBoard(int designerBoardNumber, String userId) {
-        
-        try {
+  }
 
-            DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
-            if (designerBoardEntity == null) return ResponseDto.noExistBoard();
+  @Override
+  public ResponseEntity<ResponseDto> deleteDesignerBoard(int designerBoardNumber, String userId) {
 
-            String writerId = designerBoardEntity.getDesignerBoardWriterId();
-            boolean isWriter = userId.equals(writerId);
-            if (!isWriter) return ResponseDto.authorizationFailed();
+    try {
 
-            designerBoardRepository.delete(designerBoardEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+      DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
+      if (designerBoardEntity == null)
+        return ResponseDto.noExistBoard();
 
-        return ResponseDto.success();
+      String writerId = designerBoardEntity.getDesignerBoardWriterId();
+      boolean isWriter = userId.equals(writerId);
+      if (!isWriter)
+        return ResponseDto.authorizationFailed();
 
+      designerBoardRepository.delete(designerBoardEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
 
-    @Override
-    public ResponseEntity<ResponseDto> deleteDesignerBoardComment(int designerBoardCommentNumber, String userId) {
-        
-        try {
+    return ResponseDto.success();
 
-            DesignerBoardCommentEntity designerBoardCommentEntity = 
-            designerBoardCommentRepository.findByDesignerBoardCommentNumber(designerBoardCommentNumber);
-            if (designerBoardCommentEntity == null) return ResponseDto.noExistBoard();
+  }
 
-            String writerId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
-            boolean isWriter = userId.equals(writerId);
-            if (!isWriter) return ResponseDto.authorizationFailed();
+  @Override
+  public ResponseEntity<ResponseDto> deleteDesignerBoardComment(int designerBoardCommentNumber, String userId) {
 
-            designerBoardCommentRepository.delete(designerBoardCommentEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+    try {
 
-        return ResponseDto.success();
+      DesignerBoardCommentEntity designerBoardCommentEntity = designerBoardCommentRepository
+          .findByDesignerBoardCommentNumber(designerBoardCommentNumber);
+      if (designerBoardCommentEntity == null)
+        return ResponseDto.noExistBoard();
 
+      String writerId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
+      boolean isWriter = userId.equals(writerId);
+      if (!isWriter)
+        return ResponseDto.authorizationFailed();
+
+      designerBoardCommentRepository.delete(designerBoardCommentEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
 
-    @Override
-    public ResponseEntity<ResponseDto> increaseViewCount(int designerBoardNumber) {
-        
-        try {
+    return ResponseDto.success();
 
-            DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
-            if (designerBoardEntity == null) return ResponseDto.noExistBoard();
+  }
 
-            designerBoardEntity.designerIncreaseViewCount();
-            designerBoardRepository.save(designerBoardEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
+  @Override
+  public ResponseEntity<ResponseDto> increaseViewCount(int designerBoardNumber) {
 
-        return ResponseDto.success();
+    try {
 
+      DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
+      if (designerBoardEntity == null)
+        return ResponseDto.noExistBoard();
+
+      designerBoardEntity.designerIncreaseViewCount();
+      designerBoardRepository.save(designerBoardEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
-    
+
+    return ResponseDto.success();
+
+  }
+
 }
