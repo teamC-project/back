@@ -1,4 +1,4 @@
-package com.back.back.dto.response.user;
+package com.back.back.dto.response.auth;
 
 import com.back.back.dto.response.ResponseCode;
 import com.back.back.dto.response.ResponseDto;
