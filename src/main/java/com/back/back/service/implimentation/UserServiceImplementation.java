@@ -4,7 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.user.DeleteUserDeleteResponseDto;
 import com.back.back.entity.UserEntity;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.UserService;
@@ -18,12 +17,13 @@ public class UserServiceImplementation implements UserService {
   private final UserRepository userRepository;
 
   @Override
-  public ResponseEntity<? super DeleteUserDeleteResponseDto> getdeleteUser(String userId) {
+  public ResponseEntity<ResponseDto> deleteUser(String userId) {
+
     try {
-      UserEntity userEntity = userRepository.findBySnsId(userId);
+      UserEntity userEntity = userRepository.findByUserId(userId);
       if (userEntity == null) return ResponseDto.authorizationFailed();
 
-      userRepository.save(userEntity);
+      userRepository.delete(userEntity);
     
     } catch (Exception exception) {
       exception.printStackTrace();
@@ -32,21 +32,29 @@ public class UserServiceImplementation implements UserService {
     return ResponseDto.success();
   }
 
+<<<<<<< HEAD
   @Override
   public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String userId) {
     try{
       UserEntity userEntity = userRepository.findByUserId(userId);
       // if (userEntity == null) return ResponseDto.
+=======
+  // @Override
+  // public ResponseEntity<GetInformationUpdateResponseDto> getUpdateUser(String userId) {
+  //   try{
+  //     UserEntity userEntity = userRepository.findByUserId(userId);
+  //     if (userEntity == null) return ResponseDto.
+>>>>>>> 60a8b5ef0425e176de01d45102dbb6ee6681060e
 
-      // userRepository.save(userEntity);
+  //     userRepository.save(userEntity);
 
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      // return ResponseDto.databaseError();
-    }
+  //   } catch (Exception exception) {
+  //     exception.printStackTrace();
+  //     return ResponseDto.databaseError();
+  //   }
 
-    // return ResponseDto.success();
-		return null;
-  }
+  //   return ResponseDto.success();
+	// 	return null;
+  // }
 
 }

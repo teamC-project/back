@@ -1,18 +1,26 @@
-package com.back.back.dto.response.auth;
+// package com.back.back.dto.response.auth;
 
-import com.back.back.dto.response.ResponseCode;
-import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.ResponseMessage;
-import com.back.back.entity.UserEntity;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.ResponseEntity;
 
-import lombok.Getter;
+// import com.back.back.dto.response.ResponseCode;
+// import com.back.back.dto.response.ResponseDto;
+// import com.back.back.dto.response.ResponseMessage;
+// import com.back.back.entity.UserEntity;
 
-@Getter
-public class GetFindPasswordResponseDto extends ResponseDto {
-  private String userPassword;
+// import lombok.Getter;
 
-  private GetFindPasswordResponseDto(UserEntity userEntity) {
-    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    this.userPassword = userEntity.getUserPassword();
-  }
-}
+// @Getter
+// public class GetFindPasswordResponseDto extends ResponseDto {
+//   private String userPassword;
+
+//   private GetFindPasswordResponseDto(UserEntity userEntity) {
+//     super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+//     this.userPassword = userEntity.getUserPassword();
+//   }
+
+//     public static ResponseEntity<GetFindPasswordResponseDto> success(String resetPassword) {
+//       GetFindPasswordResponseDto responseBody = new GetFindPasswordResponseDto(resetPassword);
+//     return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+//   }
+// }

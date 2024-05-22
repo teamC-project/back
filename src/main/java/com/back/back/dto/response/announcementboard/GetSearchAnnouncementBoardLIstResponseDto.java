@@ -21,10 +21,11 @@ public class GetSearchAnnouncementBoardListResponseDto extends ResponseDto {
 				super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 				this.announcementBoardList = AnnouncementBoardListItem.getAnnouncementBoardList(announcementBoardEntities);
 			}
-
-			public static ResponseEntity<GetSearchAnnouncementBoardListResponseDto>
-			success (List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception{
-				GetSearchAnnouncementBoardListResponseDto responseBody = new GetSearchAnnouncementBoardListResponseDto(announcementBoardEntities);
-				return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-			}
-}
+      
+      public static ResponseEntity<GetSearchAnnouncementBoardListResponseDto>
+      success (List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception{
+        GetSearchAnnouncementBoardListResponseDto responseBody = new GetSearchAnnouncementBoardListResponseDto(announcementBoardEntities);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+      }
+    }
+    
