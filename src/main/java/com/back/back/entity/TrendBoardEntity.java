@@ -30,7 +30,7 @@ public class TrendBoardEntity {
 	private String trendBoardTitle;
 	private String trendBoardContents;
 	private String trendBoardWriterId;
-	private String trendBoardWriteDateTime;
+	private String trendBoardWriteDatetime;
 	private Integer trendBoardLikeCount;
 
 
@@ -42,15 +42,15 @@ public class TrendBoardEntity {
 		this.trendBoardTitle = dto.getTrendBoardTitle();
 		this.trendBoardContents = dto.getTrendBoardContents();
 		this.trendBoardWriterId = userId;
-		this.trendBoardWriteDateTime = trendBoardWriteDatetime;
+		this.trendBoardWriteDatetime = trendBoardWriteDatetime;
 		this.trendBoardLikeCount = 0;
 	} 
 
-	public void TrendIncreaseLikeCount() {
+	public void increaseTrendBoardLikeCount() {
 		this.trendBoardLikeCount++;
 	}
 
-	public void TrendDecreaseLikeCount() {
+	public void decreaseTrendBoardLikeCount() {
 		this.trendBoardLikeCount--;
 	}
 
