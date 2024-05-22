@@ -15,6 +15,7 @@ import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
+import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
@@ -100,6 +101,13 @@ public class AuthController {
     public ResponseEntity<ResponseDto> designerUpdate(
         @RequestBody @Valid DesignerUpdateRequestDto requestBody) {
         ResponseEntity<ResponseDto> response = authService.designerUpdate(requestBody);
+        return response;
+    }
+
+    @PostMapping("/id-check")
+    public ResponseEntity<ResponseDto> idCheck(
+        @RequestBody @Valid IdCheckRequestDto requestBody) {
+        ResponseEntity<ResponseDto> response = authService.idCheck(requestBody);
         return response;
     }
 
