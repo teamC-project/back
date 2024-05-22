@@ -8,7 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class LogoutRequestDto {
+public class CustomerUpdateRequestDto {
     @NotBlank
     private String userId;
+    @NotBlank
+    private String userEmail;
+    @NotBlank
+    private String userGender;
+    @NotBlank
+    private String userAge;
 }

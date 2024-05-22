@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FindPasswordDto {
+public class PasswordFoundRequestDto {
   @NotBlank
   private String userId;
   @NotBlank
