@@ -32,11 +32,12 @@ public class CustomerBoardCommentEntity {
     private String customerBoardCommentContents;
     private String customerBoardCommentWriteDatetime;
 
-    public CustomerBoardCommentEntity (PostCustomerBoardCommentRequestDto dto, String userId) {
+    public CustomerBoardCommentEntity (PostCustomerBoardCommentRequestDto dto, Integer customerBoardNumber, String userId) {
         Date now = Date.from(Instant.now());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String customerBoardCommentWriteDatetime = simpleDateFormat.format(now);
 
+        this.customerBoardNumber = customerBoardNumber;
         this.customerBoardCommentContents = dto.getCustomerBoardCommentContents();
         this.customerBoardCommentWriterId = userId;
         this.customerBoardCommentWriteDatetime = customerBoardCommentWriteDatetime;

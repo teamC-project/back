@@ -78,9 +78,4 @@ public class AuthController {
         return response;
     }
 
-<<<<<<< HEAD
-    
-
-=======
->>>>>>> 97c62b7b9db2154356dd05eedaa9b3680e541b98
 }
