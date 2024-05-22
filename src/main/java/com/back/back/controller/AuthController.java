@@ -77,7 +77,7 @@ public class AuthController {
   @PostMapping("/id_found")
   public ResponseEntity<? super GetFindIdResponseDto> idFound(
       @RequestBody @Valid IdFoundRequestDto requestBody) {
-    ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(IdFoundRequestDto requestBody);
+    ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
     return response;
   }
 }
