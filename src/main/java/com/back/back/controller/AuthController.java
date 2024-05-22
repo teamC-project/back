@@ -16,7 +16,8 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
-
+import com.back.back.dto.request.user.CustomerUpdateRequestDto;
+import com.back.back.dto.request.user.DesginerUpdateRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
@@ -85,6 +86,20 @@ public class AuthController {
     public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
         @RequestBody @Valid PasswordFoundRequestDto requestBody) {
         ResponseEntity<? super GetFindPasswordResponseDto> response = authService.findPassword(requestBody);
+        return response;
+    }
+
+    @PostMapping("/customer_update")
+    public ResponseEntity<ResponseDto> customerUpdate(
+        @RequestBody @Valid CustomerUpdateRequestDto requestBody) {
+        ResponseEntity<ResponseDto> response = authService.customerUpdate(requestBody);
+        return response;
+    }
+
+    @PostMapping("/desginer_update")
+    public ResponseEntity<ResponseDto> desginerUpdate(
+        @RequestBody @Valid DesginerUpdateRequestDto requestBody) {
+        ResponseEntity<ResponseDto> response = authService.desginerUpdate(requestBody);
         return response;
     }
 
