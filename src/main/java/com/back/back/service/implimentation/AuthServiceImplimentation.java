@@ -206,7 +206,7 @@ public class AuthServiceImplimentation implements AuthService {
 
       UserEntity userEntity = userRepository.findByUserEmail(userEmail);
       if (userEntity == null)
-        return ResponseDto.duplicatedEmail();
+        return ResponseDto.noExistEmail();
 
       boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
       if (!isMatched)

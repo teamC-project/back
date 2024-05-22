@@ -16,11 +16,11 @@ public class GetFindPasswordResponseDto extends ResponseDto {
 
   private GetFindPasswordResponseDto(UserEntity userEntity) {
     super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    this.userPassword = userEntity.getUserPassword();
+    this.userPassword = userPassword;
   }
 
-    public static ResponseEntity<GetFindPasswordResponseDto> success(String resetPassword) {
-      GetFindPasswordResponseDto responseBody = new GetFindPasswordResponseDto(resetPassword);
+    public static ResponseEntity<GetFindPasswordResponseDto> success(String userPassword) {
+    GetFindPasswordResponseDto responseBody = new GetFindPasswordResponseDto(userPassword);
     return ResponseEntity.status(HttpStatus.OK).body(responseBody);
   }
 }
