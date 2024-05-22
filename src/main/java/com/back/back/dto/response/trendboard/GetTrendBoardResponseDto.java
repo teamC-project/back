@@ -23,7 +23,7 @@ public class GetTrendBoardResponseDto extends ResponseDto {
 
 	private GetTrendBoardResponseDto(TrendBoardEntity trendBoardEntity ) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(trendBoardEntity.getTrendBoardWriteDateTime());
+		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(trendBoardEntity.getTrendBoardWriteDatetime());
 
 		this.trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
 		this.trendBoardTitle = trendBoardEntity.getTrendBoardTitle();

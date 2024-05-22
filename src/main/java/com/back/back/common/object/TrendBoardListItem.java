@@ -12,12 +12,12 @@ public class TrendBoardListItem {
 	private String trendBoardTItle;
 	private String trendBoardContents;
 	private String trendBoardWriterId;
-	private String trendBoardWriteDateTime;
+	private String trendBoardWriteDatetime;
 	private Integer trendBoardLikeCount;
 
 	private TrendBoardListItem(TrendBoardEntity trendBoardEntity) throws Exception {
 		String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(
-			trendBoardEntity.getTrendBoardWriteDateTime());
+			trendBoardEntity.getTrendBoardWriteDatetime());
 
 			String trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
 			trendBoardWriterId = trendBoardWriterId.substring(0,1) + " +".repeat(trendBoardWriterId.length() -1);
@@ -26,7 +26,7 @@ public class TrendBoardListItem {
 			this.trendBoardTItle = trendBoardEntity.getTrendBoardTitle();
 			this.trendBoardContents = trendBoardEntity.getTrendBoardContents();
 			this.trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
-			this.trendBoardWriteDateTime = writeDatetime;
+			this.trendBoardWriteDatetime = writeDatetime;
 			this.trendBoardLikeCount = trendBoardEntity.getTrendBoardLikeCount();
 	}
 
