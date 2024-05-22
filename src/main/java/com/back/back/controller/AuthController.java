@@ -62,32 +62,32 @@ public class AuthController {
     return response;
   }
 
-    @PostMapping("/designer-sign-up")
-    public ResponseEntity<ResponseDto> signUp(
-        @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
-        ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
-        return response;
-    }
+  @PostMapping("/designer-sign-up")
+  public ResponseEntity<ResponseDto> signUp(
+      @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
+    ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
+    return response;
+  }
 
-    @DeleteMapping("/")
-    public ResponseEntity<ResponseDto> deleteUser(
-        @AuthenticationPrincipal String userId) {
-        ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
-        return response;
-    }
+  @DeleteMapping("/")
+  public ResponseEntity<ResponseDto> deleteUser(
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
+    return response;
+  }
 
-    @PostMapping("/id_found")
-    public ResponseEntity<? super GetFindIdResponseDto> idFound(
-        @RequestBody @Valid IdFoundRequestDto requestBody) {
-        ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
-        return response;
-    }
+  @PostMapping("/id_found")
+  public ResponseEntity<? super GetFindIdResponseDto> idFound(
+      @RequestBody @Valid IdFoundRequestDto requestBody) {
+    ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
+    return response;
+  }
 
-    @PostMapping("/password_found")
-    public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
-        @RequestBody @Valid PasswordFoundRequestDto requestBody) {
-        ResponseEntity<? super GetFindPasswordResponseDto> response = authService.findPassword(requestBody);
-        return response;
-    }
+  @PostMapping("/password_found")
+  public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
+      @RequestBody @Valid PasswordFoundRequestDto requestBody) {
+    ResponseEntity<? super GetFindPasswordResponseDto> response = authService.findPassword(requestBody);
+    return response;
+  }
 
 }
