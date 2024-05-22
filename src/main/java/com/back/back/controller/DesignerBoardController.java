@@ -103,9 +103,9 @@ public class DesignerBoardController {
         return response;
     }
 
-    @DeleteMapping("/{designerBoardNumber}/comment")
+    @DeleteMapping("/{designerBoardCommentNumber}/comment")
     public ResponseEntity<ResponseDto> deleteDesignerBoardComment (
-        @PathVariable("designerBoardNumber") int designerBoardCommentNumber,
+        @PathVariable("designerBoardCommentNumber") int designerBoardCommentNumber,
         @AuthenticationPrincipal String userId
     ) {
         ResponseEntity<ResponseDto> response =  designerBoardService.deleteDesignerBoardComment(designerBoardCommentNumber, userId);
