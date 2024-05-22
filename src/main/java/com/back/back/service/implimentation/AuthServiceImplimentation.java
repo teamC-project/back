@@ -9,13 +9,13 @@ import com.back.back.common.util.EmailAuthNumberUtil;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.FindIdRequestDto;
-import com.back.back.dto.request.auth.FindPasswordDto;
+// import com.back.back.dto.request.auth.FindPasswordDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
-import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
+// import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.entity.EmailAuthNumberEntity;
 import com.back.back.entity.UserEntity;
@@ -221,24 +221,14 @@ public class AuthServiceImplimentation implements AuthService {
     return GetFindIdResponseDto.success(userId);
   }
 
-<<<<<<< HEAD
   // @Override
   // public ResponseEntity<? super GetFindPasswordResponseDto> findPassword(FindPasswordDto dto) {
-=======
-  @Override
-  public ResponseEntity<ResponseDto> findPassword(FindPasswordDto dto) {
->>>>>>> 31c1e4bda90c87aa823e5ed244f076a33cc7cf35
     
   //   try {
       
-<<<<<<< HEAD
   //     String userEmail = dto.getUserEmail();
   //     String authNumber = dto.getAuthNumber();
-=======
-      String userEmail = dto.getUserEmail();
-      String authNumber = dto.getAuthNumber();
-      String userPassword = dto.getUserPassword();
->>>>>>> 31c1e4bda90c87aa823e5ed244f076a33cc7cf35
+  //     String userPassword = dto.getUserPassword();
 
   //     UserEntity userEntity = userRepository.findByByUserEmail(userEmail);
   //     if (userEntity == null)
@@ -248,29 +238,18 @@ public class AuthServiceImplimentation implements AuthService {
   //     if (!isMatched)
   //       return ResponseDto.authenticationFailed();
 
-<<<<<<< HEAD
   //     String encodeedPassword = passwordEncoder.encode(userPassword);
-  //     dto.setUserPassword(encodeedPassword);
+  //     dto.getUserPassword(encodeedPassword);
+
+      
+  //     UserEntity userEntity = new UserEntity(dto);
+  //     userRepository.save(userEntity);
 
   //   } catch (Exception exception) {
   //     exception.printStackTrace();
+  //     return ResponseDto.databaseError();
   //   }
-
+  //     return ResponseDto.success();
   // }
-=======
-      String encodeedPassword = passwordEncoder.encode(userPassword);
-      dto.getUserPassword(encodeedPassword);
-
-      
-      UserEntity userEntity = new UserEntity(dto);
-      userRepository.save(userEntity);
-
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-      return ResponseDto.success();
-  }
->>>>>>> 31c1e4bda90c87aa823e5ed244f076a33cc7cf35
 
 }
