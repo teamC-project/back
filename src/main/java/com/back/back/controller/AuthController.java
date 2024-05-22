@@ -22,7 +22,6 @@ import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.service.AuthService;
-import com.back.back.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
-  private final UserService userService;
   private final AuthService authService;
 
   @PostMapping("/sign-in")
@@ -72,7 +70,7 @@ public class AuthController {
     @DeleteMapping("/")
     public ResponseEntity<ResponseDto> deleteUser(
         @AuthenticationPrincipal String userId) {
-        ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
+        ResponseEntity<ResponseDto> response = authService.deleteUser(userId);
         return response;
     }
 
