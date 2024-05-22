@@ -33,6 +33,5 @@ public class DesginerSignUpRequestDto {
   @NotBlank
   String userCompanyName;
 
-
   private String snsId;
 }

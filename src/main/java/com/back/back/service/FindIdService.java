@@ -1,10 +1,10 @@
-package com.back.back.service;
+// package com.back.back.service;
 
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 
-import com.back.back.dto.response.ResponseDto;
+// import com.back.back.dto.response.ResponseDto;
 
-public interface FindIdService {
+// public interface FindIdService {
   
-  ResponseEntity<ResponseDto> 
-}
+//   ResponseEntity<ResponseDto> 
+// }

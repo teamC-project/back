@@ -15,8 +15,8 @@
 
 // }
 
-// // List<QnaBoardEntity> findByOrderByQnaBoardNumberDesc();
-// // List<QnaBoardEntity> findByTitleContainsOrderByQnaBoardNumberDesc(String qnaTitle);
-// // QnaBoardEntity findByQnaNumber(Integer qnaBoardNumber);
-// // }
+// List<QnaBoardEntity> findByOrderByQnaBoardNumberDesc();
+// List<QnaBoardEntity> findByTitleContainsOrderByQnaBoardNumberDesc(String qnaTitle);
+// QnaBoardEntity findByQnaNumber(Integer qnaBoardNumber);
+// }
 

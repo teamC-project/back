@@ -17,34 +17,35 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name="designerBoardComment")
-@Table(name="designer_board_comment")
+@Entity(name = "designerBoardComment")
+@Table(name = "designer_board_comment")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class DesignerBoardCommentEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer designerBoardCommentNumber;
-    private Integer designerBoardNumber;
-    private String designerBoardCommentWriterId;
-    private String designerBoardCommentContents;
-    private String designerBoardCommentWriteDatetime;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer designerBoardCommentNumber;
+  private Integer designerBoardNumber;
+  private String designerBoardCommentWriterId;
+  private String designerBoardCommentContents;
+  private String designerBoardCommentWriteDatetime;
 
-    public DesignerBoardCommentEntity (PostDesignerBoardCommentRequestDto dto, Integer designerBoardNumber, String userId) {
-        Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String designerBoardCommentWriteDatetime = simpleDateFormat.format(now);
+  public DesignerBoardCommentEntity(PostDesignerBoardCommentRequestDto dto, Integer designerBoardNumber,
+      String userId) {
+    Date now = Date.from(Instant.now());
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String designerBoardCommentWriteDatetime = simpleDateFormat.format(now);
 
-        this.designerBoardNumber = designerBoardNumber;
-        this.designerBoardCommentContents = dto.getDesignerBoardCommentContents();
-        this.designerBoardCommentWriterId = userId;
-        this.designerBoardCommentWriteDatetime = designerBoardCommentWriteDatetime;
+    this.designerBoardNumber = designerBoardNumber;
+    this.designerBoardCommentContents = dto.getDesignerBoardCommentContents();
+    this.designerBoardCommentWriterId = userId;
+    this.designerBoardCommentWriteDatetime = designerBoardCommentWriteDatetime;
 
-    }
+  }
 
-    public void update (PutDesignerBoardCommentRequestDto dto) {
-        this.designerBoardCommentContents = dto.getDesignerBoardCommentContents();
-    }
+  public void update(PutDesignerBoardCommentRequestDto dto) {
+    this.designerBoardCommentContents = dto.getDesignerBoardCommentContents();
+  }
 }

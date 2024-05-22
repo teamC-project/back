@@ -3,7 +3,7 @@ package com.back.back.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +17,6 @@ import com.back.back.dto.request.auth.SignInRequestDto;
 
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
-import com.back.back.dto.response.user.DeleteUserDeleteResponseDto;
-import com.back.back.dto.response.user.GetInformationUpdateResponseDto;
 import com.back.back.service.AuthService;
 import com.back.back.service.UserService;
 
@@ -61,7 +59,6 @@ public class AuthController {
         @RequestBody @Valid CustomerSignUpRequestDto requestBody
     ) {
         ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
-        // System.out.println(requestBody);
         return response;
     }
 
