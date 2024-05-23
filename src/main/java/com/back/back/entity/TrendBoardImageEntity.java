@@ -23,8 +23,8 @@ public class TrendBoardImageEntity {
 	private String trendBoardImageUrl;
 	private Integer trendBoardNumber;
 
-	public TrendBoardImageEntity(Integer trendBoardImageNumber, String trendBoardImageUrl) {
-		this.trendBoardImageNumber = trendBoardImageNumber;
+	public TrendBoardImageEntity(Integer trendBoardNumber, String trendBoardImageUrl) {
+		this.trendBoardNumber = trendBoardNumber;
 		this.trendBoardImageUrl = trendBoardImageUrl;
 	}
 }
