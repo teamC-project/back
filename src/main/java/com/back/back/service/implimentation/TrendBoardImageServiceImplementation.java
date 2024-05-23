@@ -9,10 +9,10 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.back.back.service.FileControllService;
+import com.back.back.service.TrendBoardImageService;
 
 @Service
-public class FileControllServiceImplementation implements FileControllService {
+public class TrendBoardImageServiceImplementation implements TrendBoardImageService {
 	@Value("${file.url}")
 	private String fileUrl;
 	@Value("${file.path}")
