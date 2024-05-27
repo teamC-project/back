@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.back.back.service.FileControllService;
+import com.back.back.service.TrendBoardImageService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
-public class FileController {
-		private final FileControllService fileControllService;
+public class TrendBoardImageController {
+		private final TrendBoardImageService trendBoardImageService;
 
 	@PostMapping("/upload") 
 	public String upload(
 		@RequestParam("file") MultipartFile file
 	) {
-		String url = fileControllService.upload(file);
+		String url = trendBoardImageService.upload(file);
 		return url;
 	}
 
@@ -32,7 +32,7 @@ public class FileController {
 	public Resource getFile(
 		@PathVariable("fileName") String fileName
 	) {
-		Resource resource = fileControllService.getFile(fileName);
+		Resource resource = trendBoardImageService.getFile(fileName);
 		return resource;
 	}
 }

@@ -1,6 +1,8 @@
 package com.back.back.dto.request.trend;
 
+import java.util.List;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,4 +13,6 @@ public class PostTrendBoardRequestDto {
 	private String trendBoardTitle;
 	@NotBlank
 	private String trendBoardContents;
+	@NotNull
+	private List<String> trendBoardUrlList;
 }
