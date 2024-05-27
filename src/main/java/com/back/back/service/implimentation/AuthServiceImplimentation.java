@@ -1,7 +1,6 @@
 package com.back.back.service.implimentation;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -323,7 +322,7 @@ public class AuthServiceImplimentation implements AuthService {
       String userId = dto.getUserId();
 
       Boolean userEntity = userRepository.existsByUserId(userId);
-      if (! userEntity)
+      if (!userEntity)
         return ResponseDto.duplicatedId();
 
     } catch (Exception exception) {
