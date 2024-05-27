@@ -322,7 +322,7 @@ public class AuthServiceImplimentation implements AuthService {
       String userId = dto.getUserId();
 
       Boolean userEntity = userRepository.existsByUserId(userId);
-      if (! userEntity)
+      if (!userEntity)
         return ResponseDto.duplicatedId();
 
     } catch (Exception exception) {
