@@ -49,9 +49,9 @@ public class WebSecurityConfig {
             .configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(request -> request
             .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*").permitAll()
-            .requestMatchers("/api/v1/board/").hasRole("CUSTOMER")
-            .requestMatchers("/api/v1/board/").hasRole("DESIGNER")
-            .requestMatchers("/api/v1/board/*/comment").hasRole("ADMIN")
+            .requestMatchers("/api/v1/service/customer_board/write").hasRole("CUSTOMER")
+            .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
+            .requestMatchers("/api/v1/service/qna_board/*/comment").hasRole("ADMIN")
             .anyRequest().authenticated())
         .oauth2Login(oauth2 -> oauth2
             .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/oauth2"))
@@ -66,7 +66,6 @@ public class WebSecurityConfig {
 
   }
 
-  // Cors 정책 설정
   @Bean
   protected CorsConfigurationSource corsConfigurationSource() {
 
