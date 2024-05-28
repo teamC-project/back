@@ -7,5 +7,5 @@ import com.back.back.entity.CustomerBoardImageEntity;
 
 @Repository
 public interface CustomerBoardImageRepository extends JpaRepository <CustomerBoardImageEntity, Integer> {
-    
+  
 }
