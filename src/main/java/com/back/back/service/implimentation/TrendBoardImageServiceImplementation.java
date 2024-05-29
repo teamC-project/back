@@ -24,7 +24,9 @@ public class TrendBoardImageServiceImplementation implements TrendBoardImageServ
 			if (file.isEmpty()) return null;
 
 			String originalFileName = file.getOriginalFilename();
+			System.out.println("originalFileName: " + originalFileName);
 			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+			System.out.println("extension: " + extension);
 			String uuid = UUID.randomUUID().toString();
 			String saveFileName = uuid + extension;
 			String savePath = filePath + saveFileName;
