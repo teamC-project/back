@@ -51,7 +51,7 @@ public class WebSecurityConfig {
             .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*").permitAll()
             .requestMatchers("/api/v1/service/customer_board/write").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
-            .requestMatchers("/api/v1/service/qna_board/*/comment").hasRole("ADMIN")
+            .requestMatchers("/api/v1/service/qna_board/*/comment" , "/api/v1/service/trend_board/*" , "/api/v1/service/announce_board/*").hasRole("ADMIN")
             .anyRequest().authenticated())
         .oauth2Login(oauth2 -> oauth2
             .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/oauth2"))
