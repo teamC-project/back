@@ -41,6 +41,7 @@ public class TrendBoardController {
 		ResponseEntity<ResponseDto> response = trendBoardService.postTrendBoard(requestBody, userId);
 		return response;
 	}
+	
 
 	    @PostMapping("/{trendBoardNumber}/comment")
     public ResponseEntity<ResponseDto> postTrendBoardComment (
