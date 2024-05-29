@@ -33,7 +33,7 @@ public class TrendBoardController {
 
 	private final TrendBoardService trendBoardService;
 
-	@PostMapping("/") 
+	@PostMapping("/")
 	ResponseEntity<ResponseDto> postTrendBoard (
 		@RequestBody @Valid PostTrendBoardRequestDto requestBody,
 		@AuthenticationPrincipal String userId 
