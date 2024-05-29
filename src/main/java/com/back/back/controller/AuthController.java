@@ -41,6 +41,13 @@ public class AuthController {
     return response;
   }
 
+  @PostMapping("/id-check")
+  public ResponseEntity<ResponseDto> idCheck(
+      @RequestBody @Valid IdCheckRequestDto requestBody) {
+      ResponseEntity<ResponseDto> response = authService.idCheck(requestBody);
+      return response;
+  }
+
   @PostMapping("/email-auth")
   public ResponseEntity<ResponseDto> emailAuth(
       @RequestBody @Valid EmailAuthRequestDto requestBody) {
@@ -55,21 +62,21 @@ public class AuthController {
     return response;
   }
 
-  @PostMapping("/customer-sign-up")
+  @PostMapping("/sign-up/customer")
   public ResponseEntity<ResponseDto> signUp(
       @RequestBody @Valid CustomerSignUpRequestDto requestBody) {
     ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
     return response;
   }
 
-  @PostMapping("/designer-sign-up")
+  @PostMapping("/sign-up/designer")
   public ResponseEntity<ResponseDto> signUp(
       @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
     ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
     return response;
   }
 
-  @DeleteMapping("/")
+  @DeleteMapping("/user-delete")
   public ResponseEntity<ResponseDto> deleteUser(
       @AuthenticationPrincipal String userId) {
     ResponseEntity<ResponseDto> response = authService.deleteUser(userId);
@@ -83,7 +90,7 @@ public class AuthController {
         return response;
     }
 
-    @PostMapping("/password-found")
+    @PostMapping("/password-set-up")
     public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
         @RequestBody @Valid PasswordFoundRequestDto requestBody) {
         ResponseEntity<? super GetFindPasswordResponseDto> response = authService.passwordFound(requestBody);
@@ -104,11 +111,6 @@ public class AuthController {
         return response;
     }
 
-    @PostMapping("/id-check")
-    public ResponseEntity<ResponseDto> idCheck(
-        @RequestBody @Valid IdCheckRequestDto requestBody) {
-        ResponseEntity<ResponseDto> response = authService.idCheck(requestBody);
-        return response;
-    }
+
 
 }
