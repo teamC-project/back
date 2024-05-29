@@ -27,13 +27,13 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/trend_board")
+@RequestMapping("api/v1/service/trend_board")
 @RequiredArgsConstructor
 public class TrendBoardController {
 
 	private final TrendBoardService trendBoardService;
 
-	@PostMapping("/")
+	@PostMapping("/write") 
 	ResponseEntity<ResponseDto> postTrendBoard (
 		@RequestBody @Valid PostTrendBoardRequestDto requestBody,
 		@AuthenticationPrincipal String userId 
@@ -41,8 +41,9 @@ public class TrendBoardController {
 		ResponseEntity<ResponseDto> response = trendBoardService.postTrendBoard(requestBody, userId);
 		return response;
 	}
+	
 
-	    @PostMapping("/{trendBoardNumber}/comment")
+	@PostMapping("/{trendBoardNumber}/comment")
     public ResponseEntity<ResponseDto> postTrendBoardComment (
         @RequestBody @Valid PostTrendBoardCommentRequestDto requestBody,
         @PathVariable("trendBoardNumber") int trendBoardNumber,
