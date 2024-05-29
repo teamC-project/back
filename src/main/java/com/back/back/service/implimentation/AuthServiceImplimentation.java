@@ -225,7 +225,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(PasswordFoundRequestDto dto) {
+  public ResponseEntity<? super GetFindIdResponseDto> passwordFound(PasswordFoundRequestDto dto) {
 
     try {
 
@@ -327,6 +327,12 @@ public class AuthServiceImplimentation implements AuthService {
       return ResponseDto.databaseError();
     }
     return ResponseDto.success();
+  }
+
+  @Override
+  public ResponseEntity<? super GetFindPasswordResponseDto> resetPassword(PasswordFoundRequestDto dto) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
   }
 
 }

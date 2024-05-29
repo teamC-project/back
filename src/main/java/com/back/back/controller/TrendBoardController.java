@@ -43,7 +43,7 @@ public class TrendBoardController {
 	}
 	
 
-	    @PostMapping("/{trendBoardNumber}/comment")
+	@PostMapping("/{trendBoardNumber}/comment")
     public ResponseEntity<ResponseDto> postTrendBoardComment (
         @RequestBody @Valid PostTrendBoardCommentRequestDto requestBody,
         @PathVariable("trendBoardNumber") int trendBoardNumber,
