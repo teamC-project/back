@@ -318,13 +318,10 @@ public class AuthServiceImplimentation implements AuthService {
   @Override
   public ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto) {
     try {
-
       String userId = dto.getUserId();
-
       Boolean userEntity = userRepository.existsByUserId(userId);
-      if (!userEntity)
+      if (userEntity)
         return ResponseDto.duplicatedId();
-
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
