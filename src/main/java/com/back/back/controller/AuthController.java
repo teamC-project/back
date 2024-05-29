@@ -90,10 +90,17 @@ public class AuthController {
         return response;
     }
 
-    @PostMapping("/password-set-up")
+    @PostMapping("/password-found")
+    public ResponseEntity<? super GetFindIdResponseDto> idFound(
+        @RequestBody @Valid PasswordFoundRequestDto requestBody) {
+        ResponseEntity<? super GetFindIdResponseDto> response = authService.passwordFound(requestBody);
+        return response;
+    }
+
+    @PostMapping("/password-reset")
     public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
         @RequestBody @Valid PasswordFoundRequestDto requestBody) {
-        ResponseEntity<? super GetFindPasswordResponseDto> response = authService.passwordFound(requestBody);
+        ResponseEntity<? super GetFindPasswordResponseDto> response = authService.resetPassword(requestBody);
         return response;
     }
 
