@@ -17,6 +17,8 @@ import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 
+import jakarta.validation.Valid;
+
 public interface AuthService {
   ResponseEntity<? super SignInResponseDto> signIn(SignInRequestDto dto);
 
@@ -30,7 +32,10 @@ public interface AuthService {
 
   ResponseEntity<? super GetFindIdResponseDto> idFound(IdFoundRequestDto dto);
 
-  ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(PasswordFoundRequestDto dto);
+  ResponseEntity<? super GetFindIdResponseDto> passwordFound(@Valid PasswordFoundRequestDto requestBody);
+
+  ResponseEntity<? super GetFindPasswordResponseDto> 
+  resetPassword(PasswordFoundRequestDto dto);
 
   ResponseEntity<ResponseDto> deleteUser(String userId);
 

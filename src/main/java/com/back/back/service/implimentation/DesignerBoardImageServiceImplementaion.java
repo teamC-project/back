@@ -9,19 +9,19 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.back.back.service.FileControllService;
+import com.back.back.service.DesignerBoardImageService;
 
 @Service
-public class FileControllServiceImplementation implements FileControllService {
-	@Value("${file.url}")
+public class DesignerBoardImageServiceImplementaion implements DesignerBoardImageService {
+    @Value("${file.url}")
 	private String fileUrl;
 	@Value("${file.path}")
 	private String filePath;
 
-	@Override
-	public String upload(MultipartFile file) {
-		
-			if (file.isEmpty()) return null;
+    @Override
+    public String upload(MultipartFile file) {
+        
+        if (file.isEmpty()) return null;
 
 			String originalFileName = file.getOriginalFilename();
 			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
@@ -38,11 +38,12 @@ public class FileControllServiceImplementation implements FileControllService {
 
 			String url = fileUrl + saveFileName;
 			return url;
-	}
+    }
 
-	@Override
-	public Resource getFile(String fileName) {
-		Resource resource = null;
+    @Override
+    public Resource getFile(String fileName) {
+        
+        Resource resource = null;
 			try {
 					resource = new UrlResource("file:" + filePath + fileName);
 			} catch(Exception exception) {
@@ -51,5 +52,6 @@ public class FileControllServiceImplementation implements FileControllService {
 			}
 
 			return resource;
-	}
+    }
+    
 }

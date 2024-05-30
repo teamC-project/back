@@ -225,7 +225,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(PasswordFoundRequestDto dto) {
+  public ResponseEntity<? super GetFindIdResponseDto> passwordFound(PasswordFoundRequestDto dto) {
 
     try {
 
@@ -318,18 +318,21 @@ public class AuthServiceImplimentation implements AuthService {
   @Override
   public ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto) {
     try {
-
       String userId = dto.getUserId();
-
       Boolean userEntity = userRepository.existsByUserId(userId);
-      if (! userEntity)
+      if (userEntity)
         return ResponseDto.duplicatedId();
-
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
     return ResponseDto.success();
+  }
+
+  @Override
+  public ResponseEntity<? super GetFindPasswordResponseDto> resetPassword(PasswordFoundRequestDto dto) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
   }
 
 }

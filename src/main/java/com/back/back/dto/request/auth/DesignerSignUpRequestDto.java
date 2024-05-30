@@ -27,11 +27,8 @@ public class DesignerSignUpRequestDto {
   @NotBlank
   private String userImage;
   @NotBlank
-  private String userRole;
-  @NotBlank
-  private String joinPath;
-  @NotBlank
   String userCompanyName;
+  private String joinPath;
 
 
   private String snsId;

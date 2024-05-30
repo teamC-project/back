@@ -3,6 +3,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import com.back.back.dto.request.trend.PostTrendBoardCommentRequestDto;
@@ -15,7 +16,9 @@ import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.entity.TrendBoardCommentEntity;
 import com.back.back.entity.TrendBoardEntity;
+import com.back.back.entity.TrendBoardImageEntity;
 import com.back.back.repository.TrendBoardCommentRepository;
+import com.back.back.repository.TrendBoardImageRepository;
 import com.back.back.repository.TrendBoardRepository;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.TrendBoardService;
@@ -28,6 +31,7 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 	private final TrendBoardRepository trendBoardRepository;
 	private final TrendBoardCommentRepository trendBoardCommentRepository;
 	private final UserRepository userRepository;
+	private final TrendBoardImageRepository trendBoardImageRepository;
 
 	@Override
 	public ResponseEntity<ResponseDto> postTrendBoard(PostTrendBoardRequestDto dto, String userId) {
@@ -37,6 +41,19 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 
 			TrendBoardEntity trendBoardEntity = new TrendBoardEntity(dto, userId);
 			trendBoardRepository.save(trendBoardEntity);
+
+			Integer trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
+			List<String> trendBoardUrlList =  dto.getTrendBoardUrlList();
+
+			List<TrendBoardImageEntity> trendBoardImageEntities = new ArrayList<>();
+
+			for(String trendBoardImageUrl: trendBoardUrlList) {
+				TrendBoardImageEntity trendBoardImageEntity  = new TrendBoardImageEntity(trendBoardNumber, trendBoardImageUrl);
+				trendBoardImageEntities.add(trendBoardImageEntity);
+			}
+
+			trendBoardImageRepository.saveAll(trendBoardImageEntities);
+
 
 		} catch(Exception exception) {
 				exception.printStackTrace();
