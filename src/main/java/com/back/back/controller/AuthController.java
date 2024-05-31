@@ -75,6 +75,13 @@ public class AuthController {
     return response;
   }
 
+  @PostMapping("/id-found-email-auth")
+  public ResponseEntity<ResponseDto> idFoundEmailAuth(
+      @RequestBody @Valid EmailAuthRequestDto requestBody) {
+    ResponseEntity<ResponseDto> response = authService.idFoundEmailAuth(requestBody);
+    return response;
+  }
+
   @PostMapping("/id-found")
   public ResponseEntity<? super GetFindIdResponseDto> idFound(
       @RequestBody @Valid IdFoundRequestDto requestBody) {
@@ -83,14 +90,14 @@ public class AuthController {
   }
 
   @PostMapping("/password-found")
-  public ResponseEntity<? super GetFindIdResponseDto> idFound(
+  public ResponseEntity<? super GetFindIdResponseDto> passwordFound(
       @RequestBody @Valid PasswordFoundRequestDto requestBody) {
       ResponseEntity<? super GetFindIdResponseDto> response = authService.passwordFound(requestBody);
       return response;
   }
 
   @PostMapping("/password-reset")
-  public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
+  public ResponseEntity<? super GetFindPasswordResponseDto> resetPassword(
       @RequestBody @Valid PasswordFoundRequestDto requestBody) {
       ResponseEntity<? super GetFindPasswordResponseDto> response = authService.resetPassword(requestBody);
       return response;
