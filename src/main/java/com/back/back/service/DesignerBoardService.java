@@ -7,6 +7,7 @@ import com.back.back.dto.request.designer.PostDesignerBoardRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.designerboard.GetDesignerBoardCommentListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardResponseDto;
 import com.back.back.dto.response.designerboard.GetSearchDesignerBoardListResponseDto;
@@ -18,6 +19,7 @@ public interface DesignerBoardService {
     ResponseEntity<? super GetDesignerBoardListResponseDto> getDesignerBoardList();
     ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesignerBoardList(String searchWord);
     ResponseEntity<? super GetDesignerBoardResponseDto> getDesignerBoard(int designerBoardNumber);
+    ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList();
 
     ResponseEntity<ResponseDto> putDesignerBoard(PutDesignerBoardRequestDto dto, int designerBoardNumber, String userId);
     ResponseEntity<ResponseDto> putDesignerBoardComment(PutDesignerBoardCommentRequestDto dto, int designerBoardCommentNumber, String userId);
