@@ -18,6 +18,7 @@ import com.back.back.dto.request.designer.PostDesignerBoardRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.designerboard.GetDesignerBoardCommentListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardResponseDto;
 import com.back.back.dto.response.designerboard.GetSearchDesignerBoardListResponseDto;
@@ -71,6 +72,12 @@ public class DesignerBoardController {
         @PathVariable("designerBoardNumber") int designerBoardNumber
     ) {
         ResponseEntity<? super GetDesignerBoardResponseDto> response = designerBoardService.getDesignerBoard(designerBoardNumber);
+        return response;
+    }
+
+    @GetMapping("/{designerBoardNumber}/comment")
+    public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList() {
+        ResponseEntity<? super GetDesignerBoardCommentListResponseDto> response = designerBoardService.getDesignerBoardCommentList();
         return response;
     }
 

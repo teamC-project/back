@@ -11,6 +11,7 @@ import com.back.back.dto.request.designer.PostDesignerBoardRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.designerboard.GetDesignerBoardCommentListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardResponseDto;
 import com.back.back.dto.response.designerboard.GetSearchDesignerBoardListResponseDto;
@@ -253,6 +254,21 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
     }
 
     return ResponseDto.success();
+
+  }
+
+  @Override
+  public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList() {
+    
+    try {
+
+      List<DesignerBoardCommentEntity> designerBoardCommentEntities = designerBoardCommentRepository.findByOrderByDesignerBoardCommentNumberDesc();
+      return GetDesignerBoardCommentListResponseDto.success(designerBoardCommentEntities);
+      
+    } catch (Exception  exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
 
   }
 
