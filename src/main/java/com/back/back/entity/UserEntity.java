@@ -1,5 +1,6 @@
 package com.back.back.entity;
 
+
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
@@ -57,6 +58,7 @@ public class UserEntity {
     this.joinPath = designerDto.getJoinPath();
     this.snsId = designerDto.getSnsId();
   }
+
 
   public void update(CustomerUpdateRequestDto dto) {
     this.userAge = dto.getUserAge();
