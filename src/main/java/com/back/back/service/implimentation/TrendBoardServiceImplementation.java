@@ -42,17 +42,17 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 			TrendBoardEntity trendBoardEntity = new TrendBoardEntity(dto, userId);
 			trendBoardRepository.save(trendBoardEntity);
 
-			Integer trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
-			List<String> trendBoardUrlList =  dto.getTrendBoardUrlList();
+			// Integer trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
+			// List<String> trendBoardUrlList =  dto.getTrendBoardUrlList();
 
-			List<TrendBoardImageEntity> trendBoardImageEntities = new ArrayList<>();
+			// List<TrendBoardImageEntity> trendBoardImageEntities = new ArrayList<>();
 
-			for(String trendBoardImageUrl: trendBoardUrlList) {
-				TrendBoardImageEntity trendBoardImageEntity  = new TrendBoardImageEntity(trendBoardNumber, trendBoardImageUrl);
-				trendBoardImageEntities.add(trendBoardImageEntity);
-			}
+			// for(String trendBoardImageUrl: trendBoardUrlList) {
+			// 	TrendBoardImageEntity trendBoardImageEntity  = new TrendBoardImageEntity(trendBoardNumber, trendBoardImageUrl);
+			// 	trendBoardImageEntities.add(trendBoardImageEntity);
+			// }
 
-			trendBoardImageRepository.saveAll(trendBoardImageEntities);
+			// trendBoardImageRepository.saveAll(trendBoardImageEntities);
 
 
 		} catch(Exception exception) {
