@@ -30,6 +30,8 @@ public interface AuthService {
 
   ResponseEntity<ResponseDto> signUp(DesignerSignUpRequestDto dto);
 
+  ResponseEntity<ResponseDto> idFoundEmailAuth(EmailAuthRequestDto dto);
+  
   ResponseEntity<? super GetFindIdResponseDto> idFound(IdFoundRequestDto dto);
 
   ResponseEntity<? super GetFindIdResponseDto> passwordFound(@Valid PasswordFoundRequestDto requestBody);
