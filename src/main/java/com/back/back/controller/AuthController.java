@@ -99,7 +99,7 @@ public class AuthController {
   @PostMapping("/password-reset")
   public ResponseEntity<? super GetFindPasswordResponseDto> resetPassword(
       @RequestBody @Valid PasswordFoundRequestDto requestBody) {
-      ResponseEntity<? super GetFindPasswordResponseDto> response = authService.resetPassword(requestBody);
+      ResponseEntity<? super GetFindPasswordResponseDto> response = authService.resetPassword();
       return response;
   }
 
