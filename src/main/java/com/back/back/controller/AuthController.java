@@ -3,7 +3,6 @@ package com.back.back.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +75,27 @@ public class AuthController {
     return response;
   }
 
+  @PostMapping("/id-found")
+  public ResponseEntity<? super GetFindIdResponseDto> idFound(
+      @RequestBody @Valid IdFoundRequestDto requestBody) {
+      ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
+      return response;
+  }
+
+  @PostMapping("/password-found")
+  public ResponseEntity<? super GetFindIdResponseDto> idFound(
+      @RequestBody @Valid PasswordFoundRequestDto requestBody) {
+      ResponseEntity<? super GetFindIdResponseDto> response = authService.passwordFound(requestBody);
+      return response;
+  }
+
+  @PostMapping("/password-reset")
+  public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
+      @RequestBody @Valid PasswordFoundRequestDto requestBody) {
+      ResponseEntity<? super GetFindPasswordResponseDto> response = authService.resetPassword(requestBody);
+      return response;
+  }
+
   @DeleteMapping("/user-delete")
   public ResponseEntity<ResponseDto> deleteUser(
       @AuthenticationPrincipal String userId) {
@@ -83,26 +103,7 @@ public class AuthController {
     return response;
   }
 
-    @PostMapping("/id-found")
-    public ResponseEntity<? super GetFindIdResponseDto> idFound(
-        @RequestBody @Valid IdFoundRequestDto requestBody) {
-        ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
-        return response;
-    }
 
-    @PostMapping("/password-found")
-    public ResponseEntity<? super GetFindIdResponseDto> idFound(
-        @RequestBody @Valid PasswordFoundRequestDto requestBody) {
-        ResponseEntity<? super GetFindIdResponseDto> response = authService.passwordFound(requestBody);
-        return response;
-    }
-
-    @PostMapping("/password-reset")
-    public ResponseEntity<? super GetFindPasswordResponseDto> passwordFound(
-        @RequestBody @Valid PasswordFoundRequestDto requestBody) {
-        ResponseEntity<? super GetFindPasswordResponseDto> response = authService.resetPassword(requestBody);
-        return response;
-    }
 
     @PostMapping("/customer-update")
     public ResponseEntity<ResponseDto> customerUpdate(
@@ -117,7 +118,5 @@ public class AuthController {
         ResponseEntity<ResponseDto> response = authService.designerUpdate(requestBody);
         return response;
     }
-
-
 
 }
