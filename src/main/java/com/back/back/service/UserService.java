@@ -13,5 +13,8 @@ public interface UserService {
   ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto);
 
   ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto);
+
+  ResponseEntity<ResponseDto> deleteUser(String userId);
+
 }
 

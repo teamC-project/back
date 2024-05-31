@@ -5,7 +5,6 @@ import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
-import com.back.back.dto.request.auth.PasswordChangeRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

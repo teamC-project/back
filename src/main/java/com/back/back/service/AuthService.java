@@ -36,7 +36,7 @@ public interface AuthService {
 
   ResponseEntity<ResponseDto> resetPassword(String email, PasswordChangeRequestDto dto);
 
-  ResponseEntity<ResponseDto> deleteUser(String userId);
-
   ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto);
+
+  ResponseEntity<ResponseDto> resetPassword(@Valid PasswordFoundRequestDto requestBody);
 }
