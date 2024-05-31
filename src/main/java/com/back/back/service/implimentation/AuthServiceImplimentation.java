@@ -196,6 +196,32 @@ public class AuthServiceImplimentation implements AuthService {
 
     return ResponseDto.success();
 
+  };
+
+  @Override
+  public ResponseEntity<ResponseDto> idFoundEmailAuth(EmailAuthRequestDto dto) {
+    try {
+
+      String userEmail = dto.getUserEmail();
+      boolean existedEmail = userRepository.existsByUserEmail(userEmail);
+      if (!existedEmail)
+        return ResponseDto.noExistEmail();
+
+      String authNumber = EmailAuthNumberUtil.createNumber();
+
+      EmailAuthNumberEntity emailAuthNumberEntity = new EmailAuthNumberEntity(userEmail, authNumber);
+      emailAuthNumberRepository.save(emailAuthNumberEntity);
+
+      mailProvider.mailAuthSend(userEmail, authNumber);
+
+    } catch (MessagingException exception) {
+      exception.printStackTrace();
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+
+    return ResponseDto.success();
   }
 
   @Override
@@ -334,5 +360,7 @@ public class AuthServiceImplimentation implements AuthService {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
   }
+
+
 
 }
