@@ -39,11 +39,7 @@ public interface AuthService {
   ResponseEntity<? super GetFindPasswordResponseDto> 
   resetPassword(PasswordFoundRequestDto dto);
 
-  ResponseEntity<ResponseDto> deleteUser(String userId);
 
-  ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto);
-
-  ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto);
   
   ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto);
 }

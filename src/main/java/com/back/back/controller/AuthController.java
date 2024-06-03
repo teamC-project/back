@@ -23,6 +23,7 @@ import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.service.AuthService;
+import com.back.back.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
   private final AuthService authService;
+  private final UserService userService;
 
   @PostMapping("/sign-in")
   public ResponseEntity<? super SignInResponseDto> signIn(
@@ -102,28 +104,5 @@ public class AuthController {
       ResponseEntity<? super GetFindPasswordResponseDto> response = authService.resetPassword(requestBody);
       return response;
   }
-
-  @DeleteMapping("/user-delete")
-  public ResponseEntity<ResponseDto> deleteUser(
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = authService.deleteUser(userId);
-    return response;
-  }
-
-
-
-    @PostMapping("/customer-update")
-    public ResponseEntity<ResponseDto> customerUpdate(
-        @RequestBody @Valid CustomerUpdateRequestDto requestBody) {
-        ResponseEntity<ResponseDto> response = authService.customerUpdate(requestBody);
-        return response;
-    }
-
-    @PostMapping("/designer-update")
-    public ResponseEntity<ResponseDto> designerUpdate(
-        @RequestBody @Valid DesignerUpdateRequestDto requestBody) {
-        ResponseEntity<ResponseDto> response = authService.designerUpdate(requestBody);
-        return response;
-    }
 
 }
