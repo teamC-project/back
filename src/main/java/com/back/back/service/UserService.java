@@ -10,11 +10,10 @@ import com.back.back.dto.response.user.GetSignInUserResponseDto;
 public interface UserService {
   ResponseEntity<? super GetSignInUserResponseDto> getSignInUser (String userId);
 
+  ResponseEntity<ResponseDto> deleteUser(String userId);
+
   ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto);
 
   ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto);
-
-  ResponseEntity<ResponseDto> deleteUser(String userId);
-
 }
 

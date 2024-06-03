@@ -18,6 +18,7 @@ import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.service.AuthService;
+import com.back.back.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
   private final AuthService authService;
+  private final UserService userService;
 
   @PostMapping("/sign-in")
   public ResponseEntity<? super SignInResponseDto> signIn(

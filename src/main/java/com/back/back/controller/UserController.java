@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
   
-  private final UserService userService;
+  private final UserService userService; 
 
   @GetMapping("/")
   public ResponseEntity<? super GetSignInUserResponseDto> getSignInUser (
