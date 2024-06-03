@@ -11,6 +11,7 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
+import com.back.back.dto.request.auth.PasswordChangeRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
@@ -27,6 +28,7 @@ import com.back.back.repository.UserRepository;
 import com.back.back.service.AuthService;
 
 import jakarta.mail.MessagingException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -296,8 +298,16 @@ public class AuthServiceImplimentation implements AuthService {
     return ResponseDto.success();
   }
 
+
+
   @Override
-  public ResponseEntity<? super GetFindPasswordResponseDto> resetPassword(PasswordFoundRequestDto dto) {
+  public ResponseEntity<ResponseDto> resetPassword(String email, PasswordChangeRequestDto dto) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
+  }
+
+  @Override
+  public ResponseEntity<ResponseDto> resetPassword(@Valid PasswordFoundRequestDto requestBody) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
   }

@@ -16,3 +16,4 @@ public interface UserService {
 
   ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto);
 }
+
