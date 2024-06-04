@@ -26,4 +26,4 @@ public class SignInResponseDto extends ResponseDto {
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
 
-}   
+}

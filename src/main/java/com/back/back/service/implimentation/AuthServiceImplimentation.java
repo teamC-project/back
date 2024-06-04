@@ -11,11 +11,10 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
+import com.back.back.dto.request.auth.PasswordChangeRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
-import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
-import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
@@ -29,6 +28,7 @@ import com.back.back.repository.UserRepository;
 import com.back.back.service.AuthService;
 
 import jakarta.mail.MessagingException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -285,63 +285,6 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<ResponseDto> deleteUser(String userId) {
-
-    try {
-      UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null)
-        return ResponseDto.authorizationFailed();
-
-      userRepository.delete(userEntity);
-
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-    return ResponseDto.success();
-  }
-
-  @Override
-  public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto) {
-
-    try {
-      String userId = dto.getUserId();
-
-      UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null)
-        return ResponseDto.noExistId();
-
-      userEntity.update(dto);
-      userRepository.save(userEntity);
-
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-    return ResponseDto.success();
-  }
-
-  @Override
-  public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto) {
-    try {
-
-      String userId = dto.getUserId();
-
-      UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null)
-        return ResponseDto.noExistId();
-
-      userEntity.update(dto);
-      userRepository.save(userEntity);
-
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-    return ResponseDto.success();
-  }
-
-  @Override
   public ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto) {
     try {
       String userId = dto.getUserId();
@@ -355,12 +298,18 @@ public class AuthServiceImplimentation implements AuthService {
     return ResponseDto.success();
   }
 
+
+
   @Override
-  public ResponseEntity<? super GetFindPasswordResponseDto> resetPassword(PasswordFoundRequestDto dto) {
+  public ResponseEntity<ResponseDto> resetPassword(String email, PasswordChangeRequestDto dto) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
   }
 
-
+  @Override
+  public ResponseEntity<ResponseDto> resetPassword(@Valid PasswordFoundRequestDto requestBody) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
+  }
 
 }
