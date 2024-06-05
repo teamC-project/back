@@ -11,5 +11,6 @@ public class PostCustomerBoardRequestDto {
     private String customerBoardTitle;
     @NotBlank
     private String customerBoardContents;
+    private boolean isSecret;
 
 }
