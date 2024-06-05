@@ -73,7 +73,7 @@ public class TrendBoardController {
         return response;
     }
 
-	@GetMapping("/list") 
+	@GetMapping("/") 
 	public ResponseEntity< ? super GetTrendBoardListResponseDto> 
 	getTrendBoardList() {
 		ResponseEntity<? super GetTrendBoardListResponseDto> response = trendBoardService.getTrendBoardList();
@@ -81,7 +81,7 @@ public class TrendBoardController {
 		return response;
 	}
 
-	@GetMapping("/list/search") 
+	@GetMapping("/search") 
 	public ResponseEntity< ? super GetSearchTrendBoardListResponseDto> getSearchBoardList(
 		@RequestParam("word") String word	) {
 			ResponseEntity< ? super GetSearchTrendBoardListResponseDto> response = trendBoardService.getSearchTrendBoardList(word);
