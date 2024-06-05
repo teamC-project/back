@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
   
-  private final UserService userService;
+  private final UserService userService; 
 
   @GetMapping("/")
   public ResponseEntity<? super GetSignInUserResponseDto> getSignInUser (
@@ -53,5 +53,6 @@ public class UserController {
         ResponseEntity<ResponseDto> response = userService.designerUpdate(requestBody);
         return response;
     }
+    //Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));                 SecurityContextHolder.getContext().setAuthentication(authentication);return new ResponseEntity<>("success", HttpStatus.OK);
 
 }
