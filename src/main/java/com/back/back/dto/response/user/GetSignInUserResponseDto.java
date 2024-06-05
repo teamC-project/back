@@ -21,7 +21,6 @@ public class GetSignInUserResponseDto extends ResponseDto {
     this.userId = userEntity.getUserId();
     this.userRole = userEntity.getUserRole();
   }
-
   
   public static ResponseEntity<GetSignInUserResponseDto> success (UserEntity userEntity ) {
     GetSignInUserResponseDto responseBody = new GetSignInUserResponseDto(userEntity);

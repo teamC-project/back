@@ -15,6 +15,7 @@ public class CustomerBoardListItem {
     private String customerBoardWriterId;
     private String customerBoardWriteDatetime;
     private Integer customerBoardViewCount;
+    private boolean isSecret;
 
     private CustomerBoardListItem(CustomerBoardEntity customerBoardEntity) throws Exception {
         String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(customerBoardEntity.getCustomerBoardWriteDatetime());
@@ -29,7 +30,7 @@ public class CustomerBoardListItem {
         this.customerBoardWriterId = writerId;
         this.customerBoardWriteDatetime = writeDatetime;
         this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
-
+        this.isSecret = customerBoardEntity.isSecret();
     }
 
     public static List<CustomerBoardListItem>getList(List<CustomerBoardEntity> customerBoardEntities) throws Exception {
