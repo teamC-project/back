@@ -11,6 +11,6 @@ import com.back.back.entity.DesignerBoardCommentEntity;
 public interface DesignerBoardCommentRepository extends JpaRepository<DesignerBoardCommentEntity, Integer> {
     DesignerBoardCommentEntity findByDesignerBoardCommentNumber(Integer designerBoardCommentNumber);
 
-    List<DesignerBoardCommentEntity> findByOrderByDesignerBoardCommentNumberDesc();
+    List<DesignerBoardCommentEntity> findByDesignerBoardNumberOrderByDesignerBoardCommentNumberDesc(int designerBoardNumber);
     
 }

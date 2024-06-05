@@ -12,6 +12,7 @@ import lombok.Getter;
 @Getter
 public class DesignerBoardCommentListItem {
     private Integer designerBoardCommentNumber;
+    private Integer designerBoardNumber;
     private String designerBoardCommentWriterId;
     private String designerBoardCommentWriteDatetime;
     private String designerBoardCommentContents;
@@ -35,10 +36,10 @@ public class DesignerBoardCommentListItem {
         List<DesignerBoardCommentListItem> designerBoardCommentList = new ArrayList<>();
 
         for (DesignerBoardCommentEntity designerBoardCommentEntity: designerBoardCommentEntities) {
-            DesignerBoardCommentListItem designerBoardCommentListItem = new DesignerBoardCommentListItem(designerBoardCommentEntity);
-            designerBoardCommentList.add(designerBoardCommentListItem);
+                DesignerBoardCommentListItem designerBoardCommentListItem = new DesignerBoardCommentListItem(designerBoardCommentEntity);
+                designerBoardCommentList.add(designerBoardCommentListItem);
         }
-
+    
         return designerBoardCommentList;
     }
 }

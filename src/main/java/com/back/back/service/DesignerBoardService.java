@@ -20,7 +20,7 @@ public interface DesignerBoardService {
     ResponseEntity<? super GetDesignerBoardListResponseDto> getDesignerBoardList();
     ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesignerBoardList(String searchWord);
     ResponseEntity<? super GetDesignerBoardResponseDto> getDesignerBoard(int designerBoardNumber);
-    ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList();
+    ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(int designerBoardNumber);
     ResponseEntity<? super GetDesignerBoardCommentResponseDto> getDesignerBoardComment(int designerBoardCommentNumber);
 
     ResponseEntity<ResponseDto> putDesignerBoard(PutDesignerBoardRequestDto dto, int designerBoardNumber, String userId);
