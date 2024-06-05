@@ -63,9 +63,9 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
       boolean isExistUser = userRepository.existsById(userId);
       if (!isExistUser)
         return ResponseDto.authenticationFailed();
-      Optional<DesignerBoardEntity> designerBoardOptional = designerBoardRepository.findById(designerBoardNumber);
 
-      if (!designerBoardOptional.isPresent())
+      DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
+      if (designerBoardEntity == null)
         return ResponseDto.noExistBoard();
 
       DesignerBoardCommentEntity designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber,
@@ -259,11 +259,13 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
   }
 
   @Override
-  public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList() {
+  public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(
+    int designerBoardNumber
+  ) {
     
     try {
 
-      List<DesignerBoardCommentEntity> designerBoardCommentEntities = designerBoardCommentRepository.findByOrderByDesignerBoardCommentNumberDesc();
+      List<DesignerBoardCommentEntity> designerBoardCommentEntities = designerBoardCommentRepository.findByDesignerBoardNumberOrderByDesignerBoardCommentNumberDesc(designerBoardNumber);
       return GetDesignerBoardCommentListResponseDto.success(designerBoardCommentEntities);
       
     } catch (Exception  exception) {

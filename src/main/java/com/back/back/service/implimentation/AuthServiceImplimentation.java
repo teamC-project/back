@@ -1,5 +1,6 @@
 package com.back.back.service.implimentation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,13 +12,12 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
-import com.back.back.dto.request.auth.PasswordChangeRequestDto;
+import com.back.back.dto.request.auth.PasswordReSetRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
-import com.back.back.dto.response.auth.GetFindPasswordResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.entity.EmailAuthNumberEntity;
 import com.back.back.entity.UserEntity;
@@ -28,12 +28,13 @@ import com.back.back.repository.UserRepository;
 import com.back.back.service.AuthService;
 
 import jakarta.mail.MessagingException;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImplimentation implements AuthService {
+
+  @Autowired
 
   private final UserRepository userRepository;
   private final EmailAuthNumberRepository emailAuthNumberRepository;
@@ -71,7 +72,20 @@ public class AuthServiceImplimentation implements AuthService {
       return ResponseDto.databaseError();
     }
     return SignInResponseDto.success(accessToken);
+  }
 
+  @Override
+  public ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto) {
+    try {
+      String userId = dto.getUserId();
+      Boolean userEntity = userRepository.existsByUserId(userId);
+      if (userEntity)
+        return ResponseDto.duplicatedId();
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
   }
 
   @Override
@@ -97,9 +111,7 @@ public class AuthServiceImplimentation implements AuthService {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
-
     return ResponseDto.success();
-
   }
 
   @Override
@@ -118,9 +130,7 @@ public class AuthServiceImplimentation implements AuthService {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
-
     return ResponseDto.success();
-
   }
 
   @Override
@@ -251,32 +261,52 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<? super GetFindIdResponseDto> passwordFound(PasswordFoundRequestDto dto) {
+  public ResponseEntity<ResponseDto> passwordFoundEmailAuth(EmailAuthRequestDto dto) {
+    try {
+
+      String userEmail = dto.getUserEmail();
+      boolean existedEmail = userRepository.existsByUserEmail(userEmail);
+      if (!existedEmail)
+        return ResponseDto.noExistEmail();
+
+      String authNumber = EmailAuthNumberUtil.createNumber();
+
+      EmailAuthNumberEntity emailAuthNumberEntity = new EmailAuthNumberEntity(userEmail, authNumber);
+      emailAuthNumberRepository.save(emailAuthNumberEntity);
+
+      mailProvider.mailAuthSend(userEmail, authNumber);
+
+    } catch (MessagingException exception) {
+      exception.printStackTrace();
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+
+    return ResponseDto.success();
+  }
+
+  @Override
+  public ResponseEntity<ResponseDto> passwordFound(PasswordFoundRequestDto dto) {
 
     try {
 
       String userId = dto.getUserId();
       String userEmail = dto.getUserEmail();
       String authNumber = dto.getAuthNumber();
-      String userPassword = dto.getUserPassword();
 
-      boolean existedUser = userRepository.existsByUserId(userId);
-      if (!existedUser)
+      boolean existedUserId = userRepository.existsByUserId(userId);
+      if (!existedUserId)
         return ResponseDto.noExistId();
 
-      UserEntity userEntity = userRepository.findByUserEmail(userEmail);
-      if (userEntity == null)
+      boolean existedUserEmail = userRepository.existsByUserEmail(userEmail);
+      if (!existedUserEmail)
         return ResponseDto.noExistEmail();
 
       boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
       if (!isMatched)
         return ResponseDto.authenticationFailed();
 
-      String encodeedPassword = passwordEncoder.encode(userPassword);
-      dto.setUserPassword(encodeedPassword);
-
-      userPassword = userEntity.getUserPassword();
-
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
@@ -285,31 +315,25 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto) {
+  public ResponseEntity<ResponseDto> resetPassword(PasswordReSetRequestDto dto) {
     try {
       String userId = dto.getUserId();
-      Boolean userEntity = userRepository.existsByUserId(userId);
-      if (userEntity)
-        return ResponseDto.duplicatedId();
+      UserEntity userEntity = userRepository.findByUserId(userId);
+
+      if (userEntity == null) {
+        return ResponseDto.noExistId();
+      }
+
+      String userPassword = dto.getUserPassword();
+      String encodedPassword = passwordEncoder.encode(userPassword);
+      userEntity.setUserPassword(encodedPassword);
+
+      userRepository.save(userEntity);
+
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
     return ResponseDto.success();
   }
-
-
-
-  @Override
-  public ResponseEntity<ResponseDto> resetPassword(String email, PasswordChangeRequestDto dto) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
-  }
-
-  @Override
-  public ResponseEntity<ResponseDto> resetPassword(@Valid PasswordFoundRequestDto requestBody) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
-  }
-
 }

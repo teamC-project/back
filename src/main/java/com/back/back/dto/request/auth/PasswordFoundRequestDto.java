@@ -13,11 +13,8 @@ public class PasswordFoundRequestDto {
   @NotBlank
   private String userId;
   @NotBlank
-  private String authNumber;
-  @NotBlank
-  @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$")
-  private String userPassword;
-  @NotBlank
   @Pattern(regexp = "^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\\.[a-zA-Z]{2,4}$")
   private String userEmail;
+  @NotBlank
+  private String authNumber;
 }

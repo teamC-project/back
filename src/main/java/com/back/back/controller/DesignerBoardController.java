@@ -77,8 +77,10 @@ public class DesignerBoardController {
     }
 
     @GetMapping("/{designerBoardNumber}/comment/list")
-    public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList() {
-        ResponseEntity<? super GetDesignerBoardCommentListResponseDto> response = designerBoardService.getDesignerBoardCommentList();
+    public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(
+        @PathVariable("designerBoardNumber") int designerBoardNumber
+    ) {
+        ResponseEntity<? super GetDesignerBoardCommentListResponseDto> response = designerBoardService.getDesignerBoardCommentList(designerBoardNumber);
         return response;
     }
 
