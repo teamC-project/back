@@ -53,5 +53,6 @@ public class UserController {
         ResponseEntity<ResponseDto> response = userService.designerUpdate(requestBody);
         return response;
     }
+    //Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));                 SecurityContextHolder.getContext().setAuthentication(authentication);return new ResponseEntity<>("success", HttpStatus.OK);
 
 }
