@@ -13,12 +13,12 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
+import com.back.back.dto.request.auth.PasswordReSetRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.service.AuthService;
-import com.back.back.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
   private final AuthService authService;
-  private final UserService userService;
 
   @PostMapping("/sign-in")
   public ResponseEntity<? super SignInResponseDto> signIn(
@@ -87,15 +86,22 @@ public class AuthController {
   }
 
   @PostMapping("/password-found")
-  public ResponseEntity<? super GetFindIdResponseDto> passwordFound(
+  public ResponseEntity<ResponseDto> passwordFound(
       @RequestBody @Valid PasswordFoundRequestDto requestBody) {
-      ResponseEntity<? super GetFindIdResponseDto> response = authService.passwordFound(requestBody);
+      ResponseEntity<ResponseDto> response = authService.passwordFound(requestBody);
       return response;
+  }
+
+  @PostMapping("/password-found-email-auth")
+  public ResponseEntity<ResponseDto> passwordFoundEmailAuth(
+      @RequestBody @Valid EmailAuthRequestDto requestBody) {
+    ResponseEntity<ResponseDto> response = authService.passwordFoundEmailAuth(requestBody);
+    return response;
   }
 
   @PostMapping("/password-reset")
   public ResponseEntity<ResponseDto> resetPassword(
-      @RequestBody @Valid PasswordFoundRequestDto requestBody) {
+      @RequestBody @Valid PasswordReSetRequestDto requestBody) {
       ResponseEntity<ResponseDto> response = authService.resetPassword(requestBody);
       return response;
   }
