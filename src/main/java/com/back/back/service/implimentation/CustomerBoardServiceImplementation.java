@@ -110,20 +110,25 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
     }
 
     @Override
-    public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber) {
-        
+    public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber, String userId) {
         try {
-
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
             if (customerBoardEntity == null) return ResponseDto.noExistBoard();
 
+            String userRole = userRepository.findByUserId(userId).getUserRole();
+            boolean isSecret = customerBoardEntity.isSecret();
+            String writerId = customerBoardEntity.getCustomerBoardWriterId();
+
+            if (isSecret && userRole.equals("ROLE_CUSTOMER") && !userId.equals(writerId)) {
+                // 비밀글이고 ROLE_CUSTOMER이면서 작성자가 아닌 경우 접근 제한
+                return ResponseDto.authorizationFailed();
+            }
+
             return GetCustomerBoardResponseDto.success(customerBoardEntity);
-            
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
-
     }
 
     @Override

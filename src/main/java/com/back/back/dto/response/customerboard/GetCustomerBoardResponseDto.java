@@ -20,6 +20,7 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
     private String customerBoardWriterId;
     private String customerBoardWriteDatetime;
     private Integer customerBoardViewCount;
+    private boolean isSecret;
 
     private GetCustomerBoardResponseDto(CustomerBoardEntity customerBoardEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
@@ -31,6 +32,7 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
         this.customerBoardWriteDatetime = customerWriteDatetime;
         this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
         this.customerBoardContents = customerBoardEntity.getCustomerBoardContents();
+        this.isSecret = customerBoardEntity.isSecret();
     }
 
     public static ResponseEntity<GetCustomerBoardResponseDto> success(CustomerBoardEntity customerBoardEntity) throws Exception {
