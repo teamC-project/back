@@ -259,11 +259,13 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
   }
 
   @Override
-  public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList() {
+  public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(
+    int designerBoardNumber
+  ) {
     
     try {
 
-      List<DesignerBoardCommentEntity> designerBoardCommentEntities = designerBoardCommentRepository.findByOrderByDesignerBoardCommentNumberDesc();
+      List<DesignerBoardCommentEntity> designerBoardCommentEntities = designerBoardCommentRepository.findByDesignerBoardNumberOrderByDesignerBoardCommentNumberDesc(designerBoardNumber);
       return GetDesignerBoardCommentListResponseDto.success(designerBoardCommentEntities);
       
     } catch (Exception  exception) {
