@@ -63,9 +63,9 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
       boolean isExistUser = userRepository.existsById(userId);
       if (!isExistUser)
         return ResponseDto.authenticationFailed();
-      Optional<DesignerBoardEntity> designerBoardOptional = designerBoardRepository.findById(designerBoardNumber);
 
-      if (!designerBoardOptional.isPresent())
+      DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
+      if (designerBoardEntity == null)
         return ResponseDto.noExistBoard();
 
       DesignerBoardCommentEntity designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber,
