@@ -9,8 +9,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PasswordChangeRequestDto {
-    @NotBlank
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$")
-    private String userPassword;
+public class PasswordReSetRequestDto {
+
+  @NotBlank
+  private String userId;
+  @NotBlank
+  @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$")
+  private String userPassword;
 }

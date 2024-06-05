@@ -7,7 +7,7 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
-import com.back.back.dto.request.auth.PasswordChangeRequestDto;
+import com.back.back.dto.request.auth.PasswordReSetRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
@@ -31,12 +31,12 @@ public interface AuthService {
   ResponseEntity<ResponseDto> idFoundEmailAuth(EmailAuthRequestDto dto);
   
   ResponseEntity<? super GetFindIdResponseDto> idFound(IdFoundRequestDto dto);
+  
+  ResponseEntity<ResponseDto> passwordFoundEmailAuth(EmailAuthRequestDto dto);
 
-  ResponseEntity<? super GetFindIdResponseDto> passwordFound(@Valid PasswordFoundRequestDto requestBody);
-
-  ResponseEntity<ResponseDto> resetPassword(String email, PasswordChangeRequestDto dto);
+  ResponseEntity<ResponseDto> passwordFound(@Valid PasswordFoundRequestDto requestBody);
 
   ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto);
 
-  ResponseEntity<ResponseDto> resetPassword(@Valid PasswordFoundRequestDto requestBody);
+  ResponseEntity<ResponseDto> resetPassword(@Valid PasswordReSetRequestDto requestBody);
 }
