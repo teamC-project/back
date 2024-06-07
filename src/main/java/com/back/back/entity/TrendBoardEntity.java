@@ -32,6 +32,7 @@ public class TrendBoardEntity {
 	private String trendBoardWriterId;
 	private String trendBoardWriteDatetime;
 	private Integer trendBoardLikeCount;
+	private String trendBoardThumbnailImage;
 
 
 	public TrendBoardEntity(PostTrendBoardRequestDto dto , String userId) {
@@ -44,6 +45,7 @@ public class TrendBoardEntity {
 		this.trendBoardWriterId = userId;
 		this.trendBoardWriteDatetime = trendBoardWriteDatetime;
 		this.trendBoardLikeCount = 0;
+		this.trendBoardThumbnailImage = dto.getTrendBoardThumbnailImage();
 	} 
 
 	public void increaseTrendBoardLikeCount() {
