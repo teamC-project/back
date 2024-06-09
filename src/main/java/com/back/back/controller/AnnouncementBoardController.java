@@ -17,7 +17,7 @@ import com.back.back.dto.request.announcement.PutAnnouncementBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.announcementboard.GetAnnouncementBoardListResponseDto;
 import com.back.back.dto.response.announcementboard.GetAnnouncementBoardResponseDto;
-import com.back.back.dto.response.announcementboard.GetSearchAnnouncementBoardListResponseDto;
+import com.back.back.dto.response.announcementboard.GetSearchAnnouncementBoardLIstResponseDto;
 import com.back.back.service.AnnouncementBoardService;
 
 import jakarta.validation.Valid;
@@ -55,10 +55,10 @@ public class AnnouncementBoardController {
 	}
 
     @GetMapping("/list/search")
-    public ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(
+    public ResponseEntity<? super GetSearchAnnouncementBoardLIstResponseDto> getSearchAnnouncementBoardList(
         @RequestParam("word") String word
     ) {
-        ResponseEntity <? super GetSearchAnnouncementBoardListResponseDto> response = announcementBoardService.getSearchAnnouncementBoardList(word);
+        ResponseEntity <? super GetSearchAnnouncementBoardLIstResponseDto> response = announcementBoardService.getSearchAnnouncementBoardList(word);
         return response;
     }
 
