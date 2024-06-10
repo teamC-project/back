@@ -18,8 +18,6 @@ import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
