@@ -18,17 +18,17 @@ public class GetAnnouncementBoardResponseDto extends ResponseDto {
 	private String announcementBoardTitle;
 	private String announcementBoardContents;
 	private String announcementBoardWriterId;
-	private String announcementBoardWriteDateTime;
+	private String announcementBoardWriteDatetime;
 	private Integer announcementBoardViewCount;
 
 	private GetAnnouncementBoardResponseDto(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDateTime());
+		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
 
 		this.announcementBoardNumber = announcementBoardEntity.getAnnouncementBoardNumber();
 		this.announcementBoardTitle = announcementBoardEntity.getAnnouncementBoardTitle();
 		this.announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
-		this.announcementBoardWriteDateTime = writeDateTime;
+		this.announcementBoardWriteDatetime = writeDateTime;
 		this.announcementBoardViewCount = announcementBoardEntity.getAnnouncementBoardViewCount();
 		this.announcementBoardContents = announcementBoardEntity.getAnnouncementBoardContents();
 	}

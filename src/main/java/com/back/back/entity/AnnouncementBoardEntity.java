@@ -30,7 +30,7 @@ public class AnnouncementBoardEntity {
 	private String announcementBoardTitle;
 	private String announcementBoardContents;
 	private String announcementBoardWriterId;
-	private String announcementBoardWriteDateTime;
+	private String announcementBoardWriteDatetime;
 	private Integer announcementBoardViewCount;
 
 	public AnnouncementBoardEntity(PostAnnouncementBoardRequestDto dto, String userId) {
@@ -43,7 +43,7 @@ public class AnnouncementBoardEntity {
 		this.announcementBoardTitle = dto.getAnnouncementBoardTitle();
 		this.announcementBoardContents = dto.getAnnouncementBoardContents();
 		this.announcementBoardWriterId = userId;
-		this.announcementBoardWriteDateTime = writeDatetime;
+		this.announcementBoardWriteDatetime = writeDatetime;
 		this.announcementBoardViewCount = 0;
 	}
 
