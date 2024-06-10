@@ -1,11 +1,8 @@
 package com.back.back.common.object;
-
 import java.util.List;
 import java.util.ArrayList;
-
 import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.CustomerBoardEntity;
-
 import lombok.Getter;
 
 @Getter
