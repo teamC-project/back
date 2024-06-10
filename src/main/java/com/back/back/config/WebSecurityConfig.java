@@ -35,7 +35,7 @@ public class WebSecurityConfig {
 
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
   private final OAuth2UserServiceImplimentation oAuth2UserService;
-  private final OAuth2SuccessHandler oAuth2SuccessHandler;
+  private final OAuth2SuccessHandler oAuth2SuccessHandler; 
 
   @Bean
   protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
@@ -53,7 +53,9 @@ public class WebSecurityConfig {
             .requestMatchers("/api/v1/service/my-page/info-customer").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
             .requestMatchers("/api/v1/service/my-page/info-designer").hasRole("DESIGNER")
-            .requestMatchers("/api/v1/service/qna_board/*/comment" , "/api/v1/service/trend_board/*" , "/api/v1/service/announce_board/*").hasRole("ADMIN")
+            .requestMatchers("/api/v1/service/qna_board/*/comment" ).hasRole("ADMIN")
+						.requestMatchers( "/api/v1/service/trend_board/*").hasRole("ADMIN")
+						.requestMatchers("/api/v1/service/announcement_board/write").hasRole("ADMIN")
             .anyRequest().authenticated())
         .oauth2Login(oauth2 -> oauth2
             .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/oauth2"))

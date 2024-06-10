@@ -109,5 +109,24 @@ public class AnnouncementBoardSerivceImplementation implements AnnouncementBoard
             return ResponseDto.databaseError();
         }
         return ResponseDto.success();
-    } 
+    }
+		@Override
+		public ResponseEntity<ResponseDto> deleteAnnouncementBoard(int announcementBoardNumber, String userId) {
+				try {
+							AnnouncementBoardEntity announcementBoardEntity = announcementBoardRepository.findByAnnouncementBoardNumber(announcementBoardNumber);
+							if (announcementBoardEntity == null) 
+							return ResponseDto.noExistBoard();
+
+							String writerId = announcementBoardEntity.getAnnouncementBoardWriterId();
+							boolean isWriterId = userId.equals(writerId);
+							if(!isWriterId)
+							return ResponseDto.authorizationFailed();
+
+							announcementBoardRepository.delete(announcementBoardEntity);
+				} catch (Exception exception) {
+						exception.printStackTrace();
+						return ResponseDto.databaseError();
+				}
+				return ResponseDto.success();
+		} 
 }
