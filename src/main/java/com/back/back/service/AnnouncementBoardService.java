@@ -17,5 +17,7 @@ ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoard
 ResponseEntity<? super GetSearchAnnouncementBoardLIstResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord);
 ResponseEntity<? super GetAnnouncementBoardResponseDto> getAnnouncementBoard(int announcementBoardNumber);
 ResponseEntity<ResponseDto> putAnnouncementBoard(PutAnnouncementBoardRequestDto dto, int announcementBoardNumber, String userId);
+ResponseEntity<ResponseDto> deleteAnnouncementBoard(int announcementBoardNumber, String userId);
 ResponseEntity<ResponseDto> increaseAnnouncementBoardViewCount(int announcementBoardNumber);
+
 }

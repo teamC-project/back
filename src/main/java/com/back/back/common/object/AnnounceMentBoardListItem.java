@@ -16,7 +16,7 @@ public class AnnouncementBoardListItem {
 	private Integer announcementBoardViewCount;
 
 private AnnouncementBoardListItem(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
-	String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDateTime());
+	String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
 
 	String announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
 	announcementBoardWriterId = announcementBoardWriterId.substring(0,1) + " +".repeat(announcementBoardWriterId.length() -1);
