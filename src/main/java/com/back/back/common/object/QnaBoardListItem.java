@@ -13,12 +13,12 @@ public class QnaBoardListItem {
 	private String qnaBoardTItle;
 	private String qnaBoardContents;
 	private String qnaBoardWriterId;
-	private String qnaBoardWriteDateTime;
+	private String qnaBoardWriteDatetime;
 	private Integer qnaBoardViewCount;
 	private String qnaBoardComment;
 
 	private QnaBoardListItem(QnaBoardEntity qnaBoardEntity) throws Exception {
-		String writeDateTime = ChangeDateFormatUtil.changeYYMMDD(qnaBoardEntity.getQnaBoardWriteDatetime());
+		String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(qnaBoardEntity.getQnaBoardWriteDatetime());
 
 		String qnaBoardWriterId = qnaBoardEntity.getQnaBoardWriterId();
 		qnaBoardWriterId = qnaBoardWriterId.substring(0,1) + " +".repeat(qnaBoardWriterId.length() - 1);
@@ -27,7 +27,7 @@ public class QnaBoardListItem {
 		this.qnaBoardStatus = qnaBoardEntity.getQnaBoardStatus();
 		this.qnaBoardTItle = qnaBoardEntity.getQnaBoardTitle();
 		this.qnaBoardWriterId = qnaBoardEntity.getQnaBoardWriterId();
-		this.qnaBoardWriteDateTime = writeDateTime;
+		this.qnaBoardWriteDatetime = writeDatetime;
 		this.qnaBoardViewCount = qnaBoardEntity.getQnaBoardViewCount();
 
 	}
