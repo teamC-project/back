@@ -134,7 +134,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<ResponseDto> signUp(CustomerSignUpRequestDto dto) {
+  public ResponseEntity<ResponseDto> signUpCustomer(CustomerSignUpRequestDto dto) {
 
     try {
 
@@ -171,7 +171,7 @@ public class AuthServiceImplimentation implements AuthService {
   }
 
   @Override
-  public ResponseEntity<ResponseDto> signUp(DesignerSignUpRequestDto dto) {
+  public ResponseEntity<ResponseDto> signUpDesigner(DesignerSignUpRequestDto dto) {
 
     try {
 

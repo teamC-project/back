@@ -24,9 +24,9 @@ public interface AuthService {
 
   ResponseEntity<ResponseDto> emailAuthCheck(EmailAuthCheckRequestDto dto);
 
-  ResponseEntity<ResponseDto> signUp(CustomerSignUpRequestDto dto);
+  ResponseEntity<ResponseDto> signUpCustomer(CustomerSignUpRequestDto dto);
 
-  ResponseEntity<ResponseDto> signUp(DesignerSignUpRequestDto dto);
+  ResponseEntity<ResponseDto> signUpDesigner(DesignerSignUpRequestDto dto);
 
   ResponseEntity<ResponseDto> idFoundEmailAuth(EmailAuthRequestDto dto);
   
