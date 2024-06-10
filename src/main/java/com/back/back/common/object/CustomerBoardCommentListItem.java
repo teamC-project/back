@@ -1,12 +1,8 @@
 package com.back.back.common.object;
-
 import java.util.List;
-
 import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.CustomerBoardCommentEntity;
-
 import java.util.ArrayList;
-
 import lombok.Getter;
 
 @Getter
@@ -15,7 +11,7 @@ public class CustomerBoardCommentListItem {
     private String customerBoardCommentWriterId;
     private String customerBoardCommentWriteDatetime;
     private String customerBoardCommentContents;
-
+    private Integer customerBoardParentCommentNumber;
     private CustomerBoardCommentListItem(CustomerBoardCommentEntity customerBoardCommentEntity) throws Exception {
         String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
 
@@ -28,6 +24,7 @@ public class CustomerBoardCommentListItem {
         this.customerBoardCommentWriterId = writerId;
         this.customerBoardCommentWriteDatetime = writeDatetime;
         this.customerBoardCommentContents = customerBoardCommentEntity.getCustomerBoardCommentContents();
+        this.customerBoardParentCommentNumber = customerBoardCommentEntity.getCustomerBoardParentCommentNumber(); // 부모 댓글 번호 설정
 
     }
 

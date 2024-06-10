@@ -1,26 +1,27 @@
 package com.back.back.service.implimentation;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseDto;
 import com.back.back.entity.CustomerBoardCommentEntity;
 import com.back.back.entity.CustomerBoardEntity;
+import com.back.back.entity.CustomerBoardCommentEntity;
 import com.back.back.repository.CustomerBoardCommentRepository;
 import com.back.back.repository.CustomerBoardRepository;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.CustomerBoardService;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -150,6 +151,41 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         }
 
         return ResponseDto.success();
+
+    }
+        @Override
+    public ResponseEntity<? super GetCustomerBoardCommentListResponseDto> getCustomerBoardCommentList(
+        int customerBoardNumber
+    ) {
+        
+        try {
+
+        List<CustomerBoardCommentEntity> customerBoardCommentEntities = customerBoardCommentRepository.findByCustomerBoardNumberOrderByCustomerBoardCommentNumberDesc(customerBoardNumber);
+        return GetCustomerBoardCommentListResponseDto.success(customerBoardCommentEntities);
+        
+        } catch (Exception  exception) {
+        exception.printStackTrace();
+        return ResponseDto.databaseError();
+        }
+
+    }
+
+    @Override
+    public ResponseEntity<? super GetCustomerBoardCommentResponseDto> getCustomerBoardComment(
+        int customerBoardCommentNumber) {
+        
+            try {
+
+            CustomerBoardCommentEntity customerBoardCommentEntity = customerBoardCommentRepository.findByCustomerBoardCommentNumber(customerBoardCommentNumber);
+            if (customerBoardCommentEntity == null)
+                return ResponseDto.noExistBoard();
+
+            return GetCustomerBoardCommentResponseDto.success(customerBoardCommentEntity);
+            
+            } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+            }
 
     }
 

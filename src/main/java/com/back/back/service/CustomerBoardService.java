@@ -12,7 +12,8 @@ import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseD
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
-
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseDto;
 public interface CustomerBoardService {
     ResponseEntity<ResponseDto> postCustomerBoard(PostCustomerBoardRequestDto dto, String userId);
     ResponseEntity<ResponseDto> postCustomerBoardComment(PostCustomerBoardCommentRequestDto dto, int customerBoardNumber, String userId);
@@ -20,7 +21,8 @@ public interface CustomerBoardService {
     ResponseEntity<? super GetCustomerBoardListResponseDto> getCustomerBoardList();
     ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchCustomerBoardList(String searchWord);
     ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber, String userId);
-
+    ResponseEntity<? super GetCustomerBoardCommentListResponseDto> getCustomerBoardCommentList(int customerBoardNumber);
+    ResponseEntity<? super GetCustomerBoardCommentResponseDto> getCustomerBoardComment(int customerBoardCommentNumber);
     ResponseEntity<ResponseDto> putCustomerBoard(PutCustomerBoardRequestDto dto, int customerBoardNumber, String userId);
     ResponseEntity<ResponseDto> putCustomerBoardComment(PutCustomerBoardCommentRequestDto dto, int customerBoardCommentNumber, String userId);
 
