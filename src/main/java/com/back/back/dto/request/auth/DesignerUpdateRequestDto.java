@@ -10,8 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DesignerUpdateRequestDto {
   @NotBlank
-  private String userId;
-  @NotBlank
   private String userGender;
   @NotBlank
   private String userAge;
