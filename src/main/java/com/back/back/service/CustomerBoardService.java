@@ -19,7 +19,7 @@ public interface CustomerBoardService {
 
     ResponseEntity<? super GetCustomerBoardListResponseDto> getCustomerBoardList();
     ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchCustomerBoardList(String searchWord);
-    ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber);
+    ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber, String userId);
 
     ResponseEntity<ResponseDto> putCustomerBoard(PutCustomerBoardRequestDto dto, int customerBoardNumber, String userId);
     ResponseEntity<ResponseDto> putCustomerBoardComment(PutCustomerBoardCommentRequestDto dto, int customerBoardCommentNumber, String userId);

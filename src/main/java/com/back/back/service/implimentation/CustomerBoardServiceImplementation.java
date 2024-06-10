@@ -11,8 +11,6 @@ import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
@@ -110,20 +108,25 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
     }
 
     @Override
-    public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber) {
-        
+    public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber, String userId) {
         try {
-
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
             if (customerBoardEntity == null) return ResponseDto.noExistBoard();
 
+            String userRole = userRepository.findByUserId(userId).getUserRole();
+            boolean isSecret = customerBoardEntity.isSecret();
+            String writerId = customerBoardEntity.getCustomerBoardWriterId();
+
+            if (isSecret && userRole.equals("ROLE_CUSTOMER") && !userId.equals(writerId)) {
+                // 비밀글이고 ROLE_CUSTOMER이면서 작성자가 아닌 경우 접근 제한
+                return ResponseDto.authorizationFailed();
+            }
+
             return GetCustomerBoardResponseDto.success(customerBoardEntity);
-            
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
-
     }
 
     @Override

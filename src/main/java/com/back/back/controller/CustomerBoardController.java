@@ -69,12 +69,11 @@ public class CustomerBoardController {
     }
 
     @GetMapping("/{customerBoardNumber}")
-    public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard (
-        @PathVariable("customerBoardNumber") int customerBoardNumber
-    ) {
-        ResponseEntity<? super GetCustomerBoardResponseDto> response = customerBoardService.getCustomerBoard(customerBoardNumber);
-        return response;
-    }
+public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(
+        @PathVariable("customerBoardNumber") int customerBoardNumber,
+        @AuthenticationPrincipal String userId) {
+    return customerBoardService.getCustomerBoard(customerBoardNumber, userId);
+}
 
     @PutMapping("/{customerBoardNumber}")
     public ResponseEntity<ResponseDto> putCustomerBoard (
