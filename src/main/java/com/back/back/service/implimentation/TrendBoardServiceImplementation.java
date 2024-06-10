@@ -16,7 +16,6 @@ import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.entity.TrendBoardCommentEntity;
 import com.back.back.entity.TrendBoardEntity;
-import com.back.back.entity.TrendBoardImageEntity;
 import com.back.back.repository.TrendBoardCommentRepository;
 import com.back.back.repository.TrendBoardImageRepository;
 import com.back.back.repository.TrendBoardRepository;
@@ -31,7 +30,6 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 	private final TrendBoardRepository trendBoardRepository;
 	private final TrendBoardCommentRepository trendBoardCommentRepository;
 	private final UserRepository userRepository;
-	private final TrendBoardImageRepository trendBoardImageRepository;
 
 	@Override
 	public ResponseEntity<ResponseDto> postTrendBoard(PostTrendBoardRequestDto dto, String userId) {

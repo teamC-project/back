@@ -2,6 +2,7 @@ package com.back.back.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,19 +18,19 @@ import com.back.back.dto.request.announcement.PutAnnouncementBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.announcementboard.GetAnnouncementBoardListResponseDto;
 import com.back.back.dto.response.announcementboard.GetAnnouncementBoardResponseDto;
-import com.back.back.dto.response.announcementboard.GetSearchAnnouncementBoardListResponseDto;
+import com.back.back.dto.response.announcementboard.GetSearchAnnouncementBoardLIstResponseDto;
 import com.back.back.service.AnnouncementBoardService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/v1/announcement_board")
+@RequestMapping("/api/v1/service/announcement_board")
 @RequiredArgsConstructor
 public class AnnouncementBoardController {
     private final AnnouncementBoardService announcementBoardService;
 
-    @PostMapping("/")
+    @PostMapping("/write")
     ResponseEntity<ResponseDto> postAnnouncementBoard (
         @RequestBody @Valid PostAnnouncementBoardRequestDto requestBody,
         @AuthenticationPrincipal String userId
@@ -55,10 +56,10 @@ public class AnnouncementBoardController {
 	}
 
     @GetMapping("/list/search")
-    public ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(
+    public ResponseEntity<? super GetSearchAnnouncementBoardLIstResponseDto> getSearchAnnouncementBoardList(
         @RequestParam("word") String word
     ) {
-        ResponseEntity <? super GetSearchAnnouncementBoardListResponseDto> response = announcementBoardService.getSearchAnnouncementBoardList(word);
+        ResponseEntity <? super GetSearchAnnouncementBoardLIstResponseDto> response = announcementBoardService.getSearchAnnouncementBoardList(word);
         return response;
     }
 
@@ -75,6 +76,15 @@ public class AnnouncementBoardController {
 			@PathVariable("announcementBoardNumber") int announcementBoardNumber
 		) {
 			ResponseEntity<ResponseDto> response  = announcementBoardService.increaseAnnouncementBoardViewCount(announcementBoardNumber);
+			return response;
+		}
+
+		@DeleteMapping("/{announcementBoardNumber}")
+		public ResponseEntity<ResponseDto> deleteAnnouncementBoard (
+			@PathVariable("announcementBoardNumber") int announcementBoardNumber,
+			@AuthenticationPrincipal String userId
+		) {
+			ResponseEntity<ResponseDto> response  = announcementBoardService.deleteAnnouncementBoard(announcementBoardNumber, userId);
 			return response;
 		}
 }
