@@ -37,10 +37,9 @@ public class UserServiceImplimentation implements UserService {
     return GetSignInUserResponseDto.success(userEntity);
   }
   @Override
-public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto) {
+public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto, String userId) {
 
   try {
-    String userId = dto.getUserId();
 
     UserEntity userEntity = userRepository.findByUserId(userId);
     if (userEntity == null)
@@ -57,10 +56,8 @@ public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto) 
 }
 
   @Override
-  public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto) {
+  public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto, String userId) {
     try {
-
-      String userId = dto.getUserId();
 
       UserEntity userEntity = userRepository.findByUserId(userId);
       if (userEntity == null)
