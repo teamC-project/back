@@ -12,7 +12,7 @@ public class AnnouncementBoardListItem {
 	private String announcementBoardTitle;
 	private String announcementBoardContents;
 	private String announcementBoardWriterId;
-	private String announcementBoardWriteDateTime;
+	private String announcementBoardWriteDatetime;
 	private Integer announcementBoardViewCount;
 
 private AnnouncementBoardListItem(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
@@ -23,9 +23,8 @@ private AnnouncementBoardListItem(AnnouncementBoardEntity announcementBoardEntit
 
 	this.announcementBoardNumber = announcementBoardEntity.getAnnouncementBoardNumber();
 	this.announcementBoardTitle = announcementBoardEntity.getAnnouncementBoardTitle();
-	this.announcementBoardContents = announcementBoardEntity.getAnnouncementBoardContents();
-	this.announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
-	this.announcementBoardWriteDateTime = writeDatetime;
+	this.announcementBoardWriterId = getAnnouncementBoardWriterId();
+	this.announcementBoardWriteDatetime = writeDatetime;
 	this.announcementBoardViewCount = announcementBoardEntity.getAnnouncementBoardViewCount();
 }
 

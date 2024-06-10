@@ -12,6 +12,6 @@ import com.back.back.entity.AnnouncementBoardEntity;
 public interface AnnouncementBoardRepository extends JpaRepository <AnnouncementBoardEntity, Integer> {
 
     List<AnnouncementBoardEntity> findByOrderByAnnouncementBoardNumberDesc();
-    List<AnnouncementBoardEntity> findByAnnouncementBoardTitleOrderByAnnouncementBoardNumberDesc(String announcementBoardTitle);
+    List<AnnouncementBoardEntity> findByAnnouncementBoardTitleContainsOrderByAnnouncementBoardNumberDesc(String announcementBoardTitle);
     AnnouncementBoardEntity findByAnnouncementBoardNumber(Integer announcementBoardNumber);
 }

@@ -47,7 +47,7 @@ public class AnnouncementBoardEntity {
 		this.announcementBoardViewCount = 0;
 	}
 
-	public void increaseAnnoucementBoardViewCount () {
+	public void increaseAnnouncementBoardViewCount () {
 		this.announcementBoardViewCount++;
 	}
 

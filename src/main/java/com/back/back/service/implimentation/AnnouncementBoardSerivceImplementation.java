@@ -55,7 +55,7 @@ public class AnnouncementBoardSerivceImplementation implements AnnouncementBoard
     public ResponseEntity<? super GetSearchAnnouncementBoardLIstResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord) {
 		try {
 
-			List<AnnouncementBoardEntity> announcementBoardEntities = announcementBoardRepository.findByAnnouncementBoardTitleOrderByAnnouncementBoardNumberDesc(announcementBoardSearchWord);
+			List<AnnouncementBoardEntity> announcementBoardEntities = announcementBoardRepository.findByAnnouncementBoardTitleContainsOrderByAnnouncementBoardNumberDesc(announcementBoardSearchWord);
 			return GetSearchAnnouncementBoardLIstResponseDto.success(announcementBoardEntities);
 
 	} catch (Exception exception) {
@@ -101,7 +101,7 @@ public class AnnouncementBoardSerivceImplementation implements AnnouncementBoard
             AnnouncementBoardEntity announcementBoardEntity = announcementBoardRepository.findByAnnouncementBoardNumber(announcementBoardNumber);
             if (announcementBoardEntity == null) return ResponseDto.noExistBoard();
         
-            announcementBoardEntity.increaseAnnoucementBoardViewCount();
+            announcementBoardEntity.increaseAnnouncementBoardViewCount();
             announcementBoardRepository.save(announcementBoardEntity);
         
         } catch (Exception exception) {
