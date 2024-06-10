@@ -60,14 +60,14 @@ public class AuthController {
   @PostMapping("/sign-up/customer")
   public ResponseEntity<ResponseDto> signUp(
       @RequestBody @Valid CustomerSignUpRequestDto requestBody) {
-    ResponseEntity<ResponseDto> response = authService.signUpCustomer(requestBody);
+    ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
     return response;
   }
 
   @PostMapping("/sign-up/designer")
   public ResponseEntity<ResponseDto> signUp(
       @RequestBody @Valid DesignerSignUpRequestDto requestBody) {
-    ResponseEntity<ResponseDto> response = authService.signUpDesigner(requestBody);
+    ResponseEntity<ResponseDto> response = authService.signUp(requestBody);
     return response;
   }
 
