@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class AnnouncementBoardController {
     private final AnnouncementBoardService announcementBoardService;
 
-    @PostMapping("/")
+    @PostMapping("/write")
     ResponseEntity<ResponseDto> postAnnouncementBoard (
         @RequestBody @Valid PostAnnouncementBoardRequestDto requestBody,
         @AuthenticationPrincipal String userId
