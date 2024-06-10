@@ -22,37 +22,37 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 public class UserController {
-  
-  private final UserService userService; 
+
+  private final UserService userService;
 
   @GetMapping("/")
-  public ResponseEntity<? super GetSignInUserResponseDto> getSignInUser (
-    @AuthenticationPrincipal String userId
-  ) {
+  public ResponseEntity<? super GetSignInUserResponseDto> getSignInUser(
+      @AuthenticationPrincipal String userId) {
     ResponseEntity<? super GetSignInUserResponseDto> response = userService.getSignInUser(userId);
     return response;
   }
 
-    @DeleteMapping("/user-delete")
+  @DeleteMapping("/user-delete")
   public ResponseEntity<ResponseDto> deleteUser(
       @AuthenticationPrincipal String userId) {
     ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
     return response;
   }
 
-    @PostMapping("/customer-update")
-    public ResponseEntity<ResponseDto> customerUpdate(
-        @RequestBody @Valid CustomerUpdateRequestDto requestBody) {
-        ResponseEntity<ResponseDto> response = userService.customerUpdate(requestBody);
-        return response;
-    }
+  @PostMapping("/customer-update")
+  public ResponseEntity<ResponseDto> customerUpdate(
+      @RequestBody @Valid CustomerUpdateRequestDto requestBody,
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = userService.customerUpdate(requestBody, userId);
+    return response;
+  }
 
-    @PostMapping("/designer-update")
-    public ResponseEntity<ResponseDto> designerUpdate(
-        @RequestBody @Valid DesignerUpdateRequestDto requestBody) {
-        ResponseEntity<ResponseDto> response = userService.designerUpdate(requestBody);
-        return response;
-    }
-    //Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));                 SecurityContextHolder.getContext().setAuthentication(authentication);return new ResponseEntity<>("success", HttpStatus.OK);
+  @PostMapping("/designer-update")
+  public ResponseEntity<ResponseDto> designerUpdate(
+      @RequestBody @Valid DesignerUpdateRequestDto requestBody,
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = userService.designerUpdate(requestBody, userId);
+    return response;
+  }
 
 }
