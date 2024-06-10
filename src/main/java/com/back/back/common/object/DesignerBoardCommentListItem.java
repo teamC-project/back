@@ -16,6 +16,7 @@ public class DesignerBoardCommentListItem {
     private String designerBoardCommentWriterId;
     private String designerBoardCommentWriteDatetime;
     private String designerBoardCommentContents;
+    private String originalDesignerBoardCommentWriterId;
 
     private DesignerBoardCommentListItem(DesignerBoardCommentEntity designerBoardCommentEntity) throws Exception {
         String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(designerBoardCommentEntity.getDesignerBoardCommentWriteDatetime());
@@ -29,6 +30,7 @@ public class DesignerBoardCommentListItem {
         this.designerBoardCommentWriterId = writerId;
         this.designerBoardCommentWriteDatetime = writeDatetime;
         this.designerBoardCommentContents = designerBoardCommentEntity.getDesignerBoardCommentContents();
+        this.originalDesignerBoardCommentWriterId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
 
     }
 
