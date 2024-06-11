@@ -78,7 +78,7 @@ public class QnaBoardController {
     return response;
   }
 
-  @PatchMapping("/{qnaBoardNumber}/increase_qna_view_count")
+  @PatchMapping("/{qnaBoardNumber}/increase-view-count")
   public ResponseEntity<ResponseDto> increaseQnaViewCount(
       @PathVariable("qnaBoardNumber") int qnaBoardNumber) {
     ResponseEntity<ResponseDto> response = qnaBoardService.increaseQnaViewCount(qnaBoardNumber);

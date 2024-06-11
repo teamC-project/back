@@ -71,7 +71,7 @@ public class AnnouncementBoardController {
         return response;
     }
 
-		@PatchMapping("/{announcementBoardNumber}/increase-view-count") 
+		@PatchMapping("/{announcementBoardNumber}/increase_view_count") 
 		public ResponseEntity<ResponseDto> increaseAnnouncementBoardViewCount (
 			@PathVariable("announcementBoardNumber") int announcementBoardNumber
 		) {

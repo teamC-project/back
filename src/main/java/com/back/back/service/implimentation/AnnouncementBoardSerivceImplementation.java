@@ -43,8 +43,8 @@ public class AnnouncementBoardSerivceImplementation implements AnnouncementBoard
     @Override
     public ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList() {
         try {
-            List<AnnouncementBoardEntity> announcementBoardEntity = announcementBoardRepository.findByOrderByAnnouncementBoardNumberDesc();
-            return GetAnnouncementBoardListResponseDto.success(announcementBoardEntity);
+          List<AnnouncementBoardEntity> announcementBoardEntities = announcementBoardRepository.findByOrderByAnnouncementBoardNumberDesc();
+            return GetAnnouncementBoardListResponseDto.success(announcementBoardEntities);
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();

@@ -83,8 +83,8 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 	public ResponseEntity<? super GetTrendBoardListResponseDto> getTrendBoardList() {
 		
 		try {
-					List<TrendBoardEntity> trendBoardEntity = trendBoardRepository.findByOrderByTrendBoardNumberDesc();
-					return GetTrendBoardListResponseDto.success(trendBoardEntity);
+					List<TrendBoardEntity> trendBoardEntities = trendBoardRepository.findByOrderByTrendBoardNumberDesc();
+					return GetTrendBoardListResponseDto.success(trendBoardEntities);
 		} catch (Exception exception) {
 				exception.printStackTrace();
 				return ResponseDto.databaseError();
