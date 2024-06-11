@@ -31,6 +31,7 @@ public class CustomerBoardCommentEntity {
     private String customerBoardCommentWriterId;
     private String customerBoardCommentContents;
     private String customerBoardCommentWriteDatetime;
+    private Integer customerBoardParentCommentNumber;
 
     public CustomerBoardCommentEntity (PostCustomerBoardCommentRequestDto dto, Integer customerBoardNumber, String userId) {
         Date now = Date.from(Instant.now());
@@ -41,7 +42,7 @@ public class CustomerBoardCommentEntity {
         this.customerBoardCommentContents = dto.getCustomerBoardCommentContents();
         this.customerBoardCommentWriterId = userId;
         this.customerBoardCommentWriteDatetime = customerBoardCommentWriteDatetime;
-
+        this.customerBoardParentCommentNumber = null;
     }
 
     public void update (PutCustomerBoardCommentRequestDto dto) {

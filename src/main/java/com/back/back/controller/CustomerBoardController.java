@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
@@ -21,8 +20,8 @@ import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
 import com.back.back.service.CustomerBoardService;
-
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -73,6 +72,13 @@ public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(
     return customerBoardService.getCustomerBoard(customerBoardNumber, userId);
 }
 
+    @GetMapping("/{customerBoardNumber}/comment/list")
+    public ResponseEntity<? super GetCustomerBoardCommentListResponseDto> getCustomerBoardCommentList(
+        @PathVariable("customerBoardNumber") int customerBoardNumber
+    ) {
+        ResponseEntity<? super GetCustomerBoardCommentListResponseDto> response = customerBoardService.getCustomerBoardCommentList(customerBoardNumber);
+        return response;
+    }
     @PutMapping("/{customerBoardNumber}")
     public ResponseEntity<ResponseDto> putCustomerBoard (
         @RequestBody @Valid PutCustomerBoardRequestDto requestBody,

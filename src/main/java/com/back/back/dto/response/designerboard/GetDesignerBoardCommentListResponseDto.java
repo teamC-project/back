@@ -1,16 +1,12 @@
 package com.back.back.dto.response.designerboard;
-
 import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import com.back.back.common.object.DesignerBoardCommentListItem;
 import com.back.back.dto.response.ResponseCode;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.ResponseMessage;
 import com.back.back.entity.DesignerBoardCommentEntity;
-
 import lombok.Getter;
 
 @Getter
