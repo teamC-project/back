@@ -54,7 +54,7 @@ public class WebSecurityConfig {
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
             .requestMatchers("/api/v1/service/my-page/info-designer").hasRole("DESIGNER")
             .requestMatchers("/api/v1/service/qna_board/*/comment" ).hasRole("ADMIN")
-						.requestMatchers( "/api/v1/service/trend_board/*").hasRole("ADMIN")
+						.requestMatchers( "/api/v1/service/trend_board/write").hasRole("ADMIN")
 						.requestMatchers("/api/v1/service/announcement_board/write").hasRole("ADMIN")
             .anyRequest().authenticated())
         .oauth2Login(oauth2 -> oauth2

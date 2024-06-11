@@ -3,7 +3,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import com.back.back.dto.request.trend.PostTrendBoardCommentRequestDto;
@@ -17,7 +16,6 @@ import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.entity.TrendBoardCommentEntity;
 import com.back.back.entity.TrendBoardEntity;
 import com.back.back.repository.TrendBoardCommentRepository;
-import com.back.back.repository.TrendBoardImageRepository;
 import com.back.back.repository.TrendBoardRepository;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.TrendBoardService;
