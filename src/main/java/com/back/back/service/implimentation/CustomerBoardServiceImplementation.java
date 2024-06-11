@@ -13,11 +13,8 @@ import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseD
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseDto;
 import com.back.back.entity.CustomerBoardCommentEntity;
 import com.back.back.entity.CustomerBoardEntity;
-import com.back.back.entity.CustomerBoardCommentEntity;
 import com.back.back.repository.CustomerBoardCommentRepository;
 import com.back.back.repository.CustomerBoardRepository;
 import com.back.back.repository.UserRepository;
@@ -115,7 +112,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             if (customerBoardEntity == null) return ResponseDto.noExistBoard();
 
             String userRole = userRepository.findByUserId(userId).getUserRole();
-            boolean isSecret = customerBoardEntity.isSecret();
+            boolean isSecret = customerBoardEntity.getSecret();
             String writerId = customerBoardEntity.getCustomerBoardWriterId();
 
             if (isSecret && userRole.equals("ROLE_CUSTOMER") && !userId.equals(writerId)) {

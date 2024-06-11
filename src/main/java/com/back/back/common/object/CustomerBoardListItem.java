@@ -12,22 +12,17 @@ public class CustomerBoardListItem {
     private String customerBoardWriterId;
     private String customerBoardWriteDatetime;
     private Integer customerBoardViewCount;
-    private boolean isSecret;
+    private Boolean secret;
 
     private CustomerBoardListItem(CustomerBoardEntity customerBoardEntity) throws Exception {
         String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(customerBoardEntity.getCustomerBoardWriteDatetime());
 
-        String writerId = customerBoardEntity.getCustomerBoardWriterId();
-        writerId =
-        writerId.substring(0, 1) + 
-        "*".repeat(writerId.length() - 1);
-
         this.customerBoardNumber = customerBoardEntity.getCustomerBoardNumber();
         this.customerBoardTitle = customerBoardEntity.getCustomerBoardTitle();
-        this.customerBoardWriterId = writerId;
+        this.customerBoardWriterId = customerBoardEntity.getCustomerBoardWriterId();
         this.customerBoardWriteDatetime = writeDatetime;
         this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
-        this.isSecret = customerBoardEntity.isSecret();
+        this.secret = customerBoardEntity.getSecret();
     }
 
     public static List<CustomerBoardListItem>getList(List<CustomerBoardEntity> customerBoardEntities) throws Exception {

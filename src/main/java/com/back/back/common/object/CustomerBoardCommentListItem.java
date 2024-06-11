@@ -15,13 +15,8 @@ public class CustomerBoardCommentListItem {
     private CustomerBoardCommentListItem(CustomerBoardCommentEntity customerBoardCommentEntity) throws Exception {
         String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
 
-        String writerId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
-        writerId =
-        writerId.substring(0, 1) + 
-        "*".repeat(writerId.length() - 1);
-
         this.customerBoardCommentNumber = customerBoardCommentEntity.getCustomerBoardCommentNumber();
-        this.customerBoardCommentWriterId = writerId;
+        this.customerBoardCommentWriterId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
         this.customerBoardCommentWriteDatetime = writeDatetime;
         this.customerBoardCommentContents = customerBoardCommentEntity.getCustomerBoardCommentContents();
         this.customerBoardParentCommentNumber = customerBoardCommentEntity.getCustomerBoardParentCommentNumber(); // 부모 댓글 번호 설정
