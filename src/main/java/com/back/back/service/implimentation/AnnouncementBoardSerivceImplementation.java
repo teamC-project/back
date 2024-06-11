@@ -10,7 +10,7 @@ import com.back.back.dto.request.announcement.PutAnnouncementBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.announcementboard.GetAnnouncementBoardListResponseDto;
 import com.back.back.dto.response.announcementboard.GetAnnouncementBoardResponseDto;
-import com.back.back.dto.response.announcementboard.GetSearchAnnouncementBoardLIstResponseDto;
+import com.back.back.dto.response.announcementboard.GetSearchAnnouncementBoardListResponseDto;
 import com.back.back.entity.AnnouncementBoardEntity;
 import com.back.back.repository.AnnouncementBoardRepository;
 import com.back.back.repository.UserRepository;
@@ -43,8 +43,8 @@ public class AnnouncementBoardSerivceImplementation implements AnnouncementBoard
     @Override
     public ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList() {
         try {
-            List<AnnouncementBoardEntity> announcementBoardEntity = announcementBoardRepository.findByOrderByAnnouncementBoardNumberDesc();
-            return GetAnnouncementBoardListResponseDto.success(announcementBoardEntity);
+          List<AnnouncementBoardEntity> announcementBoardEntities = announcementBoardRepository.findByOrderByAnnouncementBoardNumberDesc();
+            return GetAnnouncementBoardListResponseDto.success(announcementBoardEntities);
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -52,11 +52,11 @@ public class AnnouncementBoardSerivceImplementation implements AnnouncementBoard
 
     }
     @Override
-    public ResponseEntity<? super GetSearchAnnouncementBoardLIstResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord) {
+    public ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord) {
 		try {
 
 			List<AnnouncementBoardEntity> announcementBoardEntities = announcementBoardRepository.findByAnnouncementBoardTitleContainsOrderByAnnouncementBoardNumberDesc(announcementBoardSearchWord);
-			return GetSearchAnnouncementBoardLIstResponseDto.success(announcementBoardEntities);
+			return GetSearchAnnouncementBoardListResponseDto.success(announcementBoardEntities);
 
 	} catch (Exception exception) {
 			exception.printStackTrace();

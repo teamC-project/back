@@ -30,7 +30,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     if (isStatus) {
       String userId = oAuth2User.getName();
       String token = jwtProvider.create(userId);
-      response.sendRedirect("http://localhost:3200/sns/" + token + "/3600");
+      response.sendRedirect("http://localhost:3200/sns/" + token + "/3200");
     } else {
       String snsId = oAuth2User.getName();
       String joinPath = oAuth2User.getJoinPath();
