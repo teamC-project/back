@@ -16,22 +16,22 @@ import lombok.Getter;
 public class GetQnaBoardResponseDto extends ResponseDto{
 	private Integer qnaBoardNumber;
 	private Boolean qnaBoardStatus;
-	private String qnaBoardTItle;
+	private String qnaBoardTitle;
 	private String qnaBoardContents;
 	private String qnaBoardWriterId;
-	private String qnaBoardWriteDateTime;
+	private String qnaBoardWriteDatetime;
 	private Integer qnaBoardViewCount;
 	private String qnaBoardComment;
 
 	private GetQnaBoardResponseDto(QnaBoardEntity qnaBoardEntity) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(qnaBoardEntity.getQnaBoardWriteDatetime());
+		String writeDatetime = ChangeDateFormatUtil.changeYYYYMMDD(qnaBoardEntity.getQnaBoardWriteDatetime());
 
 		this.qnaBoardNumber = qnaBoardEntity.getQnaBoardNumber();
 		this.qnaBoardStatus = qnaBoardEntity.getQnaBoardStatus();
-		this.qnaBoardTItle = qnaBoardEntity.getQnaBoardTitle();
+		this.qnaBoardTitle = qnaBoardEntity.getQnaBoardTitle();
 		this.qnaBoardWriterId = qnaBoardEntity.getQnaBoardWriterId();
-		this.qnaBoardWriteDateTime = writeDateTime;
+		this.qnaBoardWriteDatetime = writeDatetime;
 		this.qnaBoardViewCount = qnaBoardEntity.getQnaBoardViewCount();
 		this.qnaBoardContents = qnaBoardEntity.getQnaBoardContents();
 		this.qnaBoardComment = qnaBoardEntity.getQnaBoardComment();

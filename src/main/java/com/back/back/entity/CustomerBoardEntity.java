@@ -32,7 +32,7 @@ public class CustomerBoardEntity {
     private String customerBoardWriterId;
     private String customerBoardWriteDatetime;
     private Integer customerBoardViewCount;
-    private boolean isSecret;
+    private Boolean secret;
 
     public CustomerBoardEntity(PostCustomerBoardRequestDto dto, String userId) {
         Date now = Date.from(Instant.now());
@@ -44,7 +44,7 @@ public class CustomerBoardEntity {
         this.customerBoardWriterId = userId;
         this.customerBoardWriteDatetime = customerBoardWriteDatetime;
         this.customerBoardViewCount = 0;
-        this.isSecret = dto.isSecret();
+        this.secret = dto.isSecret();
     }
 
     public void increaseViewCount() {
@@ -54,6 +54,7 @@ public class CustomerBoardEntity {
     public void update (PutCustomerBoardRequestDto dto) {
         this.customerBoardTitle = dto.getCustomerBoardTitle();
         this.customerBoardContents = dto.getCustomerBoardContents();
+        this.secret = dto.isSecret();
     }
 
 }

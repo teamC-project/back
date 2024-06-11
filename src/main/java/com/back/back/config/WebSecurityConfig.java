@@ -48,14 +48,11 @@ public class WebSecurityConfig {
         .cors(cors -> cors
             .configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(request -> request
-            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*").permitAll()
+            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*", "/api/v1/announcement_board/list").permitAll()
             .requestMatchers("/api/v1/service/customer_board/write").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/my-page/info-customer").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
             .requestMatchers("/api/v1/service/my-page/info-designer").hasRole("DESIGNER")
-            .requestMatchers("/api/v1/service/qna_board/*/comment" ).hasRole("ADMIN")
-						.requestMatchers( "/api/v1/service/trend_board/write").hasRole("ADMIN")
-						.requestMatchers("/api/v1/service/announcement_board/write").hasRole("ADMIN")
             .anyRequest().authenticated())
         .oauth2Login(oauth2 -> oauth2
             .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/oauth2"))
@@ -91,6 +88,7 @@ class AuthorizationFailEntryPoint implements AuthenticationEntryPoint {
   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
       throws IOException, ServletException {
 
+    authException.printStackTrace();
     response.setContentType("application/json");
     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
     response.getWriter().write("{ \"code\":\"AF\", \"message\": \"Authorization Failed\" }");

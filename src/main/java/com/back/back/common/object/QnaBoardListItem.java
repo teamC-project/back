@@ -10,7 +10,7 @@ import lombok.Getter;
 public class QnaBoardListItem {
 	private Integer qnaBoardNumber;
 	private Boolean qnaBoardStatus;
-	private String qnaBoardTItle;
+	private String qnaBoardTitle;
 	private String qnaBoardContents;
 	private String qnaBoardWriterId;
 	private String qnaBoardWriteDatetime;
@@ -25,7 +25,7 @@ public class QnaBoardListItem {
 
 		this.qnaBoardNumber = qnaBoardEntity.getQnaBoardNumber();
 		this.qnaBoardStatus = qnaBoardEntity.getQnaBoardStatus();
-		this.qnaBoardTItle = qnaBoardEntity.getQnaBoardTitle();
+		this.qnaBoardTitle = qnaBoardEntity.getQnaBoardTitle();
 		this.qnaBoardWriterId = qnaBoardEntity.getQnaBoardWriterId();
 		this.qnaBoardWriteDatetime = writeDatetime;
 		this.qnaBoardViewCount = qnaBoardEntity.getQnaBoardViewCount();
