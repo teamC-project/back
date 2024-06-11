@@ -13,6 +13,7 @@ public class PutCustomerBoardRequestDto {
     private String customerBoardTitle;
     @NotBlank
     private String customerBoardContents;
+    private boolean secret;
 
 
 }
