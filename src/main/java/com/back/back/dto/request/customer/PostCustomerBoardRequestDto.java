@@ -13,6 +13,6 @@ public class PostCustomerBoardRequestDto {
     @NotBlank
     private String customerBoardContents;
     @NotNull
-    private boolean isSecret;
+    private boolean secret;
 
 }
