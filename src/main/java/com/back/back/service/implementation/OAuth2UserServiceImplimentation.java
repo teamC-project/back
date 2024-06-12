@@ -1,4 +1,4 @@
-package com.back.back.service.implimentation;
+package com.back.back.service.implementation;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

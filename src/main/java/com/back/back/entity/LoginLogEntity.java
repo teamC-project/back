@@ -1,6 +1,10 @@
 package com.back.back.entity;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+
+import com.back.back.dto.request.loginLog.getLoginLogRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "loginLog")
+@Entity
 @Table(name = "login_log")
 @Getter
 @Setter
@@ -24,6 +28,14 @@ public class LoginLogEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer sequence;
   private String loginId;
-  private LocalDate loginDate;
+  private String loginDate;
 
+  public LoginLogEntity(getLoginLogRequestDto dto, String loginId) {
+  Date now = Date.from(Instant.now());
+  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  String loginDate = simpleDateFormat.format(now);
+
+  this.loginId = dto.getLoginId();
+  this.loginDate = loginDate;
+  }
 }

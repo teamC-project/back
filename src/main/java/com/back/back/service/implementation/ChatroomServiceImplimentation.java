@@ -1,4 +1,4 @@
-package com.back.back.service.implimentation;
+package com.back.back.service.implementation;
 
 public class ChatroomServiceImplimentation {
     

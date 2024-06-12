@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
 import com.back.back.dto.response.ResponseDto;
