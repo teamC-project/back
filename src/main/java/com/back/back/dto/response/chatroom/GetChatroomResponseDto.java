@@ -12,5 +12,16 @@ import lombok.Setter;
 public class GetChatroomResponseDto {
 
     private boolean success;
-    private ChatroomDto chatroom;
+    private ChatroomDto chatRoom;
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class ChatroomDto {
+        private Integer roomId;
+        private String customerId;
+        private String designerId;
+        private String chatRoomDatetime;
+
+    }
 }
