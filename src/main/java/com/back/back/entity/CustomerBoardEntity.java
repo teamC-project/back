@@ -24,37 +24,37 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerBoardEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer customerBoardNumber;
-    private String customerBoardTitle;
-    private String customerBoardContents;
-    private String customerBoardWriterId;
-    private String customerBoardWriteDatetime;
-    private Integer customerBoardViewCount;
-    private Boolean secret;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer customerBoardNumber;
+  private String customerBoardTitle;
+  private String customerBoardContents;
+  private String customerBoardWriterId;
+  private String customerBoardWriteDatetime;
+  private Integer customerBoardViewCount;
+  private Boolean secret;
 
-    public CustomerBoardEntity(PostCustomerBoardRequestDto dto, String userId) {
-        Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String customerBoardWriteDatetime = simpleDateFormat.format(now);
+  public CustomerBoardEntity(PostCustomerBoardRequestDto dto, String userId) {
+    Date now = Date.from(Instant.now());
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String customerBoardWriteDatetime = simpleDateFormat.format(now);
 
-        this.customerBoardTitle = dto.getCustomerBoardTitle();
-        this.customerBoardContents = dto.getCustomerBoardContents();
-        this.customerBoardWriterId = userId;
-        this.customerBoardWriteDatetime = customerBoardWriteDatetime;
-        this.customerBoardViewCount = 0;
-        this.secret = dto.isSecret();
-    }
+    this.customerBoardTitle = dto.getCustomerBoardTitle();
+    this.customerBoardContents = dto.getCustomerBoardContents();
+    this.customerBoardWriterId = userId;
+    this.customerBoardWriteDatetime = customerBoardWriteDatetime;
+    this.customerBoardViewCount = 0;
+    this.secret = dto.isSecret();
+  }
 
-    public void increaseViewCount() {
-        this.customerBoardViewCount++;  
-    }
+  public void increaseViewCount() {
+    this.customerBoardViewCount++;
+  }
 
-    public void update (PutCustomerBoardRequestDto dto) {
-        this.customerBoardTitle = dto.getCustomerBoardTitle();
-        this.customerBoardContents = dto.getCustomerBoardContents();
-        this.secret = dto.isSecret();
-    }
+  public void update(PutCustomerBoardRequestDto dto) {
+    this.customerBoardTitle = dto.getCustomerBoardTitle();
+    this.customerBoardContents = dto.getCustomerBoardContents();
+    this.secret = dto.isSecret();
+  }
 
 }

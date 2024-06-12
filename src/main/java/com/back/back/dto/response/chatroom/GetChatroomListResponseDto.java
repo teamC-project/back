@@ -16,4 +16,15 @@ public class GetChatroomListResponseDto {
     private boolean success;
     private List<ChatroomDto> chatRooms;
 
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class ChatroomDto {
+        private Integer roomId;
+        private String customerId;
+        private String designerId;
+        private String chatRoomDatetime;
+
+    }
+
 }
