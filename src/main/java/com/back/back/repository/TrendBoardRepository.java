@@ -10,6 +10,6 @@ import com.back.back.entity.TrendBoardEntity;
 @Repository
 public interface TrendBoardRepository extends JpaRepository <TrendBoardEntity , Integer> {
 	List<TrendBoardEntity> findByOrderByTrendBoardNumberDesc();
-	List<TrendBoardEntity> findByTrendBoardTitleOrderByTrendBoardNumberDesc(String trendBoardtitle);
+	List<TrendBoardEntity> findByTrendBoardTitleOrderByTrendBoardNumberDesc(String trendBoardTitle);
 	TrendBoardEntity findByTrendBoardNumber(Integer trendBoardNumber);
 }

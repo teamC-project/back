@@ -19,6 +19,7 @@ import com.back.back.dto.request.trend.PutTrendBoardCommentRequestDto;
 import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.trendboard.GetSearchTrendBoardListResponseDto;
+import com.back.back.dto.response.trendboard.GetTrendBoardCommentListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.service.TrendBoardService;
@@ -82,7 +83,7 @@ public class TrendBoardController {
 	}
 
 	@GetMapping("/search") 
-	public ResponseEntity< ? super GetSearchTrendBoardListResponseDto> getSearchBoardList(
+	public ResponseEntity< ? super GetSearchTrendBoardListResponseDto> getSearchTrendBoardList(
 		@RequestParam("word") String word	) {
 			ResponseEntity< ? super GetSearchTrendBoardListResponseDto> response = trendBoardService.getSearchTrendBoardList(word);
 
@@ -97,6 +98,15 @@ public class TrendBoardController {
 			return response;
 		}
 
+		@GetMapping("/{trendBoardNumber}/comment/list")
+		public ResponseEntity<? super GetTrendBoardCommentListResponseDto>
+		getTrendBoardCommentList(
+				@PathVariable("trendBoardNumber") int trendBoardNumber
+		) {
+				ResponseEntity<? super GetTrendBoardCommentListResponseDto> response = 
+				trendBoardService.getTrendBoardCommentList(trendBoardNumber);
+				return response;
+		}
 		@PatchMapping("/{trendBoardNumber}/increase_trend_like_count")
 		public ResponseEntity<ResponseDto> increaseTrendLikeCount (
 			@PathVariable("trendBoardNumber") int trendBoardNumber
