@@ -1,4 +1,4 @@
-package com.back.back.service.implimentation;
+package com.back.back.service.implementation;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,54 +18,45 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImplimentation implements UserService {
 
   private final UserRepository userRepository;
-  
+
+
   @Override
   public ResponseEntity<? super GetSignInUserResponseDto> getSignInUser(String userId) {
-    
     UserEntity userEntity = null;
 
     try {
-      
       userEntity = userRepository.findByUserId(userId);
-      if(userEntity == null) return ResponseDto.authenticationFailed();
-
-
+      if (userEntity == null) return ResponseDto.authenticationFailed();
     } catch (Exception exception) {
-        exception.printStackTrace();
-        return ResponseDto.databaseError();
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
     }
     return GetSignInUserResponseDto.success(userEntity);
   }
+
   @Override
-public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto, String userId) {
+  public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto, String userId) {
+    try {
+      UserEntity userEntity = userRepository.findByUserId(userId);
+      if (userEntity == null) return ResponseDto.noExistId();
 
-  try {
-
-    UserEntity userEntity = userRepository.findByUserId(userId);
-    if (userEntity == null)
-      return ResponseDto.noExistId();
-
-    userEntity.update(dto);
-    userRepository.save(userEntity);
-
-  } catch (Exception exception) {
-    exception.printStackTrace();
-    return ResponseDto.databaseError();
+      userEntity.update(dto);
+      userRepository.save(userEntity);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
   }
-  return ResponseDto.success();
-}
 
   @Override
   public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto, String userId) {
     try {
-
       UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null)
-        return ResponseDto.noExistId();
+      if (userEntity == null) return ResponseDto.noExistId();
 
       userEntity.update(dto);
       userRepository.save(userEntity);
-
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
@@ -75,19 +66,18 @@ public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto, 
 
   @Override
   public ResponseEntity<ResponseDto> deleteUser(String userId) {
-
     try {
       UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null)
-        return ResponseDto.authorizationFailed();
+      if (userEntity == null) return ResponseDto.authorizationFailed();
 
       userRepository.delete(userEntity);
-
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
     return ResponseDto.success();
   }
+
+
 }
 
