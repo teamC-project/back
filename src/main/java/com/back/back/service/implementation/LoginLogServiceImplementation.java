@@ -3,11 +3,9 @@ package com.back.back.service.implementation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.back.back.dto.request.loginLog.LoginRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.loginlog.GetTotalVisitorsResponseDto;
 import com.back.back.dto.response.loginlog.GetVisitorsTodayResponseDto;
-import com.back.back.entity.LoginLogEntity;
 import com.back.back.repository.LoginLogRepository;
 import com.back.back.service.LoginLogService;
 

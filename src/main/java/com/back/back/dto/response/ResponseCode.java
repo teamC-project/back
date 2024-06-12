@@ -30,4 +30,6 @@ public interface ResponseCode {
   String TOKEN_CREATION_FAILED = "TF";
   String MAIL_SEND_FAILED = "MF";
   String DATABASE_ERROR = "DBE";
+  String INVALID_ROOM_ID = "IRI";
+  String INTERNAL_SERVER_ERROR = "ISE";
 }

@@ -2,18 +2,13 @@ package com.back.back.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.back.dto.request.loginLog.LoginRequestDto;
-import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.loginlog.GetTotalVisitorsResponseDto;
 import com.back.back.dto.response.loginlog.GetVisitorsTodayResponseDto;
 import com.back.back.service.LoginLogService;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
