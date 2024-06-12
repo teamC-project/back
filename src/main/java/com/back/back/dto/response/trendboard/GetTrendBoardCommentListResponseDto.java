@@ -1,4 +1,5 @@
 package com.back.back.dto.response.trendboard;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -11,19 +12,21 @@ import com.back.back.dto.response.ResponseMessage;
 import com.back.back.entity.TrendBoardCommentEntity;
 
 import lombok.Getter;
+
 @Getter
-public class GetTrendBoardCommentListResponseDto extends ResponseDto  {
-	private List<TrendBoardCommentListItem> trendBoardCommentList;
+public class GetTrendBoardCommentListResponseDto extends ResponseDto {
+  private List<TrendBoardCommentListItem> trendBoardCommentList;
 
-	public GetTrendBoardCommentListResponseDto(List<TrendBoardCommentEntity> trendBoardCommentEntities) throws Exception {
-		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		this.trendBoardCommentList = TrendBoardCommentListItem.getList(trendBoardCommentEntities);
-	}
+  public GetTrendBoardCommentListResponseDto(List<TrendBoardCommentEntity> trendBoardCommentEntities) throws Exception {
+    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+    this.trendBoardCommentList = TrendBoardCommentListItem.getList(trendBoardCommentEntities);
+  }
 
-	public static
-	ResponseEntity<GetTrendBoardCommentListResponseDto> success(List<TrendBoardCommentEntity> trendBoardCommentEntities)
-	throws Exception {
-		GetTrendBoardCommentListResponseDto responseBody = new GetTrendBoardCommentListResponseDto(trendBoardCommentEntities);
-		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-	}
+  public static ResponseEntity<GetTrendBoardCommentListResponseDto> success(
+      List<TrendBoardCommentEntity> trendBoardCommentEntities)
+      throws Exception {
+    GetTrendBoardCommentListResponseDto responseBody = new GetTrendBoardCommentListResponseDto(
+        trendBoardCommentEntities);
+    return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+  }
 }

@@ -1,6 +1,5 @@
 package com.back.back.entity;
 
-
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
@@ -26,32 +25,32 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class ChatMessageEntity {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer messageId;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id", nullable = false)
-    private ChatroomEntity chatroom;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer messageId;
 
-    private String senderId;
-    private String message;
-    private String sendDatetime;
+  @ManyToOne
+  @JoinColumn(name = "room_id", nullable = false)
+  private ChatroomEntity chatroom;
 
-    public ChatMessageEntity(ChatroomEntity chatRoom, String senderId, String message) {
-        Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sendDatetime = simpleDateFormat.format(now);
+  private String senderId;
+  private String message;
+  private String sendDatetime;
 
-        this.chatroom = chatRoom;
-        this.senderId = senderId;
-        this.message = message;
-        this.sendDatetime = sendDatetime;
-    }
+  public ChatMessageEntity(ChatroomEntity chatRoom, String senderId, String message) {
+    Date now = Date.from(Instant.now());
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String sendDatetime = simpleDateFormat.format(now);
 
-    private void updateMessage(String message) {
-        this.message = message;
-    }
+    this.chatroom = chatRoom;
+    this.senderId = senderId;
+    this.message = message;
+    this.sendDatetime = sendDatetime;
+  }
+
+  private void updateMessage(String message) {
+    this.message = message;
+  }
 
 }

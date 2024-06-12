@@ -1,35 +1,36 @@
-// package com.back.back.provider;
+package com.back.back.provider;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;
 
-// import com.corundumstudio.socketio.SocketIOServer;
+import com.corundumstudio.socketio.SocketIOServer;
 
-// import jakarta.annotation.PostConstruct;
-// import jakarta.annotation.PreDestroy;
-// import lombok.RequiredArgsConstructor;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import lombok.RequiredArgsConstructor;
 
-// @Component
-// @RequiredArgsConstructor
-// public class SocketIOProvider {
-    
-//     private final SocketIOServer socketIOServer;
+@Component
+@RequiredArgsConstructor
+public class SocketIOProvider {
 
-//     @PostConstruct
-//     private void startServer () {
-//         socketIOServer.addConnectListener(client -> System.out.println("Client connected : " + client.getSessionId()));
-//         socketIOServer.addDisconnectListener(client -> System.out.println("Client disconnected : " + client.getSessionId()));
+  private final SocketIOServer socketIOServer;
 
-//         socketIOServer.addEventListener("message", String.class, (client, data, ackRequest) -> {
-//             System.out.println("Received message : " + data);
-//             client .sendEvent("message", "message recive");
-//         });
+  @PostConstruct
+  private void startServer() {
+    socketIOServer.addConnectListener(client -> System.out.println("Client connected : " + client.getSessionId()));
+    socketIOServer
+        .addDisconnectListener(client -> System.out.println("Client disconnected : " + client.getSessionId()));
 
-//         socketIOServer.start();
-//     }
-    
-//     @PreDestroy
-//     private void stopServer () {
-//         socketIOServer.stop();
-//     }
+    socketIOServer.addEventListener("message", String.class, (client, data, ackRequest) -> {
+      System.out.println("Received message : " + data);
+      client.sendEvent("message", "message recive");
+    });
 
-// }
+    socketIOServer.start();
+  }
+
+  @PreDestroy
+  private void stopServer() {
+    socketIOServer.stop();
+  }
+
+}

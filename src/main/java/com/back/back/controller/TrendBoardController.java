@@ -32,112 +32,103 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TrendBoardController {
 
-	private final TrendBoardService trendBoardService;
+  private final TrendBoardService trendBoardService;
 
-	@PostMapping("/write") 
-	ResponseEntity<ResponseDto> postTrendBoard (
-		@RequestBody @Valid PostTrendBoardRequestDto requestBody,
-		@AuthenticationPrincipal String userId 
-	) {
-		ResponseEntity<ResponseDto> response = trendBoardService.postTrendBoard(requestBody, userId);
-		return response;
-	}
-	
+  @PostMapping("/write")
+  ResponseEntity<ResponseDto> postTrendBoard(
+      @RequestBody @Valid PostTrendBoardRequestDto requestBody,
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = trendBoardService.postTrendBoard(requestBody, userId);
+    return response;
+  }
 
-	@PostMapping("/{trendBoardNumber}/comment")
-    public ResponseEntity<ResponseDto> postTrendBoardComment (
-        @RequestBody @Valid PostTrendBoardCommentRequestDto requestBody,
-        @PathVariable("trendBoardNumber") int trendBoardNumber,
-        @AuthenticationPrincipal String userId
-    ) {
-				ResponseEntity<ResponseDto> response = trendBoardService.postTrendBoardComment(requestBody, trendBoardNumber, userId);
-        return response;
-    }
+  @PostMapping("/{trendBoardNumber}/comment")
+  public ResponseEntity<ResponseDto> postTrendBoardComment(
+      @RequestBody @Valid PostTrendBoardCommentRequestDto requestBody,
+      @PathVariable("trendBoardNumber") int trendBoardNumber,
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = trendBoardService.postTrendBoardComment(requestBody, trendBoardNumber,
+        userId);
+    return response;
+  }
 
-	@PutMapping("/{trendBoardNumber}") 
-	public ResponseEntity<ResponseDto> putTrendBoard(
-		@RequestBody @Valid PutTrendBoardRequestDto requestBody,
-		@PathVariable("trendBoardNumber") int trendBoardNumber,
-		@AuthenticationPrincipal String userId
-	) {
-		ResponseEntity<ResponseDto> response = trendBoardService.putTrendBoard(requestBody, trendBoardNumber, userId);
-		return response;
-	}
+  @PutMapping("/{trendBoardNumber}")
+  public ResponseEntity<ResponseDto> putTrendBoard(
+      @RequestBody @Valid PutTrendBoardRequestDto requestBody,
+      @PathVariable("trendBoardNumber") int trendBoardNumber,
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = trendBoardService.putTrendBoard(requestBody, trendBoardNumber, userId);
+    return response;
+  }
 
-    @PutMapping("/{trendBoardCommentNumber}/comment")
-    public ResponseEntity<ResponseDto> putTrendBoardComment (
-        @RequestBody @Valid PutTrendBoardCommentRequestDto requestBody,
-        @PathVariable("trendBoardCommentNumber") int trendBoardCommentNumber,
-        @AuthenticationPrincipal String userId
-    ) {
-        ResponseEntity<ResponseDto> response = trendBoardService.putTrendBoardComment(requestBody, trendBoardCommentNumber, userId);
-        return response;
-    }
+  @PutMapping("/{trendBoardCommentNumber}/comment")
+  public ResponseEntity<ResponseDto> putTrendBoardComment(
+      @RequestBody @Valid PutTrendBoardCommentRequestDto requestBody,
+      @PathVariable("trendBoardCommentNumber") int trendBoardCommentNumber,
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = trendBoardService.putTrendBoardComment(requestBody, trendBoardCommentNumber,
+        userId);
+    return response;
+  }
 
-	@GetMapping("/") 
-	public ResponseEntity< ? super GetTrendBoardListResponseDto> 
-	getTrendBoardList() {
-		ResponseEntity<? super GetTrendBoardListResponseDto> response = trendBoardService.getTrendBoardList();
+  @GetMapping("/")
+  public ResponseEntity<? super GetTrendBoardListResponseDto> getTrendBoardList() {
+    ResponseEntity<? super GetTrendBoardListResponseDto> response = trendBoardService.getTrendBoardList();
 
-		return response;
-	}
+    return response;
+  }
 
-	@GetMapping("/search") 
-	public ResponseEntity< ? super GetSearchTrendBoardListResponseDto> getSearchTrendBoardList(
-		@RequestParam("word") String word	) {
-			ResponseEntity< ? super GetSearchTrendBoardListResponseDto> response = trendBoardService.getSearchTrendBoardList(word);
+  @GetMapping("/search")
+  public ResponseEntity<? super GetSearchTrendBoardListResponseDto> getSearchTrendBoardList(
+      @RequestParam("word") String word) {
+    ResponseEntity<? super GetSearchTrendBoardListResponseDto> response = trendBoardService
+        .getSearchTrendBoardList(word);
 
-			return response;
-		}
+    return response;
+  }
 
-		@GetMapping("/{trendBoardNumber}") 
-		public ResponseEntity <? super GetTrendBoardResponseDto> getTrendBoard( 
-			@PathVariable("trendBoardNumber") int trendBoardNumber
-		) {
-			ResponseEntity<? super GetTrendBoardResponseDto> response = trendBoardService.getTrendBoard(trendBoardNumber);
-			return response;
-		}
+  @GetMapping("/{trendBoardNumber}")
+  public ResponseEntity<? super GetTrendBoardResponseDto> getTrendBoard(
+      @PathVariable("trendBoardNumber") int trendBoardNumber) {
+    ResponseEntity<? super GetTrendBoardResponseDto> response = trendBoardService.getTrendBoard(trendBoardNumber);
+    return response;
+  }
 
-		@GetMapping("/{trendBoardNumber}/comment/list")
-		public ResponseEntity<? super GetTrendBoardCommentListResponseDto>
-		getTrendBoardCommentList(
-				@PathVariable("trendBoardNumber") int trendBoardNumber
-		) {
-				ResponseEntity<? super GetTrendBoardCommentListResponseDto> response = 
-				trendBoardService.getTrendBoardCommentList(trendBoardNumber);
-				return response;
-		}
-		@PatchMapping("/{trendBoardNumber}/increase_trend_like_count")
-		public ResponseEntity<ResponseDto> increaseTrendLikeCount (
-			@PathVariable("trendBoardNumber") int trendBoardNumber
-		) {
-			ResponseEntity<ResponseDto> response = trendBoardService.increaseTrendBoardLikeCount(trendBoardNumber);
-			return response;
-		}
+  @GetMapping("/{trendBoardNumber}/comment/list")
+  public ResponseEntity<? super GetTrendBoardCommentListResponseDto> getTrendBoardCommentList(
+      @PathVariable("trendBoardNumber") int trendBoardNumber) {
+    ResponseEntity<? super GetTrendBoardCommentListResponseDto> response = trendBoardService
+        .getTrendBoardCommentList(trendBoardNumber);
+    return response;
+  }
 
-		@PatchMapping("/{trendBoardNumber}/decrease_trend_like_count")
-		public ResponseEntity<ResponseDto> decreaseTrendLikeCount (
-			@PathVariable("trendBoardNumber") int trendBoardNumber
-		) {
-			ResponseEntity<ResponseDto> response = trendBoardService.decreaseTrendBoardLikeCount(trendBoardNumber);
-			return response;
-		}
+  @PatchMapping("/{trendBoardNumber}/increase_trend_like_count")
+  public ResponseEntity<ResponseDto> increaseTrendLikeCount(
+      @PathVariable("trendBoardNumber") int trendBoardNumber) {
+    ResponseEntity<ResponseDto> response = trendBoardService.increaseTrendBoardLikeCount(trendBoardNumber);
+    return response;
+  }
 
-		@DeleteMapping("/{trendBoardNumber}") 
-		public ResponseEntity<ResponseDto> deleteTrendBoard(
-			@PathVariable("trendBoardNumber") int trendBoardNumber,
-			@AuthenticationPrincipal String userId
-		) {
-			ResponseEntity<ResponseDto> response = trendBoardService.deleteTrendBoard(trendBoardNumber, userId);
-			return response;
-		}
+  @PatchMapping("/{trendBoardNumber}/decrease_trend_like_count")
+  public ResponseEntity<ResponseDto> decreaseTrendLikeCount(
+      @PathVariable("trendBoardNumber") int trendBoardNumber) {
+    ResponseEntity<ResponseDto> response = trendBoardService.decreaseTrendBoardLikeCount(trendBoardNumber);
+    return response;
+  }
 
-		@DeleteMapping("/{trendBoardCommentNumber}/comment")
-    public ResponseEntity<ResponseDto> deleteTrendBoardComment (
-        @PathVariable("trendBoardCommentNumber") int trendBoardCommentNumber,
-        @AuthenticationPrincipal String userId
-    ) {
-        ResponseEntity<ResponseDto> response =  trendBoardService.deleteTrendBoardComment(trendBoardCommentNumber, userId);
-        return response;
-    }
+  @DeleteMapping("/{trendBoardNumber}")
+  public ResponseEntity<ResponseDto> deleteTrendBoard(
+      @PathVariable("trendBoardNumber") int trendBoardNumber,
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = trendBoardService.deleteTrendBoard(trendBoardNumber, userId);
+    return response;
+  }
+
+  @DeleteMapping("/{trendBoardCommentNumber}/comment")
+  public ResponseEntity<ResponseDto> deleteTrendBoardComment(
+      @PathVariable("trendBoardCommentNumber") int trendBoardCommentNumber,
+      @AuthenticationPrincipal String userId) {
+    ResponseEntity<ResponseDto> response = trendBoardService.deleteTrendBoardComment(trendBoardCommentNumber, userId);
+    return response;
+  }
 }

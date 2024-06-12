@@ -48,7 +48,7 @@ public class WebSecurityConfig {
         .cors(cors -> cors
             .configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(request -> request
-            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*", "/api/v1/login-log/*").permitAll()
+            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*").permitAll()
             .requestMatchers("/api/v1/service/customer_board/write").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/my-page/info-customer").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
