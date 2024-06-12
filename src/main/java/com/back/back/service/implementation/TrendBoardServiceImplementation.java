@@ -1,4 +1,5 @@
 package com.back.back.service.implementation;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,8 @@ import com.back.back.dto.request.trend.PutTrendBoardCommentRequestDto;
 import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.trendboard.GetSearchTrendBoardListResponseDto;
+import com.back.back.dto.response.trendboard.GetTrendBoardCommentListResponseDto;
+import com.back.back.dto.response.trendboard.GetTrendBoardCommentResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.entity.TrendBoardCommentEntity;
@@ -25,219 +28,243 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class TrendBoardServiceImplementation implements TrendBoardService {
-	private final TrendBoardRepository trendBoardRepository;
-	private final TrendBoardCommentRepository trendBoardCommentRepository;
-	private final UserRepository userRepository;
+  private final TrendBoardRepository trendBoardRepository;
+  private final TrendBoardCommentRepository trendBoardCommentRepository;
+  private final UserRepository userRepository;
 
-	@Override
-	public ResponseEntity<ResponseDto> postTrendBoard(PostTrendBoardRequestDto dto, String userId) {
-		try {
-			boolean isExistUser = userRepository.existsByUserId(userId);
-			if(!isExistUser) return ResponseDto.authenticationFailed();
+  @Override
+  public ResponseEntity<ResponseDto> postTrendBoard(PostTrendBoardRequestDto dto, String userId) {
+    try {
+      boolean isExistUser = userRepository.existsByUserId(userId);
+      if (!isExistUser)
+        return ResponseDto.authenticationFailed();
 
-			TrendBoardEntity trendBoardEntity = new TrendBoardEntity(dto, userId);
-			trendBoardRepository.save(trendBoardEntity);
+      TrendBoardEntity trendBoardEntity = new TrendBoardEntity(dto, userId);
+      trendBoardRepository.save(trendBoardEntity);
 
-			// Integer trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
-			// List<String> trendBoardUrlList =  dto.getTrendBoardUrlList();
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
 
-			// List<TrendBoardImageEntity> trendBoardImageEntities = new ArrayList<>();
+  @Override
+  public ResponseEntity<ResponseDto> postTrendBoardComment(PostTrendBoardCommentRequestDto dto, int trendBoardNumber,
+      String userId) {
+    try {
+      boolean isExistUser = userRepository.existsById(userId);
+      if (!isExistUser)
+        return ResponseDto.authenticationFailed();
+      Optional<TrendBoardEntity> trendBoardOptional = trendBoardRepository.findById(trendBoardNumber);
 
-			// for(String trendBoardImageUrl: trendBoardUrlList) {
-			// 	TrendBoardImageEntity trendBoardImageEntity  = new TrendBoardImageEntity(trendBoardNumber, trendBoardImageUrl);
-			// 	trendBoardImageEntities.add(trendBoardImageEntity);
-			// }
+      if (!trendBoardOptional.isPresent())
+        return ResponseDto.noExistBoard();
 
-			// trendBoardImageRepository.saveAll(trendBoardImageEntities);
+      TrendBoardCommentEntity trendBoardCommentEntity = new TrendBoardCommentEntity(dto, trendBoardNumber, userId);
+      trendBoardCommentRepository.save(trendBoardCommentEntity);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
 
+  @Override
+  public ResponseEntity<? super GetTrendBoardListResponseDto> getTrendBoardList() {
+    try {
+      List<TrendBoardEntity> trendBoardEntities = trendBoardRepository.findByOrderByTrendBoardNumberDesc();
+      return GetTrendBoardListResponseDto.success(trendBoardEntities);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+  }
 
-		} catch(Exception exception) {
-				exception.printStackTrace();
-				return ResponseDto.databaseError();
-		}
-		return ResponseDto.success();
-	}
+  @Override
+  public ResponseEntity<? super GetSearchTrendBoardListResponseDto> getSearchTrendBoardList(
+      String trendBoardSearchWord) {
+    try {
+      List<TrendBoardEntity> trendBoardEntities = trendBoardRepository
+          .findByTrendBoardTitleOrderByTrendBoardNumberDesc(trendBoardSearchWord);
+      return GetSearchTrendBoardListResponseDto.success(trendBoardEntities);
 
-	@Override
-	public ResponseEntity<ResponseDto> postTrendBoardComment(PostTrendBoardCommentRequestDto dto, int trendBoardNumber,
-			String userId) {
-					try {
-						boolean isExistUser = userRepository.existsById(userId);
-						if(!isExistUser) 
-						return ResponseDto.authenticationFailed();
-						Optional<TrendBoardEntity> trendBoardOptional = trendBoardRepository.findById(trendBoardNumber);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+  }
 
-						if(!trendBoardOptional.isPresent())
-						return ResponseDto.noExistBoard();
+  @Override
+  public ResponseEntity<? super GetTrendBoardResponseDto> getTrendBoard(int trendBoardNumber) {
 
-						TrendBoardCommentEntity trendBoardCommentEntity = new TrendBoardCommentEntity(dto, trendBoardNumber, userId);
-						trendBoardCommentRepository.save(trendBoardCommentEntity);
-					} catch (Exception exception) {
-						exception.printStackTrace();
-						return ResponseDto.databaseError();
-					}
-					return ResponseDto.success();
-	}
+    try {
+      TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
+      if (trendBoardEntity == null)
+        return ResponseDto.noExistBoard();
+      return GetTrendBoardResponseDto.success(trendBoardEntity);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+  }
 
-	@Override
-	public ResponseEntity<? super GetTrendBoardListResponseDto> getTrendBoardList() {
-		
-		try {
-					List<TrendBoardEntity> trendBoardEntities = trendBoardRepository.findByOrderByTrendBoardNumberDesc();
-					return GetTrendBoardListResponseDto.success(trendBoardEntities);
-		} catch (Exception exception) {
-				exception.printStackTrace();
-				return ResponseDto.databaseError();
-		}
-	}
+  @Override
+  public ResponseEntity<ResponseDto> putTrendBoard(PutTrendBoardRequestDto dto, int trendBoardNumber, String userId) {
+    try {
+      TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
+      if (trendBoardEntity == null)
+        return ResponseDto.noExistBoard();
 
-	@Override
-	public ResponseEntity<? super GetSearchTrendBoardListResponseDto> getSearchTrendBoardList(
-			String trendBoardSearchWord) {
-				try {				
-					List<TrendBoardEntity> trendBoardEntities = trendBoardRepository.findByTrendBoardTitleOrderByTrendBoardNumberDesc(trendBoardSearchWord);
-					return GetSearchTrendBoardListResponseDto.success(trendBoardEntities);
+      String writerId = trendBoardEntity.getTrendBoardWriterId();
+      boolean isTrendWriter = userId.equals(writerId);
+      if (!isTrendWriter)
+        return ResponseDto.authorizationFailed();
 
-				} catch(Exception exception) {
-						exception.printStackTrace();
-						return ResponseDto.databaseError();
-				}
-	}
+      trendBoardEntity.updateTrendBoard(dto);
+      trendBoardRepository.save(trendBoardEntity);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
 
-	@Override
-	public ResponseEntity<? super GetTrendBoardResponseDto> getTrendBoard(int trendBoardNumber) {
+  @Override
+  public ResponseEntity<ResponseDto> putTrendBoardComment(PutTrendBoardCommentRequestDto dto,
+      int trendBoardCommentNumber,
+      String userId) {
+    try {
+      TrendBoardCommentEntity trendBoardCommentEntity = trendBoardCommentRepository
+          .findByTrendBoardCommentNumber(trendBoardCommentNumber);
+      if (trendBoardCommentEntity == null)
+        return ResponseDto.noExistBoard();
 
-		try {
-			TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
-			if(trendBoardEntity == null) return ResponseDto.noExistBoard();
-			return GetTrendBoardResponseDto.success(trendBoardEntity);
-		} catch (Exception exception) {
-			exception.printStackTrace();
-			return ResponseDto.databaseError();
-		}
-	}
+      String writerId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
+      boolean isWriter = userId.equals(writerId);
+      if (!isWriter)
+        return ResponseDto.authorizationFailed();
 
-	@Override
-	public ResponseEntity<ResponseDto> putTrendBoard(PutTrendBoardRequestDto dto, int trendBoardNumber, String userId) {
-			try {
-					TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
-					if (trendBoardEntity == null) return ResponseDto.noExistBoard();
+      trendBoardCommentEntity.update(dto);
+      trendBoardCommentRepository.save(trendBoardCommentEntity);
 
-					String writerId = trendBoardEntity.getTrendBoardWriterId();
-					boolean isTrendWriter = userId.equals(writerId);
-					if (!isTrendWriter) return ResponseDto.authorizationFailed();
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
 
-					trendBoardEntity.updateTrendBoard(dto);
-					trendBoardRepository.save(trendBoardEntity);
-			} catch(Exception exception) {
-					exception.printStackTrace();
-					return ResponseDto.databaseError();
-			}
-			return ResponseDto.success();
-	}
+  @Override
+  public ResponseEntity<ResponseDto> deleteTrendBoard(int trendBoardNumber, String userId) {
 
-	@Override
-	public ResponseEntity<ResponseDto> putTrendBoardComment(PutTrendBoardCommentRequestDto dto, int trendBoardCommentNumber,
-			String userId) {
-					try {
-						TrendBoardCommentEntity trendBoardCommentEntity = trendBoardCommentRepository.findByTrendBoardCommentNumber(trendBoardCommentNumber);
-						if(trendBoardCommentEntity == null) 
-						return ResponseDto.noExistBoard();
+    try {
+      TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
+      if (trendBoardEntity == null)
+        return ResponseDto.noExistBoard();
 
-						String writerId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
-						boolean isWriter = userId.equals(writerId);
-						if(!isWriter) 
-						return ResponseDto.authorizationFailed();
+      String trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
+      boolean isTrendWriter = userId.equals(trendBoardWriterId);
+      if (!isTrendWriter)
+        return ResponseDto.authorizationFailed();
 
-						trendBoardCommentEntity.update(dto);
-						trendBoardCommentRepository.save(trendBoardCommentEntity);
+      trendBoardRepository.delete(trendBoardEntity);
 
-					} catch (Exception exception) {
-						exception.printStackTrace();
-						return ResponseDto.databaseError();
-					}
-					return ResponseDto.success();
-	}
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
 
+    return ResponseDto.success();
+  }
 
-	@Override
-	public ResponseEntity<ResponseDto> deleteTrendBoard(int trendBoardNumber, String userId) {
+  @Override
+  public ResponseEntity<ResponseDto> deleteTrendBoardComment(int trendBoardCommentNumber, String userId) {
+    try {
+      TrendBoardCommentEntity trendBoardCommentEntity = trendBoardCommentRepository
+          .findByTrendBoardCommentNumber(trendBoardCommentNumber);
 
-		try {
-			TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
-			if(trendBoardEntity == null) 
-				return ResponseDto.noExistBoard();
-			
-			String trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
-			boolean isTrendWriter = userId.equals(trendBoardWriterId);
-			if(!isTrendWriter)
-			return ResponseDto.authorizationFailed();
-	
-			trendBoardRepository.delete(trendBoardEntity);
+      if (trendBoardCommentEntity == null)
+        return ResponseDto.noExistBoard();
 
-		} catch (Exception exception) {
-				exception.printStackTrace();
-				return ResponseDto.databaseError();
-		}
+      String writerId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
+      boolean isWriter = userId.equals(writerId);
+      if (!isWriter)
+        return ResponseDto.authorizationFailed();
 
-		return ResponseDto.success();
-	}
+      trendBoardCommentRepository.delete(trendBoardCommentEntity);
 
-	@Override
-	public ResponseEntity<ResponseDto> deleteTrendBoardComment(int trendBoardCommentNumber, String userId) {
-			try{
-				TrendBoardCommentEntity trendBoardCommentEntity = trendBoardCommentRepository.findByTrendBoardCommentNumber(trendBoardCommentNumber);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
 
-				if(trendBoardCommentEntity == null) 
-				return ResponseDto.noExistBoard();
+  @Override
+  public ResponseEntity<ResponseDto> increaseTrendBoardLikeCount(int trendBoardNumber) {
 
-				String writerId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
-				boolean isWriter = userId.equals(writerId);
-				if(!isWriter) 
-				return ResponseDto.authorizationFailed();
+    try {
+      TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
+      if (trendBoardEntity == null)
+        return ResponseDto.noExistBoard();
 
-				trendBoardCommentRepository.delete(trendBoardCommentEntity);
+      trendBoardEntity.increaseTrendBoardLikeCount();
+      trendBoardRepository.save(trendBoardEntity);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
 
-			} catch (Exception exception) {
-				exception.printStackTrace();
-				return ResponseDto.databaseError();
-			}
-			return ResponseDto.success();
-	}
+  @Override
+  public ResponseEntity<ResponseDto> decreaseTrendBoardLikeCount(int trendBoardNumber) {
+    try {
+      TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
+      if (trendBoardEntity == null)
+        return ResponseDto.noExistBoard();
 
-	
+      trendBoardEntity.decreaseTrendBoardLikeCount();
+      trendBoardRepository.save(trendBoardEntity);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
 
-	@Override
-	public ResponseEntity<ResponseDto> increaseTrendBoardLikeCount(int trendBoardNumber) {
+  @Override
+  public ResponseEntity<? super GetTrendBoardCommentListResponseDto> getTrendBoardCommentList(int trendBoardNumber) {
 
-		try {
-			TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
-			if (trendBoardEntity == null) return ResponseDto.noExistBoard();
+    try {
 
-			trendBoardEntity.increaseTrendBoardLikeCount();
-			trendBoardRepository.save(trendBoardEntity);
-		} catch (Exception exception) {
-			exception.printStackTrace();
-			return ResponseDto.databaseError();
-		}
-			return ResponseDto.success();
-	}
+      List<TrendBoardCommentEntity> trendBoardCommentEntities = trendBoardCommentRepository
+          .findByTrendBoardNumberOrderByTrendBoardCommentNumberDesc(trendBoardNumber);
+      return GetTrendBoardCommentListResponseDto.success(trendBoardCommentEntities);
 
-	@Override
-	public ResponseEntity<ResponseDto> decreaseTrendBoardLikeCount(int trendBoardNumber) {
-		try {
-			TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
-			if (trendBoardEntity == null) return ResponseDto.noExistBoard();
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
 
-			trendBoardEntity.decreaseTrendBoardLikeCount();
-			trendBoardRepository.save(trendBoardEntity);
-		} catch (Exception exception) {
-			exception.printStackTrace();
-			return ResponseDto.databaseError();
-		}
-			return ResponseDto.success();
-	}
+  }
 
+  @Override
+  public ResponseEntity<? super GetTrendBoardCommentResponseDto> getTrendBoardComment(int trendBoardCommentNumber) {
+    try {
 
-	
+      TrendBoardCommentEntity trendBoardCommentEntity = trendBoardCommentRepository
+          .findByTrendBoardCommentNumber(trendBoardCommentNumber);
+      if (trendBoardCommentEntity == null)
+        return ResponseDto.noExistBoard();
+
+      return GetTrendBoardCommentResponseDto.success(trendBoardCommentEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+  }
+
 }

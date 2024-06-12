@@ -8,16 +8,16 @@ import com.corundumstudio.socketio.Transport;
 
 @org.springframework.context.annotation.Configuration
 public class SocketIOServerConfig {
-    
-    @Bean
-    protected SocketIOServer socketIOServer () {
-        Configuration config = new Configuration();
-        config.setHostname("localhost"); // 호스트 이름
-        config.setPort(9092); // 포트 번호 
 
-        config.setTransports(Transport.POLLING, Transport.WEBSOCKET);
+  @Bean
+  protected SocketIOServer socketIOServer() {
+    Configuration config = new Configuration();
+    config.setHostname("localhost"); // 호스트 이름
+    config.setPort(9092); // 포트 번호
 
-        return new SocketIOServer(config);
-    }
+    config.setTransports(Transport.POLLING, Transport.WEBSOCKET);
+
+    return new SocketIOServer(config);
+  }
 
 }
