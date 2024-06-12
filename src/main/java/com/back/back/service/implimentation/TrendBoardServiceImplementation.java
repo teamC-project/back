@@ -11,6 +11,8 @@ import com.back.back.dto.request.trend.PutTrendBoardCommentRequestDto;
 import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.trendboard.GetSearchTrendBoardListResponseDto;
+import com.back.back.dto.response.trendboard.GetTrendBoardCommentListResponseDto;
+import com.back.back.dto.response.trendboard.GetTrendBoardCommentResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.entity.TrendBoardCommentEntity;
@@ -37,18 +39,6 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 
 			TrendBoardEntity trendBoardEntity = new TrendBoardEntity(dto, userId);
 			trendBoardRepository.save(trendBoardEntity);
-
-			// Integer trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
-			// List<String> trendBoardUrlList =  dto.getTrendBoardUrlList();
-
-			// List<TrendBoardImageEntity> trendBoardImageEntities = new ArrayList<>();
-
-			// for(String trendBoardImageUrl: trendBoardUrlList) {
-			// 	TrendBoardImageEntity trendBoardImageEntity  = new TrendBoardImageEntity(trendBoardNumber, trendBoardImageUrl);
-			// 	trendBoardImageEntities.add(trendBoardImageEntity);
-			// }
-
-			// trendBoardImageRepository.saveAll(trendBoardImageEntities);
 
 
 		} catch(Exception exception) {
@@ -81,7 +71,6 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 
 	@Override
 	public ResponseEntity<? super GetTrendBoardListResponseDto> getTrendBoardList() {
-		
 		try {
 					List<TrendBoardEntity> trendBoardEntities = trendBoardRepository.findByOrderByTrendBoardNumberDesc();
 					return GetTrendBoardListResponseDto.success(trendBoardEntities);
@@ -236,6 +225,39 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 			return ResponseDto.databaseError();
 		}
 			return ResponseDto.success();
+	}
+
+	@Override
+	public ResponseEntity< ? super GetTrendBoardCommentListResponseDto> getTrendBoardCommentList(int trendBoardNumber) {
+
+		try {
+
+			List<TrendBoardCommentEntity> trendBoardCommentEntities =
+			trendBoardCommentRepository.findByTrendBoardNumberOrderByTrendBoardCommentNumberDesc(trendBoardNumber);
+			return GetTrendBoardCommentListResponseDto.success(trendBoardCommentEntities);
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return ResponseDto.databaseError();
+		}
+
+	}
+
+	@Override
+	public ResponseEntity<? super GetTrendBoardCommentResponseDto> getTrendBoardComment(int trendBoardCommentNumber) {
+			try {
+
+				TrendBoardCommentEntity trendBoardCommentEntity =
+				trendBoardCommentRepository.findByTrendBoardCommentNumber(trendBoardCommentNumber);
+				if (trendBoardCommentEntity == null)
+					return ResponseDto.noExistBoard();
+
+					return GetTrendBoardCommentResponseDto.success(trendBoardCommentEntity);
+					
+			} catch (Exception exception) {
+				exception.printStackTrace();
+				return ResponseDto.databaseError();
+			}
 	}
 
 

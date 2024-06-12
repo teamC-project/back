@@ -35,7 +35,7 @@ public class TrendBoardCommentEntity {
 	public TrendBoardCommentEntity(
 		PostTrendBoardCommentRequestDto dto, Integer trendBoardNumber, String userId
 	) {
-		    Date now = Date.from(Instant.now());
+		Date now = Date.from(Instant.now());
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String trendBoardCommentWriteDatetime = simpleDateFormat.format(now);
 

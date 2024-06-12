@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public class TrendBoardListItem {
 	private Integer trendBoardNumber;
-	private String trendBoardTItle;
+	private String trendBoardTitle;
 	private String trendBoardContents;
 	private String trendBoardWriterId;
 	private String trendBoardWriteDatetime;
@@ -23,7 +23,7 @@ public class TrendBoardListItem {
 			trendBoardWriterId = trendBoardWriterId.substring(0,1) + " +".repeat(trendBoardWriterId.length() -1);
 
 			this.trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
-			this.trendBoardTItle = trendBoardEntity.getTrendBoardTitle();
+			this.trendBoardTitle = trendBoardEntity.getTrendBoardTitle();
 			this.trendBoardContents = trendBoardEntity.getTrendBoardContents();
 			this.trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
 			this.trendBoardWriteDatetime = writeDatetime;
