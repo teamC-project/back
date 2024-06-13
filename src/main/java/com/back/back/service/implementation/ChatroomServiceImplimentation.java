@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.back.back.dto.request.chatmessage.PostChatmessageRequestDto;
 import com.back.back.dto.request.chatroom.PostChatroomRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.chatmessage.GetChatMessageListResponseDto;
@@ -39,7 +38,7 @@ public class ChatroomServiceImplimentation implements ChatroomService {
             if (!isExistUser)
                 return ResponseDto.authenticationFailed();
 
-            UserEntity user = userRepository.findById(userId).orElse(null);
+            UserEntity user = userRepository.findById(userId).orElse(null);  // ??
             if (user == null || !user.getUserRole().equals("ROLE_CUSTOMER"))  {
                 return ResponseDto.authorizationFailed();
             }
@@ -56,31 +55,10 @@ public class ChatroomServiceImplimentation implements ChatroomService {
 
     }
 
-    @Override
-    public ResponseEntity<ResponseDto> postChatMessage(PostChatmessageRequestDto dto, int roomId, String userId) {
-        
-        try {
 
-            ChatroomEntity chatroom = chatroomRepository.findById(roomId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid room ID"));
-
-            ChatMessageEntity message = new ChatMessageEntity(chatroom, dto.getSenderId(), dto.getMessage());
-            chatMessageRepository.save(message);
-            
-            return ResponseDto.success();
-
-        } catch(IllegalArgumentException exception) {
-                return ResponseDto.invalidRoomIdForChatroom();
-                
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-            }
-
-    }
 
     @Override
-    public ResponseEntity<? super GetChatroomListResponseDto> getChatroomList() {
+    public ResponseEntity<? super GetChatroomListResponseDto> getChatroomList(String userId) {
         
         try {
 
@@ -111,7 +89,7 @@ public class ChatroomServiceImplimentation implements ChatroomService {
         try {
 
             ChatroomEntity chatRoom = chatroomRepository.findById(roomId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid room ID"));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid room ID"));  // ??
 
             GetChatroomResponseDto.ChatroomDto chatRoomDto = new GetChatroomResponseDto.ChatroomDto(
                 chatRoom.getRoomId(),
@@ -162,26 +140,11 @@ public class ChatroomServiceImplimentation implements ChatroomService {
     }
 
     @Override
-    public ResponseEntity<ResponseDto> deleteChatroom(int roomId) {
+    public ResponseEntity<ResponseDto> deleteChatroom(int roomId, String userId) {
         
         try {
             
             chatroomRepository.deleteById(roomId);
-                return ResponseDto.success();
-
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
-
-    }
-
-    @Override
-    public ResponseEntity<ResponseDto> deleteChatMessage(int roomId, int messageId) {
-        
-        try {
-            
-            chatMessageRepository.deleteById(messageId);
                 return ResponseDto.success();
 
         } catch (Exception exception) {
