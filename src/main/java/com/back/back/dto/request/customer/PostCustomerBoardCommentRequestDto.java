@@ -10,6 +10,5 @@ import lombok.Setter;
 public class PostCustomerBoardCommentRequestDto {
     @NotBlank
     private String customerBoardCommentContents;
-    @NotNull
     private Integer customerBoardParentCommentNumber;
 }

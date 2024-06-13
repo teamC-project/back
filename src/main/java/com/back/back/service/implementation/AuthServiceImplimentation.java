@@ -1,4 +1,8 @@
-package com.back.back.service.implimentation;
+package com.back.back.service.implementation;
+
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +24,12 @@ import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
 import com.back.back.entity.EmailAuthNumberEntity;
+import com.back.back.entity.LoginLogEntity;
 import com.back.back.entity.UserEntity;
 import com.back.back.provider.JwtProvider;
 import com.back.back.provider.MailProvider;
 import com.back.back.repository.EmailAuthNumberRepository;
+import com.back.back.repository.LoginLogRepository;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.AuthService;
 
@@ -38,6 +44,7 @@ public class AuthServiceImplimentation implements AuthService {
 
   private final UserRepository userRepository;
   private final EmailAuthNumberRepository emailAuthNumberRepository;
+  private final LoginLogRepository loginLogRepository;
 
   private final MailProvider mailProvider;
   private final JwtProvider jwtProvider;
@@ -66,6 +73,16 @@ public class AuthServiceImplimentation implements AuthService {
       accessToken = jwtProvider.create(userId);
       if (accessToken == null)
         return ResponseDto.tokenCreationFailed();
+
+      LoginLogEntity loginLogEntity = new LoginLogEntity();
+      loginLogEntity.setLoginId(dto.getUserId());
+
+      Date now = Date.from(Instant.now());
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      String loginDate = simpleDateFormat.format(now);
+      loginLogEntity.setLoginDate(loginDate);
+
+      loginLogRepository.save(loginLogEntity);
 
     } catch (Exception exception) {
       exception.printStackTrace();

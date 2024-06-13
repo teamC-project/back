@@ -32,20 +32,19 @@ public class TrendBoardCommentEntity {
   private String trendBoardCommentContents;
   private String trendBoardCommentWriteDatetime;
 
-	public TrendBoardCommentEntity(
-		PostTrendBoardCommentRequestDto dto, Integer trendBoardNumber, String userId
-	) {
-		    Date now = Date.from(Instant.now());
+  public TrendBoardCommentEntity(
+      PostTrendBoardCommentRequestDto dto, Integer trendBoardNumber, String userId) {
+    Date now = Date.from(Instant.now());
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String trendBoardCommentWriteDatetime = simpleDateFormat.format(now);
 
-		this.trendBoardNumber = trendBoardNumber;
-		this.trendBoardCommentContents =  dto.getTrendBoardCommentContents();
-		this.trendBoardCommentWriterId = userId;
-		this.trendBoardCommentWriteDatetime = trendBoardCommentWriteDatetime;
-	}
+    this.trendBoardNumber = trendBoardNumber;
+    this.trendBoardCommentContents = dto.getTrendBoardCommentContents();
+    this.trendBoardCommentWriterId = userId;
+    this.trendBoardCommentWriteDatetime = trendBoardCommentWriteDatetime;
+  }
 
-	public void update(PutTrendBoardCommentRequestDto dto) {
-		this.trendBoardCommentContents = dto.getTrendBoardCommentContents();
-	}
+  public void update(PutTrendBoardCommentRequestDto dto) {
+    this.trendBoardCommentContents = dto.getTrendBoardCommentContents();
+  }
 }

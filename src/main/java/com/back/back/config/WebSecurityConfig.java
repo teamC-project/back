@@ -20,7 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.back.back.filter.JwtAuthenticationFilter;
 import com.back.back.handler.OAuth2SuccessHandler;
-import com.back.back.service.implimentation.OAuth2UserServiceImplimentation;
+import com.back.back.service.implementation.OAuth2UserServiceImplimentation;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -48,14 +48,11 @@ public class WebSecurityConfig {
         .cors(cors -> cors
             .configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(request -> request
-            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*", "/api/v1/announcement_board/list").permitAll()
+            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*").permitAll()
             .requestMatchers("/api/v1/service/customer_board/write").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/my-page/info-customer").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
             .requestMatchers("/api/v1/service/my-page/info-designer").hasRole("DESIGNER")
-            .requestMatchers("/api/v1/service/qna_board/*/comment" ).hasRole("ADMIN")
-						.requestMatchers( "/api/v1/service/trend_board/write").hasRole("ADMIN")
-						.requestMatchers("/api/v1/service/announcement_board/write").hasRole("ADMIN")
             .anyRequest().authenticated())
         .oauth2Login(oauth2 -> oauth2
             .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/oauth2"))

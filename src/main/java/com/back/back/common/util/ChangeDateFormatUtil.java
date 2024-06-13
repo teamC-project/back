@@ -13,6 +13,14 @@ public class ChangeDateFormatUtil {
         String writeDatetime = simpleDateFormat.format(datetime);
         return writeDatetime;
     }
+    public static String changeYYMMDDHHMMDD(String original) throws Exception {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date datetime = simpleDateFormat.parse(original);
+        simpleDateFormat = new SimpleDateFormat("yy.MM.dd HH:mm:ss");
+        String writeDatetime = simpleDateFormat.format(datetime);
+        return writeDatetime;
+    }
 
     public static String changeYYYYMMDD(String original) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

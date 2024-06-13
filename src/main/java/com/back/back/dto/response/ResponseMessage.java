@@ -29,4 +29,6 @@ public interface ResponseMessage {
   String TOKEN_CREATION_FAILED = "Token creation Failed.";
   String MAIL_SEND_FAILED = "Mail send Failed.";
   String DATABASE_ERROR = "Database Error.";
+  String INVALID_ROOM_ID = "Invalid room ID";
+  String INTERNAL_SERVER_ERROR = "Internal server Error";
 }

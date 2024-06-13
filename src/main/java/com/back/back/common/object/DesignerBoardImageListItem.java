@@ -6,11 +6,11 @@ import lombok.Getter;
 
 @Getter
 public class DesignerBoardImageListItem {
-    private Integer designerBoardImageNumber;
-    private String designerBoardImageUrl;
+  private Integer designerBoardImageNumber;
+  private String designerBoardImageUrl;
 
-    private DesignerBoardImageListItem(DesignerBoardImageEntity designerBoardImageEntity) throws Exception {
-        designerBoardImageNumber = designerBoardImageEntity.getDesignerBoardImageNumber();
-        designerBoardImageUrl = designerBoardImageEntity.getDesignerBoardImageUrl();
-    }
+  private DesignerBoardImageListItem(DesignerBoardImageEntity designerBoardImageEntity) throws Exception {
+    designerBoardImageNumber = designerBoardImageEntity.getDesignerBoardImageNumber();
+    designerBoardImageUrl = designerBoardImageEntity.getDesignerBoardImageUrl();
+  }
 }
