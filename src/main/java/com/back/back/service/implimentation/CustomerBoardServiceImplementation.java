@@ -59,13 +59,23 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
             Optional<CustomerBoardEntity> customerBoardOptional = customerBoardRepository.findById(customerBoardNumber);
 
-      // 커스터머 보드 엔티티가 존재하지 않으면 오류 응답 반환
-        if (!customerBoardOptional.isPresent())
-        return ResponseDto.noExistBoard();
+            // 커스터머 보드 엔티티가 존재하지 않으면 오류 응답 반환
+            if (!customerBoardOptional.isPresent())
+            return ResponseDto.noExistBoard();
 
-            CustomerBoardCommentEntity customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId);
-            customerBoardCommentRepository.save(customerBoardCommentEntity);
-            
+            CustomerBoardCommentEntity customerBoardCommentEntity;
+
+            // 부모 댓글 번호가 있으면 대댓글로 처리
+            if (dto.getCustomerBoardParentCommentNumber() != null) {
+                Optional<CustomerBoardCommentEntity> parentCommentOptional = customerBoardCommentRepository.findById(dto.getCustomerBoardParentCommentNumber());
+                if (!parentCommentOptional.isPresent()) return ResponseDto.noExistBoard();
+                customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, dto.getCustomerBoardParentCommentNumber());
+            } else {
+                // 부모 댓글 번호가 없으면 최상위 댓글로 처리
+                customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId);
+            }
+
+            customerBoardCommentRepository.save(customerBoardCommentEntity); 
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
