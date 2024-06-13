@@ -16,21 +16,17 @@ public class DesignerBoardCommentListItem {
   private String designerBoardCommentWriterId;
   private String designerBoardCommentWriteDatetime;
   private String designerBoardCommentContents;
-  private String originalDesignerBoardCommentWriterId;
 
   private DesignerBoardCommentListItem(DesignerBoardCommentEntity designerBoardCommentEntity) throws Exception {
     String writeDatetime = ChangeDateFormatUtil
         .changeYYMMDD(designerBoardCommentEntity.getDesignerBoardCommentWriteDatetime());
 
-    String writerId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
-    writerId = writerId.substring(0, 1) +
-        "*".repeat(writerId.length() - 1);
+
 
     this.designerBoardCommentNumber = designerBoardCommentEntity.getDesignerBoardCommentNumber();
-    this.designerBoardCommentWriterId = writerId;
+    this.designerBoardCommentWriterId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
     this.designerBoardCommentWriteDatetime = writeDatetime;
     this.designerBoardCommentContents = designerBoardCommentEntity.getDesignerBoardCommentContents();
-    this.originalDesignerBoardCommentWriterId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
 
   }
 

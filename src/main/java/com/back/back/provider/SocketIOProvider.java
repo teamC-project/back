@@ -1,7 +1,11 @@
 package com.back.back.provider;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Component;
 
+import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 
 import jakarta.annotation.PostConstruct;
@@ -20,9 +24,13 @@ public class SocketIOProvider {
     socketIOServer
         .addDisconnectListener(client -> System.out.println("Client disconnected : " + client.getSessionId()));
 
-    socketIOServer.addEventListener("message", String.class, (client, data, ackRequest) -> {
-      System.out.println("Received message : " + data);
-      client.sendEvent("message", "message recive");
+    socketIOServer.addEventListener("message", String.class, (sendClient, data, ackRequest) -> {
+
+      List<SocketIOClient> clients = new ArrayList<>(socketIOServer.getAllClients());
+      for (SocketIOClient client : clients) {
+        client.sendEvent("message", "message recive");
+      }
+      
     });
 
     socketIOServer.start();

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.back.dto.request.chatmessage.PostChatmessageRequestDto;
 import com.back.back.dto.request.chatroom.PostChatroomRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.chatmessage.GetChatMessageListResponseDto;
@@ -37,19 +36,11 @@ public class ChatroomController {
         return response;
     }
 
-    @PostMapping("/room/{roomId}/message")
-    public ResponseEntity<ResponseDto> postChatMessage (
-        @RequestBody @Valid PostChatmessageRequestDto requestbody,
-        @PathVariable("roomId") int roomId,
+    @GetMapping("/rooms")
+    public ResponseEntity<? super GetChatroomListResponseDto> getChatroomList(
         @AuthenticationPrincipal String userId
     ) {
-        ResponseEntity<ResponseDto> response = chatroomService.postChatMessage(requestbody, roomId, userId);
-        return response;
-    }
-
-    @GetMapping("/rooms")
-    public ResponseEntity<? super GetChatroomListResponseDto> getChatroomList() {
-        ResponseEntity<? super GetChatroomListResponseDto> response = chatroomService.getChatroomList();
+        ResponseEntity<? super GetChatroomListResponseDto> response = chatroomService.getChatroomList(userId);
         return response;
     }
 
@@ -71,18 +62,10 @@ public class ChatroomController {
 
     @DeleteMapping("/room/{roomId}")
     public ResponseEntity<ResponseDto> deleteChatroom(
-        @PathVariable("roomId") int roomId
-    ) {
-        ResponseEntity<ResponseDto> response = chatroomService.deleteChatroom(roomId);
-        return response;
-    }
-
-    @DeleteMapping("/room/{roomId}/message/{messageId}")
-    public ResponseEntity<ResponseDto> deleteChatMessage(
         @PathVariable("roomId") int roomId,
-        @PathVariable("messageId") int messageId
+        @AuthenticationPrincipal String userId
     ) {
-        ResponseEntity<ResponseDto> response = chatroomService.deleteChatMessage(messageId, messageId);
+        ResponseEntity<ResponseDto> response = chatroomService.deleteChatroom(roomId, userId);
         return response;
     }
 }
