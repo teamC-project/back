@@ -1,12 +1,9 @@
 package com.back.back.entity;
-
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
-
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -43,6 +40,19 @@ public class CustomerBoardCommentEntity {
         this.customerBoardCommentWriterId = userId;
         this.customerBoardCommentWriteDatetime = customerBoardCommentWriteDatetime;
         this.customerBoardParentCommentNumber = null;
+    }
+
+    // 대댓글 생성 시 사용할 생성자 추가
+    public CustomerBoardCommentEntity(PostCustomerBoardCommentRequestDto dto, Integer customerBoardNumber, String userId, Integer parentCommentNumber) {
+        Date now = Date.from(Instant.now());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String customerBoardCommentWriteDatetime = simpleDateFormat.format(now);
+
+        this.customerBoardNumber = customerBoardNumber;
+        this.customerBoardCommentContents = dto.getCustomerBoardCommentContents();
+        this.customerBoardCommentWriterId = userId;
+        this.customerBoardCommentWriteDatetime = customerBoardCommentWriteDatetime;
+        this.customerBoardParentCommentNumber = parentCommentNumber;
     }
 
     public void update (PutCustomerBoardCommentRequestDto dto) {

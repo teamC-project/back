@@ -56,10 +56,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
         return;
       }
-      String role = userEntity.getUserRole();
+      String role = userEntity != null ? userEntity.getUserRole() : null; // 수정: null 체크 추가
 
       List<GrantedAuthority> authorities = new ArrayList<>();
-      authorities.add(new SimpleGrantedAuthority(role));
+      if (role != null) {
+        authorities.add(new SimpleGrantedAuthority(role)); // 수정: role이 null이 아닌 경우에만 권한 추가
+    }
 
       AbstractAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, null,
           authorities);

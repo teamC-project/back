@@ -13,6 +13,7 @@ public class TrendBoardListItem {
   private String trendBoardContents;
   private String trendBoardWriterId;
   private String trendBoardWriteDatetime;
+  private String trendBoardThumbnailImage;
   private Integer trendBoardLikeCount;
 
   private TrendBoardListItem(TrendBoardEntity trendBoardEntity) throws Exception {
@@ -28,6 +29,7 @@ public class TrendBoardListItem {
     this.trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
     this.trendBoardWriteDatetime = writeDatetime;
     this.trendBoardLikeCount = trendBoardEntity.getTrendBoardLikeCount();
+		this.trendBoardThumbnailImage =trendBoardEntity.getTrendBoardThumbnailImage();
   }
 
   public static List<TrendBoardListItem> getTrendBoardList(

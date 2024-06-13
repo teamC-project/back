@@ -15,6 +15,7 @@ import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
 import com.back.back.entity.CustomerBoardCommentEntity;
 import com.back.back.entity.CustomerBoardEntity;
+import com.back.back.entity.UserEntity;
 import com.back.back.repository.CustomerBoardCommentRepository;
 import com.back.back.repository.CustomerBoardRepository;
 import com.back.back.repository.UserRepository;
@@ -59,13 +60,22 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
             Optional<CustomerBoardEntity> customerBoardOptional = customerBoardRepository.findById(customerBoardNumber);
 
-      // 커스터머 보드 엔티티가 존재하지 않으면 오류 응답 반환
-        if (!customerBoardOptional.isPresent())
-        return ResponseDto.noExistBoard();
+            // 커스터머 보드 엔티티가 존재하지 않으면 오류 응답 반환
+            if (!customerBoardOptional.isPresent())
+            return ResponseDto.noExistBoard();
 
-            CustomerBoardCommentEntity customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId);
-            customerBoardCommentRepository.save(customerBoardCommentEntity);
-            
+            CustomerBoardCommentEntity customerBoardCommentEntity;
+
+            // 부모 댓글 번호가 있으면 대댓글로 처리
+            if (dto.getCustomerBoardParentCommentNumber() != null) {
+                Optional<CustomerBoardCommentEntity> parentCommentOptional = customerBoardCommentRepository.findById(dto.getCustomerBoardParentCommentNumber());
+                if (!parentCommentOptional.isPresent()) return ResponseDto.noExistBoard();
+                customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, dto.getCustomerBoardParentCommentNumber());
+            } else {
+                customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, null); // null을 명시적으로 전달
+            }
+
+            customerBoardCommentRepository.save(customerBoardCommentEntity); 
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -111,7 +121,10 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
             if (customerBoardEntity == null) return ResponseDto.noExistBoard();
 
-            String userRole = userRepository.findByUserId(userId).getUserRole();
+            UserEntity userEntity = userRepository.findByUserId(userId);
+            if (userEntity == null) return ResponseDto.authenticationFailed(); //  사용자 존재 여부 확인
+
+            String userRole = userEntity.getUserRole();
             boolean isSecret = customerBoardEntity.getSecret();
             String writerId = customerBoardEntity.getCustomerBoardWriterId();
 
@@ -127,29 +140,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         }
     }
 
-    @Override
-    public ResponseEntity<ResponseDto> putCustomerBoard(PutCustomerBoardRequestDto dto, int customerBoardNumber, String userId) {
-        
-        try {
-
-            CustomerBoardEntity customerBoardEntity =  customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
-            if (customerBoardEntity == null) return ResponseDto.noExistBoard();
-
-            String writerId = customerBoardEntity.getCustomerBoardWriterId();
-            boolean isWriter = userId.equals(writerId);
-            if (!isWriter) return ResponseDto.authorizationFailed();
-
-            customerBoardEntity.update(dto);
-            customerBoardRepository.save(customerBoardEntity);
-            
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
-
-        return ResponseDto.success();
-
-    }
+    
         @Override
     public ResponseEntity<? super GetCustomerBoardCommentListResponseDto> getCustomerBoardCommentList(
         int customerBoardNumber
@@ -187,6 +178,30 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
     }
 
     @Override
+    public ResponseEntity<ResponseDto> putCustomerBoard(PutCustomerBoardRequestDto dto, int customerBoardNumber, String userId) {
+        
+        try {
+
+            CustomerBoardEntity customerBoardEntity =  customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
+            if (customerBoardEntity == null) return ResponseDto.noExistBoard();
+
+            String writerId = customerBoardEntity != null ? customerBoardEntity.getCustomerBoardWriterId() : null;
+            boolean isWriter = writerId != null && userId.equals(writerId);
+            if (!isWriter) return ResponseDto.authorizationFailed();
+
+            customerBoardEntity.update(dto);
+            customerBoardRepository.save(customerBoardEntity);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return ResponseDto.success();
+
+    }
+    
+    @Override
     public ResponseEntity<ResponseDto> putCustomerBoardComment(PutCustomerBoardCommentRequestDto dto, int customerBoardCommentNumber, String userId) {
         
         try {
@@ -194,8 +209,8 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             CustomerBoardCommentEntity customerBoardCommentEntity = customerBoardCommentRepository.findByCustomerBoardCommentNumber(customerBoardCommentNumber);
             if (customerBoardCommentEntity == null) return ResponseDto.noExistBoard();
 
-            String writerId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
-            boolean isWriter = userId.equals(writerId);
+            String writerId = customerBoardCommentEntity != null ? customerBoardCommentEntity.getCustomerBoardCommentWriterId() :null;
+            boolean isWriter = writerId != null && userId.equals(writerId);
             if (!isWriter) return ResponseDto.authorizationFailed();
 
             customerBoardCommentEntity.update(dto);
@@ -219,8 +234,8 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
             if (customerBoardEntity == null) return ResponseDto.noExistBoard();
 
-            String writerId = customerBoardEntity.getCustomerBoardWriterId();
-            boolean isWriter = userId.equals(writerId);
+            String writerId = customerBoardEntity != null ? customerBoardEntity.getCustomerBoardWriterId() : null; // 수정: null 체크 추가
+            boolean isWriter = writerId != null && userId.equals(writerId); // 수정: null 체크 추가
             if (!isWriter) return ResponseDto.authorizationFailed();
 
             customerBoardRepository.delete(customerBoardEntity);
@@ -243,8 +258,8 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             customerBoardCommentRepository.findByCustomerBoardCommentNumber(customerBoardCommentNumber);
             if (customerBoardCommentEntity == null) return ResponseDto.noExistBoard();
 
-            String writerId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
-            boolean isWriter = userId.equals(writerId);
+            String writerId = customerBoardCommentEntity != null ? customerBoardCommentEntity.getCustomerBoardCommentWriterId() : null; // 수정: null 체크 추가
+            boolean isWriter = writerId != null && userId.equals(writerId); // 수정: null 체크 추가
             if (!isWriter) return ResponseDto.authorizationFailed();
 
             customerBoardCommentRepository.delete(customerBoardCommentEntity);
