@@ -12,6 +12,7 @@ import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
+import com.back.back.dto.request.auth.PasswordCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordReSetRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
@@ -99,13 +100,18 @@ public class AuthController {
     return response;
   }
 
+  @PostMapping("/password-check")
+  public ResponseEntity<ResponseDto> passwordCheck(
+    @RequestBody @Valid PasswordCheckRequestDto requestBody) {
+    ResponseEntity<ResponseDto> response = authService.passwordCheck(requestBody);
+    return response;
+    }
+
   @PostMapping("/password-reset")
   public ResponseEntity<ResponseDto> resetPassword(
       @RequestBody @Valid PasswordReSetRequestDto requestBody) {
       ResponseEntity<ResponseDto> response = authService.resetPassword(requestBody);
       return response;
   }
-
-
 
 }

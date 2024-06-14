@@ -16,6 +16,7 @@ import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
+import com.back.back.dto.request.auth.PasswordCheckRequestDto;
 import com.back.back.dto.request.auth.PasswordReSetRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
@@ -353,4 +354,21 @@ public class AuthServiceImplimentation implements AuthService {
     }
     return ResponseDto.success();
   }
+
+  @Override
+  public ResponseEntity<ResponseDto> passwordCheck(PasswordCheckRequestDto dto) {
+    try {
+
+      String userPassword = dto.getUserPassword();
+
+      boolean existedUserPassword = userRepository.existsByUserPassword(userPassword);
+      if (!existedUserPassword)
+        return ResponseDto.noExistPassword();
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return ResponseDto.success();
+  }
+
 }
