@@ -7,9 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostChatroomRequestDto {
-    @NotBlank
+    @NotBlank(message = "Customer ID is required")
     private String customerId;
 
-    @NotBlank
+    @NotBlank(message = "Designer ID is required")
     private String designerId;
+
+    @NotBlank
+    private String roomName;
 }
