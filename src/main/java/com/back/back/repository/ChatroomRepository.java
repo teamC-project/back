@@ -8,5 +8,6 @@ import com.back.back.entity.ChatroomEntity;
 @Repository
 public interface ChatroomRepository extends JpaRepository<ChatroomEntity, Integer> {
 
-    
+    boolean existsByCustomerId(String customerId);
+    boolean existsByDesignerId(String designerId);
 } 

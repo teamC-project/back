@@ -30,7 +30,7 @@ public class ChatroomServiceImplimentation implements ChatroomService {
     private final UserRepository userRepository;
 
     @Override
-    public ResponseEntity<ResponseDto> postChatroom(PostChatroomRequestDto dto, String userId) {
+    public ResponseEntity<ResponseDto> postChatroom(PostChatroomRequestDto dto, String userId, String roomName) {
         
         try {
             
@@ -43,7 +43,7 @@ public class ChatroomServiceImplimentation implements ChatroomService {
                 return ResponseDto.authorizationFailed();
             }
 
-            ChatroomEntity chatroom = new ChatroomEntity(dto.getCustomerId(), dto.getDesignerId());
+            ChatroomEntity chatroom = new ChatroomEntity(dto.getCustomerId(), dto.getDesignerId(), dto.getRoomName());
             chatroomRepository.save(chatroom);
 
             return ResponseDto.success();
