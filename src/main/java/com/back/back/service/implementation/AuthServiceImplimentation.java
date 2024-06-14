@@ -355,20 +355,4 @@ public class AuthServiceImplimentation implements AuthService {
     return ResponseDto.success();
   }
 
-  @Override
-  public ResponseEntity<ResponseDto> passwordCheck(PasswordCheckRequestDto dto) {
-    try {
-
-      String userPassword = dto.getUserPassword();
-
-      boolean existedUserPassword = userRepository.existsByUserPassword(userPassword);
-      if (!existedUserPassword)
-        return ResponseDto.noExistPassword();
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-    return ResponseDto.success();
-  }
-
 }

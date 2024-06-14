@@ -40,6 +40,4 @@ public interface AuthService {
   ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto);
 
   ResponseEntity<ResponseDto> resetPassword(@Valid PasswordReSetRequestDto requestBody);
-
-  ResponseEntity<ResponseDto> passwordCheck(PasswordCheckRequestDto dto);
 }

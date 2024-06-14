@@ -3,6 +3,7 @@ package com.back.back.service;
 import org.springframework.http.ResponseEntity;
 import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
+import com.back.back.dto.request.auth.PasswordCheckRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.user.GetSignInUserResponseDto;
 
@@ -15,4 +16,6 @@ public interface UserService {
   ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto requestBody, String userId);
 
   ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto requestBody, String userId);
+
+    ResponseEntity<ResponseDto> passwordCheck(PasswordCheckRequestDto dto);
 }

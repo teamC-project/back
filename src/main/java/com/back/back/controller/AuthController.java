@@ -100,13 +100,6 @@ public class AuthController {
     return response;
   }
 
-  @PostMapping("/password-check")
-  public ResponseEntity<ResponseDto> passwordCheck(
-    @RequestBody @Valid PasswordCheckRequestDto requestBody) {
-    ResponseEntity<ResponseDto> response = authService.passwordCheck(requestBody);
-    return response;
-    }
-
   @PostMapping("/password-reset")
   public ResponseEntity<ResponseDto> resetPassword(
       @RequestBody @Valid PasswordReSetRequestDto requestBody) {

@@ -26,31 +26,31 @@ import lombok.Setter;
 @Builder
 public class ChatMessageEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer messageId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer messageId;
 
-  @ManyToOne
-  @JoinColumn(name = "room_id", nullable = false)
-  private ChatroomEntity chatroom;
+    @ManyToOne
+    @JoinColumn(name = "room_id", nullable = false)
+    private ChatroomEntity chatroom;
 
-  private String senderId;
-  private String message;
-  private String sendDatetime;
+    private String senderId;
+    private String message;
+    private String sendDatetime;
 
-  public ChatMessageEntity(ChatroomEntity chatRoom, String senderId, String message) {
-    Date now = Date.from(Instant.now());
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    String sendDatetime = simpleDateFormat.format(now);
+    public ChatMessageEntity(ChatroomEntity chatRoom, String senderId, String message) {
+        Date now = Date.from(Instant.now());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sendDatetime = simpleDateFormat.format(now);
 
-    this.chatroom = chatRoom;
-    this.senderId = senderId;
-    this.message = message;
-    this.sendDatetime = sendDatetime;
-  }
+        this.chatroom = chatRoom;
+        this.senderId = senderId;
+        this.message = message;
+        this.sendDatetime = sendDatetime;
+    }
 
-  private void updateMessage(String message) {
-    this.message = message;
-  }
+    private void updateMessage(String message) {
+        this.message = message;
+    }
 
 }
