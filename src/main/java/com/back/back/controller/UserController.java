@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
+import com.back.back.dto.request.auth.PasswordCheckRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.user.GetSignInUserResponseDto;
 import com.back.back.service.UserService;
@@ -53,5 +54,12 @@ public class UserController {
     ResponseEntity<ResponseDto> response = userService.designerUpdate(requestBody, userId);
     return response;
   }
+
+    @PostMapping("/password-check")
+  public ResponseEntity<ResponseDto> passwordCheck(
+    @RequestBody @Valid PasswordCheckRequestDto requestBody) {
+    ResponseEntity<ResponseDto> response = userService.passwordCheck(requestBody);
+    return response;
+    }
 
 }
