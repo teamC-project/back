@@ -25,6 +25,7 @@ public interface ResponseCode {
   String NO_EXIST_PASSWORD = "NP";
   String WRITTEN_COMMENT = "WC";
   String SIGN_IN_FAILED = "SF";
+	String NO_PERMISSION = "NP";
   String AUTHENTICATION_FAILED = "AF";
   String AUTHORIZATION_FAILED = "AF";
   String PAGE_NOT_FOUND = "PNF";
