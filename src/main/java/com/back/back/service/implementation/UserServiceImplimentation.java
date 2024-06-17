@@ -74,9 +74,10 @@ public class UserServiceImplimentation implements UserService {
   public ResponseEntity<ResponseDto> deleteUser(String userId) {
     try {
       UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.authorizationFailed();
+      if (userEntity == null) return ResponseDto.noExistId();
 
       userRepository.delete(userEntity);
+      
     } catch (Exception exception) {
       exception.printStackTrace();
       return ResponseDto.databaseError();
@@ -85,8 +86,16 @@ public class UserServiceImplimentation implements UserService {
   }
   
 
+<<<<<<< HEAD
     @Override
     public ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId) {
+=======
+
+  @Override
+  public ResponseEntity<ResponseDto> passwordCheck(PasswordCheckRequestDto dto) {
+    
+    try {
+>>>>>>> fc4fc2b3db2a512dee025b1343e72817fba48c64
       
       try {
         UserEntity userEntity = userRepository.findByUserId(userId);

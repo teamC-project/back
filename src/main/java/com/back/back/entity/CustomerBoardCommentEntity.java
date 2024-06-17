@@ -32,7 +32,7 @@ public class CustomerBoardCommentEntity {
 
     public CustomerBoardCommentEntity (PostCustomerBoardCommentRequestDto dto, Integer customerBoardNumber, String userId) {
         Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String customerBoardCommentWriteDatetime = simpleDateFormat.format(now);
 
         this.customerBoardNumber = customerBoardNumber;
@@ -45,7 +45,7 @@ public class CustomerBoardCommentEntity {
     // 대댓글 생성 시 사용할 생성자 추가
     public CustomerBoardCommentEntity(PostCustomerBoardCommentRequestDto dto, Integer customerBoardNumber, String userId, Integer parentCommentNumber) {
         Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String customerBoardCommentWriteDatetime = simpleDateFormat.format(now);
 
         this.customerBoardNumber = customerBoardNumber;
