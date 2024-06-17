@@ -7,6 +7,7 @@ import java.util.Date;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,11 +33,13 @@ public class CustomerBoardEntity {
   private String customerBoardWriterId;
   private String customerBoardWriteDatetime;
   private Integer customerBoardViewCount;
+  // @Column(name = "customer_board_comment_count")  
+  // private Integer customerBoardCommentCount;
   private Boolean secret;
 
   public CustomerBoardEntity(PostCustomerBoardRequestDto dto, String userId) {
     Date now = Date.from(Instant.now());
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     String customerBoardWriteDatetime = simpleDateFormat.format(now);
 
     this.customerBoardTitle = dto.getCustomerBoardTitle();
@@ -50,6 +53,14 @@ public class CustomerBoardEntity {
   public void increaseViewCount() {
     this.customerBoardViewCount++;
   }
+
+  // public Integer getCustomerBoardCommentCount() {
+  //   return customerBoardCommentCount;
+  // }
+
+  // public void setCustomerBoardCommentCount(Integer customerBoardCommentCount) {
+  //   this.customerBoardCommentCount = customerBoardCommentCount;
+  // }
 
   public void update(PutCustomerBoardRequestDto dto) {
     this.customerBoardTitle = dto.getCustomerBoardTitle();

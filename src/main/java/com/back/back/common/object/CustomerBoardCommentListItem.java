@@ -16,7 +16,7 @@ public class CustomerBoardCommentListItem {
 
   private CustomerBoardCommentListItem(CustomerBoardCommentEntity customerBoardCommentEntity) throws Exception {
     String writeDatetime = ChangeDateFormatUtil
-        .changeYYMMDD(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
+        .changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
 
     this.customerBoardCommentNumber = customerBoardCommentEntity.getCustomerBoardCommentNumber();
     this.customerBoardCommentWriterId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();

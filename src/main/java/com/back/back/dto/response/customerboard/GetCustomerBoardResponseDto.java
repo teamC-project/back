@@ -21,16 +21,18 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
     private String customerBoardWriteDatetime;
     private Integer customerBoardViewCount;
     private Boolean isSecret;
+    // private Integer customerBoardCommentCount;
 
     private GetCustomerBoardResponseDto(CustomerBoardEntity customerBoardEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        String customerWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDD(customerBoardEntity.getCustomerBoardWriteDatetime());
+        String customerWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardEntity.getCustomerBoardWriteDatetime());
 
         this.customerBoardNumber = customerBoardEntity.getCustomerBoardNumber();
         this.customerBoardTitle = customerBoardEntity.getCustomerBoardTitle();
         this.customerBoardWriterId = customerBoardEntity.getCustomerBoardWriterId();
         this.customerBoardWriteDatetime = customerWriteDatetime;
         this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
+        // this.customerBoardCommentCount = customerBoardEntity.getCustomerBoardCommentCount();
         this.customerBoardContents = customerBoardEntity.getCustomerBoardContents();
         this.isSecret = customerBoardEntity.getSecret();
     }
