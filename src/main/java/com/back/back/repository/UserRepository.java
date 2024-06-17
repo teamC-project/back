@@ -9,6 +9,8 @@ import com.back.back.entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, String> {
   boolean existsByUserId(String userId);
 
+  boolean existsByUserPassword(String userPassword);
+
   boolean existsByUserEmail(String userEmail);
 
   UserEntity findByUserId(String userId);
@@ -16,4 +18,6 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
   UserEntity findBySnsId(String snsId);
 
   UserEntity findByUserEmail(String userEmail);
+
+  boolean existsByUserIdAndUserRole(String userId, String userRole);
 }

@@ -10,7 +10,7 @@ import com.back.back.dto.response.chatroom.GetChatroomResponseDto;
 
 public interface ChatroomService {
 
-    ResponseEntity<ResponseDto> postChatroom(PostChatroomRequestDto dto, String userId);
+    ResponseEntity<ResponseDto> postChatroom(PostChatroomRequestDto dto, String userId, String roomName);
     
     ResponseEntity<? super GetChatroomListResponseDto> getChatroomList(String userId);
     ResponseEntity<? super GetChatroomResponseDto> getChatroom(int roomId);

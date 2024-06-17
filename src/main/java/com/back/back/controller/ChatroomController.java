@@ -28,13 +28,15 @@ public class ChatroomController {
     private final ChatroomService chatroomService;
 
     @PostMapping("/room")
-    public ResponseEntity<ResponseDto> postChatRoom (
-        @RequestBody @Valid PostChatroomRequestDto requestBody,
-        @AuthenticationPrincipal String userId
-    ) {
-        ResponseEntity<ResponseDto> response = chatroomService.postChatroom(requestBody, userId);
-        return response;
-    }
+public ResponseEntity<ResponseDto> postChatRoom (
+    @RequestBody @Valid PostChatroomRequestDto requestBody,
+    @AuthenticationPrincipal String userId
+) {
+    String roomName = requestBody.getRoomName();
+    System.out.println("Received request to create chat room with roomName: " + roomName);
+    ResponseEntity<ResponseDto> response = chatroomService.postChatroom(requestBody, userId, roomName);
+    return response;
+}
 
     @GetMapping("/rooms")
     public ResponseEntity<? super GetChatroomListResponseDto> getChatroomList(
