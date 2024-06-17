@@ -117,23 +117,23 @@ public class ResponseDto {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
     
-    public static ResponseEntity<GetChatroomResponseDto> invalidRoomIdForGetChatroom() {
-      GetChatroomResponseDto responseBody = new GetChatroomResponseDto(false, null); // 객체를 생성하는데 성공여부를 false로 나타내고, 채팅방 목록이 없음을 알려주는 null 값을 가짐
+    public static ResponseEntity<? super GetChatroomResponseDto> invalidRoomIdForGetChatroom() {
+      ResponseDto responseBody = new ResponseDto(ResponseCode.INVALID_ROOM_ID, ResponseMessage.INVALID_ROOM_ID); 
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
   }
   
-  public static ResponseEntity<GetChatroomListResponseDto> internalServerErrorForChatroomList() {
-      GetChatroomListResponseDto responseBody = new GetChatroomListResponseDto(false, null);
+  public static ResponseEntity<ResponseDto> internalServerErrorForChatroomList() {
+      ResponseDto responseBody = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
   }
   
-  public static ResponseEntity<GetChatroomResponseDto> internalServerErrorForChatroom() {
-      GetChatroomResponseDto responseBody = new GetChatroomResponseDto(false, null);
+  public static ResponseEntity<? super GetChatroomResponseDto> internalServerErrorForChatroom() {
+    ResponseDto responseBody = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
   }
   
-  public static ResponseEntity<GetChatMessageListResponseDto> internalServerErrorForChatMessageList() {
-      GetChatMessageListResponseDto responseBody = new GetChatMessageListResponseDto(false, null);
+  public static ResponseEntity<? super GetChatMessageListResponseDto> internalServerErrorForChatMessageList() {
+    ResponseDto responseBody = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
   }
 
