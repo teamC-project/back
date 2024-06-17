@@ -78,11 +78,20 @@ public class AuthController {
     return response;
   }
 
+
+
   @PostMapping("/id-found")
   public ResponseEntity<? super GetFindIdResponseDto> idFound(
       @RequestBody @Valid IdFoundRequestDto requestBody) {
       ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
       return response;
+  }
+
+  @PostMapping("/password-found-id-check")
+  public ResponseEntity<ResponseDto> passwordFoundIdCheck(
+      @RequestBody @Valid IdCheckRequestDto requestBody) {
+    ResponseEntity<ResponseDto> response = authService.passwordFoundIdCheck(requestBody);
+    return response;
   }
 
   @PostMapping("/password-found")
