@@ -20,7 +20,7 @@ public class GetCustomerBoardCommentResponseDto extends ResponseDto {
     
     private GetCustomerBoardCommentResponseDto (CustomerBoardCommentEntity customerBoardCommentEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        String customerCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDD(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
+        String customerCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
 
         this.customerBoardCommentNumber = customerBoardCommentEntity.getCustomerBoardCommentNumber();
         this.customerBoardCommentWriterId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
