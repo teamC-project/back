@@ -55,7 +55,6 @@ public class WebSecurityConfig {
             .requestMatchers("/api/v1/service/my-page/info-customer").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
             .requestMatchers("/api/v1/service/my-page/info-designer").hasRole("DESIGNER")
-            
             .anyRequest().authenticated())
         .oauth2Login(oauth2 -> oauth2
             .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/oauth2"))

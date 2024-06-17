@@ -216,6 +216,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             customerBoardCommentEntity.update(dto);
             customerBoardCommentRepository.save(customerBoardCommentEntity);
             
+            
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();

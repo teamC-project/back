@@ -15,6 +15,7 @@ import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordReSetRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
+import com.back.back.dto.request.user.PasswordChangeRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
@@ -78,11 +79,20 @@ public class AuthController {
     return response;
   }
 
+
+
   @PostMapping("/id-found")
   public ResponseEntity<? super GetFindIdResponseDto> idFound(
       @RequestBody @Valid IdFoundRequestDto requestBody) {
       ResponseEntity<? super GetFindIdResponseDto> response = authService.idFound(requestBody);
       return response;
+  }
+
+  @PostMapping("/password-found-id-check")
+  public ResponseEntity<ResponseDto> passwordFoundIdCheck(
+      @RequestBody @Valid IdCheckRequestDto requestBody) {
+    ResponseEntity<ResponseDto> response = authService.passwordFoundIdCheck(requestBody);
+    return response;
   }
 
   @PostMapping("/password-found")

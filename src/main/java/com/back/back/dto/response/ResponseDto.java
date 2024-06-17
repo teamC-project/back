@@ -58,12 +58,6 @@ public class ResponseDto {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 
-      public static ResponseEntity<ResponseDto> noExistPassword() {
-        ResponseDto responseBody =
-            new ResponseDto(ResponseCode.NO_EXIST_PASSWORD, ResponseMessage.NO_EXIST_PASSWORD);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
-      }
-
       public static ResponseEntity<ResponseDto> writtenComment() {
         ResponseDto responseBody = 
             new ResponseDto(ResponseCode.WRITTEN_COMMENT, ResponseMessage.WRITTEN_COMMENT);

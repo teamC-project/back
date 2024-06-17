@@ -1,4 +1,4 @@
-package com.back.back.dto.request.auth;
+package com.back.back.dto.request.user;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

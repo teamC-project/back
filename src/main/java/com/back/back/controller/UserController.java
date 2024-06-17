@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
-import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
-import com.back.back.dto.request.auth.PasswordCheckRequestDto;
+
+import com.back.back.dto.request.user.CustomerUpdateRequestDto;
+import com.back.back.dto.request.user.DesignerUpdateRequestDto;
+import com.back.back.dto.request.user.PasswordChangeRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.user.GetSignInUserResponseDto;
 import com.back.back.service.UserService;
@@ -55,11 +56,14 @@ public class UserController {
     return response;
   }
 
-    @PostMapping("/password-check")
+    @PostMapping("/change-user-password")
   public ResponseEntity<ResponseDto> passwordCheck(
-    @RequestBody @Valid PasswordCheckRequestDto requestBody) {
-    ResponseEntity<ResponseDto> response = userService.passwordCheck(requestBody);
+    @RequestBody @Valid PasswordChangeRequestDto requestBody,
+    @AuthenticationPrincipal String userId
+  ) {
+    ResponseEntity<ResponseDto> response = userService.passwordChange(requestBody, userId);
     return response;
     }
+
 
 }
