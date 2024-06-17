@@ -22,7 +22,6 @@ public interface ResponseCode {
   String NO_EXIST_BOARD = "NB";
   String NO_EXIST_EMAIL = "NE";
   String NO_EXIST_ID = "NI";
-  String NO_EXIST_PASSWORD = "NP";
   String WRITTEN_COMMENT = "WC";
   String SIGN_IN_FAILED = "SF";
 	String NO_PERMISSION = "NP";

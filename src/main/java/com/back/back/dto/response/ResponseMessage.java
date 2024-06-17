@@ -22,7 +22,6 @@ public interface ResponseMessage {
   String NO_EXIST_BOARD = "No Exist Board.";
   String NO_EXIST_EMAIL = "No Exist Email.";
   String NO_EXIST_ID = "No Exist Id.";
-  String NO_EXIST_PASSWORD = "No Exist Password.";
   String WRITTEN_COMMENT = "Written Comment.";
   String SIGN_IN_FAILED = "Sign in Failed.";
 	String NO_PERMISSION = "Do not have permission.";
