@@ -1,13 +1,14 @@
 package com.back.back.service.implementation;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
-import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
-import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
-import com.back.back.dto.request.auth.PasswordCheckRequestDto;
-import com.back.back.dto.request.auth.PasswordFoundRequestDto;
+import com.back.back.dto.request.user.CustomerUpdateRequestDto;
+import com.back.back.dto.request.user.DesignerUpdateRequestDto;
+import com.back.back.dto.request.user.PasswordChangeRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.user.GetSignInUserResponseDto;
 import com.back.back.entity.UserEntity;
@@ -21,6 +22,8 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImplimentation implements UserService {
 
   private final UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
   @Override
@@ -81,24 +84,38 @@ public class UserServiceImplimentation implements UserService {
     }
     return ResponseDto.success();
   }
+  
 
+<<<<<<< HEAD
+    @Override
+    public ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId) {
+=======
 
   @Override
   public ResponseEntity<ResponseDto> passwordCheck(PasswordCheckRequestDto dto) {
     
     try {
+>>>>>>> fc4fc2b3db2a512dee025b1343e72817fba48c64
       
-      String userPassword =dto.getUserPassword();
+      try {
+        UserEntity userEntity = userRepository.findByUserId(userId);
 
-      boolean existedUserPassword = userRepository.existsByUserPassword(userPassword);
-      if (existedUserPassword)
-        return ResponseDto.noExistPassword();
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
+        if (userEntity == null) {
+          return ResponseDto.noExistId();
+        }
+
+        String userPassword =dto.getUserPassword();
+        String encodedPassword = passwordEncoder.encode(userPassword);
+        userEntity.setUserPassword(encodedPassword);
+
+        userRepository.save(userEntity);
+
+      } catch (Exception exception) {
+        exception.printStackTrace();
+        return ResponseDto.databaseError();
+      }
+      return ResponseDto.success();
     }
-    return ResponseDto.success();
-  }
 
 
 }

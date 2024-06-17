@@ -2,9 +2,9 @@ package com.back.back.entity;
 
 
 import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
-import com.back.back.dto.request.auth.CustomerUpdateRequestDto;
 import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
-import com.back.back.dto.request.auth.DesignerUpdateRequestDto;
+import com.back.back.dto.request.user.CustomerUpdateRequestDto;
+import com.back.back.dto.request.user.DesignerUpdateRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
