@@ -14,15 +14,17 @@ public class CustomerBoardListItem {
   private String customerBoardWriteDatetime;
   private Integer customerBoardViewCount;
   private Boolean secret;
+  // private Integer customerBoardCommentCount;
 
   private CustomerBoardListItem(CustomerBoardEntity customerBoardEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(customerBoardEntity.getCustomerBoardWriteDatetime());
+    String writeDatetime = ChangeDateFormatUtil.changeCustomerListDateFormat(customerBoardEntity.getCustomerBoardWriteDatetime());
 
     this.customerBoardNumber = customerBoardEntity.getCustomerBoardNumber();
     this.customerBoardTitle = customerBoardEntity.getCustomerBoardTitle();
     this.customerBoardWriterId = customerBoardEntity.getCustomerBoardWriterId();
     this.customerBoardWriteDatetime = writeDatetime;
     this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
+    // this.customerBoardCommentCount = customerBoardEntity.getCustomerBoardCommentCount();
     this.secret = customerBoardEntity.getSecret();
   }
 
