@@ -19,6 +19,7 @@ public class GetTrendBoardResponseDto extends ResponseDto {
 	private String trendBoardWriterId;
 	private String trendBoardWriteDateTime;
 	private Integer trendBoardLikeCount;
+	private Integer trendBoardViewCount;
 
 
 	private GetTrendBoardResponseDto(TrendBoardEntity trendBoardEntity ) throws Exception {
@@ -31,6 +32,7 @@ public class GetTrendBoardResponseDto extends ResponseDto {
 		this.trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
 		this.trendBoardWriteDateTime = writeDateTime;
 		this.trendBoardLikeCount = trendBoardEntity.getTrendBoardLikeCount();
+		this.trendBoardViewCount = trendBoardEntity.getTrendBoardViewCount();
 	}
 
 	public static ResponseEntity <GetTrendBoardResponseDto> success (TrendBoardEntity trendBoardEntity) throws Exception {
