@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.back.back.common.object.ChatMessage;
 import com.back.back.dto.request.chatroom.PostChatroomRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.chatmessage.GetChatMessageListResponseDto;
@@ -98,22 +99,8 @@ public class ChatroomServiceImplimentation implements ChatroomService {
         
         try {
 
-            ChatroomEntity chatroom = chatroomRepository.findById(roomId)
-            .orElseThrow(() -> new IllegalArgumentException("Invalid room ID"));
-            
-            List<ChatMessageEntity> messages = chatMessageRepository.findByChatroom(chatroom);
-
-            List<GetChatMessageListResponseDto.ChatMessageDto> messageDtos = messages.stream()
-            .map(message -> new GetChatMessageListResponseDto.ChatMessageDto(
-                message.getMessageId(),
-                message.getSenderId(), 
-                message.getMessage(), 
-                message.getSendDatetime()
-                ))
-                .collect(Collectors.toList());
-
-            GetChatMessageListResponseDto responseDto = new GetChatMessageListResponseDto(true, messageDtos);
-            return ResponseEntity.ok(responseDto);
+            List<ChatMessageEntity> chatMessageEntities = chatMessageRepository.findByChatroomId(roomId);
+            return GetChatMessageListResponseDto.success(chatMessageEntities);
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -135,4 +122,6 @@ public class ChatroomServiceImplimentation implements ChatroomService {
         }
 
     }
+
+
 }

@@ -2,27 +2,32 @@ package com.back.back.dto.response.chatmessage;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.back.back.common.object.ChatMessageListItem;
+import com.back.back.dto.response.ResponseCode;
+import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.ResponseMessage;
+import com.back.back.entity.ChatMessageEntity;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class GetChatMessageListResponseDto {
-    
-    private boolean success;
-    private List<ChatMessageDto> messages;
 
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    public static class ChatMessageDto{
-        private Integer messageId;
-        private String senderId;
-        private String message;
-        private String sendDatetime;
+public class GetChatMessageListResponseDto extends ResponseDto {
+    
+    private List<ChatMessageListItem> chatMessageList;
+
+    private GetChatMessageListResponseDto (List<ChatMessageEntity> chatMessageEntities) throws Exception {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        this.chatMessageList = ChatMessageListItem.getList(chatMessageEntities);
     }
+
+    public static ResponseEntity<GetChatMessageListResponseDto> success (List<ChatMessageEntity> chatMessageEntities) throws Exception {
+        GetChatMessageListResponseDto responseBody = new GetChatMessageListResponseDto(chatMessageEntities);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
+
 }
