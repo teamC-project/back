@@ -20,6 +20,7 @@ import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.trendboard.GetSearchTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardCommentListResponseDto;
+import com.back.back.dto.response.trendboard.GetTrendBoardLikeListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.dto.response.trendboard.PutLikeResponseDto;
@@ -133,4 +134,12 @@ public class TrendBoardController {
     ResponseEntity<ResponseDto> response = trendBoardService.deleteTrendBoardComment(trendBoardCommentNumber, userId);
     return response;
   }
+
+	@GetMapping("/{trendBoardNumber}/like_list") 
+	public ResponseEntity< ? super GetTrendBoardLikeListResponseDto> getTrendBoardLikeList(
+		@PathVariable("trendBoardNumber") Integer trendBoardNumber
+	) {
+		ResponseEntity< ? super GetTrendBoardLikeListResponseDto> response = trendBoardService.getTrendBoardLikeList(trendBoardNumber);
+		return response;
+	}
 }

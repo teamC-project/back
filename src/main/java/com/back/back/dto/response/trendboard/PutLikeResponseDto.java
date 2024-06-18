@@ -16,8 +16,8 @@ public class PutLikeResponseDto extends ResponseDto {
 	}
 
 	public static ResponseEntity<PutLikeResponseDto> success(String code, String message) {
-		PutLikeResponseDto result = new PutLikeResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		return ResponseEntity.status(HttpStatus.OK).body(result);
+		PutLikeResponseDto responseBody = new PutLikeResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
 	}
 
 }

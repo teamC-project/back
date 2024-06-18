@@ -1,5 +1,6 @@
 package com.back.back.service.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.trendboard.GetSearchTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardCommentListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardCommentResponseDto;
+import com.back.back.dto.response.trendboard.GetTrendBoardLikeListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.dto.response.trendboard.PutLikeResponseDto;
@@ -287,6 +289,25 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 
     return ResponseDto.success();
 
+	}
+
+	@Override
+	public ResponseEntity<? super GetTrendBoardLikeListResponseDto> getTrendBoardLikeList(Integer trendBoardNumber) {
+
+		List<LikeEntity> likeEntities = new ArrayList<>();
+
+		try {
+		boolean existsedTrendBoard = trendBoardRepository.existsByTrendBoardNumber(trendBoardNumber);
+		if (!existsedTrendBoard) return GetTrendBoardLikeListResponseDto.noExistBoard();
+
+		likeEntities = likeRepository.findByTrendBoardNumber(trendBoardNumber);
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return ResponseDto.databaseError();
+		}
+
+		return GetTrendBoardLikeListResponseDto.success(likeEntities);
 	}
 
 }
