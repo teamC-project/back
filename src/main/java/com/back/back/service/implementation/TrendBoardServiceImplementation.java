@@ -241,7 +241,7 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
   }
 
 	@Override
-	public ResponseEntity<? super PutLikeResponseDto> putLike(Integer trendBoardNumber, String userId) {
+	public ResponseEntity<? super PutLikeResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId) {
 			try {
 				TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
 				if (trendBoardEntity == null) return ResponseDto.noExistBoard();

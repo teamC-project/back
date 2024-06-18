@@ -73,11 +73,11 @@ public class TrendBoardController {
   }
 
 	@PutMapping("/{trendBoardNumber}/like")
-	public ResponseEntity <? super PutLikeResponseDto> putLike (
+	public ResponseEntity <? super PutLikeResponseDto> putTrendBoardLike (
 		@PathVariable("trendBoardNumber") Integer trendBoardNumber,
 		@AuthenticationPrincipal String userId
 	) {
-		ResponseEntity <? super PutLikeResponseDto> response = trendBoardService.putLike(trendBoardNumber, userId);
+		ResponseEntity <? super PutLikeResponseDto> response = trendBoardService.putTrendBoardLike(trendBoardNumber, userId);
 		return response;
 	}
 

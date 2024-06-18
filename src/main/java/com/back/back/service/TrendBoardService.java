@@ -29,7 +29,7 @@ ResponseEntity <? super GetTrendBoardResponseDto> getTrendBoard(int trendBoardNu
 ResponseEntity<ResponseDto> putTrendBoard(PutTrendBoardRequestDto dto, int trendBoardNumber, String userId);
 ResponseEntity<ResponseDto> putTrendBoardComment(PutTrendBoardCommentRequestDto dto, int trendBoardCommentNumber, String userId);
 ResponseEntity<ResponseDto> deleteTrendBoard(int trendBoardNumber , String userId );
-ResponseEntity <? super PutLikeResponseDto> putLike(Integer trendBoardNumber, String userId);
+ResponseEntity <? super PutLikeResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId);
 ResponseEntity<ResponseDto> deleteTrendBoardComment(int trendBoardCommentNumber, String userId);
 
 ResponseEntity<ResponseDto> increaseTrendBoardViewCount(int trendBoardNumber);

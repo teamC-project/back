@@ -32,8 +32,9 @@ public class TrendBoardEntity {
 	private String trendBoardWriterId;
 	private String trendBoardWriteDatetime;
 	private Integer trendBoardLikeCount;
-	private String trendBoardThumbnailImage;
 	private Integer trendBoardViewCount;
+	private String trendBoardThumbnailImage;
+
 
 
 	public TrendBoardEntity(PostTrendBoardRequestDto dto , String userId) {
