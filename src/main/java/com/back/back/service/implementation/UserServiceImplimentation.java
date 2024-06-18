@@ -86,16 +86,8 @@ public class UserServiceImplimentation implements UserService {
   }
   
 
-<<<<<<< HEAD
     @Override
     public ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId) {
-=======
-
-  @Override
-  public ResponseEntity<ResponseDto> passwordCheck(PasswordCheckRequestDto dto) {
-    
-    try {
->>>>>>> fc4fc2b3db2a512dee025b1343e72817fba48c64
       
       try {
         UserEntity userEntity = userRepository.findByUserId(userId);
