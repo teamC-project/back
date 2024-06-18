@@ -15,7 +15,6 @@ import com.back.back.dto.request.auth.IdFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordReSetRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
-import com.back.back.dto.request.user.PasswordChangeRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
@@ -78,8 +77,6 @@ public class AuthController {
     ResponseEntity<ResponseDto> response = authService.idFoundEmailAuth(requestBody);
     return response;
   }
-
-
 
   @PostMapping("/id-found")
   public ResponseEntity<? super GetFindIdResponseDto> idFound(
