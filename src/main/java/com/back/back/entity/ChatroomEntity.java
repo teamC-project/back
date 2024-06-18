@@ -32,17 +32,9 @@ public class ChatroomEntity {
     private String designerId;
     private String roomName;
 
-    @Column(name = "chat_room_datetime", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private String chatRoomDatetime;
-
     public ChatroomEntity(String customerId, String designerId, String roomName) {
-        Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String chatRoomDatetime = simpleDateFormat.format(now);
-
         this.customerId = customerId;
         this.designerId = designerId;
-        this.chatRoomDatetime = chatRoomDatetime;
         this.roomName = roomName;
     }
 }
