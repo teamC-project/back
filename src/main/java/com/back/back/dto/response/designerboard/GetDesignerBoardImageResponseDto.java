@@ -1,8 +1,9 @@
 package com.back.back.dto.response.designerboard;
 
+import org.springframework.core.io.Resource;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.core.io.Resource;
 
 @Getter
 @AllArgsConstructor

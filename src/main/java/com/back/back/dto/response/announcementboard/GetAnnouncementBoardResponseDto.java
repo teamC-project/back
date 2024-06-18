@@ -9,7 +9,6 @@ import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.ResponseMessage;
 import com.back.back.entity.AnnouncementBoardEntity;
 
-
 import lombok.Getter;
 
 @Getter
