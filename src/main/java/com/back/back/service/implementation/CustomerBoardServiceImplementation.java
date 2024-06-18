@@ -1,8 +1,10 @@
 package com.back.back.service.implementation;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
@@ -20,6 +22,7 @@ import com.back.back.repository.CustomerBoardCommentRepository;
 import com.back.back.repository.CustomerBoardRepository;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.CustomerBoardService;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -215,6 +218,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
             customerBoardCommentEntity.update(dto);
             customerBoardCommentRepository.save(customerBoardCommentEntity);
+            
             
         } catch (Exception exception) {
             exception.printStackTrace();

@@ -1,10 +1,10 @@
 package com.back.back.service.implementation;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.back.back.dto.request.trend.PostTrendBoardCommentRequestDto;
 import com.back.back.dto.request.trend.PostTrendBoardRequestDto;
@@ -16,8 +16,11 @@ import com.back.back.dto.response.trendboard.GetTrendBoardCommentListResponseDto
 import com.back.back.dto.response.trendboard.GetTrendBoardCommentResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
+import com.back.back.dto.response.trendboard.PutLikeResponseDto;
+import com.back.back.entity.LikeEntity;
 import com.back.back.entity.TrendBoardCommentEntity;
 import com.back.back.entity.TrendBoardEntity;
+import com.back.back.repository.LikeRepository;
 import com.back.back.repository.TrendBoardCommentRepository;
 import com.back.back.repository.TrendBoardRepository;
 import com.back.back.repository.UserRepository;
@@ -31,6 +34,7 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
   private final TrendBoardRepository trendBoardRepository;
   private final TrendBoardCommentRepository trendBoardCommentRepository;
   private final UserRepository userRepository;
+	private final LikeRepository likeRepository;
 
   @Override
   public ResponseEntity<ResponseDto> postTrendBoard(PostTrendBoardRequestDto dto, String userId) {
@@ -201,38 +205,7 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
     return ResponseDto.success();
   }
 
-  @Override
-  public ResponseEntity<ResponseDto> increaseTrendBoardLikeCount(int trendBoardNumber) {
 
-    try {
-      TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
-      if (trendBoardEntity == null)
-        return ResponseDto.noExistBoard();
-
-      trendBoardEntity.increaseTrendBoardLikeCount();
-      trendBoardRepository.save(trendBoardEntity);
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-    return ResponseDto.success();
-  }
-
-  @Override
-  public ResponseEntity<ResponseDto> decreaseTrendBoardLikeCount(int trendBoardNumber) {
-    try {
-      TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
-      if (trendBoardEntity == null)
-        return ResponseDto.noExistBoard();
-
-      trendBoardEntity.decreaseTrendBoardLikeCount();
-      trendBoardRepository.save(trendBoardEntity);
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-    return ResponseDto.success();
-  }
 
   @Override
   public ResponseEntity<? super GetTrendBoardCommentListResponseDto> getTrendBoardCommentList(int trendBoardNumber) {
@@ -266,5 +239,54 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
       return ResponseDto.databaseError();
     }
   }
+
+	@Override
+	public ResponseEntity<? super PutLikeResponseDto> putLike(Integer trendBoardNumber, String userId) {
+			try {
+				TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
+				if (trendBoardEntity == null) return ResponseDto.noExistBoard();
+
+				boolean isExistUser = userRepository.existsByUserId(userId);
+				if (!isExistUser)return ResponseDto.authenticationFailed();
+
+				boolean isLike = likeRepository.existsByUserIdAndTrendBoardNumber(userId, trendBoardNumber);
+				LikeEntity likeEntity = new LikeEntity(userId, trendBoardNumber);
+
+				if (isLike) {
+					likeRepository.delete(likeEntity);
+					trendBoardEntity.decreaseTrendBoardLikeCount();
+				} else {
+					likeRepository.save(likeEntity);
+				trendBoardEntity.increaseTrendBoardLikeCount();
+				}
+
+				trendBoardRepository.save(trendBoardEntity);
+			} catch (Exception exception) {
+				exception.printStackTrace();
+				return ResponseDto.databaseError();
+			}
+
+			return PutLikeResponseDto.success();
+	}
+
+	@Override
+	public ResponseEntity<ResponseDto> increaseTrendBoardViewCount(int trendBoardNumber) {
+    try {
+
+      TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
+      if (trendBoardEntity == null)
+        return ResponseDto.noExistBoard();
+
+				trendBoardEntity.increaseTrendBoardViewCount();
+      trendBoardRepository.save(trendBoardEntity);
+
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+
+    return ResponseDto.success();
+
+	}
 
 }

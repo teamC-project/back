@@ -22,13 +22,14 @@ import com.back.back.dto.response.trendboard.GetSearchTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardCommentListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
+import com.back.back.dto.response.trendboard.PutLikeResponseDto;
 import com.back.back.service.TrendBoardService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/service/trend_board")
+@RequestMapping("/api/v1/service/trend_board")
 @RequiredArgsConstructor
 public class TrendBoardController {
 
@@ -71,6 +72,21 @@ public class TrendBoardController {
     return response;
   }
 
+	@PutMapping("/{trendBoardNumber}/like")
+	public ResponseEntity <? super PutLikeResponseDto> putLike (
+		@PathVariable("trendBoardNumber") Integer trendBoardNumber,
+		@AuthenticationPrincipal String userId
+	) {
+		ResponseEntity <? super PutLikeResponseDto> response = trendBoardService.putLike(trendBoardNumber, userId);
+		return response;
+	}
+
+	@PatchMapping("/{trendBoardNumber}/increase_view_count")
+	public ResponseEntity<ResponseDto> increaseTrendBoardViewCount (
+		@PathVariable("trendBoardNumber") int trendBoardNumber) {
+			ResponseEntity <ResponseDto> response = trendBoardService.increaseTrendBoardViewCount(trendBoardNumber);
+			return response;
+		}
   @GetMapping("/")
   public ResponseEntity<? super GetTrendBoardListResponseDto> getTrendBoardList() {
     ResponseEntity<? super GetTrendBoardListResponseDto> response = trendBoardService.getTrendBoardList();
@@ -99,20 +115,6 @@ public class TrendBoardController {
       @PathVariable("trendBoardNumber") int trendBoardNumber) {
     ResponseEntity<? super GetTrendBoardCommentListResponseDto> response = trendBoardService
         .getTrendBoardCommentList(trendBoardNumber);
-    return response;
-  }
-
-  @PatchMapping("/{trendBoardNumber}/increase_trend_like_count")
-  public ResponseEntity<ResponseDto> increaseTrendLikeCount(
-      @PathVariable("trendBoardNumber") int trendBoardNumber) {
-    ResponseEntity<ResponseDto> response = trendBoardService.increaseTrendBoardLikeCount(trendBoardNumber);
-    return response;
-  }
-
-  @PatchMapping("/{trendBoardNumber}/decrease_trend_like_count")
-  public ResponseEntity<ResponseDto> decreaseTrendLikeCount(
-      @PathVariable("trendBoardNumber") int trendBoardNumber) {
-    ResponseEntity<ResponseDto> response = trendBoardService.decreaseTrendBoardLikeCount(trendBoardNumber);
     return response;
   }
 

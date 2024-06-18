@@ -7,7 +7,6 @@ import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.dto.response.ResponseCode;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.ResponseMessage;
-import com.back.back.dto.response.trendboard.GetTrendBoardCommentResponseDto;
 import com.back.back.entity.TrendBoardCommentEntity;
 
 import lombok.Getter;

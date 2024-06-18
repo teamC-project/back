@@ -1,8 +1,10 @@
 package com.back.back.common.object;
+import java.util.ArrayList;
 import java.util.List;
+
 import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.AnnouncementBoardEntity;
-import java.util.ArrayList;
+
 import lombok.Getter;
 
 @Getter
@@ -18,11 +20,10 @@ private AnnouncementBoardListItem(AnnouncementBoardEntity announcementBoardEntit
 	String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
 
 	String announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
-	announcementBoardWriterId = announcementBoardWriterId.substring(0,1) + " +".repeat(announcementBoardWriterId.length() -1);
 
 	this.announcementBoardNumber = announcementBoardEntity.getAnnouncementBoardNumber();
 	this.announcementBoardTitle = announcementBoardEntity.getAnnouncementBoardTitle();
-	this.announcementBoardWriterId = getAnnouncementBoardWriterId();
+	this.announcementBoardWriterId = announcementBoardWriterId;
 	this.announcementBoardWriteDatetime = writeDatetime;
 	this.announcementBoardViewCount = announcementBoardEntity.getAnnouncementBoardViewCount();
 }

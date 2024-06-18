@@ -1,27 +1,32 @@
 package com.back.back.dto.response.chatroom;
 
-import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.back.back.dto.response.ResponseCode;
+import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.ResponseMessage;
+import com.back.back.entity.ChatroomEntity;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class GetChatroomResponseDto {
+public class GetChatroomResponseDto extends ResponseDto {
+    private Integer chatroomId;
+    private String customerId;
+    private String designerId;
 
-    private boolean success;
-    private ChatroomDto chatRoom;
+    private GetChatroomResponseDto(ChatroomEntity chatroomEntity) throws Exception {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    public static class ChatroomDto {
-        private Integer roomId;
-        private String customerId;
-        private String designerId;
-        private String chatRoomDatetime;
-
+        this.chatroomId = chatroomEntity.getRoomId();
+        this.customerId = chatroomEntity.getCustomerId();
+        this.designerId = chatroomEntity.getDesignerId();
     }
+
+    public static ResponseEntity<GetChatroomResponseDto> success (ChatroomEntity chatroomEntity) throws Exception {
+        GetChatroomResponseDto responseBody = new GetChatroomResponseDto(chatroomEntity);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
+
 }

@@ -7,7 +7,6 @@ import java.util.Date;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

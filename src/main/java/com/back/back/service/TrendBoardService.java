@@ -12,6 +12,7 @@ import com.back.back.dto.response.trendboard.GetTrendBoardCommentListResponseDto
 import com.back.back.dto.response.trendboard.GetTrendBoardCommentResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardListResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
+import com.back.back.dto.response.trendboard.PutLikeResponseDto;
 
 
 
@@ -28,7 +29,8 @@ ResponseEntity <? super GetTrendBoardResponseDto> getTrendBoard(int trendBoardNu
 ResponseEntity<ResponseDto> putTrendBoard(PutTrendBoardRequestDto dto, int trendBoardNumber, String userId);
 ResponseEntity<ResponseDto> putTrendBoardComment(PutTrendBoardCommentRequestDto dto, int trendBoardCommentNumber, String userId);
 ResponseEntity<ResponseDto> deleteTrendBoard(int trendBoardNumber , String userId );
+ResponseEntity <? super PutLikeResponseDto> putLike(Integer trendBoardNumber, String userId);
 ResponseEntity<ResponseDto> deleteTrendBoardComment(int trendBoardCommentNumber, String userId);
-ResponseEntity<ResponseDto> increaseTrendBoardLikeCount(int trendBoardNumber);
-ResponseEntity<ResponseDto> decreaseTrendBoardLikeCount(int trendBoardNumber);
+
+ResponseEntity<ResponseDto> increaseTrendBoardViewCount(int trendBoardNumber);
 };
