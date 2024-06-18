@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.back.back.common.object.ChatMessage;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 
@@ -24,11 +25,11 @@ public class SocketIOProvider {
     socketIOServer
         .addDisconnectListener(client -> System.out.println("Client disconnected : " + client.getSessionId()));
 
-    socketIOServer.addEventListener("message", String.class, (sendClient, data, ackRequest) -> {
+    socketIOServer.addEventListener("senderMessage", ChatMessage.class, (sendClient, data, ackRequest) -> {
 
       List<SocketIOClient> clients = new ArrayList<>(socketIOServer.getAllClients());
       for (SocketIOClient client : clients) {
-        client.sendEvent("message", "message recive");
+        client.sendEvent("receiveMessage", data);
       }
       
     });

@@ -46,7 +46,7 @@ public ResponseEntity<ResponseDto> postChatRoom (
         return response;
     }
 
-    @GetMapping("/room/{roomId}")
+    @GetMapping("/{roomId}")
     public ResponseEntity<? super GetChatroomResponseDto> getChatroom(
         @PathVariable("roomId") int roomId
     ) {
@@ -54,7 +54,7 @@ public ResponseEntity<ResponseDto> postChatRoom (
         return response;
     }
 
-    @GetMapping("/room/{roomId}/messages")
+    @GetMapping("/{roomId}/messages")
     public ResponseEntity<? super GetChatMessageListResponseDto> getChatMessageList(
         @PathVariable("roomId") int roomId
     ) {
@@ -62,7 +62,7 @@ public ResponseEntity<ResponseDto> postChatRoom (
         return response;
     }
 
-    @DeleteMapping("/room/{roomId}")
+    @DeleteMapping("/{roomId}")
     public ResponseEntity<ResponseDto> deleteChatroom(
         @PathVariable("roomId") int roomId,
         @AuthenticationPrincipal String userId
