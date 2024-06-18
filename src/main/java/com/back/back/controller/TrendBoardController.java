@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/service/trend_board")
+@RequestMapping("/api/v1/service/trend_board")
 @RequiredArgsConstructor
 public class TrendBoardController {
 

@@ -2,15 +2,15 @@ package com.back.back.service;
 
 import org.springframework.http.ResponseEntity;
 
+import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
+import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.request.auth.EmailAuthCheckRequestDto;
 import com.back.back.dto.request.auth.EmailAuthRequestDto;
 import com.back.back.dto.request.auth.IdCheckRequestDto;
-import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.IdFoundRequestDto;
+import com.back.back.dto.request.auth.PasswordFoundRequestDto;
 import com.back.back.dto.request.auth.PasswordReSetRequestDto;
 import com.back.back.dto.request.auth.SignInRequestDto;
-import com.back.back.dto.request.auth.CustomerSignUpRequestDto;
-import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.auth.GetFindIdResponseDto;
 import com.back.back.dto.response.auth.SignInResponseDto;
@@ -37,6 +37,8 @@ public interface AuthService {
   ResponseEntity<ResponseDto> passwordFound(@Valid PasswordFoundRequestDto requestBody);
 
   ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto);
+
+  ResponseEntity<ResponseDto> passwordFoundIdCheck(IdCheckRequestDto dto);
 
   ResponseEntity<ResponseDto> resetPassword(@Valid PasswordReSetRequestDto requestBody);
 }
