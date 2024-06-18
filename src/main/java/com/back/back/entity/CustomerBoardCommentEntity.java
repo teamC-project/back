@@ -2,8 +2,10 @@ package com.back.back.entity;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
+
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

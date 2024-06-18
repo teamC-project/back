@@ -2,29 +2,29 @@ package com.back.back.dto.response.chatroom;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.back.back.common.object.ChatroomListItem;
+import com.back.back.dto.response.ResponseCode;
+import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.ResponseMessage;
+import com.back.back.entity.ChatroomEntity;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class GetChatroomListResponseDto {
-    
-    private boolean success;
-    private List<ChatroomDto> chatRooms;
+public class GetChatroomListResponseDto extends ResponseDto {
 
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    public static class ChatroomDto {
-        private Integer roomId;
-        private String customerId;
-        private String designerId;
-        private String chatRoomDatetime;
+    private List<ChatroomListItem> chatRoomList;
 
+    private GetChatroomListResponseDto(List<ChatroomEntity> chatroomEntities) throws Exception {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        this.chatRoomList = ChatroomListItem.getList(chatroomEntities);
     }
 
+    public static ResponseEntity<GetChatroomListResponseDto> success(List<ChatroomEntity> chatroomEntities) throws Exception {
+        GetChatroomListResponseDto responseBody = new GetChatroomListResponseDto(chatroomEntities);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
 }

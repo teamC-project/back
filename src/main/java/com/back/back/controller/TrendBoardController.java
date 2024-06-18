@@ -126,8 +126,6 @@ public class TrendBoardController {
     return response;
   }
 
-	
-
   @DeleteMapping("/{trendBoardCommentNumber}/comment")
   public ResponseEntity<ResponseDto> deleteTrendBoardComment(
       @PathVariable("trendBoardCommentNumber") int trendBoardCommentNumber,

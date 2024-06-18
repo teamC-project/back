@@ -8,7 +8,6 @@ import com.back.back.dto.response.ResponseCode;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.ResponseMessage;
 import com.back.back.entity.QnaBoardEntity;
-import com.back.back.dto.response.qnaboard.GetQnaBoardResponseDto;
 
 import lombok.Getter;
 

@@ -11,16 +11,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
 import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
 import com.back.back.service.CustomerBoardService;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

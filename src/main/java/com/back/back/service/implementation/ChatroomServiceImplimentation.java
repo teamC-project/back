@@ -64,17 +64,9 @@ public class ChatroomServiceImplimentation implements ChatroomService {
 
             List<ChatroomEntity> chatroom = chatroomRepository.findAll(); // 목록 가져오기
 
-            List<GetChatroomListResponseDto.ChatroomDto> chatRoomDtos = chatroom.stream() // 각 채팅방 Entity를 Dto로 변환
-                .map(chatRoom -> new GetChatroomListResponseDto.ChatroomDto(
-                    chatRoom.getRoomId(),
-                    chatRoom.getCustomerId(),
-                    chatRoom.getDesignerId(),
-                    chatRoom.getChatRoomDatetime()
-                ))
-                .collect(Collectors.toList()); // 변환된 DTO 목록을 리스트로 수집
+            return GetChatroomListResponseDto.success(chatroom);
 
-            GetChatroomListResponseDto responseDto = new GetChatroomListResponseDto(true, chatRoomDtos); // 응답 Dto 생성
-            return ResponseEntity.ok(responseDto);
+            
             
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -88,21 +80,11 @@ public class ChatroomServiceImplimentation implements ChatroomService {
         
         try {
 
-            ChatroomEntity chatRoom = chatroomRepository.findById(roomId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid room ID"));  // ??
+            ChatroomEntity chatroomEntity = chatroomRepository.findByRoomId(roomId);
+            if (chatroomEntity == null)
+                return ResponseDto.noExistBoard();
 
-            GetChatroomResponseDto.ChatroomDto chatRoomDto = new GetChatroomResponseDto.ChatroomDto(
-                chatRoom.getRoomId(),
-                chatRoom.getCustomerId(),
-                chatRoom.getDesignerId(),
-                chatRoom.getChatRoomDatetime()
-            );
-
-            GetChatroomResponseDto responseDto = new GetChatroomResponseDto(true, chatRoomDto);
-            return ResponseEntity.ok(responseDto);
-
-        } catch (IllegalArgumentException exception) {
-            return ResponseDto.invalidRoomIdForGetChatroom();
+            return GetChatroomResponseDto.success(chatroomEntity);
 
         } catch (Exception exception) {
             exception.printStackTrace();
