@@ -13,7 +13,7 @@ public class DesignerUpdateRequestDto {
   private String userGender;
   @NotBlank
   private String userAge;
-  @NotBlank
+
   private String userImage;
   @NotBlank
   private String userCompanyName;
