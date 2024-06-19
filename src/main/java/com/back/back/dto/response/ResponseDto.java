@@ -105,9 +105,6 @@ public class ResponseDto {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
     }
 
-<<<<<<< HEAD
-		public static ResponseEntity<ResponseDto> internalServerErrorForChatroomList() {
-=======
     public static ResponseEntity<ResponseDto> invalidRoomIdForChatroom() {
       ResponseDto responseBody = new ResponseDto(ResponseCode.INVALID_ROOM_ID, ResponseMessage.INVALID_ROOM_ID);
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
@@ -119,7 +116,6 @@ public class ResponseDto {
   }
   
   public static ResponseEntity<ResponseDto> internalServerErrorForChatroomList() {
->>>>>>> 1e471fdd9a73c16956b6fac33f2058111e516661
       ResponseDto responseBody = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
   }
