@@ -112,10 +112,7 @@ public class ResponseDto {
     }
     
 
-    public static ResponseEntity<GetChatroomResponseDto> invalidRoomIdForGetChatroom() {
-      GetChatroomResponseDto responseBody = new GetChatroomResponseDto(false, null);
-
-    public static ResponseEntity<? super GetChatroomResponseDto> invalidRoomIdForGetChatroom() {
+    public static ResponseEntity<ResponseDto> invalidRoomIdForGetChatroom() {
       ResponseDto responseBody = new ResponseDto(ResponseCode.INVALID_ROOM_ID, ResponseMessage.INVALID_ROOM_ID); 
 
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);

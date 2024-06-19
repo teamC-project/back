@@ -67,7 +67,7 @@ public class CustomerBoardController {
     }
 
     @GetMapping("/{customerBoardNumber}")
-public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(
+    public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(
         @PathVariable("customerBoardNumber") int customerBoardNumber,
         @AuthenticationPrincipal String userId) {
     return customerBoardService.getCustomerBoard(customerBoardNumber, userId);
