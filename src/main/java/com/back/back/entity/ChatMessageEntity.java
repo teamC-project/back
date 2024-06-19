@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
+import com.back.back.common.object.ChatMessage;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,27 +32,20 @@ public class ChatMessageEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer messageId;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id", nullable = false)
-    private ChatroomEntity chatroom;
-
+    private Integer chatroomId;
     private String senderId;
     private String message;
     private String sendDatetime;
 
-    public ChatMessageEntity(ChatroomEntity chatRoom, String senderId, String message) {
+    public ChatMessageEntity(ChatMessage chatMessage) {
         Date now = Date.from(Instant.now());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String sendDatetime = simpleDateFormat.format(now);
 
-        this.chatroom = chatRoom;
-        this.senderId = senderId;
-        this.message = message;
+        this.chatroomId = chatMessage.getRoomId();
+        this.senderId = chatMessage.getSenderId();
+        this.message = chatMessage.getMessage();
         this.sendDatetime = sendDatetime;
-    }
-
-    private void updateMessage(String message) {
-        this.message = message;
     }
 
 }
