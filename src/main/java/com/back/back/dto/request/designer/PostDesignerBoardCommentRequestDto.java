@@ -9,4 +9,5 @@ import lombok.Setter;
 public class PostDesignerBoardCommentRequestDto {
     @NotBlank
     private String designerBoardCommentContents;
+    private Integer designerBoardParentCommentNumber;
 }

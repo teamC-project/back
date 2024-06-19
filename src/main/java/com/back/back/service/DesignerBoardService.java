@@ -1,7 +1,5 @@
 package com.back.back.service;
-
 import org.springframework.http.ResponseEntity;
-
 import com.back.back.dto.request.designer.PostDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PostDesignerBoardRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardCommentRequestDto;
@@ -16,18 +14,14 @@ import com.back.back.dto.response.designerboard.GetSearchDesignerBoardListRespon
 public interface DesignerBoardService {
     ResponseEntity<ResponseDto> postDesignerBoard(PostDesignerBoardRequestDto dto, String userId);
     ResponseEntity<ResponseDto> postDesignerBoardComment(PostDesignerBoardCommentRequestDto dto, int designerBoardNumber, String userId);
-
     ResponseEntity<? super GetDesignerBoardListResponseDto> getDesignerBoardList();
     ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesignerBoardList(String searchWord);
-    ResponseEntity<? super GetDesignerBoardResponseDto> getDesignerBoard(int designerBoardNumber);
+    ResponseEntity<? super GetDesignerBoardResponseDto> getDesignerBoard(int designerBoardNumber, String userId);
     ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(int designerBoardNumber);
     ResponseEntity<? super GetDesignerBoardCommentResponseDto> getDesignerBoardComment(int designerBoardCommentNumber);
-
     ResponseEntity<ResponseDto> putDesignerBoard(PutDesignerBoardRequestDto dto, int designerBoardNumber, String userId);
     ResponseEntity<ResponseDto> putDesignerBoardComment(PutDesignerBoardCommentRequestDto dto, int designerBoardCommentNumber, String userId);
-
     ResponseEntity<ResponseDto> deleteDesignerBoard(int designerBoardNumber, String userId);
     ResponseEntity<ResponseDto> deleteDesignerBoardComment(int designerBoardCommentNumber, String userId);
-
     ResponseEntity<ResponseDto> increaseViewCount(int designerBoardNumber);
 }

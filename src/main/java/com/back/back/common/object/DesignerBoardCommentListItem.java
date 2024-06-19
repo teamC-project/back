@@ -15,18 +15,17 @@ public class DesignerBoardCommentListItem {
   private String designerBoardCommentWriterId;
   private String designerBoardCommentWriteDatetime;
   private String designerBoardCommentContents;
+  private Integer designerBoardParentCommentNumber;
 
   private DesignerBoardCommentListItem(DesignerBoardCommentEntity designerBoardCommentEntity) throws Exception {
     String writeDatetime = ChangeDateFormatUtil
-        .changeYYMMDD(designerBoardCommentEntity.getDesignerBoardCommentWriteDatetime());
-
-
+        .changeYYYYMMDDHHMM(designerBoardCommentEntity.getDesignerBoardCommentWriteDatetime());
 
     this.designerBoardCommentNumber = designerBoardCommentEntity.getDesignerBoardCommentNumber();
     this.designerBoardCommentWriterId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
     this.designerBoardCommentWriteDatetime = writeDatetime;
     this.designerBoardCommentContents = designerBoardCommentEntity.getDesignerBoardCommentContents();
-
+    this.designerBoardParentCommentNumber = designerBoardCommentEntity.getDesignerBoardParentCommentNumber(); // 부모 댓글
   }
 
   public static List<DesignerBoardCommentListItem> getList(

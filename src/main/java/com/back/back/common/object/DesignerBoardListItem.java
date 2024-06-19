@@ -17,18 +17,13 @@ public class DesignerBoardListItem {
   private Integer designerBoardViewCount;
 
   private DesignerBoardListItem(DesignerBoardEntity designerBoardEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(designerBoardEntity.getDesignerBoardWriteDatetime());
-
-    String writerId = designerBoardEntity.getDesignerBoardWriterId();
-    writerId = writerId.substring(0, 1) +
-        "*".repeat(writerId.length() - 1);
+    String writeDatetime = ChangeDateFormatUtil.changeDesignerListDateFormat(designerBoardEntity.getDesignerBoardWriteDatetime());
 
     this.designerBoardNumber = designerBoardEntity.getDesignerBoardNumber();
     this.designerBoardTitle = designerBoardEntity.getDesignerBoardTitle();
-    this.designerBoardWriterId = writerId;
+    this.designerBoardWriterId = designerBoardEntity.getDesignerBoardWriterId();
     this.designerBoardWriteDatetime = writeDatetime;
     this.designerBoardViewCount = designerBoardEntity.getDesignerBoardViewCount();
-
   }
 
   public static List<DesignerBoardListItem> getList(List<DesignerBoardEntity> designerBoardEntities) throws Exception {
