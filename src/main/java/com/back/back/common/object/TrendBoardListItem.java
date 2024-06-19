@@ -17,6 +17,7 @@ public class TrendBoardListItem {
   private String trendBoardWriteDatetime;
   private String trendBoardThumbnailImage;
   private Integer trendBoardLikeCount;
+	private Integer trendBoardViewCount;
 
   private TrendBoardListItem(TrendBoardEntity trendBoardEntity) throws Exception {
     String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(
@@ -31,6 +32,7 @@ public class TrendBoardListItem {
     this.trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
     this.trendBoardWriteDatetime = writeDatetime;
     this.trendBoardLikeCount = trendBoardEntity.getTrendBoardLikeCount();
+		this.trendBoardViewCount = trendBoardEntity.getTrendBoardViewCount();
 		this.trendBoardThumbnailImage =trendBoardEntity.getTrendBoardThumbnailImage();
   }
 
