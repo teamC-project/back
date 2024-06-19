@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 import com.back.back.common.object.ChatMessage;
+import com.back.back.common.object.ChatMessageListItem;
 import com.back.back.entity.ChatMessageEntity;
 import com.back.back.repository.ChatMessageRepository;
 import com.corundumstudio.socketio.SocketIOClient;
@@ -32,13 +33,14 @@ public class SocketIOProvider {
     socketIOServer.addEventListener("senderMessage", ChatMessage.class, (sendClient, data, ackRequest) -> {
       List<SocketIOClient> clients = new ArrayList<>(socketIOServer.getAllClients());
 
-      for (SocketIOClient client : clients) {
-        Set<String> rooms = client.getAllRooms();
-        if (rooms.contains(data.getRoomId().toString())) client.sendEvent("receiveMessage", data);
-      }
-
       ChatMessageEntity chatMessageEntity = new ChatMessageEntity(data);
       chatMessageRepository.save(chatMessageEntity);
+
+      ChatMessageListItem chatMessageListItem = new ChatMessageListItem(chatMessageEntity);
+      for (SocketIOClient client : clients) {
+        Set<String> rooms = client.getAllRooms();
+        if (rooms.contains(data.getChatroomId().toString())) client.sendEvent("receiveMessage", chatMessageListItem);
+      }
     });
 
     socketIOServer.addEventListener("joinRoom", String.class, (client, roomId, ackRequest) -> {
