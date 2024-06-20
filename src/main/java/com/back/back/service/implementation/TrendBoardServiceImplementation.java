@@ -310,4 +310,15 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 		return GetTrendBoardLikeListResponseDto.success(likeEntities);
 	}
 
+	@Override
+	public ResponseEntity<ResponseDto> deleteTrendBoardLikeList(int trendBoardNumber) {
+			try {
+					likeRepository.deleteByTrendBoardNumber(trendBoardNumber);
+			} catch (Exception exception) {
+				exception.printStackTrace();
+				return ResponseDto.databaseError();
+			}
+			return ResponseDto.success();
+	}
+
 }

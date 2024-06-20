@@ -142,4 +142,12 @@ public class TrendBoardController {
 		ResponseEntity< ? super GetTrendBoardLikeListResponseDto> response = trendBoardService.getTrendBoardLikeList(trendBoardNumber);
 		return response;
 	}
+
+@DeleteMapping("/{trendBoardNumber}/like_list")
+	public ResponseEntity<ResponseDto> deleteTrendBoardLikeList(
+		@PathVariable("trendBoardNumber") int trendBoardNumber
+	) {
+		ResponseEntity<ResponseDto> response = trendBoardService.deleteTrendBoardLikeList(trendBoardNumber);
+		return response;
+	}
 }
