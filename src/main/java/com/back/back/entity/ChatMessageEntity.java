@@ -42,7 +42,7 @@ public class ChatMessageEntity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String sendDatetime = simpleDateFormat.format(now);
 
-        this.chatroomId = chatMessage.getRoomId();
+        this.chatroomId = chatMessage.getChatroomId();
         this.senderId = chatMessage.getSenderId();
         this.message = chatMessage.getMessage();
         this.sendDatetime = sendDatetime;

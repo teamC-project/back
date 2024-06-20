@@ -16,7 +16,4 @@ public interface DesignerBoardRepository extends JpaRepository<DesignerBoardEnti
     
     DesignerBoardEntity findByDesignerBoardNumber(Integer designerBoardNumber);
 
-    
-    
-    
 }

@@ -11,6 +11,7 @@ import lombok.Getter;
 @Getter
 public class CustomerBoardCommentListItem {
   private Integer customerBoardCommentNumber;
+  private Integer customerBoardNumber;
   private String customerBoardCommentWriterId;
   private String customerBoardCommentWriteDatetime;
   private String customerBoardCommentContents;
@@ -25,8 +26,6 @@ public class CustomerBoardCommentListItem {
     this.customerBoardCommentWriteDatetime = writeDatetime;
     this.customerBoardCommentContents = customerBoardCommentEntity.getCustomerBoardCommentContents();
     this.customerBoardParentCommentNumber = customerBoardCommentEntity.getCustomerBoardParentCommentNumber(); // 부모 댓글
-                                                                                                              // 번호 설정
-
   }
 
   public static List<CustomerBoardCommentListItem> getList(
