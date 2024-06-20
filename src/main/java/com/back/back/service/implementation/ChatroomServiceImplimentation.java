@@ -66,8 +66,6 @@ public class ChatroomServiceImplimentation implements ChatroomService {
             List<ChatroomEntity> chatroom = chatroomRepository.findAll(); // 목록 가져오기
 
             return GetChatroomListResponseDto.success(chatroom);
-
-            
             
         } catch (Exception exception) {
             exception.printStackTrace();
