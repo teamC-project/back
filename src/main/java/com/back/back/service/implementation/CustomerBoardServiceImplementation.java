@@ -200,11 +200,17 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         try {
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
             if (customerBoardEntity == null) return ResponseDto.noExistBoard();
-
-            String writerId = customerBoardEntity != null ? customerBoardEntity.getCustomerBoardWriterId() : null; // 수정: null 체크 추가
-            boolean isWriter = writerId != null && userId.equals(writerId); // 수정: null 체크 추가
-            if (!isWriter) return ResponseDto.authorizationFailed();
-
+    
+            UserEntity userEntity = userRepository.findByUserId(userId);
+            if (userEntity == null) return ResponseDto.authenticationFailed();
+    
+            String writerId = customerBoardEntity.getCustomerBoardWriterId();
+            String userRole = userEntity.getUserRole();
+            boolean isWriter = userId.equals(writerId);
+            boolean isAdmin = userRole.equals("ROLE_ADMIN");
+    
+            if (!isWriter && !isAdmin) return ResponseDto.authorizationFailed();
+    
             customerBoardRepository.delete(customerBoardEntity);
             
         } catch (Exception exception) {
@@ -221,10 +227,16 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
             CustomerBoardCommentEntity customerBoardCommentEntity = 
             customerBoardCommentRepository.findByCustomerBoardCommentNumber(customerBoardCommentNumber);
             if (customerBoardCommentEntity == null) return ResponseDto.noExistBoard();
-
-            String writerId = customerBoardCommentEntity != null ? customerBoardCommentEntity.getCustomerBoardCommentWriterId() : null; // 수정: null 체크 추가
-            boolean isWriter = writerId != null && userId.equals(writerId); // 수정: null 체크 추가
-            if (!isWriter) return ResponseDto.authorizationFailed();
+    
+            UserEntity userEntity = userRepository.findByUserId(userId);
+            if (userEntity == null) return ResponseDto.authenticationFailed();
+    
+            String writerId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
+            String userRole = userEntity.getUserRole();
+            boolean isWriter = userId.equals(writerId);
+            boolean isAdmin = userRole.equals("ROLE_ADMIN");
+    
+            if (!isWriter && !isAdmin) return ResponseDto.authorizationFailed();
 
             customerBoardCommentRepository.delete(customerBoardCommentEntity);
             

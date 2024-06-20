@@ -200,9 +200,15 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
             if (designerBoardEntity == null) return ResponseDto.noExistBoard();
 
-            String writerId = designerBoardEntity != null ? designerBoardEntity.getDesignerBoardWriterId() : null; // 수정: null 체크 추가
-            boolean isWriter = writerId != null && userId.equals(writerId); // 수정: null 체크 추가
-            if (!isWriter) return ResponseDto.authorizationFailed();
+            UserEntity userEntity = userRepository.findByUserId(userId);
+            if (userEntity == null) return ResponseDto.authenticationFailed();
+
+            String writerId = designerBoardEntity.getDesignerBoardWriterId();
+            String userRole = userEntity.getUserRole();
+            boolean isWriter = userId.equals(writerId);
+            boolean isAdmin = userRole.equals("ROLE_ADMIN");
+
+            if (!isWriter && !isAdmin) return ResponseDto.authorizationFailed();
 
             designerBoardRepository.delete(designerBoardEntity);
             
@@ -221,9 +227,15 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             designerBoardCommentRepository.findByDesignerBoardCommentNumber(designerBoardCommentNumber);
             if (designerBoardCommentEntity == null) return ResponseDto.noExistBoard();
 
-            String writerId = designerBoardCommentEntity != null ? designerBoardCommentEntity.getDesignerBoardCommentWriterId() : null; // 수정: null 체크 추가
-            boolean isWriter = writerId != null && userId.equals(writerId); // 수정: null 체크 추가
-            if (!isWriter) return ResponseDto.authorizationFailed();
+            UserEntity userEntity = userRepository.findByUserId(userId);
+            if (userEntity == null) return ResponseDto.authenticationFailed();
+
+            String writerId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
+            String userRole = userEntity.getUserRole();
+            boolean isWriter = userId.equals(writerId);
+            boolean isAdmin = userRole.equals("ROLE_ADMIN");
+
+            if (!isWriter && !isAdmin) return ResponseDto.authorizationFailed();
 
             designerBoardCommentRepository.delete(designerBoardCommentEntity);
             
