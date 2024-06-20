@@ -10,6 +10,7 @@ import com.back.back.dto.request.user.DesignerUpdateRequestDto;
 import com.back.back.dto.request.user.PasswordChangeRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.user.GetSignInUserResponseDto;
+import com.back.back.dto.response.user.GetUserRoleResponseDto;
 import com.back.back.entity.UserEntity;
 import com.back.back.repository.UserRepository;
 import com.back.back.service.UserService;
@@ -106,6 +107,23 @@ public class UserServiceImplimentation implements UserService {
         return ResponseDto.databaseError();
       }
       return ResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<? super GetUserRoleResponseDto> getUserRole(String userId) {
+
+      try {
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        
+        if (userEntity == null) {
+          return ResponseDto.noExistId();
+        }
+        return GetUserRoleResponseDto.success(userEntity);
+
+      } catch (Exception exception) {
+        exception.printStackTrace();
+        return ResponseDto.databaseError();
+      }
     }
 
 
