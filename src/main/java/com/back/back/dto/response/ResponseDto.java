@@ -113,22 +113,22 @@ public class ResponseDto {
     public static ResponseEntity<? super GetChatroomResponseDto> invalidRoomIdForGetChatroom() {
       ResponseDto responseBody = new ResponseDto(ResponseCode.INVALID_ROOM_ID, ResponseMessage.INVALID_ROOM_ID); 
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
-  }
+    }
   
-  public static ResponseEntity<ResponseDto> internalServerErrorForChatroomList() {
+    public static ResponseEntity<ResponseDto> internalServerErrorForChatroomList() {
       ResponseDto responseBody = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
-  }
+    }
   
-  public static ResponseEntity<? super GetChatroomResponseDto> internalServerErrorForChatroom() {
+    public static ResponseEntity<? super GetChatroomResponseDto> internalServerErrorForChatroom() {
     ResponseDto responseBody = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
-  }
+    }
   
-  public static ResponseEntity<? super GetChatMessageListResponseDto> internalServerErrorForChatMessageList() {
+    public static ResponseEntity<? super GetChatMessageListResponseDto> internalServerErrorForChatMessageList() {
     ResponseDto responseBody = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
-  }
+    }
 
     
 
