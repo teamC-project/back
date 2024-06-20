@@ -1,12 +1,9 @@
 package com.back.back.entity;
-
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
-
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,8 +29,6 @@ public class CustomerBoardEntity {
   private String customerBoardWriterId;
   private String customerBoardWriteDatetime;
   private Integer customerBoardViewCount;
-  // @Column(name = "customer_board_comment_count")  
-  // private Integer customerBoardCommentCount;
   private Boolean secret;
 
   public CustomerBoardEntity(PostCustomerBoardRequestDto dto, String userId) {
@@ -53,14 +48,7 @@ public class CustomerBoardEntity {
     this.customerBoardViewCount++;
   }
 
-  // public Integer getCustomerBoardCommentCount() {
-  //   return customerBoardCommentCount;
-  // }
-
-  // public void setCustomerBoardCommentCount(Integer customerBoardCommentCount) {
-  //   this.customerBoardCommentCount = customerBoardCommentCount;
-  // }
-
+  
   public void update(PutCustomerBoardRequestDto dto) {
     this.customerBoardTitle = dto.getCustomerBoardTitle();
     this.customerBoardContents = dto.getCustomerBoardContents();
