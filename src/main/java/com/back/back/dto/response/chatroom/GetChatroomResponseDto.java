@@ -15,6 +15,7 @@ public class GetChatroomResponseDto extends ResponseDto {
     private Integer chatroomId;
     private String customerId;
     private String designerId;
+    private String roomName;
 
     private GetChatroomResponseDto(ChatroomEntity chatroomEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
@@ -22,6 +23,7 @@ public class GetChatroomResponseDto extends ResponseDto {
         this.chatroomId = chatroomEntity.getRoomId();
         this.customerId = chatroomEntity.getCustomerId();
         this.designerId = chatroomEntity.getDesignerId();
+        this.roomName = chatroomEntity.getRoomName();
     }
 
     public static ResponseEntity<GetChatroomResponseDto> success (ChatroomEntity chatroomEntity) throws Exception {
