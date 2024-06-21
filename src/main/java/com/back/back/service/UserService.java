@@ -7,6 +7,7 @@ import com.back.back.dto.request.user.DesignerUpdateRequestDto;
 import com.back.back.dto.request.user.PasswordChangeRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.user.GetSignInUserResponseDto;
+import com.back.back.dto.response.user.GetUserRoleResponseDto;
 
 
 public interface UserService {
@@ -19,5 +20,7 @@ public interface UserService {
   ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto requestBody, String userId);
 
   ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId);
+
+  ResponseEntity<? super GetUserRoleResponseDto> getUserRole(String userId);
 
 }

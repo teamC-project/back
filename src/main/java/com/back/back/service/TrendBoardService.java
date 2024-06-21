@@ -33,6 +33,6 @@ ResponseEntity<ResponseDto> deleteTrendBoard(int trendBoardNumber , String userI
 ResponseEntity <? super PutLikeResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId);
 ResponseEntity < ? super GetTrendBoardLikeListResponseDto> getTrendBoardLikeList(Integer trendBoardNumber);
 ResponseEntity <ResponseDto> deleteTrendBoardComment(int trendBoardCommentNumber, String userId);
-
+ResponseEntity <ResponseDto> deleteTrendBoardLikeList(int trendBoardNumber);
 ResponseEntity<ResponseDto> increaseTrendBoardViewCount(int trendBoardNumber);
 };
