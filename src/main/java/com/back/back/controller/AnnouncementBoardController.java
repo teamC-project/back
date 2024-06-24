@@ -49,13 +49,13 @@ public class AnnouncementBoardController {
         return response;
     }
 
-	@GetMapping("/list")
+	@GetMapping("/")
 	public ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList() {
     ResponseEntity< ? super GetAnnouncementBoardListResponseDto> response = announcementBoardService.getAnnouncementBoardList();
 	return response;
 	}
 
-    @GetMapping("/list/search")
+    @GetMapping("/search")
     public ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(
         @RequestParam("word") String word
     ) {

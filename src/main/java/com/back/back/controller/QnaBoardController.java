@@ -32,7 +32,7 @@ public class QnaBoardController {
 
   private final QnaBoardService qnaBoardService;
 
-  @PostMapping("/")
+  @PostMapping("/write")
   ResponseEntity<ResponseDto> postQnaBoard(
       @RequestBody @Valid PostQnaBoardRequestDto requestBody,
       @AuthenticationPrincipal String userId) {
@@ -57,14 +57,14 @@ public class QnaBoardController {
     return response;
   }
 
-  @GetMapping("/list")
+  @GetMapping("/")
   public ResponseEntity<? super GetQnaBoardListResponseDto> getBoardList() {
     ResponseEntity<? super GetQnaBoardListResponseDto> response = qnaBoardService.getQnaBoardList();
 
     return response;
   }
 
-  @GetMapping("/list/search")
+  @GetMapping("/search")
   public ResponseEntity<? super GetSearchQnaBoardListResponseDto> getSearchBoardList(
       @RequestParam("word") String word) {
     ResponseEntity<? super GetSearchQnaBoardListResponseDto> response = qnaBoardService.getSearchQnaBoardList(word);
@@ -78,7 +78,7 @@ public class QnaBoardController {
     return response;
   }
 
-  @PatchMapping("/{qnaBoardNumber}/increase-view-count")
+  @PatchMapping("/{qnaBoardNumber}/increase_view_count")
   public ResponseEntity<ResponseDto> increaseQnaViewCount(
       @PathVariable("qnaBoardNumber") int qnaBoardNumber) {
     ResponseEntity<ResponseDto> response = qnaBoardService.increaseQnaViewCount(qnaBoardNumber);

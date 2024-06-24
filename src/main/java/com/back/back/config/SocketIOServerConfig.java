@@ -12,8 +12,8 @@ public class SocketIOServerConfig {
   @Bean
   protected SocketIOServer socketIOServer() {
     Configuration config = new Configuration();
-    config.setHostname("localhost"); // 호스트 이름
-    config.setPort(9092); // 포트 번호
+    config.setHostname("localhost"); 
+    config.setPort(9092); 
 
     config.setTransports(Transport.POLLING, Transport.WEBSOCKET);
 

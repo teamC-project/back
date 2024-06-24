@@ -1,12 +1,10 @@
 package com.back.back.service.implementation;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.back.back.common.object.ChatMessage;
 import com.back.back.dto.request.chatroom.PostChatroomRequestDto;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.chatmessage.GetChatMessageListResponseDto;
@@ -63,7 +61,7 @@ public class ChatroomServiceImplimentation implements ChatroomService {
         
         try {
 
-            List<ChatroomEntity> chatroom = chatroomRepository.findAll(); // 목록 가져오기
+            List<ChatroomEntity> chatroom = chatroomRepository.findByCustomerIdOrDesignerId(userId, userId);
 
             return GetChatroomListResponseDto.success(chatroom);
             
