@@ -101,15 +101,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         try {
             DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
             if (designerBoardEntity == null) return ResponseDto.noExistBoard();
-            UserEntity userEntity = userRepository.findByUserId(userId);
-            if (userEntity == null) return ResponseDto.authenticationFailed(); //  사용자 존재 여부 확인
-            String userRole = userEntity.getUserRole();
-            String writerId = designerBoardEntity.getDesignerBoardWriterId();
 
-            if (userRole.equals("ROLE_DESIGNER") && !userId.equals(writerId)) {
-                // ROLE_DESIGNER이면서 작성자가 아닌 경우 접근 제한
-                return ResponseDto.authorizationFailed();
-            }
             return GetDesignerBoardResponseDto.success(designerBoardEntity);
         } catch (Exception exception) {
             exception.printStackTrace();

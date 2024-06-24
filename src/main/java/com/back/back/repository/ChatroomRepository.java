@@ -14,4 +14,6 @@ public interface ChatroomRepository extends JpaRepository<ChatroomEntity, Intege
 
     boolean existsByCustomerId(String customerId);
     boolean existsByDesignerId(String designerId);
+
+    List<ChatroomEntity> findByCustomerIdOrDesignerId(String customerId, String designerId);
 } 
