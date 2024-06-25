@@ -33,12 +33,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-  private final JwtAuthenticationFilter jwtAuthenticationFilter;
-  private final OAuth2UserServiceImplimentation oAuth2UserService;
-  private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final OAuth2UserServiceImplimentation oAuth2UserService;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 
-  @Bean
-  protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
+    @Bean
+    protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
 
     httpSecurity
         .httpBasic(HttpBasicConfigurer::disable)
@@ -48,9 +48,7 @@ public class WebSecurityConfig {
         .cors(cors -> cors
             .configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(request -> request
-            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*")
-            .permitAll()
-
+            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*").permitAll()
             .requestMatchers("/api/v1/service/customer_board/write").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/my-page/info-customer").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
@@ -66,34 +64,37 @@ public class WebSecurityConfig {
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     return httpSecurity.build();
+    }
 
-  }
-
-  @Bean
-  protected CorsConfigurationSource corsConfigurationSource() {
+    @Bean
+    protected CorsConfigurationSource corsConfigurationSource() {
 
     CorsConfiguration configuration = new CorsConfiguration();
+
     configuration.addAllowedOrigin("*");
     configuration.addAllowedHeader("*");
     configuration.addAllowedMethod("*");
 
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
     source.registerCorsConfiguration("/**", configuration);
 
     return source;
-  }
+    }
+
 }
 
 class AuthorizationFailEntryPoint implements AuthenticationEntryPoint {
 
-  @Override
-  public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-      throws IOException, ServletException {
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) 
+        throws IOException, ServletException {
 
     authException.printStackTrace();
+
     response.setContentType("application/json");
     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
     response.getWriter().write("{ \"code\":\"AF\", \"message\": \"Authorization Failed\" }");
-  }
+    }
 
 }

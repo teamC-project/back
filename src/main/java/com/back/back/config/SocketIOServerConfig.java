@@ -9,15 +9,16 @@ import com.corundumstudio.socketio.Transport;
 @org.springframework.context.annotation.Configuration
 public class SocketIOServerConfig {
 
-  @Bean
-  protected SocketIOServer socketIOServer() {
+    @Bean
+    protected SocketIOServer socketIOServer() {
+
     Configuration config = new Configuration();
+
     config.setHostname("localhost"); 
     config.setPort(9092); 
-
     config.setTransports(Transport.POLLING, Transport.WEBSOCKET);
 
     return new SocketIOServer(config);
-  }
+    }
 
 }
