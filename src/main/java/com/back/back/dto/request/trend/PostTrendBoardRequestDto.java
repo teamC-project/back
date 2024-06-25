@@ -7,9 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostTrendBoardRequestDto {
+    
 	@NotBlank
 	private String trendBoardTitle;
+
 	@NotBlank
 	private String trendBoardContents;
+
 	private String trendBoardThumbnailImage;
 }

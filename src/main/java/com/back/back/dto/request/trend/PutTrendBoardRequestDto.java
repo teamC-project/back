@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PutTrendBoardRequestDto {
+
 	@NotBlank
 	private String trendBoardTitle;
+	
 	@NotBlank
 	private String trendBoardContents;
 }

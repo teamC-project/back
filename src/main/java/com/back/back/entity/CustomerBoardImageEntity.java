@@ -10,13 +10,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "customerBoardImage")
+@Entity
 @Table(name = "customer_board_image")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerBoardImageEntity {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerBoardImageNumber;

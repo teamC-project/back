@@ -10,11 +10,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PasswordFoundRequestDto {
-  @NotBlank
-  private String userId;
-  @NotBlank
-  @Pattern(regexp = "^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\\.[a-zA-Z]{2,4}$")
-  private String userEmail;
-  @NotBlank
-  private String authNumber;
+
+    @NotBlank
+    private String userId;
+
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\\.[a-zA-Z]{2,4}$")
+    private String userEmail;
+    
+    @NotBlank
+    private String authNumber;
 }

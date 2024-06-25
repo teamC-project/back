@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PutDesignerBoardRequestDto {
+
     @NotBlank
     private String designerBoardTitle;
+
     @NotBlank
     private String designerBoardContents;
-
-
 }

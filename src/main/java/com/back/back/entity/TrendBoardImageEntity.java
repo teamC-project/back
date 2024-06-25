@@ -10,13 +10,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "trendBoardImage")
+@Entity
 @Table(name = "trend_board_image")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TrendBoardImageEntity {
+    
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer trendBoardImageNumber;

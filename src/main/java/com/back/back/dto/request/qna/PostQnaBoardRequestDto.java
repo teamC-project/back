@@ -10,8 +10,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PostQnaBoardRequestDto {
+
 	@NotBlank
 	public String qnaBoardTitle;
+	
 	@NotBlank
 	public String qnaBoardContents;
 }
