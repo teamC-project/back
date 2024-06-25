@@ -21,7 +21,6 @@ public class GetSignInUserResponseDto extends ResponseDto {
   private String userCompanyName;
   private String userRole;
   
-
   private GetSignInUserResponseDto(UserEntity userEntity) {
     super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
     this.userId = userEntity.getUserId();
