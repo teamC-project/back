@@ -14,4 +14,5 @@ public interface DesignerBoardRepository extends JpaRepository<DesignerBoardEnti
 
     List<DesignerBoardEntity> findByOrderByDesignerBoardNumberDesc();
     List<DesignerBoardEntity> findByDesignerBoardTitleContainsOrderByDesignerBoardNumberDesc(String designerTitle);
+    
 }

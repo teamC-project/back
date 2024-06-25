@@ -12,5 +12,6 @@ public interface DesignerBoardCommentRepository extends JpaRepository<DesignerBo
     
     DesignerBoardCommentEntity findByDesignerBoardCommentNumber(Integer designerBoardCommentNumber);
 
-    List<DesignerBoardCommentEntity> findByDesignerBoardNumberOrderByDesignerBoardCommentNumberDesc(int designerBoardNumber);  
+    List<DesignerBoardCommentEntity> findByDesignerBoardNumberOrderByDesignerBoardCommentNumberDesc(int designerBoardNumber);
+
 }

@@ -13,4 +13,5 @@ public interface LoginLogRepository extends JpaRepository<LoginLogEntity, Intege
     int countByLoginDate(String loginDate);
 
     LoginLogEntity findByLoginId(String loginId);
+    
 }

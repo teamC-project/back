@@ -7,5 +7,6 @@ public interface CustomerBoardImageService {
 
     String upload(MultipartFile file);
     Resource getFile(String fileName);
+    
 } 
 

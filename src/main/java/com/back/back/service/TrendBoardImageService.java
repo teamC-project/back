@@ -7,4 +7,5 @@ public interface TrendBoardImageService {
 
 	String upload(MultipartFile file);
 	Resource getFile(String fileName);
+	
 }

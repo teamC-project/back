@@ -13,4 +13,5 @@ public interface CustomerBoardCommentRepository extends JpaRepository<CustomerBo
     CustomerBoardCommentEntity findByCustomerBoardCommentNumber(int customerBoardCommentNumber);
     
     List<CustomerBoardCommentEntity> findByCustomerBoardNumberOrderByCustomerBoardCommentNumberDesc(int customerBoardNumber);
+    
 }

@@ -14,4 +14,5 @@ public interface CustomerBoardRepository extends JpaRepository<CustomerBoardEnti
 
     List<CustomerBoardEntity> findByOrderByCustomerBoardNumberDesc();
     List<CustomerBoardEntity> findByCustomerBoardTitleContainsOrderByCustomerBoardNumberDesc(String customertitle);
+    
 }

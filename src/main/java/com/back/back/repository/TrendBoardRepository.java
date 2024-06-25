@@ -16,4 +16,5 @@ public interface TrendBoardRepository extends JpaRepository<TrendBoardEntity, In
     
     List<TrendBoardEntity> findByOrderByTrendBoardNumberDesc();
     List<TrendBoardEntity> findByTrendBoardTitleOrderByTrendBoardNumberDesc(String trendBoardTitle);
+    
 }

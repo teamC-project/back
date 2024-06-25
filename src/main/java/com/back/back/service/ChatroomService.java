@@ -16,4 +16,5 @@ public interface ChatroomService {
     ResponseEntity<? super GetChatroomListResponseDto> getChatroomList(String userId);
     ResponseEntity<? super GetChatroomResponseDto> getChatroom(int roomId);
     ResponseEntity<? super GetChatMessageListResponseDto> getChatMessageList(int roomId);
+    
 } 
