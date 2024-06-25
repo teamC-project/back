@@ -9,12 +9,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class DesignerUpdateRequestDto {
-  @NotBlank
-  private String userGender;
-  @NotBlank
-  private String userAge;
 
-  private String userImage;
-  @NotBlank
-  private String userCompanyName;
+    @NotBlank
+    private String userGender;
+
+    @NotBlank
+    private String userAge;
+
+    private String userImage;
+
+    @NotBlank
+    private String userCompanyName;
 }

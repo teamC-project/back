@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "chatRoom")
+@Entity
 @Table(name = "chat_room")
 @Getter
 @Setter

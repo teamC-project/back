@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
+import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.dto.request.loginLog.getLoginLogRequestDto;
 
 import jakarta.persistence.Entity;
@@ -23,18 +24,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginLogEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer sequence;
-  private String loginId;
-  private String loginDate;
 
-  public LoginLogEntity(getLoginLogRequestDto dto, String loginId) {
-  Date now = Date.from(Instant.now());
-  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-  String loginDate = simpleDateFormat.format(now);
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer sequence;
+    private String loginId;
+    private String loginDate;
 
-  this.loginId = dto.getLoginId();
-  this.loginDate = loginDate;
-  }
+    public LoginLogEntity(getLoginLogRequestDto dto, String loginId) {
+
+        this.loginId = dto.getLoginId();
+        this.loginDate = ChangeDateFormatUtil.getCurrentDatetiem();
+    }
 }

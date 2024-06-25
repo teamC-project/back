@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PostAnnouncementBoardRequestDto {
+    
 	@NotBlank
 	public String announcementBoardTitle;
+    
 	@NotBlank
 	public String announcementBoardContents;
 }

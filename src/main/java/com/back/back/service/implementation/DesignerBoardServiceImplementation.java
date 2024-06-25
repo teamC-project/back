@@ -51,17 +51,15 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             boolean isExistUser = userRepository.existsById(userId);
             if (!isExistUser) return ResponseDto.authenticationFailed();
             Optional<DesignerBoardEntity> designerBoardOptional = designerBoardRepository.findById(designerBoardNumber);
-            // 디자이너 보드 엔티티가 존재하지 않으면 오류 응답 반환
             if (!designerBoardOptional.isPresent())
             return ResponseDto.noExistBoard();
             DesignerBoardCommentEntity designerBoardCommentEntity;
-            // 부모 댓글 번호가 있으면 대댓글로 처리
             if (dto.getDesignerBoardParentCommentNumber() != null) {
                 Optional<DesignerBoardCommentEntity> parentCommentOptional = designerBoardCommentRepository.findById(dto.getDesignerBoardParentCommentNumber());
                 if (!parentCommentOptional.isPresent()) return ResponseDto.noExistBoard();
                 designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, dto.getDesignerBoardParentCommentNumber());
             } else {
-                designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, null); // null을 명시적으로 전달
+                designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, null); 
             }
 
             designerBoardCommentRepository.save(designerBoardCommentEntity); 
@@ -77,7 +75,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         try {
             List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByOrderByDesignerBoardNumberDesc();
             return GetDesignerBoardListResponseDto.success(designerBoardEntities);
-      
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();

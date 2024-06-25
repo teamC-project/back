@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
+import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.dto.request.designer.PostDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardCommentRequestDto;
 
@@ -18,14 +19,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name="designerBoardComment")
+@Entity
 @Table(name="designer_board_comment")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class DesignerBoardCommentEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer designerBoardCommentNumber;
@@ -36,27 +37,20 @@ public class DesignerBoardCommentEntity {
     private Integer designerBoardParentCommentNumber;
 
     public DesignerBoardCommentEntity (PostDesignerBoardCommentRequestDto dto, Integer designerBoardNumber, String userId) {
-        Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String designerBoardCommentWriteDatetime = simpleDateFormat.format(now);
 
         this.designerBoardNumber = designerBoardNumber;
         this.designerBoardCommentContents = dto.getDesignerBoardCommentContents();
         this.designerBoardCommentWriterId = userId;
-        this.designerBoardCommentWriteDatetime = designerBoardCommentWriteDatetime;
+        this.designerBoardCommentWriteDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
         this.designerBoardParentCommentNumber = null;
     }
 
-    // 대댓글 생성 시 사용할 생성자 추가
     public DesignerBoardCommentEntity(PostDesignerBoardCommentRequestDto dto, Integer designerBoardNumber, String userId, Integer parentCommentNumber) {
-        Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String designerBoardCommentWriteDatetime = simpleDateFormat.format(now);
 
         this.designerBoardNumber = designerBoardNumber;
         this.designerBoardCommentContents = dto.getDesignerBoardCommentContents();
         this.designerBoardCommentWriterId = userId;
-        this.designerBoardCommentWriteDatetime = designerBoardCommentWriteDatetime;
+        this.designerBoardCommentWriteDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
         this.designerBoardParentCommentNumber = parentCommentNumber;
     }
 

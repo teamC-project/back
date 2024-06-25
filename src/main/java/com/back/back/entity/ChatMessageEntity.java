@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.Date;
 
 import com.back.back.common.object.ChatMessage;
+import com.back.back.common.util.ChangeDateFormatUtil;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "chatMessage")
+@Entity
 @Table(name = "chat_message")
 @Getter
 @Setter
@@ -36,14 +37,10 @@ public class ChatMessageEntity {
     private String sendDatetime;
 
     public ChatMessageEntity(ChatMessage chatMessage) {
-        Date now = Date.from(Instant.now());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sendDatetime = simpleDateFormat.format(now);
 
         this.chatroomId = chatMessage.getChatroomId();
         this.senderId = chatMessage.getSenderId();
         this.message = chatMessage.getMessage();
-        this.sendDatetime = sendDatetime;
+        this.sendDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
     }
-
 }
