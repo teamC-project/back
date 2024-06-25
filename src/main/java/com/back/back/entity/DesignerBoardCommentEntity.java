@@ -1,9 +1,5 @@
 package com.back.back.entity;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
-
 import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.dto.request.designer.PostDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardCommentRequestDto;
