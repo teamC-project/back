@@ -34,6 +34,7 @@ public class OAuth2UserServiceImplimentation extends DefaultOAuth2UserService {
     String id = getId(oAuth2User, oAuthClientName);
 
     UserEntity userEntity = userRepository.findBySnsId(id);
+    
     if (userEntity == null) {
       return new CustomOAuth2User(id, oAuth2User.getAttributes(), false, oAuthClientName);
     } else {

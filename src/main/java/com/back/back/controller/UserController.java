@@ -5,7 +5,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +42,7 @@ public class UserController {
     return response;
   }
 
-  @PostMapping("/customer-update")
+  @PutMapping("/customer-update")
   public ResponseEntity<ResponseDto> customerUpdate(
       @RequestBody @Valid CustomerUpdateRequestDto requestBody,
       @AuthenticationPrincipal String userId) {
@@ -50,7 +50,7 @@ public class UserController {
     return response;
   }
 
-  @PostMapping("/designer-update")
+  @PutMapping("/designer-update")
   public ResponseEntity<ResponseDto> designerUpdate(
       @RequestBody @Valid DesignerUpdateRequestDto requestBody,
       @AuthenticationPrincipal String userId) {
@@ -58,7 +58,7 @@ public class UserController {
     return response;
   }
 
-    @PostMapping("/change-user-password")
+    @PutMapping("/change-user-password")
   public ResponseEntity<ResponseDto> passwordCheck(
     @RequestBody @Valid PasswordChangeRequestDto requestBody,
     @AuthenticationPrincipal String userId
