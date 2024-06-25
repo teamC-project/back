@@ -12,21 +12,24 @@ import com.back.back.dto.response.ResponseDto;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
-  @ExceptionHandler({
-      MethodArgumentNotValidException.class,
-      HttpMessageNotReadableException.class
-  })
-  public ResponseEntity<ResponseDto> validationExceptionHandler(
-      Exception exception) {
-    exception.printStackTrace();
-    return ResponseDto.validatyionFailed();
-  }
+    @ExceptionHandler({
+        MethodArgumentNotValidException.class,
+        HttpMessageNotReadableException.class
+    })
 
-  @ExceptionHandler(NoHandlerFoundException.class)
-  public ResponseEntity<ResponseDto> noHandlerFoundExceptionHandler(
-    Exception exception
-  ) {
-    exception.printStackTrace();
-    return ResponseDto.pageNotFound();
-  }
+    public ResponseEntity<ResponseDto> validationExceptionHandler(
+        Exception exception
+        ) {
+        exception.printStackTrace();
+        return ResponseDto.validatyionFailed();
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<ResponseDto> noHandlerFoundExceptionHandler(
+        Exception exception
+        ) {
+        exception.printStackTrace();
+        return ResponseDto.pageNotFound();
+        }
+
 }

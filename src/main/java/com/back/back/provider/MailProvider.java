@@ -8,8 +8,8 @@ import jakarta.mail.Message.RecipientType;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+ 
 import lombok.RequiredArgsConstructor;
-
 
 @Component
 @RequiredArgsConstructor
@@ -17,6 +17,7 @@ public class MailProvider {
 
     @Value("${spring.mail.username}")
     private String from;
+
     private final JavaMailSender javaMailSender;
 
     public void mailAuthSend (String to, String authNumber) throws MessagingException {
@@ -27,10 +28,10 @@ public class MailProvider {
         mimeMessage.setSubject("헤어어드바 인증 번호");
         mimeMessage.setText(getText(authNumber), "utf-8", "html");
         javaMailSender.send(mimeMessage);
-
     }
 
     private String getText (String authNumber) {
+
         String text = 
             "<h2 style='text-align: center;'>헤어어드바 인증 번호</h2>" +
             "<p>요청하신 email 인증 번호는 <strong style='color: red;'>" + 
@@ -39,5 +40,4 @@ public class MailProvider {
         return text;
     }
 
-    
 }
