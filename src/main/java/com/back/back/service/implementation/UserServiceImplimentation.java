@@ -20,112 +20,107 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImplimentation implements UserService {
-
-  private final UserRepository userRepository;
-
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-
-  @Override
-  public ResponseEntity<? super GetSignInUserResponseDto> getSignInUser(String userId) {
-    UserEntity userEntity = null;
-
-    try {
-      userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.authenticationFailed();
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
+    @Override
+    public ResponseEntity<? super GetSignInUserResponseDto> getSignInUser(String userId) {
+		UserEntity userEntity = null;
+		try {
+			userEntity = userRepository.findByUserId(userId);
+			if (userEntity == null) return ResponseDto.authenticationFailed();
+		} 
+		catch (Exception exception) {
+			exception.printStackTrace();
+			return ResponseDto.databaseError();
+		}
+			return GetSignInUserResponseDto.success(userEntity);
     }
-    return GetSignInUserResponseDto.success(userEntity);
-  }
 
-  @Override
-  public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto, String userId) {
+    @Override
+    public ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto, String userId) {
     try {
-      UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.noExistId();
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        if (userEntity == null) return ResponseDto.noExistId();
 
-      userEntity.update(dto);
-      userRepository.save(userEntity);
+        userEntity.update(dto);
+        userRepository.save(userEntity);
     } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
-    }
-    return ResponseDto.success();
-  }
-
-  @Override
-  public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto, String userId) {
-    try {
-      UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.noExistId();
-
-      userEntity.update(dto);
-      userRepository.save(userEntity);
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
+        exception.printStackTrace();
+        return ResponseDto.databaseError();
     }
     return ResponseDto.success();
-  }
-
-  @Override
-  public ResponseEntity<ResponseDto> deleteUser(String userId) {
-    try {
-      UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.noExistId();
-
-      userRepository.delete(userEntity);
-      
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
     }
-    return ResponseDto.success();
-  }
-  
+
+    @Override
+    public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto, String userId) {
+		try {
+			UserEntity userEntity = userRepository.findByUserId(userId);
+			if (userEntity == null) return ResponseDto.noExistId();
+
+			userEntity.update(dto);
+			userRepository.save(userEntity);
+		} 
+		catch (Exception exception) {
+			exception.printStackTrace();
+			return ResponseDto.databaseError();
+		}
+		return ResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<ResponseDto> deleteUser(String userId) {
+		try {
+			UserEntity userEntity = userRepository.findByUserId(userId);
+			if (userEntity == null) return ResponseDto.noExistId();
+
+			userRepository.delete(userEntity);
+			
+		} 
+		catch (Exception exception) {
+			exception.printStackTrace();
+			return ResponseDto.databaseError();
+		}
+		return ResponseDto.success();
+    }
 
     @Override
     public ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId) {
-      
-      try {
-        UserEntity userEntity = userRepository.findByUserId(userId);
+		try {
+			UserEntity userEntity = userRepository.findByUserId(userId);
 
-        if (userEntity == null) {
-          return ResponseDto.noExistId();
-        }
+			if (userEntity == null) {
+			return ResponseDto.noExistId();
+			}
 
-        String userPassword =dto.getUserPassword();
-        String encodedPassword = passwordEncoder.encode(userPassword);
-        userEntity.setUserPassword(encodedPassword);
+		String userPassword =dto.getUserPassword();
+		String encodedPassword = passwordEncoder.encode(userPassword);
+		userEntity.setUserPassword(encodedPassword);
 
-        userRepository.save(userEntity);
+		userRepository.save(userEntity);
 
-      } catch (Exception exception) {
-        exception.printStackTrace();
-        return ResponseDto.databaseError();
-      }
-      return ResponseDto.success();
+		} 
+		catch (Exception exception) {
+		exception.printStackTrace();
+		return ResponseDto.databaseError();
+		}
+		return ResponseDto.success();
     }
 
     @Override
     public ResponseEntity<? super GetUserRoleResponseDto> getUserRole(String userId) {
+		try {
+			UserEntity userEntity = userRepository.findByUserId(userId);
+		if (userEntity == null) {
+			return ResponseDto.noExistId();
+		}
+			return GetUserRoleResponseDto.success(userEntity);
 
-      try {
-        UserEntity userEntity = userRepository.findByUserId(userId);
-        
-        if (userEntity == null) {
-          return ResponseDto.noExistId();
-        }
-        return GetUserRoleResponseDto.success(userEntity);
-
-      } catch (Exception exception) {
-        exception.printStackTrace();
-        return ResponseDto.databaseError();
-      }
+		} 
+		catch (Exception exception) {
+			exception.printStackTrace();
+		return ResponseDto.databaseError();
+		}
     }
-
-
 }
 

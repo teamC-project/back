@@ -9,7 +9,7 @@ import com.back.back.entity.TrendBoardCommentEntity;
 
 @Repository
 public interface TrendBoardCommentRepository extends JpaRepository<TrendBoardCommentEntity, Integer> {
-  TrendBoardCommentEntity findByTrendBoardCommentNumber(Integer trendBoardCommentNumber);
+	TrendBoardCommentEntity findByTrendBoardCommentNumber(Integer trendBoardCommentNumber);
 
-  List<TrendBoardCommentEntity> findByTrendBoardNumberOrderByTrendBoardCommentNumberDesc(int trendBoardNumber);
+	List<TrendBoardCommentEntity> findByTrendBoardNumberOrderByTrendBoardCommentNumberDesc(int trendBoardNumber);
 }

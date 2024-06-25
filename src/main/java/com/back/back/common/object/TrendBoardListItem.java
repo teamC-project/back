@@ -10,16 +10,16 @@ import lombok.Getter;
 
 @Getter
 public class TrendBoardListItem {
-  private Integer trendBoardNumber;
-  private String trendBoardTitle;
-  private String trendBoardContents;
-  private String trendBoardWriterId;
-  private String trendBoardWriteDatetime;
-  private String trendBoardThumbnailImage;
-  private Integer trendBoardLikeCount;
+    private Integer trendBoardNumber;
+    private String trendBoardTitle;
+    private String trendBoardContents;
+    private String trendBoardWriterId;
+    private String trendBoardWriteDatetime;
+    private String trendBoardThumbnailImage;
+    private Integer trendBoardLikeCount;
 	private Integer trendBoardViewCount;
 
-  private TrendBoardListItem(TrendBoardEntity trendBoardEntity) throws Exception {
+    private TrendBoardListItem(TrendBoardEntity trendBoardEntity) throws Exception {
     String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(
         trendBoardEntity.getTrendBoardWriteDatetime());
 
@@ -34,16 +34,16 @@ public class TrendBoardListItem {
     this.trendBoardLikeCount = trendBoardEntity.getTrendBoardLikeCount();
 		this.trendBoardViewCount = trendBoardEntity.getTrendBoardViewCount();
 		this.trendBoardThumbnailImage =trendBoardEntity.getTrendBoardThumbnailImage();
-  }
+    }
 
-  public static List<TrendBoardListItem> getTrendBoardList(
-      List<TrendBoardEntity> trendBoardEntities) throws Exception {
+    public static List<TrendBoardListItem> getTrendBoardList(
+    List<TrendBoardEntity> trendBoardEntities) throws Exception {
     List<TrendBoardListItem> trendBoardList = new ArrayList<>();
 
     for (TrendBoardEntity trendBoardEntity : trendBoardEntities) {
-      TrendBoardListItem trendBoardListItem = new TrendBoardListItem(trendBoardEntity);
-      trendBoardList.add(trendBoardListItem);
+    TrendBoardListItem trendBoardListItem = new TrendBoardListItem(trendBoardEntity);
+    trendBoardList.add(trendBoardListItem);
     }
     return trendBoardList;
-  }
+    }
 }

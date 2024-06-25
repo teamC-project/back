@@ -33,12 +33,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-  private final JwtAuthenticationFilter jwtAuthenticationFilter;
-  private final OAuth2UserServiceImplimentation oAuth2UserService;
-  private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final OAuth2UserServiceImplimentation oAuth2UserService;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 
-  @Bean
-  protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
+    @Bean
+    protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
 
     httpSecurity
         .httpBasic(HttpBasicConfigurer::disable)
@@ -67,10 +67,10 @@ public class WebSecurityConfig {
 
     return httpSecurity.build();
 
-  }
+    }
 
-  @Bean
-  protected CorsConfigurationSource corsConfigurationSource() {
+    @Bean
+    protected CorsConfigurationSource corsConfigurationSource() {
 
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.addAllowedOrigin("*");
@@ -81,19 +81,19 @@ public class WebSecurityConfig {
     source.registerCorsConfiguration("/**", configuration);
 
     return source;
-  }
+    }
 }
 
 class AuthorizationFailEntryPoint implements AuthenticationEntryPoint {
 
-  @Override
-  public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-      throws IOException, ServletException {
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
+    throws IOException, ServletException {
 
     authException.printStackTrace();
     response.setContentType("application/json");
     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
     response.getWriter().write("{ \"code\":\"AF\", \"message\": \"Authorization Failed\" }");
-  }
+    }
 
 }

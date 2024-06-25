@@ -29,7 +29,7 @@ public class ChangeDateFormatUtil {
     simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
     String writeDatetime = simpleDateFormat.format(datetime);
     return writeDatetime;
-  }
+    }
 
     public static String changeYYYYMMDD(String original) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

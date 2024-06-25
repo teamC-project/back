@@ -20,7 +20,6 @@ public class DesignerBoardImageServiceImplementaion implements DesignerBoardImag
 
     @Override
     public String upload(MultipartFile file) {
-        
         if (file.isEmpty()) return null;
 
 			String originalFileName = file.getOriginalFilename();
@@ -29,12 +28,13 @@ public class DesignerBoardImageServiceImplementaion implements DesignerBoardImag
 			String saveFileName = uuid + extension;
 			String savePath = filePath + saveFileName;
 
-			try {
-				file.transferTo(new File(savePath));
-			} catch(Exception exception) {
-				exception.printStackTrace();
-				return null;
-			}
+		try {
+			file.transferTo(new File(savePath));
+		} 
+		catch(Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
 
 			String url = fileUrl + saveFileName;
 			return url;
@@ -42,16 +42,15 @@ public class DesignerBoardImageServiceImplementaion implements DesignerBoardImag
 
     @Override
     public Resource getFile(String fileName) {
-        
         Resource resource = null;
-			try {
-					resource = new UrlResource("file:" + filePath + fileName);
-			} catch(Exception exception) {
-				exception.printStackTrace();
-				return null;
-			}
 
+		try {
+			resource = new UrlResource("file:" + filePath + fileName);
+			} 
+			catch(Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
 			return resource;
     }
-    
 }
