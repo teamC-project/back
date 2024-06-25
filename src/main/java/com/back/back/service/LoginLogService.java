@@ -9,4 +9,5 @@ public interface LoginLogService {
 
     ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors(Integer sequence);
     ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday(String loginDate);
+    
 }

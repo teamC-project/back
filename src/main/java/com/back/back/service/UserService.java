@@ -12,10 +12,11 @@ import com.back.back.dto.response.user.GetUserRoleResponseDto;
 public interface UserService {
 
     ResponseEntity<ResponseDto> deleteUser(String userId);
-    ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto requestBody, String userId);
-    ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto requestBody, String userId);
+    ResponseEntity<ResponseDto> customerUpdate(CustomerUpdateRequestDto dto, String userId);
+    ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto, String userId);
     ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId);
     
     ResponseEntity<? super GetSignInUserResponseDto> getSignInUser(String userId);
     ResponseEntity<? super GetUserRoleResponseDto> getUserRole(String userId);
+
 }

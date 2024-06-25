@@ -19,4 +19,5 @@ public interface AnnouncementBoardService {
     ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList();
     ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord);
     ResponseEntity<? super GetAnnouncementBoardResponseDto> getAnnouncementBoard(int announcementBoardNumber);
+    
 }

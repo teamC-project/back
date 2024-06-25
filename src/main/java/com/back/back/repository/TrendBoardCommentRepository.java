@@ -13,4 +13,5 @@ public interface TrendBoardCommentRepository extends JpaRepository<TrendBoardCom
     TrendBoardCommentEntity findByTrendBoardCommentNumber(Integer trendBoardCommentNumber);
 
     List<TrendBoardCommentEntity> findByTrendBoardNumberOrderByTrendBoardCommentNumberDesc(int trendBoardNumber);
+    
 }

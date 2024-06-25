@@ -19,7 +19,6 @@ public interface DesignerBoardService {
     ResponseEntity<ResponseDto> postDesignerBoardComment(PostDesignerBoardCommentRequestDto dto, int designerBoardNumber, String userId);
     ResponseEntity<ResponseDto> putDesignerBoard(PutDesignerBoardRequestDto dto, int designerBoardNumber, String userId);
     ResponseEntity<ResponseDto> putDesignerBoardComment(PutDesignerBoardCommentRequestDto dto, int designerBoardCommentNumber, String userId);
-
     ResponseEntity<ResponseDto> deleteDesignerBoard(int designerBoardNumber, String userId);
     ResponseEntity<ResponseDto> deleteDesignerBoardComment(int designerBoardCommentNumber, String userId);
     ResponseEntity<ResponseDto> increaseViewCount(int designerBoardNumber);

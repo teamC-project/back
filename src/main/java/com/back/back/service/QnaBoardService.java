@@ -21,4 +21,5 @@ public interface QnaBoardService {
     ResponseEntity<? super GetQnaBoardListResponseDto> getQnaBoardList();
     ResponseEntity<? super GetSearchQnaBoardListResponseDto> getSearchQnaBoardList(String searchWord);
     ResponseEntity<? super GetQnaBoardResponseDto> getQnaBoard(int qnaBoardNumber);
+    
 }

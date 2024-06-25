@@ -7,5 +7,6 @@ public interface DesignerBoardImageService {
 
     String upload(MultipartFile file);
 	Resource getFile(String fileName);
+    
 } 
 

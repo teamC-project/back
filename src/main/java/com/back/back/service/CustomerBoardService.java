@@ -28,4 +28,5 @@ public interface CustomerBoardService {
     ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(int customerBoardNumber, String userId);
     ResponseEntity<? super GetCustomerBoardCommentListResponseDto> getCustomerBoardCommentList(int customerBoardNumber);
     ResponseEntity<? super GetCustomerBoardCommentResponseDto> getCustomerBoardComment(int customerBoardCommentNumber);
+    
 }
