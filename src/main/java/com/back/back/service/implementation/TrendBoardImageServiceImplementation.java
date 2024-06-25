@@ -20,24 +20,23 @@ public class TrendBoardImageServiceImplementation implements TrendBoardImageServ
 
 	@Override
 	public String upload(MultipartFile file) {
-		
-			if (file.isEmpty()) return null;
+		if (file.isEmpty()) return null;
 
-			String originalFileName = file.getOriginalFilename();
-			System.out.println("originalFileName: " + originalFileName);
-			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-			System.out.println("extension: " + extension);
-			String uuid = UUID.randomUUID().toString();
-			String saveFileName = uuid + extension;
-			String savePath = filePath + saveFileName;
+		String originalFileName = file.getOriginalFilename();
+		System.out.println("originalFileName: " + originalFileName);
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+		System.out.println("extension: " + extension);
+		String uuid = UUID.randomUUID().toString();
+		String saveFileName = uuid + extension;
+		String savePath = filePath + saveFileName;
 
-			try {
-				file.transferTo(new File(savePath));
-			} catch(Exception exception) {
-				exception.printStackTrace();
-				return null;
-			}
-
+		try {
+			file.transferTo(new File(savePath));
+		} 
+		catch(Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
 			String url = fileUrl + saveFileName;
 			return url;
 	}
@@ -45,13 +44,13 @@ public class TrendBoardImageServiceImplementation implements TrendBoardImageServ
 	@Override
 	public Resource getFile(String fileName) {
 		Resource resource = null;
-			try {
-					resource = new UrlResource("file:" + filePath + fileName);
-			} catch(Exception exception) {
-				exception.printStackTrace();
-				return null;
-			}
-
-			return resource;
+		try {
+			resource = new UrlResource("file:" + filePath + fileName);
+		} 
+		catch(Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
+		return resource;
 	}
 }

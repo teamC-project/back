@@ -16,6 +16,10 @@ import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.dto.response.trendboard.PutLikeResponseDto;
 
 public interface TrendBoardService {
+<<<<<<< HEAD
+    ResponseEntity<ResponseDto> postTrendBoard(PostTrendBoardRequestDto dto, String userId);
+    ResponseEntity<ResponseDto> postTrendBoardComment(PostTrendBoardCommentRequestDto dto, int trendBoardNumber, String userId);
+=======
 
     ResponseEntity<ResponseDto> postTrendBoard(PostTrendBoardRequestDto dto, String userId);
     ResponseEntity<ResponseDto> postTrendBoardComment(PostTrendBoardCommentRequestDto dto, int trendBoardNumber, String userId);
@@ -26,11 +30,24 @@ public interface TrendBoardService {
     ResponseEntity <ResponseDto> deleteTrendBoardLikeList(int trendBoardNumber);
     ResponseEntity<ResponseDto> increaseTrendBoardViewCount(int trendBoardNumber);
     
+>>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
     ResponseEntity <? super GetTrendBoardListResponseDto> getTrendBoardList();
     ResponseEntity< ? super GetTrendBoardCommentListResponseDto> getTrendBoardCommentList(int trendBoardNumber);
     ResponseEntity<? super GetTrendBoardCommentResponseDto> getTrendBoardComment(int trendBoardCommentNumber);
     ResponseEntity< ? super GetSearchTrendBoardListResponseDto> getSearchTrendBoardList(String trendBoardSearchWord);
+<<<<<<< HEAD
+	ResponseEntity <? super GetTrendBoardResponseDto> getTrendBoard(int trendBoardNumber);
+	ResponseEntity<ResponseDto> putTrendBoard(PutTrendBoardRequestDto dto, int trendBoardNumber, String userId);
+	ResponseEntity<ResponseDto> putTrendBoardComment(PutTrendBoardCommentRequestDto dto, int trendBoardCommentNumber, String userId);
+	ResponseEntity<ResponseDto> deleteTrendBoard(int trendBoardNumber , String userId );
+	ResponseEntity <? super PutLikeResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId);
+	ResponseEntity < ? super GetTrendBoardLikeListResponseDto> getTrendBoardLikeList(Integer trendBoardNumber);
+	ResponseEntity <ResponseDto> deleteTrendBoardComment(int trendBoardCommentNumber, String userId);
+	ResponseEntity <ResponseDto> deleteTrendBoardLikeList(int trendBoardNumber);
+	ResponseEntity<ResponseDto> increaseTrendBoardViewCount(int trendBoardNumber);
+=======
     ResponseEntity <? super GetTrendBoardResponseDto> getTrendBoard(int trendBoardNumber);
     ResponseEntity <? super PutLikeResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId);
     ResponseEntity < ? super GetTrendBoardLikeListResponseDto> getTrendBoardLikeList(Integer trendBoardNumber);
+>>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
 };

@@ -10,16 +10,16 @@ import lombok.Getter;
 
 @Getter
 public class QnaBoardListItem {
-  private Integer qnaBoardNumber;
-  private Boolean qnaBoardStatus;
-  private String qnaBoardTitle;
-  private String qnaBoardContents;
-  private String qnaBoardWriterId;
-  private String qnaBoardWriteDatetime;
-  private Integer qnaBoardViewCount;
-  private String qnaBoardComment;
+    private Integer qnaBoardNumber;
+    private Boolean qnaBoardStatus;
+    private String qnaBoardTitle;
+    private String qnaBoardContents;
+    private String qnaBoardWriterId;
+    private String qnaBoardWriteDatetime;
+    private Integer qnaBoardViewCount;
+    private String qnaBoardComment;
 
-  private QnaBoardListItem(QnaBoardEntity qnaBoardEntity) throws Exception {
+    private QnaBoardListItem(QnaBoardEntity qnaBoardEntity) throws Exception {
     String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(qnaBoardEntity.getQnaBoardWriteDatetime());
 
     String qnaBoardWriterId = qnaBoardEntity.getQnaBoardWriterId();
@@ -32,15 +32,15 @@ public class QnaBoardListItem {
     this.qnaBoardWriteDatetime = writeDatetime;
     this.qnaBoardViewCount = qnaBoardEntity.getQnaBoardViewCount();
 
-  }
+    }
 
-  public static List<QnaBoardListItem> getQnaBoardList(List<QnaBoardEntity> qnaBoardEntities) throws Exception {
+    public static List<QnaBoardListItem> getQnaBoardList(List<QnaBoardEntity> qnaBoardEntities) throws Exception {
     List<QnaBoardListItem> qnaBoardList = new ArrayList<>();
 
     for (QnaBoardEntity qnaBoardEntity : qnaBoardEntities) {
-      QnaBoardListItem qnaBoardListItem = new QnaBoardListItem(qnaBoardEntity);
-      qnaBoardList.add(qnaBoardListItem);
+    QnaBoardListItem qnaBoardListItem = new QnaBoardListItem(qnaBoardEntity);
+    qnaBoardList.add(qnaBoardListItem);
     }
     return qnaBoardList;
-  }
+    }
 }
