@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CustomerUpdateRequestDto {
+
     @NotBlank
     private String userGender;
+    
     @NotBlank
     private String userAge;
 }

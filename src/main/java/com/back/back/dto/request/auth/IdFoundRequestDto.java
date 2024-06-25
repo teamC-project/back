@@ -10,9 +10,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class IdFoundRequestDto {
+
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\\.[a-zA-Z]{2,4}$")
     private String userEmail;
+    
     @NotBlank
     private String authNumber;
 }

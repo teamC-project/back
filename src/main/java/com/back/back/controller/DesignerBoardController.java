@@ -1,4 +1,5 @@
 package com.back.back.controller;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.back.back.dto.request.designer.PostDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PostDesignerBoardRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardCommentRequestDto;
@@ -21,6 +23,7 @@ import com.back.back.dto.response.designerboard.GetDesignerBoardCommentListRespo
 import com.back.back.dto.response.designerboard.GetDesignerBoardListResponseDto;
 import com.back.back.dto.response.designerboard.GetSearchDesignerBoardListResponseDto;
 import com.back.back.service.DesignerBoardService;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -29,96 +32,106 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DesignerBoardController {
 
-  private final DesignerBoardService designerBoardService;
+    private final DesignerBoardService designerBoardService;
 
-  @PostMapping("/")
-  ResponseEntity<ResponseDto> postDesignerBoard(
-      @RequestBody @Valid PostDesignerBoardRequestDto requestBody,
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = designerBoardService.postDesignerBoard(requestBody, userId);
-    return response;
-  }
+    @PostMapping("/")
+    ResponseEntity<ResponseDto> postDesignerBoard(
+        @RequestBody @Valid PostDesignerBoardRequestDto requestBody,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = designerBoardService.postDesignerBoard(requestBody, userId);
+        return response;
+    }
 
-  @PostMapping("/{designerBoardNumber}/comment")
-  public ResponseEntity<ResponseDto> postDesignerBoardComment(
-      @RequestBody @Valid PostDesignerBoardCommentRequestDto requestBody,
-      @PathVariable("designerBoardNumber") int designerBoardNumber,
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = designerBoardService.postDesignerBoardComment(requestBody,
+    @PostMapping("/{designerBoardNumber}/comment")
+    public ResponseEntity<ResponseDto> postDesignerBoardComment(
+        @RequestBody @Valid PostDesignerBoardCommentRequestDto requestBody,
+        @PathVariable("designerBoardNumber") int designerBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = designerBoardService.postDesignerBoardComment(requestBody,
         designerBoardNumber, userId);
-    return response;
-  }
+        return response;
+    }
 
-  @GetMapping("/list")
-  public ResponseEntity<? super GetDesignerBoardListResponseDto> getDesignerBoardList() {
-    ResponseEntity<? super GetDesignerBoardListResponseDto> response = designerBoardService.getDesignerBoardList();
-    return response;
-  }
+    @GetMapping("/list")
+    public ResponseEntity<? super GetDesignerBoardListResponseDto> getDesignerBoardList() {
+        ResponseEntity<? super GetDesignerBoardListResponseDto> response = designerBoardService.getDesignerBoardList();
+        return response;
+    }
 
-  @GetMapping("/list/search")
-  public ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesingerBoardList(
-      @RequestParam("word") String word) {
-    ResponseEntity<? super GetSearchDesignerBoardListResponseDto> response = designerBoardService
+    @GetMapping("/list/search")
+    public ResponseEntity<? super GetSearchDesignerBoardListResponseDto> getSearchDesingerBoardList(
+        @RequestParam("word") String word
+        ) {
+        ResponseEntity<? super GetSearchDesignerBoardListResponseDto> response = designerBoardService
         .getSearchDesignerBoardList(word);
-    return response;
-  }
+        return response;
+    }
 
-  @GetMapping("/{designerBoardNumber}")
+    @GetMapping("/{designerBoardNumber}")
     public ResponseEntity<? super GetDesignerBoardResponseDto> getDesignerBoard(
         @PathVariable("designerBoardNumber") int designerBoardNumber,
-        @AuthenticationPrincipal String userId) {
-    return designerBoardService.getDesignerBoard(designerBoardNumber, userId);
-}
+        @AuthenticationPrincipal String userId
+        ) {
+        return designerBoardService.getDesignerBoard(designerBoardNumber, userId);
+    }
 
-  @GetMapping("/{designerBoardNumber}/comment/list")
-  public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(
-      @PathVariable("designerBoardNumber") int designerBoardNumber) {
-    ResponseEntity<? super GetDesignerBoardCommentListResponseDto> response = designerBoardService
+    @GetMapping("/{designerBoardNumber}/comment/list")
+    public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(
+        @PathVariable("designerBoardNumber") int designerBoardNumber
+        ) {
+        ResponseEntity<? super GetDesignerBoardCommentListResponseDto> response = designerBoardService
         .getDesignerBoardCommentList(designerBoardNumber);
-    return response;
-  }
+        return response;
+    }
 
-  @PutMapping("/{designerBoardNumber}")
-  public ResponseEntity<ResponseDto> putDesignerBoard(
-      @RequestBody @Valid PutDesignerBoardRequestDto requestBody,
-      @PathVariable("designerBoardNumber") int designerBoardNumber,
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = designerBoardService.putDesignerBoard(requestBody, designerBoardNumber,
+    @PutMapping("/{designerBoardNumber}")
+    public ResponseEntity<ResponseDto> putDesignerBoard(
+        @RequestBody @Valid PutDesignerBoardRequestDto requestBody,
+        @PathVariable("designerBoardNumber") int designerBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = designerBoardService.putDesignerBoard(requestBody, designerBoardNumber,
         userId);
-    return response;
-  }
+        return response;
+    }
 
-  @PutMapping("/{designerBoardCommentNumber}/comment")
-  public ResponseEntity<ResponseDto> putDesignerBoardComment(
-      @RequestBody @Valid PutDesignerBoardCommentRequestDto requestBody,
-      @PathVariable("designerBoardCommentNumber") int designerBoardCommentNumber,
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = designerBoardService.putDesignerBoardComment(requestBody,
+    @PutMapping("/{designerBoardCommentNumber}/comment")
+    public ResponseEntity<ResponseDto> putDesignerBoardComment(
+        @RequestBody @Valid PutDesignerBoardCommentRequestDto requestBody,
+        @PathVariable("designerBoardCommentNumber") int designerBoardCommentNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = designerBoardService.putDesignerBoardComment(requestBody,
         designerBoardCommentNumber, userId);
-    return response;
-  }
+        return response;
+    }
 
-  @DeleteMapping("/{designerBoardNumber}")
-  public ResponseEntity<ResponseDto> deleteDesignerBoard(
-      @PathVariable("designerBoardNumber") int designerBoardNumber,
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = designerBoardService.deleteDesignerBoard(designerBoardNumber, userId);
-    return response;
-  }
+    @DeleteMapping("/{designerBoardNumber}")
+    public ResponseEntity<ResponseDto> deleteDesignerBoard(
+        @PathVariable("designerBoardNumber") int designerBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = designerBoardService.deleteDesignerBoard(designerBoardNumber, userId);
+        return response;
+    }
 
-  @DeleteMapping("/{designerBoardCommentNumber}/comment")
-  public ResponseEntity<ResponseDto> deleteDesignerBoardComment(
-      @PathVariable("designerBoardCommentNumber") int designerBoardCommentNumber,
-      @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = designerBoardService.deleteDesignerBoardComment(designerBoardCommentNumber,
+    @DeleteMapping("/{designerBoardCommentNumber}/comment")
+    public ResponseEntity<ResponseDto> deleteDesignerBoardComment(
+        @PathVariable("designerBoardCommentNumber") int designerBoardCommentNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = designerBoardService.deleteDesignerBoardComment(designerBoardCommentNumber,
         userId);
-    return response;
-  }
+        return response;
+    }
 
-  @PatchMapping("/{designerBoardNumber}/increase-view-count")
-  public ResponseEntity<ResponseDto> increaseViewCount(
-      @PathVariable("designerBoardNumber") int designerBoardNumber) {
-    ResponseEntity<ResponseDto> response = designerBoardService.increaseViewCount(designerBoardNumber);
-    return response;
-  }
+    @PatchMapping("/{designerBoardNumber}/increase-view-count")
+    public ResponseEntity<ResponseDto> increaseViewCount(
+        @PathVariable("designerBoardNumber") int designerBoardNumber
+        ) {
+        ResponseEntity<ResponseDto> response = designerBoardService.increaseViewCount(designerBoardNumber);
+        return response;
+    }
 }

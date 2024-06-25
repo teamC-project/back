@@ -8,8 +8,9 @@ import lombok.Setter;
 @Setter
 public class PostDesignerBoardRequestDto {
     @NotBlank
+
     private String designerBoardTitle;
+
     @NotBlank
     private String designerBoardContents;
-
 }

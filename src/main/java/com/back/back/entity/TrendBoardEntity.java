@@ -1,9 +1,6 @@
 package com.back.back.entity;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
-
+import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.dto.request.trend.PostTrendBoardRequestDto;
 import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
 
@@ -17,14 +14,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "trendBoard")
+@Entity
 @Table(name = "trend_board")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TrendBoardEntity {
-  @Id
+
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer trendBoardNumber;
 	private String trendBoardTitle;
@@ -35,17 +33,12 @@ public class TrendBoardEntity {
 	private Integer trendBoardViewCount;
 	private String trendBoardThumbnailImage;
 
-
-
 	public TrendBoardEntity(PostTrendBoardRequestDto dto , String userId) {
-		Date now = Date.from(Instant.now());
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String trendBoardWriteDatetime = simpleDateFormat.format(now);
 
 		this.trendBoardTitle = dto.getTrendBoardTitle();
 		this.trendBoardContents = dto.getTrendBoardContents();
 		this.trendBoardWriterId = userId;
-		this.trendBoardWriteDatetime = trendBoardWriteDatetime;
+		this.trendBoardWriteDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
 		this.trendBoardLikeCount = 0;
 		this.trendBoardViewCount = 0;
 		this.trendBoardThumbnailImage = dto.getTrendBoardThumbnailImage();

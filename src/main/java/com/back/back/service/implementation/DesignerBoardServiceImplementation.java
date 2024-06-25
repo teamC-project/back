@@ -66,7 +66,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
                 if (!parentCommentOptional.isPresent()) return ResponseDto.noExistBoard();
                 designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, dto.getDesignerBoardParentCommentNumber());
             } else {
-                designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, null); // null을 명시적으로 전달
+                designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, null); 
             }
             designerBoardCommentRepository.save(designerBoardCommentEntity); 
         } 
@@ -82,8 +82,13 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         try {
             List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByOrderByDesignerBoardNumberDesc();
             return GetDesignerBoardListResponseDto.success(designerBoardEntities);
+<<<<<<< HEAD
         } 
 		catch (Exception exception) {
+=======
+
+        } catch (Exception exception) {
+>>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }

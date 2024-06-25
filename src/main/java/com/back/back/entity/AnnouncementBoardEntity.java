@@ -1,9 +1,6 @@
 package com.back.back.entity;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
-
+import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.dto.request.announcement.PostAnnouncementBoardRequestDto;
 import com.back.back.dto.request.announcement.PutAnnouncementBoardRequestDto;
 
@@ -17,14 +14,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "announcementBoard")
+@Entity
 @Table(name = "announcement_board")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnnouncementBoardEntity {
-  @Id
+
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer announcementBoardNumber;
 	private String announcementBoardTitle;
@@ -34,16 +32,11 @@ public class AnnouncementBoardEntity {
 	private Integer announcementBoardViewCount;
 
 	public AnnouncementBoardEntity(PostAnnouncementBoardRequestDto dto, String userId) {
-		Date now =Date.from(Instant.now());
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss"
-		);
-		String writeDatetime = simpleDateFormat.format(now);
 
 		this.announcementBoardTitle = dto.getAnnouncementBoardTitle();
 		this.announcementBoardContents = dto.getAnnouncementBoardContents();
 		this.announcementBoardWriterId = userId;
-		this.announcementBoardWriteDatetime = writeDatetime;
+		this.announcementBoardWriteDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
 		this.announcementBoardViewCount = 0;
 	}
 

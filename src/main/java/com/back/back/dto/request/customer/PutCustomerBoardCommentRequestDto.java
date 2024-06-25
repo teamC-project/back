@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PutCustomerBoardCommentRequestDto {
+    
     @NotBlank
     private String customerBoardCommentContents;
 }

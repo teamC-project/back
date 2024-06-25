@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LikePk implements Serializable {
+	
 	@Column(name = "user_id")
 	private String userId;
 	@Column(name ="trend_board_number")

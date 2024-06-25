@@ -9,11 +9,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PutCustomerBoardRequestDto {
+
     @NotBlank
     private String customerBoardTitle;
+
     @NotBlank
     private String customerBoardContents;
+
     private boolean secret;
-
-
 }

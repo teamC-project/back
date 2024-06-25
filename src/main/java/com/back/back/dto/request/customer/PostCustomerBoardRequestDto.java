@@ -8,11 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostCustomerBoardRequestDto {
+
     @NotBlank
     private String customerBoardTitle;
+
     @NotBlank
     private String customerBoardContents;
+
     @NotNull
     private boolean secret;
-
 }

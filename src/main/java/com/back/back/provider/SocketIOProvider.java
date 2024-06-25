@@ -21,42 +21,43 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SocketIOProvider {
 
-  private final SocketIOServer socketIOServer;
-  private final ChatMessageRepository chatMessageRepository;
+    private final SocketIOServer socketIOServer;
+    private final ChatMessageRepository chatMessageRepository;
 
-  @PostConstruct
-  private void startServer() {
-    socketIOServer.addConnectListener(client -> System.out.println("Client connected : " + client.getSessionId()));
-    socketIOServer
-        .addDisconnectListener(client -> System.out.println("Client disconnected : " + client.getSessionId()));
+    @PostConstruct
+    private void startServer() {
 
-    socketIOServer.addEventListener("senderMessage", ChatMessage.class, (sendClient, data, ackRequest) -> {
-      List<SocketIOClient> clients = new ArrayList<>(socketIOServer.getAllClients());
+        socketIOServer.addConnectListener(client -> System.out.println("Client connected : " + client.getSessionId()));
+        socketIOServer.addDisconnectListener(client -> System.out.println("Client disconnected : " + client.getSessionId()));
+        socketIOServer.addEventListener("senderMessage", ChatMessage.class, (sendClient, data, ackRequest) -> {
+        
+            List<SocketIOClient> clients = new ArrayList<>(socketIOServer.getAllClients());
 
-      ChatMessageEntity chatMessageEntity = new ChatMessageEntity(data);
-      chatMessageRepository.save(chatMessageEntity);
+            ChatMessageEntity chatMessageEntity = new ChatMessageEntity(data);
+            chatMessageRepository.save(chatMessageEntity);
 
-      ChatMessageListItem chatMessageListItem = new ChatMessageListItem(chatMessageEntity);
-      for (SocketIOClient client : clients) {
-        Set<String> rooms = client.getAllRooms();
-        if (rooms.contains(data.getChatroomId().toString())) client.sendEvent("receiveMessage", chatMessageListItem);
-      }
-    });
+            ChatMessageListItem chatMessageListItem = new ChatMessageListItem(chatMessageEntity);
+            for (SocketIOClient client : clients) {
+            Set<String> rooms = client.getAllRooms();
+            if (rooms.contains(data.getChatroomId().toString())) client.sendEvent("receiveMessage", chatMessageListItem);
+            }
+        }
+    );
 
     socketIOServer.addEventListener("joinRoom", String.class, (client, roomId, ackRequest) -> {
-      client.joinRoom(roomId);
+        client.joinRoom(roomId);
     });
 
     socketIOServer.addEventListener("leaveRoom", String.class, (client, roomId, ackRequest) -> {
-      client.leaveRoom(roomId);
+        client.leaveRoom(roomId);
     });
 
     socketIOServer.start();
-  }
+    }
 
-  @PreDestroy
-  private void stopServer() {
-    socketIOServer.stop();
-  }
+    @PreDestroy
+    private void stopServer() {
+        socketIOServer.stop();
+    }
 
 }

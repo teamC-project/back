@@ -7,7 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostCustomerBoardCommentRequestDto {
+
     @NotBlank
     private String customerBoardCommentContents;
+    
     private Integer customerBoardParentCommentNumber;
 }

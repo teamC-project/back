@@ -48,9 +48,7 @@ public class WebSecurityConfig {
         .cors(cors -> cors
             .configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(request -> request
-            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*")
-            .permitAll()
-
+            .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*", "/upload", "/file/*").permitAll()
             .requestMatchers("/api/v1/service/customer_board/write").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/my-page/info-customer").hasRole("CUSTOMER")
             .requestMatchers("/api/v1/service/designer_board/write").hasRole("DESIGNER")
@@ -66,31 +64,47 @@ public class WebSecurityConfig {
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     return httpSecurity.build();
-
     }
 
+<<<<<<< HEAD
+    }
+
+=======
+>>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
     @Bean
     protected CorsConfigurationSource corsConfigurationSource() {
 
     CorsConfiguration configuration = new CorsConfiguration();
+
     configuration.addAllowedOrigin("*");
     configuration.addAllowedHeader("*");
     configuration.addAllowedMethod("*");
 
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
     source.registerCorsConfiguration("/**", configuration);
 
     return source;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
 }
 
 class AuthorizationFailEntryPoint implements AuthenticationEntryPoint {
 
     @Override
+<<<<<<< HEAD
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
     throws IOException, ServletException {
+=======
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) 
+        throws IOException, ServletException {
+>>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
 
     authException.printStackTrace();
+
     response.setContentType("application/json");
     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
     response.getWriter().write("{ \"code\":\"AF\", \"message\": \"Authorization Failed\" }");

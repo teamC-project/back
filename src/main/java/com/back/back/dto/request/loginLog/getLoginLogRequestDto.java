@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class getLoginLogRequestDto {
-  @NotBlank
-  private String loginId;
-  @NotBlank
-  private String loginDate;
+
+    @NotBlank
+    private String loginId;
+
+    @NotBlank
+    private String loginDate;
 }

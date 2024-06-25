@@ -1,7 +1,6 @@
 package com.back.back.entity;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
+
+import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
 import jakarta.persistence.Entity;
@@ -21,38 +20,34 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerBoardEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer customerBoardNumber;
-  private String customerBoardTitle;
-  private String customerBoardContents;
-  private String customerBoardWriterId;
-  private String customerBoardWriteDatetime;
-  private Integer customerBoardViewCount;
-  private Boolean secret;
 
-  public CustomerBoardEntity(PostCustomerBoardRequestDto dto, String userId) {
-    Date now = Date.from(Instant.now());
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    String customerBoardWriteDatetime = simpleDateFormat.format(now);
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer customerBoardNumber;
+    private String customerBoardTitle;
+    private String customerBoardContents;
+    private String customerBoardWriterId;
+    private String customerBoardWriteDatetime;
+    private Integer customerBoardViewCount;
+    private Boolean secret;
 
-    this.customerBoardTitle = dto.getCustomerBoardTitle();
-    this.customerBoardContents = dto.getCustomerBoardContents();
-    this.customerBoardWriterId = userId;
-    this.customerBoardWriteDatetime = customerBoardWriteDatetime;
-    this.customerBoardViewCount = 0;
-    this.secret = dto.isSecret();
-  }
+    public CustomerBoardEntity(PostCustomerBoardRequestDto dto, String userId) {
 
-  public void increaseViewCount() {
-    this.customerBoardViewCount++;
-  }
+        this.customerBoardTitle = dto.getCustomerBoardTitle();
+        this.customerBoardContents = dto.getCustomerBoardContents();
+        this.customerBoardWriterId = userId;
+        this.customerBoardWriteDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
+        this.customerBoardViewCount = 0;
+        this.secret = dto.isSecret();
+    }
 
-  
-  public void update(PutCustomerBoardRequestDto dto) {
-    this.customerBoardTitle = dto.getCustomerBoardTitle();
-    this.customerBoardContents = dto.getCustomerBoardContents();
-    this.secret = dto.isSecret();
-  }
+    public void increaseViewCount() {
+        this.customerBoardViewCount++;
+    }
 
+    public void update(PutCustomerBoardRequestDto dto) {
+        this.customerBoardTitle = dto.getCustomerBoardTitle();
+        this.customerBoardContents = dto.getCustomerBoardContents();
+        this.secret = dto.isSecret();
+    }
 }

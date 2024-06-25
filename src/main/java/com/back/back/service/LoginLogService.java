@@ -7,7 +7,7 @@ import com.back.back.dto.response.loginlog.GetVisitorsTodayResponseDto;
 
 public interface LoginLogService {
 
-  ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors(Integer sequence);
-
-  ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday(String loginDate);
+    ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors(Integer sequence);
+    ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday(String loginDate);
+    
 }

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.web.multipart.MultipartFile;
 import com.back.back.service.DesignerBoardImageService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,12 +18,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/designer_board")
 @RequiredArgsConstructor
 public class DesignerBoardImageController {
+    
     private final DesignerBoardImageService designerBoardImageService;
-
-    @PostMapping("/upload")
-    public String upload(
+		@PostMapping("/upload")
+		public String upload(
 		@RequestParam("file") MultipartFile file
-	) {
+		) {
 		String url = designerBoardImageService.upload(file);
 		return url;
 	}
@@ -31,7 +31,7 @@ public class DesignerBoardImageController {
     @GetMapping(value="/file/{fileName}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 	public Resource getFile(
 		@PathVariable("fileName") String fileName
-	) {
+		) {
 		Resource resource = designerBoardImageService.getFile(fileName);
 		return resource;
 	}

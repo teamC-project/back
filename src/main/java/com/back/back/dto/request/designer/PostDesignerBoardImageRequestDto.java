@@ -8,5 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostDesignerBoardImageRequestDto {
+    
     private MultipartFile file;
 }

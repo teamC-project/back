@@ -1,4 +1,5 @@
 package com.back.back.controller;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
 import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
@@ -21,6 +23,7 @@ import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
 import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
 import com.back.back.service.CustomerBoardService;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -35,7 +38,7 @@ public class CustomerBoardController {
     ResponseEntity<ResponseDto> postCustomerBoard (
         @RequestBody @Valid PostCustomerBoardRequestDto requestBody,
         @AuthenticationPrincipal String userId
-    ) {
+        ) {
         ResponseEntity<ResponseDto> response = customerBoardService.postCustomerBoard(requestBody, userId);
         return response;
     }
@@ -45,7 +48,7 @@ public class CustomerBoardController {
         @RequestBody @Valid PostCustomerBoardCommentRequestDto requestBody,
         @PathVariable("customerBoardNumber") int customerBoardNumber,
         @AuthenticationPrincipal String userId
-    ) {
+        ) {
         ResponseEntity<ResponseDto> response = customerBoardService.postCustomerBoardComment(requestBody, customerBoardNumber, userId);
         return response;
     }
@@ -59,7 +62,7 @@ public class CustomerBoardController {
     @GetMapping("/list/search")
     public ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchDesingerBoardList(
         @RequestParam("word") String word
-    ) {
+        ) {
         ResponseEntity<? super GetSearchCustomerBoardListResponseDto> response = customerBoardService.getSearchCustomerBoardList(word);
         return response;
     }
@@ -67,23 +70,25 @@ public class CustomerBoardController {
     @GetMapping("/{customerBoardNumber}")
     public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(
         @PathVariable("customerBoardNumber") int customerBoardNumber,
-        @AuthenticationPrincipal String userId) {
-    return customerBoardService.getCustomerBoard(customerBoardNumber, userId);
-}
+        @AuthenticationPrincipal String userId
+        ) {
+        return customerBoardService.getCustomerBoard(customerBoardNumber, userId);
+    }
 
     @GetMapping("/{customerBoardNumber}/comment/list")
     public ResponseEntity<? super GetCustomerBoardCommentListResponseDto> getCustomerBoardCommentList(
         @PathVariable("customerBoardNumber") int customerBoardNumber
-    ) {
+        ) {
         ResponseEntity<? super GetCustomerBoardCommentListResponseDto> response = customerBoardService.getCustomerBoardCommentList(customerBoardNumber);
         return response;
     }
+    
     @PutMapping("/{customerBoardNumber}")
     public ResponseEntity<ResponseDto> putCustomerBoard (
         @RequestBody @Valid PutCustomerBoardRequestDto requestBody,
         @PathVariable("customerBoardNumber") int customerBoardNumber,
         @AuthenticationPrincipal String userId
-    ) {
+        ) {
         ResponseEntity<ResponseDto> response = customerBoardService.putCustomerBoard(requestBody, customerBoardNumber, userId);
         return response;
     }
@@ -93,7 +98,7 @@ public class CustomerBoardController {
         @RequestBody @Valid PutCustomerBoardCommentRequestDto requestBody,
         @PathVariable("customerBoardCommentNumber") int customerBoardCommentNumber,
         @AuthenticationPrincipal String userId
-    ) {
+        ) {
         ResponseEntity<ResponseDto> response = customerBoardService.putCustomerBoardComment(requestBody, customerBoardCommentNumber, userId);
         return response;
     }
@@ -102,7 +107,7 @@ public class CustomerBoardController {
     public ResponseEntity<ResponseDto> deleteCustomerBoard (
         @PathVariable("customerBoardNumber") int customerBoardNumber,
         @AuthenticationPrincipal String userId
-    ) {
+        ) {
         ResponseEntity<ResponseDto> response =  customerBoardService.deleteCustomerBoard(customerBoardNumber, userId);
         return response;
     }
@@ -111,7 +116,7 @@ public class CustomerBoardController {
     public ResponseEntity<ResponseDto> deleteCustomerBoardComment (
         @PathVariable("customerBoardCommentNumber") int customerBoardCommentNumber,
         @AuthenticationPrincipal String userId
-    ) {
+        ) {
         ResponseEntity<ResponseDto> response =  customerBoardService.deleteCustomerBoardComment(customerBoardCommentNumber, userId);
         return response;
     }
@@ -119,7 +124,7 @@ public class CustomerBoardController {
     @PatchMapping("/{customerBoardNumber}/increase-view-count")
     public ResponseEntity<ResponseDto> increaseViewCount (
         @PathVariable("customerBoardNumber") int customerBoardNumber
-    ) {
+        ) {
         ResponseEntity<ResponseDto> response = customerBoardService.increaseViewCount(customerBoardNumber);
         return response;
     }
