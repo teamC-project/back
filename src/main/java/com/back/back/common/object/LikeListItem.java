@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.back.back.entity.LikeEntity;
-import com.back.back.entity.UserEntity;
-
 import lombok.Getter;
 import lombok.Setter;
 

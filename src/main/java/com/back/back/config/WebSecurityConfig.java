@@ -81,7 +81,6 @@ public class WebSecurityConfig {
 
     return source;
     }
-
 }
 
 class AuthorizationFailEntryPoint implements AuthenticationEntryPoint {

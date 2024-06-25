@@ -10,14 +10,14 @@ import lombok.Getter;
 
 @Getter
 public class TrendBoardCommentListItem {
-  private Integer trendBoardCommentNumber;
-  private Integer trendBoardNumber;
-  private String trendBoardCommentWriterId;
-  private String trendBoardCommentWriteDatetime;
-  private String trendBoardCommentContents;
-  private String originalTrendBoardCommentWriterId;
+    private Integer trendBoardCommentNumber;
+    private Integer trendBoardNumber;
+    private String trendBoardCommentWriterId;
+    private String trendBoardCommentWriteDatetime;
+    private String trendBoardCommentContents;
+    private String originalTrendBoardCommentWriterId;
 
-  private TrendBoardCommentListItem(TrendBoardCommentEntity trendBoardCommentEntity) throws Exception {
+    private TrendBoardCommentListItem(TrendBoardCommentEntity trendBoardCommentEntity) throws Exception {
     String writeDatetime = ChangeDateFormatUtil
         .changeYYMMDD(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
 
@@ -31,17 +31,17 @@ public class TrendBoardCommentListItem {
     this.trendBoardCommentContents = trendBoardCommentEntity.getTrendBoardCommentContents();
     this.originalTrendBoardCommentWriterId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
 
-  }
+    }
 
-  public static List<TrendBoardCommentListItem> getList(List<TrendBoardCommentEntity> trendBoardCommentEntities)
-      throws Exception {
+    public static List<TrendBoardCommentListItem> getList(List<TrendBoardCommentEntity> trendBoardCommentEntities)
+    throws Exception {
     List<TrendBoardCommentListItem> trendBoardCommentList = new ArrayList<>();
 
     for (TrendBoardCommentEntity trendBoardCommentEntity : trendBoardCommentEntities) {
-      TrendBoardCommentListItem trendBoardCommentListItem = new TrendBoardCommentListItem(trendBoardCommentEntity);
-      trendBoardCommentList.add(trendBoardCommentListItem);
+    TrendBoardCommentListItem trendBoardCommentListItem = new TrendBoardCommentListItem(trendBoardCommentEntity);
+    trendBoardCommentList.add(trendBoardCommentListItem);
     }
 
     return trendBoardCommentList;
-  }
+    }
 }

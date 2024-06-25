@@ -18,32 +18,32 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class LoginLogServiceImplementation implements LoginLogService {
+    private final LoginLogRepository loginLogRepository;
 
-  private final LoginLogRepository loginLogRepository;
-
-  @Override
-  public ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors(Integer sequence) {
-
-    try {
-      long totalVisitors = loginLogRepository.count();
-      return GetTotalVisitorsResponseDto.success((int) totalVisitors);
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
+    @Override
+    public ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors(Integer sequence) {
+        try {
+            long totalVisitors = loginLogRepository.count();
+            return GetTotalVisitorsResponseDto.success((int) totalVisitors);
+        } 
+	    catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
     }
-  }
 
-  @Override
-  public ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday(String loginDate) {
-    try {
-      Date now = Date.from(Instant.now());
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-      String todayDate = simpleDateFormat.format(now);
-      int visitorsToday = loginLogRepository.countByLoginDate(todayDate);
-      return GetVisitorsTodayResponseDto.success(visitorsToday);
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
+    @Override
+    public ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday(String loginDate) {
+        try {
+            Date now = Date.from(Instant.now());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String todayDate = simpleDateFormat.format(now);
+            int visitorsToday = loginLogRepository.countByLoginDate(todayDate);
+            return GetVisitorsTodayResponseDto.success(visitorsToday);
+    } 
+	    catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
     }
-  }
+    }
 }
