@@ -12,6 +12,7 @@ import lombok.Getter;
 
 @Getter
 public class GetChatroomResponseDto extends ResponseDto {
+    
     private Integer chatroomId;
     private String customerId;
     private String designerId;

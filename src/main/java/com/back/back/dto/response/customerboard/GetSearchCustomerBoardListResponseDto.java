@@ -15,7 +15,6 @@ import lombok.Getter;
 
 @Getter
 public class GetSearchCustomerBoardListResponseDto extends ResponseDto {
-    
 
     private List<CustomerBoardListItem> customerBoardList;
 

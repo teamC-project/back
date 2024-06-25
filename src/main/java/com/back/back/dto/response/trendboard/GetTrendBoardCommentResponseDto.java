@@ -13,25 +13,26 @@ import lombok.Getter;
 
 @Getter
 public class GetTrendBoardCommentResponseDto extends ResponseDto {
-  private Integer trendBoardCommentNumber;
-  private String trendBoardCommentWriterId;
-  private String trendBoardCommentWriteDatetime;
-  private String trendBoardCommentContents;
 
-  private GetTrendBoardCommentResponseDto(TrendBoardCommentEntity trendBoardCommentEntity) throws Exception {
-    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    String trendCommentWriteDatetime = ChangeDateFormatUtil
-        .changeYYYYMMDD(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
+    private Integer trendBoardCommentNumber;
+    private String trendBoardCommentWriterId;
+    private String trendBoardCommentWriteDatetime;
+    private String trendBoardCommentContents;
 
-    this.trendBoardCommentNumber = trendBoardCommentEntity.getTrendBoardCommentNumber();
-    this.trendBoardCommentWriterId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
-    this.trendBoardCommentWriteDatetime = trendCommentWriteDatetime;
-    this.trendBoardCommentContents = trendBoardCommentEntity.getTrendBoardCommentContents();
-  }
+    private GetTrendBoardCommentResponseDto(TrendBoardCommentEntity trendBoardCommentEntity) throws Exception {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        String trendCommentWriteDatetime = ChangeDateFormatUtil
+            .changeYYYYMMDD(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
 
-  public static ResponseEntity<GetTrendBoardCommentResponseDto> success(TrendBoardCommentEntity trendBoardCommentEntity)
-      throws Exception {
-    GetTrendBoardCommentResponseDto responseBody = new GetTrendBoardCommentResponseDto(trendBoardCommentEntity);
-    return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-  }
+        this.trendBoardCommentNumber = trendBoardCommentEntity.getTrendBoardCommentNumber();
+        this.trendBoardCommentWriterId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
+        this.trendBoardCommentWriteDatetime = trendCommentWriteDatetime;
+        this.trendBoardCommentContents = trendBoardCommentEntity.getTrendBoardCommentContents();
+    }
+
+    public static ResponseEntity<GetTrendBoardCommentResponseDto> success(TrendBoardCommentEntity trendBoardCommentEntity)
+        throws Exception {
+        GetTrendBoardCommentResponseDto responseBody = new GetTrendBoardCommentResponseDto(trendBoardCommentEntity);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
 }

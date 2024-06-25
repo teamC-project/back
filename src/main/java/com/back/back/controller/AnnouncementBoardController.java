@@ -33,59 +33,60 @@ public class AnnouncementBoardController {
 
     @PostMapping("/write")
     ResponseEntity<ResponseDto> postAnnouncementBoard (
-    @RequestBody @Valid PostAnnouncementBoardRequestDto requestBody,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = announcementBoardService.postAnnouncementBoard(requestBody, userId);
-	return response;
+        @RequestBody @Valid PostAnnouncementBoardRequestDto requestBody,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = announcementBoardService.postAnnouncementBoard(requestBody, userId);
+        return response;
     }
 
     @PutMapping("/{announcementBoardNumber}")
     public ResponseEntity<ResponseDto> putAnnouncementBoard (
-    @RequestBody @Valid PutAnnouncementBoardRequestDto requestBody,
-    @PathVariable("announcementBoardNumber") int announcementBoardNumber,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = announcementBoardService.putAnnouncementBoard(requestBody, announcementBoardNumber, userId);
-    return response;
+        @RequestBody @Valid PutAnnouncementBoardRequestDto requestBody,
+        @PathVariable("announcementBoardNumber") int announcementBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = announcementBoardService.putAnnouncementBoard(requestBody, announcementBoardNumber, userId);
+        return response;
     }
 
 	@GetMapping("/")
-	public ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList() {
-    ResponseEntity< ? super GetAnnouncementBoardListResponseDto> response = announcementBoardService.getAnnouncementBoardList();
-	return response;
+	public ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList(
+        ) {
+        ResponseEntity< ? super GetAnnouncementBoardListResponseDto> response = announcementBoardService.getAnnouncementBoardList();
+        return response;
 	}
 
     @GetMapping("/search")
     public ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(
-    @RequestParam("word") String word
-    ) {
-    ResponseEntity <? super GetSearchAnnouncementBoardListResponseDto> response = announcementBoardService.getSearchAnnouncementBoardList(word);
-    return response;
+        @RequestParam("word") String word
+        ) {
+        ResponseEntity <? super GetSearchAnnouncementBoardListResponseDto> response = announcementBoardService.getSearchAnnouncementBoardList(word);
+        return response;
     }
 
     @GetMapping("/{announcementBoardNumber}") 
     public ResponseEntity<? super GetAnnouncementBoardResponseDto> getAnnouncementBoard(
-    @PathVariable("announcementBoardNumber") int announcementBoardNumber
-    ) {
-    ResponseEntity<? super GetAnnouncementBoardResponseDto> response = announcementBoardService.getAnnouncementBoard(announcementBoardNumber);
-    return response;
+        @PathVariable("announcementBoardNumber") int announcementBoardNumber
+        ) {
+        ResponseEntity<? super GetAnnouncementBoardResponseDto> response = announcementBoardService.getAnnouncementBoard(announcementBoardNumber);
+        return response;
     }
 
 	@PatchMapping("/{announcementBoardNumber}/increase_view_count") 
 	public ResponseEntity<ResponseDto> increaseAnnouncementBoardViewCount (
-	@PathVariable("announcementBoardNumber") int announcementBoardNumber
-	) {
-	ResponseEntity<ResponseDto> response  = announcementBoardService.increaseAnnouncementBoardViewCount(announcementBoardNumber);
-	return response;
+        @PathVariable("announcementBoardNumber") int announcementBoardNumber
+        ) {
+        ResponseEntity<ResponseDto> response  = announcementBoardService.increaseAnnouncementBoardViewCount(announcementBoardNumber);
+        return response;
 	}
 
 	@DeleteMapping("/{announcementBoardNumber}")
 	public ResponseEntity<ResponseDto> deleteAnnouncementBoard (
-	@PathVariable("announcementBoardNumber") int announcementBoardNumber,
-	@AuthenticationPrincipal String userId
-	) {
-	ResponseEntity<ResponseDto> response  = announcementBoardService.deleteAnnouncementBoard(announcementBoardNumber, userId);
-	return response;
+        @PathVariable("announcementBoardNumber") int announcementBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response  = announcementBoardService.deleteAnnouncementBoard(announcementBoardNumber, userId);
+        return response;
 	}
 }

@@ -30,53 +30,53 @@ public class UserController {
 
     @GetMapping("/")
     public ResponseEntity<? super GetSignInUserResponseDto> getSignInUser(
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<? super GetSignInUserResponseDto> response = userService.getSignInUser(userId);
-    return response;
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<? super GetSignInUserResponseDto> response = userService.getSignInUser(userId);
+        return response;
     }
 
     @DeleteMapping("/user-delete")
     public ResponseEntity<ResponseDto> deleteUser(
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
-    return response;
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = userService.deleteUser(userId);
+        return response;
     }
 
     @PutMapping("/customer-update")
     public ResponseEntity<ResponseDto> customerUpdate(
-    @RequestBody @Valid CustomerUpdateRequestDto requestBody,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = userService.customerUpdate(requestBody, userId);
-    return response;
+        @RequestBody @Valid CustomerUpdateRequestDto requestBody,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = userService.customerUpdate(requestBody, userId);
+        return response;
     }
 
     @PutMapping("/designer-update")
     public ResponseEntity<ResponseDto> designerUpdate(
-    @RequestBody @Valid DesignerUpdateRequestDto requestBody,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = userService.designerUpdate(requestBody, userId);
-    return response;
+        @RequestBody @Valid DesignerUpdateRequestDto requestBody,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = userService.designerUpdate(requestBody, userId);
+        return response;
     }
 
     @PutMapping("/change-user-password")
     public ResponseEntity<ResponseDto> passwordCheck(
-    @RequestBody @Valid PasswordChangeRequestDto requestBody,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = userService.passwordChange(requestBody, userId);
-    return response;
+        @RequestBody @Valid PasswordChangeRequestDto requestBody,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = userService.passwordChange(requestBody, userId);
+        return response;
     }
 
     @GetMapping("/role/{userId}")
-    public ResponseEntity<? super GetUserRoleResponseDto> getUserRole (
-    @PathVariable String userId
-    ) {
-    ResponseEntity<? super GetUserRoleResponseDto> response = userService.getUserRole(userId);
-    return response;
+        public ResponseEntity<? super GetUserRoleResponseDto> getUserRole (
+        @PathVariable String userId
+        ) {
+        ResponseEntity<? super GetUserRoleResponseDto> response = userService.getUserRole(userId);
+        return response;
     }
 
 }

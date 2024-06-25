@@ -13,6 +13,7 @@ import lombok.Getter;
 
 @Getter
 public class GetAnnouncementBoardResponseDto extends ResponseDto {
+	
 	private Integer announcementBoardNumber;
 	private String announcementBoardTitle;
 	private String announcementBoardContents;

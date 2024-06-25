@@ -23,17 +23,17 @@ public class TrendBoardImageController {
 
 	@PostMapping("/upload") 
 	public String upload(
-	@RequestParam("file") MultipartFile file
-	) {
-	String url = trendBoardImageService.upload(file);
-	return url;
+		@RequestParam("file") MultipartFile file
+		) {
+		String url = trendBoardImageService.upload(file);
+		return url;
 	}
 
 	@GetMapping(value="/file/{fileName}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 	public Resource getFile(
-	@PathVariable("fileName") String fileName
-	) {
-	Resource resource = trendBoardImageService.getFile(fileName);
-	return resource;
+		@PathVariable("fileName") String fileName
+		) {
+		Resource resource = trendBoardImageService.getFile(fileName);
+		return resource;
 	}
 }
