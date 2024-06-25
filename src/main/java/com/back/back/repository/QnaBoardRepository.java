@@ -10,10 +10,8 @@ import com.back.back.entity.QnaBoardEntity;
 @Repository
 public interface QnaBoardRepository extends JpaRepository<QnaBoardEntity, Integer> {
 
-  List<QnaBoardEntity> findByOrderByQnaBoardNumberDesc();
+    QnaBoardEntity findByQnaBoardNumber(Integer qnaBoardNumber);
 
-  List<QnaBoardEntity> findByQnaBoardTitleContainsOrderByQnaBoardNumberDesc(String qnaTitle);
-
-  QnaBoardEntity findByQnaBoardNumber(Integer qnaBoardNumber);
-
+    List<QnaBoardEntity> findByOrderByQnaBoardNumberDesc();
+    List<QnaBoardEntity> findByQnaBoardTitleContainsOrderByQnaBoardNumberDesc(String qnaTitle);
 }

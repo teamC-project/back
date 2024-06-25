@@ -10,7 +10,8 @@ import com.back.back.entity.primaryKey.LikePk;
 import jakarta.transaction.Transactional;
 
 public interface LikeRepository extends JpaRepository<LikeEntity, LikePk> {
-	boolean existsByUserIdAndTrendBoardNumber(String userId, Integer trendBoardNumber);
+	
+    boolean existsByUserIdAndTrendBoardNumber(String userId, Integer trendBoardNumber);
 
 	List<LikeEntity> findByTrendBoardNumber(int trendBoardNumber);
 
