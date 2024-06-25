@@ -9,15 +9,14 @@ import com.back.back.dto.response.announcementboard.GetAnnouncementBoardListResp
 import com.back.back.dto.response.announcementboard.GetAnnouncementBoardResponseDto;
 import com.back.back.dto.response.announcementboard.GetSearchAnnouncementBoardListResponseDto;
 
-
-
 public interface AnnouncementBoardService {
-ResponseEntity<ResponseDto> postAnnouncementBoard(PostAnnouncementBoardRequestDto dto , String userId);
-ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList();
-ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord);
-ResponseEntity<? super GetAnnouncementBoardResponseDto> getAnnouncementBoard(int announcementBoardNumber);
-ResponseEntity<ResponseDto> putAnnouncementBoard(PutAnnouncementBoardRequestDto dto, int announcementBoardNumber, String userId);
-ResponseEntity<ResponseDto> deleteAnnouncementBoard(int announcementBoardNumber, String userId);
-ResponseEntity<ResponseDto> increaseAnnouncementBoardViewCount(int announcementBoardNumber);
 
+    ResponseEntity<ResponseDto> postAnnouncementBoard(PostAnnouncementBoardRequestDto dto , String userId);
+    ResponseEntity<ResponseDto> putAnnouncementBoard(PutAnnouncementBoardRequestDto dto, int announcementBoardNumber, String userId);
+    ResponseEntity<ResponseDto> deleteAnnouncementBoard(int announcementBoardNumber, String userId);
+    ResponseEntity<ResponseDto> increaseAnnouncementBoardViewCount(int announcementBoardNumber);
+
+    ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList();
+    ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord);
+    ResponseEntity<? super GetAnnouncementBoardResponseDto> getAnnouncementBoard(int announcementBoardNumber);
 }

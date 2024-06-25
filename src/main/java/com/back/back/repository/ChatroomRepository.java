@@ -10,10 +10,10 @@ import com.back.back.entity.ChatroomEntity;
 @Repository
 public interface ChatroomRepository extends JpaRepository<ChatroomEntity, Integer> {
 
-    ChatroomEntity findByRoomId(Integer roomId);
-
     boolean existsByCustomerId(String customerId);
     boolean existsByDesignerId(String designerId);
+
+    ChatroomEntity findByRoomId(Integer roomId);
 
     List<ChatroomEntity> findByCustomerIdOrDesignerId(String customerId, String designerId);
 } 
