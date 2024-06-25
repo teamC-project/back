@@ -8,10 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class PutAnnouncementBoardRequestDto {
+    
 	@NotBlank
 	private String announcementBoardTitle;
+
 	@NotBlank
 	private String announcementBoardContents;
 }

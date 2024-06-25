@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class InfoUpdateRequestDto {
-  @NotBlank
-  private String userId;
-  
+    
+    @NotBlank
+    private String userId;
 }

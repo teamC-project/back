@@ -10,13 +10,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "like_table")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name ="likeTable")
-@Table(name = "like_table")
 @IdClass(LikePk.class)
 public class LikeEntity {
+    
 	@Id
 	private String userId;
 	@Id
