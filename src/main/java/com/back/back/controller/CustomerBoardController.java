@@ -36,96 +36,96 @@ public class CustomerBoardController {
 
     @PostMapping("/")
     ResponseEntity<ResponseDto> postCustomerBoard (
-    @RequestBody @Valid PostCustomerBoardRequestDto requestBody,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = customerBoardService.postCustomerBoard(requestBody, userId);
-    return response;
+        @RequestBody @Valid PostCustomerBoardRequestDto requestBody,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = customerBoardService.postCustomerBoard(requestBody, userId);
+        return response;
     }
 
     @PostMapping("/{customerBoardNumber}/comment")
     public ResponseEntity<ResponseDto> postCustomerBoardComment (
-    @RequestBody @Valid PostCustomerBoardCommentRequestDto requestBody,
-    @PathVariable("customerBoardNumber") int customerBoardNumber,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = customerBoardService.postCustomerBoardComment(requestBody, customerBoardNumber, userId);
-    return response;
+        @RequestBody @Valid PostCustomerBoardCommentRequestDto requestBody,
+        @PathVariable("customerBoardNumber") int customerBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = customerBoardService.postCustomerBoardComment(requestBody, customerBoardNumber, userId);
+        return response;
     }
 
     @GetMapping("/list")
     public ResponseEntity<? super GetCustomerBoardListResponseDto> getCustomerBoardList() {
-    ResponseEntity<? super GetCustomerBoardListResponseDto> response = customerBoardService.getCustomerBoardList();
-    return response;
+        ResponseEntity<? super GetCustomerBoardListResponseDto> response = customerBoardService.getCustomerBoardList();
+        return response;
     }
 
     @GetMapping("/list/search")
     public ResponseEntity<? super GetSearchCustomerBoardListResponseDto> getSearchDesingerBoardList(
-    @RequestParam("word") String word
-    ) {
-    ResponseEntity<? super GetSearchCustomerBoardListResponseDto> response = customerBoardService.getSearchCustomerBoardList(word);
-    return response;
+        @RequestParam("word") String word
+        ) {
+        ResponseEntity<? super GetSearchCustomerBoardListResponseDto> response = customerBoardService.getSearchCustomerBoardList(word);
+        return response;
     }
 
     @GetMapping("/{customerBoardNumber}")
     public ResponseEntity<? super GetCustomerBoardResponseDto> getCustomerBoard(
-    @PathVariable("customerBoardNumber") int customerBoardNumber,
-    @AuthenticationPrincipal String userId
-    ) {
-    return customerBoardService.getCustomerBoard(customerBoardNumber, userId);
+        @PathVariable("customerBoardNumber") int customerBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        return customerBoardService.getCustomerBoard(customerBoardNumber, userId);
     }
 
     @GetMapping("/{customerBoardNumber}/comment/list")
     public ResponseEntity<? super GetCustomerBoardCommentListResponseDto> getCustomerBoardCommentList(
-    @PathVariable("customerBoardNumber") int customerBoardNumber
-    ) {
-    ResponseEntity<? super GetCustomerBoardCommentListResponseDto> response = customerBoardService.getCustomerBoardCommentList(customerBoardNumber);
-    return response;
+        @PathVariable("customerBoardNumber") int customerBoardNumber
+        ) {
+        ResponseEntity<? super GetCustomerBoardCommentListResponseDto> response = customerBoardService.getCustomerBoardCommentList(customerBoardNumber);
+        return response;
     }
     
     @PutMapping("/{customerBoardNumber}")
     public ResponseEntity<ResponseDto> putCustomerBoard (
-    @RequestBody @Valid PutCustomerBoardRequestDto requestBody,
-    @PathVariable("customerBoardNumber") int customerBoardNumber,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = customerBoardService.putCustomerBoard(requestBody, customerBoardNumber, userId);
-    return response;
+        @RequestBody @Valid PutCustomerBoardRequestDto requestBody,
+        @PathVariable("customerBoardNumber") int customerBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = customerBoardService.putCustomerBoard(requestBody, customerBoardNumber, userId);
+        return response;
     }
 
     @PutMapping("/{customerBoardCommentNumber}/comment")
     public ResponseEntity<ResponseDto> putCustomerBoardComment (
-    @RequestBody @Valid PutCustomerBoardCommentRequestDto requestBody,
-    @PathVariable("customerBoardCommentNumber") int customerBoardCommentNumber,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = customerBoardService.putCustomerBoardComment(requestBody, customerBoardCommentNumber, userId);
-    return response;
+        @RequestBody @Valid PutCustomerBoardCommentRequestDto requestBody,
+        @PathVariable("customerBoardCommentNumber") int customerBoardCommentNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = customerBoardService.putCustomerBoardComment(requestBody, customerBoardCommentNumber, userId);
+        return response;
     }
 
     @DeleteMapping("/{customerBoardNumber}")
     public ResponseEntity<ResponseDto> deleteCustomerBoard (
-    @PathVariable("customerBoardNumber") int customerBoardNumber,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response =  customerBoardService.deleteCustomerBoard(customerBoardNumber, userId);
-    return response;
+        @PathVariable("customerBoardNumber") int customerBoardNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response =  customerBoardService.deleteCustomerBoard(customerBoardNumber, userId);
+        return response;
     }
 
     @DeleteMapping("/{customerBoardCommentNumber}/comment")
     public ResponseEntity<ResponseDto> deleteCustomerBoardComment (
-    @PathVariable("customerBoardCommentNumber") int customerBoardCommentNumber,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response =  customerBoardService.deleteCustomerBoardComment(customerBoardCommentNumber, userId);
-    return response;
+        @PathVariable("customerBoardCommentNumber") int customerBoardCommentNumber,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response =  customerBoardService.deleteCustomerBoardComment(customerBoardCommentNumber, userId);
+        return response;
     }
 
     @PatchMapping("/{customerBoardNumber}/increase-view-count")
     public ResponseEntity<ResponseDto> increaseViewCount (
-    @PathVariable("customerBoardNumber") int customerBoardNumber
-    ) {
-    ResponseEntity<ResponseDto> response = customerBoardService.increaseViewCount(customerBoardNumber);
-    return response;
+        @PathVariable("customerBoardNumber") int customerBoardNumber
+        ) {
+        ResponseEntity<ResponseDto> response = customerBoardService.increaseViewCount(customerBoardNumber);
+        return response;
     }
 }

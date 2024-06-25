@@ -19,12 +19,12 @@ public class LoginLogController {
     private final LoginLogService loginLogService;
 
     @GetMapping("/total-visitors")
-    public ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors() {
-    return loginLogService.getTotalVisitors(null);
+        public ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors() {
+        return loginLogService.getTotalVisitors(null);
     }
 
     @GetMapping("/visitors-today")
-    public ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday() {
-    return loginLogService.getVisitorsToday(null);
+        public ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday() {
+        return loginLogService.getVisitorsToday(null);
     }
 }

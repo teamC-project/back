@@ -29,45 +29,45 @@ public class ChatroomController {
 
     @PostMapping("/room")
     public ResponseEntity<ResponseDto> postChatRoom (
-    @RequestBody @Valid PostChatroomRequestDto requestBody,
-    @AuthenticationPrincipal String userId
-    ) {
-    String roomName = requestBody.getRoomName();
-    System.out.println("Received request to create chat room with roomName: " + roomName);
-    ResponseEntity<ResponseDto> response = chatroomService.postChatroom(requestBody, userId, roomName);
-    return response;
+        @RequestBody @Valid PostChatroomRequestDto requestBody,
+        @AuthenticationPrincipal String userId
+        ) {
+        String roomName = requestBody.getRoomName();
+        System.out.println("Received request to create chat room with roomName: " + roomName);
+        ResponseEntity<ResponseDto> response = chatroomService.postChatroom(requestBody, userId, roomName);
+        return response;
     }
 
     @GetMapping("/rooms")
     public ResponseEntity<? super GetChatroomListResponseDto> getChatroomList(
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<? super GetChatroomListResponseDto> response = chatroomService.getChatroomList(userId);
-    return response;
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<? super GetChatroomListResponseDto> response = chatroomService.getChatroomList(userId);
+        return response;
     }
 
     @GetMapping("/{roomId}")
     public ResponseEntity<? super GetChatroomResponseDto> getChatroom(
-    @PathVariable("roomId") int roomId
-    ) {
-    ResponseEntity<? super GetChatroomResponseDto> response = chatroomService.getChatroom(roomId);
-    return response;
+        @PathVariable("roomId") int roomId
+        ) {
+        ResponseEntity<? super GetChatroomResponseDto> response = chatroomService.getChatroom(roomId);
+        return response;
     }
 
     @GetMapping("/{roomId}/messages")
     public ResponseEntity<? super GetChatMessageListResponseDto> getChatMessageList(
-    @PathVariable("roomId") int roomId
-    ) {
-    ResponseEntity<? super GetChatMessageListResponseDto> response = chatroomService.getChatMessageList(roomId);
-    return response;
+        @PathVariable("roomId") int roomId
+        ) {
+        ResponseEntity<? super GetChatMessageListResponseDto> response = chatroomService.getChatMessageList(roomId);
+        return response;
     }
 
     @DeleteMapping("/{roomId}")
     public ResponseEntity<ResponseDto> deleteChatroom(
-    @PathVariable("roomId") int roomId,
-    @AuthenticationPrincipal String userId
-    ) {
-    ResponseEntity<ResponseDto> response = chatroomService.deleteChatroom(roomId, userId);
-    return response;
+        @PathVariable("roomId") int roomId,
+        @AuthenticationPrincipal String userId
+        ) {
+        ResponseEntity<ResponseDto> response = chatroomService.deleteChatroom(roomId, userId);
+        return response;
     }
 }

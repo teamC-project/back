@@ -20,20 +20,19 @@ import lombok.RequiredArgsConstructor;
 public class DesignerBoardImageController {
     
     private final DesignerBoardImageService designerBoardImageService;
-
-    @PostMapping("/upload")
-    public String upload(
-	@RequestParam("file") MultipartFile file
-	) {
-	String url = designerBoardImageService.upload(file);
-	return url;
+		@PostMapping("/upload")
+		public String upload(
+		@RequestParam("file") MultipartFile file
+		) {
+		String url = designerBoardImageService.upload(file);
+		return url;
 	}
 
     @GetMapping(value="/file/{fileName}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 	public Resource getFile(
-	@PathVariable("fileName") String fileName
-	) {
-	Resource resource = designerBoardImageService.getFile(fileName);
-	return resource;
+		@PathVariable("fileName") String fileName
+		) {
+		Resource resource = designerBoardImageService.getFile(fileName);
+		return resource;
 	}
 }
