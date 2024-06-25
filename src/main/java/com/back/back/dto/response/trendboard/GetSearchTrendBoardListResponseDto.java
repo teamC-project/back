@@ -13,17 +13,16 @@ import lombok.Getter;
 
 @Getter
 public class GetSearchTrendBoardListResponseDto extends ResponseDto {
-			private List<TrendBoardListItem> trendBoardList;
 
-			private GetSearchTrendBoardListResponseDto(List<TrendBoardEntity> trendBoardEntities) throws Exception {
-				super(ResponseCode.SUCCESS, ResponseCode.SUCCESS);
-				this.trendBoardList = TrendBoardListItem.getTrendBoardList(trendBoardEntities);
-			}
+	private List<TrendBoardListItem> trendBoardList;
 
-			public static ResponseEntity<GetSearchTrendBoardListResponseDto> success (List<TrendBoardEntity> trendBoardEntities) throws Exception {
-				GetSearchTrendBoardListResponseDto responseBody = new GetSearchTrendBoardListResponseDto(trendBoardEntities);
-				return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-			}
+	private GetSearchTrendBoardListResponseDto(List<TrendBoardEntity> trendBoardEntities) throws Exception {
+		super(ResponseCode.SUCCESS, ResponseCode.SUCCESS);
+			this.trendBoardList = TrendBoardListItem.getTrendBoardList(trendBoardEntities);
+	}
 
-			
+	public static ResponseEntity<GetSearchTrendBoardListResponseDto> success (List<TrendBoardEntity> trendBoardEntities) throws Exception {
+		GetSearchTrendBoardListResponseDto responseBody = new GetSearchTrendBoardListResponseDto(trendBoardEntities);
+		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+	}
 }

@@ -29,5 +29,4 @@ public class GetChatMessageListResponseDto extends ResponseDto {
         GetChatMessageListResponseDto responseBody = new GetChatMessageListResponseDto(chatMessageEntities);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
-
 }

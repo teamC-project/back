@@ -11,15 +11,16 @@ import lombok.Getter;
 
 @Getter
 public class GetFindIdResponseDto extends ResponseDto {
-  private String userId;
 
-  private GetFindIdResponseDto(String userId) {
-    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    this.userId = userId;
-  }
+    private String userId;
 
-  public static ResponseEntity<GetFindIdResponseDto> success(String userId) {
-    GetFindIdResponseDto responseBody = new GetFindIdResponseDto(userId);
-    return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-  }
+    private GetFindIdResponseDto(String userId) {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        this.userId = userId;
+    }
+
+    public static ResponseEntity<GetFindIdResponseDto> success(String userId) {
+        GetFindIdResponseDto responseBody = new GetFindIdResponseDto(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
 }

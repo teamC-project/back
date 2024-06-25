@@ -9,6 +9,7 @@ import com.back.back.entity.DesignerBoardCommentEntity;
 import lombok.Getter;
 @Getter
 public class GetDesignerBoardCommentResponseDto extends ResponseDto {
+    
     private Integer designerBoardCommentNumber;
     private String designerBoardCommentWriterId;
     private String designerBoardCommentWriteDatetime;

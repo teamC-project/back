@@ -66,11 +66,6 @@ public class WebSecurityConfig {
     return httpSecurity.build();
     }
 
-<<<<<<< HEAD
-    }
-
-=======
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
     @Bean
     protected CorsConfigurationSource corsConfigurationSource() {
 
@@ -86,22 +81,13 @@ public class WebSecurityConfig {
 
     return source;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
 }
 
 class AuthorizationFailEntryPoint implements AuthenticationEntryPoint {
 
     @Override
-<<<<<<< HEAD
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-    throws IOException, ServletException {
-=======
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) 
         throws IOException, ServletException {
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
 
     authException.printStackTrace();
 

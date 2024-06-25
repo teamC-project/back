@@ -9,8 +9,9 @@ import lombok.Getter;
 
 @Getter
 public class GetInformationUpdateResponseDto extends ResponseDto {
-  private String userId;
-  private String userRole;
+
+    private String userId;
+    private String userRole;
 
     private GetInformationUpdateResponseDto(UserEntity userEntity) {
         super (ResponseCode.SUCCESS, ResponseMessage.SUCCESS);

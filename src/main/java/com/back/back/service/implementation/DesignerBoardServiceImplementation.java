@@ -82,13 +82,8 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         try {
             List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByOrderByDesignerBoardNumberDesc();
             return GetDesignerBoardListResponseDto.success(designerBoardEntities);
-<<<<<<< HEAD
         } 
 		catch (Exception exception) {
-=======
-
-        } catch (Exception exception) {
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }

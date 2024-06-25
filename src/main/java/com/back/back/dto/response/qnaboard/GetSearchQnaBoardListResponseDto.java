@@ -16,16 +16,16 @@ import lombok.Getter;
 @Getter
 public class GetSearchQnaBoardListResponseDto extends ResponseDto {
 	
-		private List<QnaBoardListItem> qnaBoardList;
+	private List<QnaBoardListItem> qnaBoardList;
 
-		private GetSearchQnaBoardListResponseDto(List<QnaBoardEntity> qnaBoardEntities) throws Exception {
-			super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-			this.qnaBoardList = QnaBoardListItem.getQnaBoardList(qnaBoardEntities);
-		}
+	private GetSearchQnaBoardListResponseDto(List<QnaBoardEntity> qnaBoardEntities) throws Exception {
+		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+		this.qnaBoardList = QnaBoardListItem.getQnaBoardList(qnaBoardEntities);
+	}
 
-		public static ResponseEntity<GetSearchQnaBoardListResponseDto> success (List<QnaBoardEntity> qnaBoardEntities) throws Exception{
-				GetSearchQnaBoardListResponseDto responseBody = new GetSearchQnaBoardListResponseDto(qnaBoardEntities);
-				return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-		}
-			}
+	public static ResponseEntity<GetSearchQnaBoardListResponseDto> success (List<QnaBoardEntity> qnaBoardEntities) throws Exception{
+		GetSearchQnaBoardListResponseDto responseBody = new GetSearchQnaBoardListResponseDto(qnaBoardEntities);
+		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+	}
+}
 

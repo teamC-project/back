@@ -50,22 +50,6 @@ public class UserServiceImplimentation implements UserService {
         return ResponseDto.databaseError();
     }
     return ResponseDto.success();
-<<<<<<< HEAD
-=======
-  }
-
-  @Override
-  public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto requestBody, String userId) {
-    try {
-      UserEntity userEntity = userRepository.findByUserId(userId);
-      if (userEntity == null) return ResponseDto.noExistId();
-
-      userEntity.update(requestBody);
-      userRepository.save(userEntity);
-    } catch (Exception exception) {
-      exception.printStackTrace();
-      return ResponseDto.databaseError();
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
     }
 
     @Override
@@ -101,30 +85,17 @@ public class UserServiceImplimentation implements UserService {
     }
 
     @Override
-<<<<<<< HEAD
     public ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId) {
 		try {
 			UserEntity userEntity = userRepository.findByUserId(userId);
-=======
-    public ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto requestBody, String userId) {
-      
-      try {
-        UserEntity userEntity = userRepository.findByUserId(userId);
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
 
 			if (userEntity == null) {
 			return ResponseDto.noExistId();
 			}
 
-<<<<<<< HEAD
 		String userPassword =dto.getUserPassword();
 		String encodedPassword = passwordEncoder.encode(userPassword);
 		userEntity.setUserPassword(encodedPassword);
-=======
-        String userPassword =requestBody.getUserPassword();
-        String encodedPassword = passwordEncoder.encode(userPassword);
-        userEntity.setUserPassword(encodedPassword);
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
 
 		userRepository.save(userEntity);
 
@@ -151,9 +122,5 @@ public class UserServiceImplimentation implements UserService {
 		return ResponseDto.databaseError();
 		}
     }
-<<<<<<< HEAD
 }
 
-=======
-}
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4

@@ -9,6 +9,7 @@ import com.back.back.entity.DesignerBoardEntity;
 import lombok.Getter;
 @Getter
 public class GetDesignerBoardResponseDto extends ResponseDto {
+    
     private Integer designerBoardNumber;
     private String designerBoardTitle;
     private String designerBoardContents;

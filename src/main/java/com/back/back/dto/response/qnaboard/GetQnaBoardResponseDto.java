@@ -13,6 +13,7 @@ import lombok.Getter;
 
 @Getter
 public class GetQnaBoardResponseDto extends ResponseDto{
+	
 	private Integer qnaBoardNumber;
 	private Boolean qnaBoardStatus;
 	private String qnaBoardTitle;

@@ -11,6 +11,7 @@ import lombok.Getter;
 
 @Getter
 public class GetDesignerBoardCommentListResponseDto extends ResponseDto {
+    
     private List<DesignerBoardCommentListItem> designerBoardCommentList;
 
     private GetDesignerBoardCommentListResponseDto (List<DesignerBoardCommentEntity> designerBoardCommentEntities) throws Exception {

@@ -14,6 +14,7 @@ import lombok.Getter;
 
 @Getter
 public class GetAnnouncementBoardListResponseDto extends ResponseDto {
+	
 	private List<AnnouncementBoardListItem> announcementBoardList;
 
 	private GetAnnouncementBoardListResponseDto(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {

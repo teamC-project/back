@@ -34,91 +34,33 @@ public class QnaBoardController {
 
     @PostMapping("/write")
     ResponseEntity<ResponseDto> postQnaBoard(
-<<<<<<< HEAD
-    @RequestBody @Valid PostQnaBoardRequestDto requestBody,
-    @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = qnaBoardService.postQnaBoard(requestBody, userId);
-    return response;
-=======
         @RequestBody @Valid PostQnaBoardRequestDto requestBody,
         @AuthenticationPrincipal String userId
         ) {
         ResponseEntity<ResponseDto> response = qnaBoardService.postQnaBoard(requestBody, userId);
         return response;
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
     }
 
     @PutMapping("/{qnaBoardNumber}")
     public ResponseEntity<ResponseDto> putQnaBoard(
-<<<<<<< HEAD
-    @RequestBody @Valid PutQnaBoardRequestDto requestBody,
-    @PathVariable("qnaBoardNumber") int receptionNumber,
-    @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = qnaBoardService.putQnaBoard(requestBody, receptionNumber, userId);
-    return response;
-=======
         @RequestBody @Valid PutQnaBoardRequestDto requestBody,
         @PathVariable("qnaBoardNumber") int receptionNumber,
         @AuthenticationPrincipal String userId
         ) {
         ResponseEntity<ResponseDto> response = qnaBoardService.putQnaBoard(requestBody, receptionNumber, userId);
         return response;
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
     }
 
     @PostMapping("/{qnaBoardNumber}/comment")
     public ResponseEntity<ResponseDto> postQnaBoardComment(
-<<<<<<< HEAD
-    @RequestBody @Valid PostQnaBoardCommentRequestDto requestBody,
-    @PathVariable("qnaBoardNumber") int receptionNumber) {
-    ResponseEntity<ResponseDto> response = qnaBoardService.postQnaBoardComment(requestBody, receptionNumber);
-    return response;
-=======
         @RequestBody @Valid PostQnaBoardCommentRequestDto requestBody,
         @PathVariable("qnaBoardNumber") int receptionNumber) {
         ResponseEntity<ResponseDto> response = qnaBoardService.postQnaBoardComment(requestBody, receptionNumber);
         return response;
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
     }
 
     @GetMapping("/")
     public ResponseEntity<? super GetQnaBoardListResponseDto> getBoardList() {
-<<<<<<< HEAD
-    ResponseEntity<? super GetQnaBoardListResponseDto> response = qnaBoardService.getQnaBoardList();
-
-    return response;
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<? super GetSearchQnaBoardListResponseDto> getSearchBoardList(
-    @RequestParam("word") String word) {
-    ResponseEntity<? super GetSearchQnaBoardListResponseDto> response = qnaBoardService.getSearchQnaBoardList(word);
-    return response;
-    }
-
-    @GetMapping("/{qnaBoardNumber}")
-    public ResponseEntity<? super GetQnaBoardResponseDto> getQnaBoard(
-    @PathVariable("qnaBoardNumber") int qnaBoardNumber) {
-    ResponseEntity<? super GetQnaBoardResponseDto> response = qnaBoardService.getQnaBoard(qnaBoardNumber);
-    return response;
-    }
-
-    @PatchMapping("/{qnaBoardNumber}/increase_view_count")
-    public ResponseEntity<ResponseDto> increaseQnaViewCount(
-    @PathVariable("qnaBoardNumber") int qnaBoardNumber) {
-    ResponseEntity<ResponseDto> response = qnaBoardService.increaseQnaViewCount(qnaBoardNumber);
-    return response;
-    }
-
-    @DeleteMapping("/{qnaBoardNumber}")
-    public ResponseEntity<ResponseDto> deleteQnaBoard(
-    @PathVariable("qnaBoardNumber") int qnaBoardNumber,
-    @AuthenticationPrincipal String userId) {
-    ResponseEntity<ResponseDto> response = qnaBoardService.deleteQnaBoard(qnaBoardNumber, userId);
-    return response;
-    }
-}
-=======
         ResponseEntity<? super GetQnaBoardListResponseDto> response = qnaBoardService.getQnaBoardList();
         return response;
     }
@@ -156,4 +98,3 @@ public class QnaBoardController {
         return response;
     }
 }
->>>>>>> 8233bf14626911f72de1b65a4c0c6356778ad8a4
