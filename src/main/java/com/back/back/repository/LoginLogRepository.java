@@ -7,9 +7,11 @@ import com.back.back.entity.LoginLogEntity;
 
 @Repository
 public interface LoginLogRepository extends JpaRepository<LoginLogEntity, Integer> {
-  long count();
+    
+    long count();
 
-  int countByLoginDate(String loginDate);
+    int countByLoginDate(String loginDate);
 
-  LoginLogEntity findByLoginId(String loginId);
+    LoginLogEntity findByLoginId(String loginId);
+    
 }

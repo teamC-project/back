@@ -9,6 +9,8 @@ import com.back.back.entity.ChatMessageEntity;
 
 @Repository
 public interface ChatMessageRepository extends JpaRepository<ChatMessageEntity, Integer> {
+    
     List<ChatMessageEntity> findByChatroomId(Integer roomId); 
+    
 }
 

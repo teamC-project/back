@@ -18,27 +18,19 @@ import com.back.back.dto.response.auth.SignInResponseDto;
 import jakarta.validation.Valid;
 
 public interface AuthService {
-  ResponseEntity<? super SignInResponseDto> signIn(SignInRequestDto dto);
+    
+    ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto);
+    ResponseEntity<ResponseDto> emailAuth(EmailAuthRequestDto dto);
+    ResponseEntity<ResponseDto> emailAuthCheck(EmailAuthCheckRequestDto dto);
+    ResponseEntity<ResponseDto> signUp(CustomerSignUpRequestDto dto);
+    ResponseEntity<ResponseDto> signUp(DesignerSignUpRequestDto dto);
+    ResponseEntity<ResponseDto> idFoundEmailAuth(EmailAuthRequestDto dto);
+    ResponseEntity<ResponseDto> passwordFoundEmailAuth(EmailAuthRequestDto dto);
+    ResponseEntity<ResponseDto> passwordFoundIdCheck(IdCheckRequestDto dto);
+    ResponseEntity<ResponseDto> passwordFound(@Valid PasswordFoundRequestDto requestBody);
+    ResponseEntity<ResponseDto> resetPassword(@Valid PasswordReSetRequestDto requestBody);
+    
+    ResponseEntity<? super SignInResponseDto> signIn(SignInRequestDto dto);
+    ResponseEntity<? super GetFindIdResponseDto> idFound(IdFoundRequestDto dto);
 
-  ResponseEntity<ResponseDto> emailAuth(EmailAuthRequestDto dto);
-
-  ResponseEntity<ResponseDto> emailAuthCheck(EmailAuthCheckRequestDto dto);
-
-  ResponseEntity<ResponseDto> signUp(CustomerSignUpRequestDto dto);
-
-  ResponseEntity<ResponseDto> signUp(DesignerSignUpRequestDto dto);
-
-  ResponseEntity<ResponseDto> idFoundEmailAuth(EmailAuthRequestDto dto);
-  
-  ResponseEntity<? super GetFindIdResponseDto> idFound(IdFoundRequestDto dto);
-  
-  ResponseEntity<ResponseDto> passwordFoundEmailAuth(EmailAuthRequestDto dto);
-
-  ResponseEntity<ResponseDto> passwordFound(@Valid PasswordFoundRequestDto requestBody);
-
-  ResponseEntity<ResponseDto> idCheck(IdCheckRequestDto dto);
-
-  ResponseEntity<ResponseDto> passwordFoundIdCheck(IdCheckRequestDto dto);
-
-  ResponseEntity<ResponseDto> resetPassword(@Valid PasswordReSetRequestDto requestBody);
 }

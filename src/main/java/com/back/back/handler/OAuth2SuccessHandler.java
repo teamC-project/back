@@ -18,25 +18,24 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-  private final JwtProvider jwtProvider;
+    private final JwtProvider jwtProvider;
 
-  @Override
-  public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-      Authentication authentication) throws IOException, ServletException {
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+        Authentication authentication) throws IOException, ServletException {
 
-    CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
-    boolean isStatus = oAuth2User.isStatus();
+        CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+        boolean isStatus = oAuth2User.isStatus();
 
-    if (isStatus) {
-      String userId = oAuth2User.getName();
-      String token = jwtProvider.create(userId);
-      response.sendRedirect("http://localhost:3200/sns/" + token + "/3200");
-    } else {
-      String snsId = oAuth2User.getName();
-      String joinPath = oAuth2User.getJoinPath();
-      response.sendRedirect("http://localhost:3200/auth/sign-up?snsId=" + snsId + "&joinPath=" + joinPath);
+        if (isStatus) {
+            String userId = oAuth2User.getName();
+            String token = jwtProvider.create(userId);
+            response.sendRedirect("http://localhost:3200/sns/" + token + "/3200");
+        } else {
+            String snsId = oAuth2User.getName();
+            String joinPath = oAuth2User.getJoinPath();
+            response.sendRedirect("http://localhost:3200/auth/sign-up?snsId=" + snsId + "&joinPath=" + joinPath);
+        }
     }
-
-  }
 
 }
