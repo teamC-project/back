@@ -19,7 +19,7 @@ public interface UserService {
 
   ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto requestBody, String userId);
 
-  ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId);
+  ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto requestBody, String userId);
 
   ResponseEntity<? super GetUserRoleResponseDto> getUserRole(String userId);
 

@@ -16,16 +16,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LoginLogController {
 
-  private final LoginLogService loginLogService;
+    private final LoginLogService loginLogService;
 
-  @GetMapping("/total-visitors")
-  public ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors() {
+    @GetMapping("/total-visitors")
+    public ResponseEntity<? super GetTotalVisitorsResponseDto> getTotalVisitors() {
     return loginLogService.getTotalVisitors(null);
-  }
+    }
 
-  @GetMapping("/visitors-today")
-  public ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday() {
+    @GetMapping("/visitors-today")
+    public ResponseEntity<? super GetVisitorsTodayResponseDto> getVisitorsToday() {
     return loginLogService.getVisitorsToday(null);
-  }
-
+    }
 }

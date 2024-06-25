@@ -56,12 +56,12 @@ public class UserServiceImplimentation implements UserService {
   }
 
   @Override
-  public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto dto, String userId) {
+  public ResponseEntity<ResponseDto> designerUpdate(DesignerUpdateRequestDto requestBody, String userId) {
     try {
       UserEntity userEntity = userRepository.findByUserId(userId);
       if (userEntity == null) return ResponseDto.noExistId();
 
-      userEntity.update(dto);
+      userEntity.update(requestBody);
       userRepository.save(userEntity);
     } catch (Exception exception) {
       exception.printStackTrace();
@@ -87,7 +87,7 @@ public class UserServiceImplimentation implements UserService {
   
 
     @Override
-    public ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto dto, String userId) {
+    public ResponseEntity<ResponseDto> passwordChange(PasswordChangeRequestDto requestBody, String userId) {
       
       try {
         UserEntity userEntity = userRepository.findByUserId(userId);
@@ -96,7 +96,7 @@ public class UserServiceImplimentation implements UserService {
           return ResponseDto.noExistId();
         }
 
-        String userPassword =dto.getUserPassword();
+        String userPassword =requestBody.getUserPassword();
         String encodedPassword = passwordEncoder.encode(userPassword);
         userEntity.setUserPassword(encodedPassword);
 
@@ -125,7 +125,4 @@ public class UserServiceImplimentation implements UserService {
         return ResponseDto.databaseError();
       }
     }
-
-
 }
-
