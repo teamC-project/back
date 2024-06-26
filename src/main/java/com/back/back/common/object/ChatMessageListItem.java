@@ -10,10 +10,10 @@ import lombok.Getter;
 @Getter
 public class ChatMessageListItem {
     
+    private String message;
+    private String senderId;
     private Integer messageId;
     private Integer chatroomId;
-    private String senderId;
-    private String message;
     private String sendDatetime;
 
     public ChatMessageListItem(ChatMessageEntity chatMessageEntity) {
