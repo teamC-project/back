@@ -19,7 +19,7 @@ public class TrendBoardCommentListItem {
 
   private TrendBoardCommentListItem(TrendBoardCommentEntity trendBoardCommentEntity) throws Exception {
     String writeDatetime = ChangeDateFormatUtil
-        .changeYYMMDD(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
+        .changeYYYYMMDDHHMM(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
 
     String writerId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
     writerId = writerId.substring(0, 1) +

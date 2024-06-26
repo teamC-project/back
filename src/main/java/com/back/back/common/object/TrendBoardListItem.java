@@ -20,7 +20,7 @@ public class TrendBoardListItem {
 	private Integer trendBoardViewCount;
 
   private TrendBoardListItem(TrendBoardEntity trendBoardEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(
+    String writeDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(
         trendBoardEntity.getTrendBoardWriteDatetime());
 
     String trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
