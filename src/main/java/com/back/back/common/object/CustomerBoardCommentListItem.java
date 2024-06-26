@@ -1,7 +1,7 @@
 package com.back.back.common.object;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.CustomerBoardCommentEntity;
@@ -29,7 +29,6 @@ public class CustomerBoardCommentListItem {
     public static List<CustomerBoardCommentListItem> getList(List<CustomerBoardCommentEntity> customerBoardCommentEntities) throws Exception {
 
         List<CustomerBoardCommentListItem> customerBoardCommentList = new ArrayList<>();
-
         for (CustomerBoardCommentEntity customerBoardCommentEntity : customerBoardCommentEntities) {
             
             CustomerBoardCommentListItem customerBoardCommentListItem = new CustomerBoardCommentListItem(customerBoardCommentEntity);

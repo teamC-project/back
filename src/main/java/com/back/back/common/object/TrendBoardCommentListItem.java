@@ -1,10 +1,10 @@
 package com.back.back.common.object;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.TrendBoardCommentEntity;
+import com.back.back.common.util.ChangeDateFormatUtil;
 
 import lombok.Getter;
 
@@ -29,7 +29,6 @@ public class TrendBoardCommentListItem {
     public static List<TrendBoardCommentListItem> getList(List<TrendBoardCommentEntity> trendBoardCommentEntities) throws Exception {
 
         List<TrendBoardCommentListItem> trendBoardCommentList = new ArrayList<>();
-
         for (TrendBoardCommentEntity trendBoardCommentEntity : trendBoardCommentEntities) {
             
             TrendBoardCommentListItem trendBoardCommentListItem = new TrendBoardCommentListItem(trendBoardCommentEntity);

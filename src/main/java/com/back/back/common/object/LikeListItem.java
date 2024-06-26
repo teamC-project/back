@@ -1,9 +1,10 @@
 package com.back.back.common.object;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.back.back.entity.LikeEntity;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +22,6 @@ public class LikeListItem {
 	public static List<LikeListItem>  getLikeList(List<LikeEntity> likeEntities) {
 
 		List<LikeListItem> list = new ArrayList<>();
-
 		for (LikeEntity likeEntity : likeEntities) {
 			
 			LikeListItem likeListItem = new LikeListItem(likeEntity);
