@@ -25,13 +25,12 @@ public class GetTrendBoardResponseDto extends ResponseDto {
 
 	private GetTrendBoardResponseDto(TrendBoardEntity trendBoardEntity ) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(trendBoardEntity.getTrendBoardWriteDatetime());
 
 		this.trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
 		this.trendBoardTitle = trendBoardEntity.getTrendBoardTitle();
 		this.trendBoardContents = trendBoardEntity.getTrendBoardContents();
 		this.trendBoardWriterId = trendBoardEntity.getTrendBoardWriterId();
-		this.trendBoardWriteDateTime = writeDateTime;
+		this.trendBoardWriteDateTime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(trendBoardEntity.getTrendBoardWriteDatetime());;
 		this.trendBoardLikeCount = trendBoardEntity.getTrendBoardLikeCount();
 		this.trendBoardViewCount = trendBoardEntity.getTrendBoardViewCount();
 	}
