@@ -113,6 +113,7 @@ public class QnaBoardServiceImplementation implements QnaBoardService {
 
 			String writerId = qnaBoardEntity.getQnaBoardWriterId();
 			boolean isWriter = userId.equals(writerId);
+			
 			if (!isWriter)
 			return ResponseDto.authorizationFailed();
 

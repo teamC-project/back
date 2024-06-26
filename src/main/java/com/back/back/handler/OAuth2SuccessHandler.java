@@ -3,6 +3,7 @@ package com.back.back.handler;
 import java.io.IOException;
 
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
@@ -20,6 +21,12 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     private final JwtProvider jwtProvider;
 
+    @Value("${localhost}")
+    private String localhost;
+
+    @Value("$(callback)")
+    private String callback;
+    
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
@@ -30,11 +37,11 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         if (isStatus) {
             String userId = oAuth2User.getName();
             String token = jwtProvider.create(userId);
-            response.sendRedirect("http://localhost:3200/sns/" + token + "/3200");
+            response.sendRedirect("localhost" + token + "/3200");
         } else {
             String snsId = oAuth2User.getName();
             String joinPath = oAuth2User.getJoinPath();
-            response.sendRedirect("http://localhost:3200/auth/sign-up?snsId=" + snsId + "&joinPath=" + joinPath);
+            response.sendRedirect("callback" + snsId + "&joinPath=" + joinPath);
         }
     }
 

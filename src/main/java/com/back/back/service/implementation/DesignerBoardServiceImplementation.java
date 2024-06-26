@@ -56,18 +56,22 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
         try {
             boolean isExistUser = userRepository.existsById(userId);
+
             if (!isExistUser) 
             return ResponseDto.authenticationFailed();
 
             Optional<DesignerBoardEntity> designerBoardOptional = designerBoardRepository.findById(designerBoardNumber);
+
             if (!designerBoardOptional.isPresent())
             return ResponseDto.noExistBoard();
 
             DesignerBoardCommentEntity designerBoardCommentEntity;
+
             if (dto.getDesignerBoardParentCommentNumber() != null) {
                 Optional<DesignerBoardCommentEntity> parentCommentOptional = designerBoardCommentRepository.findById(dto.getDesignerBoardParentCommentNumber());
                 if (!parentCommentOptional.isPresent()) 
                 return ResponseDto.noExistBoard();
+
                 designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, dto.getDesignerBoardParentCommentNumber());
             } else {
                 designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, null); 
@@ -160,6 +164,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
             String writerId = designerBoardEntity != null ? designerBoardEntity.getDesignerBoardWriterId() : null;
             boolean isWriter = writerId != null && userId.equals(writerId);
+            
             if (!isWriter) 
             return ResponseDto.authorizationFailed();
 

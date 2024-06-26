@@ -1,7 +1,6 @@
 package com.back.back.entity;
 
 import com.back.back.common.object.ChatMessage;
-import com.back.back.common.util.ChangeDateFormatUtil;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

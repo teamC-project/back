@@ -33,6 +33,7 @@ public class AnnouncementBoardListItem {
 			AnnouncementBoardListItem announcementBoardListItem = new AnnouncementBoardListItem(announcementBoardEntity);
 			announcementBoardList.add(announcementBoardListItem);
 		}
+		
 	return announcementBoardList;
 	} 
 

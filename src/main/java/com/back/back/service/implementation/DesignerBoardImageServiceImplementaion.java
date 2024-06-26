@@ -54,7 +54,7 @@ public class DesignerBoardImageServiceImplementaion implements DesignerBoardImag
 			exception.printStackTrace();
 			return null;
 		}
-			return resource;
+		return resource;
     }
 
 }

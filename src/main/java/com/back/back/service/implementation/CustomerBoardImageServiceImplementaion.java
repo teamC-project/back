@@ -37,7 +37,6 @@ public class CustomerBoardImageServiceImplementaion implements CustomerBoardImag
 			exception.printStackTrace();
 			return null;
 		}
-		
 		String url = fileUrl + saveFileName;
 		return url;
     }
