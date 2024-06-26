@@ -1,6 +1,5 @@
 package com.back.back.dto.response.customerboard;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
