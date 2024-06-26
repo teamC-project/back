@@ -1,10 +1,13 @@
 package com.back.back.dto.request.auth;
 
-import jakarta.validation.constraints.NotBlank;
+import com.back.back.common.util.EmailPatternUtil;
+
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
@@ -12,9 +15,10 @@ import lombok.Setter;
 public class EmailAuthCheckRequestDto {
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\\.[a-zA-Z]{2,4}$")
+    @Pattern(regexp = EmailPatternUtil.EMAILPATTERN)
     private String userEmail;
 
     @NotBlank
     private String authNumber;
+    
 }

@@ -2,10 +2,10 @@ package com.back.back.common.object;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Getter
 @Setter
@@ -13,8 +13,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatMessage {
-  private Integer chatroomId;
-  private String senderId;
-  private String message;
-  private String sendDatetime;
+
+    private Integer chatroomId;
+    private String senderId;
+    private String message;
+    private String sendDatetime;
+
 }

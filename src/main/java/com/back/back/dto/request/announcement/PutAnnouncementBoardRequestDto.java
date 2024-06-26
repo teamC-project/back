@@ -1,9 +1,10 @@
 package com.back.back.dto.request.announcement;
 
 import jakarta.validation.constraints.NotBlank;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
@@ -15,4 +16,5 @@ public class PutAnnouncementBoardRequestDto {
 
 	@NotBlank
 	private String announcementBoardContents;
+	
 }

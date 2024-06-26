@@ -3,16 +3,17 @@ package com.back.back.entity;
 import com.back.back.common.object.ChatMessage;
 import com.back.back.common.util.ChangeDateFormatUtil;
 
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "chat_message")
@@ -28,8 +29,11 @@ public class ChatMessageEntity {
     private Integer messageId;
 
     private Integer chatroomId;
+
     private String senderId;
+
     private String message;
+    
     private String sendDatetime;
 
     public ChatMessageEntity(ChatMessage chatMessage) {
@@ -39,4 +43,5 @@ public class ChatMessageEntity {
         this.message = chatMessage.getMessage();
         this.sendDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
     }
+
 }

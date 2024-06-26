@@ -1,41 +1,43 @@
 package com.back.back.common.object;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.CustomerBoardEntity;
+import com.back.back.common.util.ChangeDateFormatUtil;
 
 import lombok.Getter;
 
 @Getter
 public class CustomerBoardListItem {
-  private Integer customerBoardNumber;
-  private String customerBoardTitle;
-  private String customerBoardWriterId;
-  private String customerBoardWriteDatetime;
-  private Integer customerBoardViewCount;
-  private Boolean secret;
 
-  private CustomerBoardListItem(CustomerBoardEntity customerBoardEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil.changeCustomerListDateFormat(customerBoardEntity.getCustomerBoardWriteDatetime());
+    private Integer customerBoardNumber;
+    private String customerBoardTitle;
+    private String customerBoardWriterId;
+    private String customerBoardWriteDatetime;
+    private Integer customerBoardViewCount;
+    private Boolean secret;
 
-    this.customerBoardNumber = customerBoardEntity.getCustomerBoardNumber();
-    this.customerBoardTitle = customerBoardEntity.getCustomerBoardTitle();
-    this.customerBoardWriterId = customerBoardEntity.getCustomerBoardWriterId();
-    this.customerBoardWriteDatetime = writeDatetime;
-    this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
-    this.secret = customerBoardEntity.getSecret();
-  }
+    private CustomerBoardListItem(CustomerBoardEntity customerBoardEntity) throws Exception {
 
-  public static List<CustomerBoardListItem> getList(List<CustomerBoardEntity> customerBoardEntities) throws Exception {
-    List<CustomerBoardListItem> customerBoardList = new ArrayList<>();
-
-    for (CustomerBoardEntity customerBoardEntity : customerBoardEntities) {
-      CustomerBoardListItem customerBoardListItem = new CustomerBoardListItem(customerBoardEntity);
-      customerBoardList.add(customerBoardListItem);
+        this.customerBoardNumber = customerBoardEntity.getCustomerBoardNumber();
+        this.customerBoardTitle = customerBoardEntity.getCustomerBoardTitle();
+        this.customerBoardWriterId = customerBoardEntity.getCustomerBoardWriterId();
+        this.customerBoardWriteDatetime = ChangeDateFormatUtil.changeListDateFormat(customerBoardEntity.getCustomerBoardWriteDatetime());
+        this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
+        this.secret = customerBoardEntity.getSecret();
     }
 
-    return customerBoardList;
-  }
+    public static List<CustomerBoardListItem> getList(List<CustomerBoardEntity> customerBoardEntities) throws Exception {
+
+        List<CustomerBoardListItem> customerBoardList = new ArrayList<>();
+        for (CustomerBoardEntity customerBoardEntity : customerBoardEntities) {
+            
+            CustomerBoardListItem customerBoardListItem = new CustomerBoardListItem(customerBoardEntity);
+            customerBoardList.add(customerBoardListItem);
+        }
+
+        return customerBoardList;
+    }
+
 }

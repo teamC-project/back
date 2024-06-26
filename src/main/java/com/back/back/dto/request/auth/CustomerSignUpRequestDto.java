@@ -1,10 +1,14 @@
 package com.back.back.dto.request.auth;
 
-import jakarta.validation.constraints.NotBlank;
+import com.back.back.common.util.EmailPatternUtil;
+import com.back.back.common.util.PasswordPatternUtil;
+
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
@@ -15,11 +19,11 @@ public class CustomerSignUpRequestDto {
     private String userId;
 
     @NotBlank
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$")
+    @Pattern(regexp = PasswordPatternUtil.PASSWORDPATTERN)
     private String userPassword;
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\\.[a-zA-Z]{2,4}$")
+    @Pattern(regexp = EmailPatternUtil.EMAILPATTERN)
     private String userEmail;
 
     @NotBlank
@@ -30,6 +34,9 @@ public class CustomerSignUpRequestDto {
     
     @NotBlank
     private String userAge;
+
     private String joinPath;
+
     private String snsId;
+    
 }

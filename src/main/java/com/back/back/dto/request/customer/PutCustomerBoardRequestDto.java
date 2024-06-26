@@ -1,9 +1,10 @@
 package com.back.back.dto.request.customer;
 
 import jakarta.validation.constraints.NotBlank;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
@@ -17,4 +18,5 @@ public class PutCustomerBoardRequestDto {
     private String customerBoardContents;
 
     private boolean secret;
+    
 }

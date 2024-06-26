@@ -1,14 +1,14 @@
 package com.back.back.provider;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.beans.factory.annotation.Value;
 
-import jakarta.mail.Message.RecipientType;
 import jakarta.mail.MessagingException;
-import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
- 
+import jakarta.mail.Message.RecipientType;
+import jakarta.mail.internet.InternetAddress;
+
 import lombok.RequiredArgsConstructor;
 
 @Component
