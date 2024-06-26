@@ -2,13 +2,14 @@ package com.back.back.entity;
 
 import com.back.back.entity.primaryKey.LikePk;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.IdClass;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "like_table")
@@ -20,6 +21,8 @@ public class LikeEntity {
     
 	@Id
 	private String userId;
+
 	@Id
 	private int trendBoardNumber;
+	
 }
