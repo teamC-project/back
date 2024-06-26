@@ -3,10 +3,10 @@ package com.back.back.dto.response.user;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.back.back.dto.response.ResponseCode;
-import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.ResponseMessage;
 import com.back.back.entity.UserEntity;
+import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.ResponseCode;
+import com.back.back.dto.response.ResponseMessage;
 
 import lombok.Getter;
 
@@ -20,7 +20,7 @@ public class GetSignInUserResponseDto extends ResponseDto {
     private String userImage;
     private String userCompanyName;
     private String userRole;
-  
+
     private GetSignInUserResponseDto(UserEntity userEntity) {
 
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
@@ -34,7 +34,9 @@ public class GetSignInUserResponseDto extends ResponseDto {
     }
     
     public static ResponseEntity<GetSignInUserResponseDto> success (UserEntity userEntity ) {
+
         GetSignInUserResponseDto responseBody = new GetSignInUserResponseDto(userEntity);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody); 
     }
+    
 }

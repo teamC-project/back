@@ -2,11 +2,12 @@ package com.back.back.dto.request.auth;
 
 import com.back.back.common.util.EmailPatternUtil;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
@@ -22,4 +23,5 @@ public class PasswordFoundRequestDto {
     
     @NotBlank
     private String authNumber;
+    
 }

@@ -1,7 +1,7 @@
 package com.back.back.common.util;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class ChangeDateFormatUtil {
 
@@ -12,7 +12,6 @@ public class ChangeDateFormatUtil {
         simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
         String writeDatetime = simpleDateFormat.format(datetime);
         return writeDatetime;
-
     }
 
     public static String changeListDateFormat(String original) throws Exception {
@@ -21,18 +20,13 @@ public class ChangeDateFormatUtil {
         Date datetime = inputFormat.parse(original);
         Date today = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
         if (dateFormat.format(datetime).equals(dateFormat.format(today))) {
-
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
             return timeFormat.format(datetime);
-
         } else {
-            
             SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy.MM.dd");
             return outputFormat.format(datetime);
         }
-
     }
 
     public static String getCurrentDatetiem() {

@@ -3,10 +3,10 @@ package com.back.back.dto.response.chatroom;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.back.back.dto.response.ResponseCode;
-import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.ResponseMessage;
 import com.back.back.entity.ChatroomEntity;
+import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.ResponseCode;
+import com.back.back.dto.response.ResponseMessage;
 
 import lombok.Getter;
 
@@ -19,8 +19,8 @@ public class GetChatroomResponseDto extends ResponseDto {
     private String roomName;
 
     private GetChatroomResponseDto(ChatroomEntity chatroomEntity) throws Exception {
-        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
         this.chatroomId = chatroomEntity.getRoomId();
         this.customerId = chatroomEntity.getCustomerId();
         this.designerId = chatroomEntity.getDesignerId();
@@ -28,6 +28,7 @@ public class GetChatroomResponseDto extends ResponseDto {
     }
 
     public static ResponseEntity<GetChatroomResponseDto> success (ChatroomEntity chatroomEntity) throws Exception {
+        
         GetChatroomResponseDto responseBody = new GetChatroomResponseDto(chatroomEntity);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }

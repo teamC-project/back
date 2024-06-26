@@ -4,11 +4,11 @@ package com.back.back.dto.response.customerboard;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.back.back.common.util.ChangeDateFormatUtil;
-import com.back.back.dto.response.ResponseCode;
 import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.ResponseMessage;
+import com.back.back.dto.response.ResponseCode;
 import com.back.back.entity.CustomerBoardEntity;
+import com.back.back.dto.response.ResponseMessage;
+import com.back.back.common.util.ChangeDateFormatUtil;
 
 import lombok.Getter;
 
@@ -24,8 +24,8 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
     private Boolean isSecret;
 
     private GetCustomerBoardResponseDto(CustomerBoardEntity customerBoardEntity) throws Exception {
-        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
         this.customerBoardNumber = customerBoardEntity.getCustomerBoardNumber();
         this.customerBoardTitle = customerBoardEntity.getCustomerBoardTitle();
         this.customerBoardWriterId = customerBoardEntity.getCustomerBoardWriterId();
@@ -36,9 +36,9 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
     }
 
     public static ResponseEntity<GetCustomerBoardResponseDto> success(CustomerBoardEntity customerBoardEntity) throws Exception {
+
         GetCustomerBoardResponseDto responseBody = new GetCustomerBoardResponseDto(customerBoardEntity);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
-
 
 }

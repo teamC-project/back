@@ -1,17 +1,19 @@
 package com.back.back.entity;
 
 import com.back.back.common.util.ChangeDateFormatUtil;
-import com.back.back.dto.request.designer.PostDesignerBoardRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardRequestDto;
+import com.back.back.dto.request.designer.PostDesignerBoardRequestDto;
+
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "designer_board")
@@ -24,10 +26,15 @@ public class DesignerBoardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer designerBoardNumber;
+
     private String designerBoardTitle;
+
     private String designerBoardContents;
+
     private String designerBoardWriterId;
+
     private String designerBoardWriteDatetime;
+
     private Integer designerBoardViewCount;
 
     public DesignerBoardEntity(PostDesignerBoardRequestDto dto, String userId) {
@@ -40,11 +47,14 @@ public class DesignerBoardEntity {
     }
 
     public void designerIncreaseViewCount() {
+
         this.designerBoardViewCount++;  
     }
 
     public void update (PutDesignerBoardRequestDto dto) {
+
         this.designerBoardTitle = dto.getDesignerBoardTitle();
         this.designerBoardContents = dto.getDesignerBoardContents();
     }
+    
 }

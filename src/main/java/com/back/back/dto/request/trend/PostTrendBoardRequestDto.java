@@ -1,6 +1,7 @@
 package com.back.back.dto.request.trend;
 
 import jakarta.validation.constraints.NotBlank;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,4 +16,5 @@ public class PostTrendBoardRequestDto {
 	private String trendBoardContents;
 
 	private String trendBoardThumbnailImage;
+	
 }

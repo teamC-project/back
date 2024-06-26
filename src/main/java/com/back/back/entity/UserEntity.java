@@ -5,13 +5,14 @@ import com.back.back.dto.request.auth.DesignerSignUpRequestDto;
 import com.back.back.dto.request.user.CustomerUpdateRequestDto;
 import com.back.back.dto.request.user.DesignerUpdateRequestDto;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Entity;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "user")
@@ -23,17 +24,27 @@ public class UserEntity {
 
     @Id
     private String userId;
+
     private String userPassword;
+
     private String userEmail;
+
     private String userGender;
+
     private String userAge;
+
     private String userImage;
+
     private String userCompanyName;
+
     private String userRole;
+
     private String joinPath;
+
     private String snsId;
 
     public UserEntity(CustomerSignUpRequestDto customerDto) {
+
         this.userId = customerDto.getUserId();
         this.userPassword = customerDto.getUserPassword();
         this.userEmail = customerDto.getUserEmail();
@@ -45,6 +56,7 @@ public class UserEntity {
     }
 
     public UserEntity(DesignerSignUpRequestDto designerDto) {
+
         this.userId = designerDto.getUserId();
         this.userPassword = designerDto.getUserPassword();
         this.userEmail = designerDto.getUserEmail();
@@ -59,14 +71,17 @@ public class UserEntity {
 
 
     public void update(CustomerUpdateRequestDto dto) {
+
         this.userAge = dto.getUserAge();
         this.userGender = dto.getUserGender();
     }
 
     public void update(DesignerUpdateRequestDto dto) {
+
         this.userAge = dto.getUserAge();
         this.userGender = dto.getUserGender();
         this.userImage = dto.getUserImage();
         this.userCompanyName =dto.getUserCompanyName();
     }
+    
 }

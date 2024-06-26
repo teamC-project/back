@@ -1,7 +1,7 @@
 package com.back.back.common.object;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.DesignerBoardCommentEntity;
@@ -26,12 +26,9 @@ public class DesignerBoardCommentListItem {
         this.designerBoardParentCommentNumber = designerBoardCommentEntity.getDesignerBoardParentCommentNumber();
     }
 
-    public static List<DesignerBoardCommentListItem> getList(
+    public static List<DesignerBoardCommentListItem> getList(List<DesignerBoardCommentEntity> designerBoardCommentEntities) throws Exception {
 
-        List<DesignerBoardCommentEntity> designerBoardCommentEntities) throws Exception {
-            
         List<DesignerBoardCommentListItem> designerBoardCommentList = new ArrayList<>();
-
         for (DesignerBoardCommentEntity designerBoardCommentEntity : designerBoardCommentEntities) {
 
             DesignerBoardCommentListItem designerBoardCommentListItem = new DesignerBoardCommentListItem(designerBoardCommentEntity);
