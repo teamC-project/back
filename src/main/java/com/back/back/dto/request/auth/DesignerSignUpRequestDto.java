@@ -3,11 +3,12 @@ package com.back.back.dto.request.auth;
 import com.back.back.common.util.EmailPatternUtil;
 import com.back.back.common.util.PasswordPatternUtil;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
@@ -38,9 +39,10 @@ public class DesignerSignUpRequestDto {
     private String userImage;
 
     @NotBlank
-    String userCompanyName;
+    private String userCompanyName;
     
     private String joinPath;
 
     private String snsId;
+    
 }
