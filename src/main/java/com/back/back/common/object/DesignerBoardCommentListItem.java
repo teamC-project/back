@@ -25,7 +25,7 @@ public class DesignerBoardCommentListItem {
     this.designerBoardCommentWriterId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
     this.designerBoardCommentWriteDatetime = writeDatetime;
     this.designerBoardCommentContents = designerBoardCommentEntity.getDesignerBoardCommentContents();
-    this.designerBoardParentCommentNumber = designerBoardCommentEntity.getDesignerBoardParentCommentNumber(); // 부모 댓글
+    this.designerBoardParentCommentNumber = designerBoardCommentEntity.getDesignerBoardParentCommentNumber(); 
   }
 
   public static List<DesignerBoardCommentListItem> getList(

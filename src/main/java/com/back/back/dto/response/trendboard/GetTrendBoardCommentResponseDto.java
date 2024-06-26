@@ -20,12 +20,11 @@ public class GetTrendBoardCommentResponseDto extends ResponseDto {
 
   private GetTrendBoardCommentResponseDto(TrendBoardCommentEntity trendBoardCommentEntity) throws Exception {
     super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    String trendCommentWriteDatetime = ChangeDateFormatUtil
-        .changeYYYYMMDD(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
 
     this.trendBoardCommentNumber = trendBoardCommentEntity.getTrendBoardCommentNumber();
     this.trendBoardCommentWriterId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
-    this.trendBoardCommentWriteDatetime = trendCommentWriteDatetime;
+    this.trendBoardCommentWriteDatetime = ChangeDateFormatUtil
+    .changeYYYYMMDDHHMM(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
     this.trendBoardCommentContents = trendBoardCommentEntity.getTrendBoardCommentContents();
   }
 

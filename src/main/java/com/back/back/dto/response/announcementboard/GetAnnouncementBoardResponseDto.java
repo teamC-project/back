@@ -22,7 +22,7 @@ public class GetAnnouncementBoardResponseDto extends ResponseDto {
 
 	private GetAnnouncementBoardResponseDto(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
+		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
 
 		this.announcementBoardNumber = announcementBoardEntity.getAnnouncementBoardNumber();
 		this.announcementBoardTitle = announcementBoardEntity.getAnnouncementBoardTitle();
