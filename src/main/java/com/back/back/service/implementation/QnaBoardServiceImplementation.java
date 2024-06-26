@@ -61,8 +61,7 @@ public class QnaBoardServiceImplementation implements QnaBoardService {
 	public ResponseEntity<? super GetSearchQnaBoardListResponseDto> getSearchQnaBoardList(String qnaSearchWord) {
 
 		try {
-			List<QnaBoardEntity> qnaBoardEntities = qnaBoardRepository
-			.findByQnaBoardTitleContainsOrderByQnaBoardNumberDesc(qnaSearchWord);
+			List<QnaBoardEntity> qnaBoardEntities = qnaBoardRepository.findByQnaBoardTitleContainsOrderByQnaBoardNumberDesc(qnaSearchWord);
 			return GetSearchQnaBoardListResponseDto.success(qnaBoardEntities);
 
 		} catch (Exception exception) {
@@ -114,6 +113,7 @@ public class QnaBoardServiceImplementation implements QnaBoardService {
 
 			String writerId = qnaBoardEntity.getQnaBoardWriterId();
 			boolean isWriter = userId.equals(writerId);
+			
 			if (!isWriter)
 			return ResponseDto.authorizationFailed();
 
@@ -123,6 +123,7 @@ public class QnaBoardServiceImplementation implements QnaBoardService {
 
 			qnaBoardEntity.updateQnaBoard(dto);
 			qnaBoardRepository.save(qnaBoardEntity);
+			
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			return ResponseDto.databaseError();
@@ -134,7 +135,6 @@ public class QnaBoardServiceImplementation implements QnaBoardService {
 	public ResponseEntity<ResponseDto> postQnaBoardComment(PostQnaBoardCommentRequestDto dto, int qnaBoardNumber) {
 
 		try {
-
 			QnaBoardEntity qnaBoardEntity = qnaBoardRepository.findByQnaBoardNumber(qnaBoardNumber);
 			if (qnaBoardEntity == null) 
 			return ResponseDto.noExistBoard();

@@ -85,6 +85,7 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 		try {
 			List<TrendBoardEntity> trendBoardEntities = trendBoardRepository.findByOrderByTrendBoardNumberDesc();
 			return GetTrendBoardListResponseDto.success(trendBoardEntities);
+			
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			return ResponseDto.databaseError();
@@ -310,7 +311,8 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 	public ResponseEntity<ResponseDto> deleteTrendBoardLikeList(int trendBoardNumber) {
 
 		try {
-				likeRepository.deleteByTrendBoardNumber(trendBoardNumber);
+			likeRepository.deleteByTrendBoardNumber(trendBoardNumber);
+			
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			return ResponseDto.databaseError();

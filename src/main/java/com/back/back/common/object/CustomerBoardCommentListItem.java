@@ -22,8 +22,8 @@ public class CustomerBoardCommentListItem {
         this.customerBoardCommentNumber = customerBoardCommentEntity.getCustomerBoardCommentNumber();
         this.customerBoardCommentWriterId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
         this.customerBoardCommentContents = customerBoardCommentEntity.getCustomerBoardCommentContents();
-        this.customerBoardCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
         this.customerBoardParentCommentNumber = customerBoardCommentEntity.getCustomerBoardParentCommentNumber(); 
+        this.customerBoardCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
     }
 
     public static List<CustomerBoardCommentListItem> getList(List<CustomerBoardCommentEntity> customerBoardCommentEntities) throws Exception {

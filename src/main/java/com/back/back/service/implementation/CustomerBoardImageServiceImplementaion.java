@@ -13,8 +13,10 @@ import com.back.back.service.CustomerBoardImageService;
 
 @Service
 public class CustomerBoardImageServiceImplementaion implements CustomerBoardImageService {
+
     @Value("${file.url}")
 	private String fileUrl;
+
 	@Value("${file.path}")
 	private String filePath;
 

@@ -13,8 +13,10 @@ import com.back.back.service.TrendBoardImageService;
 
 @Service
 public class TrendBoardImageServiceImplementation implements TrendBoardImageService {
+
 	@Value("${file.url}")
 	private String fileUrl;
+	
 	@Value("${file.path}")
 	private String filePath;
 

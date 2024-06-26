@@ -27,13 +27,13 @@ public class AnnouncementBoardListItem {
 	}
 
 	public static List<AnnouncementBoardListItem> getAnnouncementBoardList(List<AnnouncementBoardEntity> announcementBoardEntities) throws Exception {
-
+		
 		List<AnnouncementBoardListItem> announcementBoardList = new ArrayList<>();
 		for (AnnouncementBoardEntity announcementBoardEntity : announcementBoardEntities) {
-			
 			AnnouncementBoardListItem announcementBoardListItem = new AnnouncementBoardListItem(announcementBoardEntity);
 			announcementBoardList.add(announcementBoardListItem);
 		}
+		
 	return announcementBoardList;
 	} 
 

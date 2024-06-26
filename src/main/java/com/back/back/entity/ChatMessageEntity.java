@@ -1,7 +1,6 @@
 package com.back.back.entity;
 
 import com.back.back.common.object.ChatMessage;
-import com.back.back.common.util.ChangeDateFormatUtil;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -33,15 +32,12 @@ public class ChatMessageEntity {
     private String senderId;
 
     private String message;
-    
-    private String sendDatetime;
 
     public ChatMessageEntity(ChatMessage chatMessage) {
 
         this.chatroomId = chatMessage.getChatroomId();
         this.senderId = chatMessage.getSenderId();
         this.message = chatMessage.getMessage();
-        this.sendDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
     }
 
 }

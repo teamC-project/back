@@ -13,8 +13,10 @@ import com.back.back.service.DesignerBoardImageService;
 
 @Service
 public class DesignerBoardImageServiceImplementaion implements DesignerBoardImageService {
+
     @Value("${file.url}")
 	private String fileUrl;
+
 	@Value("${file.path}")
 	private String filePath;
 
@@ -30,10 +32,12 @@ public class DesignerBoardImageServiceImplementaion implements DesignerBoardImag
 			String savePath = filePath + saveFileName;
 		try {
 			file.transferTo(new File(savePath));
+
 		} catch(Exception exception) {
 			exception.printStackTrace();
 			return null;
 		}
+		
 		String url = fileUrl + saveFileName;
 		return url;
     }
@@ -45,11 +49,12 @@ public class DesignerBoardImageServiceImplementaion implements DesignerBoardImag
 
 		try {
 			resource = new UrlResource("file:" + filePath + fileName);
+
 		} catch(Exception exception) {
 			exception.printStackTrace();
 			return null;
 		}
-			return resource;
+		return resource;
     }
 
 }
