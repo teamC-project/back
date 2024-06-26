@@ -17,7 +17,7 @@ public class DesignerBoardListItem {
   private Integer designerBoardViewCount;
 
   private DesignerBoardListItem(DesignerBoardEntity designerBoardEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil.changeDesignerListDateFormat(designerBoardEntity.getDesignerBoardWriteDatetime());
+    String writeDatetime = ChangeDateFormatUtil.changeListDateFormat(designerBoardEntity.getDesignerBoardWriteDatetime());
 
     this.designerBoardNumber = designerBoardEntity.getDesignerBoardNumber();
     this.designerBoardTitle = designerBoardEntity.getDesignerBoardTitle();
