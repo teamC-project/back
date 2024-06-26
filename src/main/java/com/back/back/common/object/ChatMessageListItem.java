@@ -14,7 +14,6 @@ public class ChatMessageListItem {
     private Integer chatroomId;
     private String senderId;
     private String message;
-    private String sendDatetime;
 
     public ChatMessageListItem(ChatMessageEntity chatMessageEntity) {
 
@@ -22,7 +21,6 @@ public class ChatMessageListItem {
         this.chatroomId = chatMessageEntity.getChatroomId();
         this.senderId = chatMessageEntity.getSenderId();
         this.message = chatMessageEntity.getMessage();
-        this.sendDatetime = chatMessageEntity.getSendDatetime();
     }
 
     public static List<ChatMessageListItem> getList (List<ChatMessageEntity> chatMessageEntities) throws Exception {
