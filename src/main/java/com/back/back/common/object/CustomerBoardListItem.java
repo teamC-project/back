@@ -36,7 +36,6 @@ public class CustomerBoardListItem {
             CustomerBoardListItem customerBoardListItem = new CustomerBoardListItem(customerBoardEntity);
             customerBoardList.add(customerBoardListItem);
         }
-
         return customerBoardList;
     }
 

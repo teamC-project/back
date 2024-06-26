@@ -94,8 +94,10 @@ public class AuthServiceImplimentation implements AuthService {
         try {
             String userId = dto.getUserId();
             Boolean userEntity = userRepository.existsByUserId(userId);
+
             if (userEntity)
             return ResponseDto.duplicatedId();
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -109,8 +111,10 @@ public class AuthServiceImplimentation implements AuthService {
         try {
             String userId = dto.getUserId();
             Boolean userEntity = userRepository.existsByUserId(userId);
+
             if (!userEntity)
             return ResponseDto.noExistId();
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -133,8 +137,10 @@ public class AuthServiceImplimentation implements AuthService {
             emailAuthNumberRepository.save(emailAuthNumberEntity);
 
             mailProvider.mailAuthSend(userEmail, authNumber);
+
         } catch (MessagingException exception) {
             exception.printStackTrace();
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -152,6 +158,7 @@ public class AuthServiceImplimentation implements AuthService {
             boolean isMatched = emailAuthNumberRepository.existsByEmailAndAuthNumber(userEmail, authNumber);
             if (!isMatched)
             return ResponseDto.authenticationFailed();
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -185,6 +192,7 @@ public class AuthServiceImplimentation implements AuthService {
 
             UserEntity userEntity = new UserEntity(dto);
             userRepository.save(userEntity);
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -245,6 +253,7 @@ public class AuthServiceImplimentation implements AuthService {
 
         } catch (MessagingException exception) {
             exception.printStackTrace();
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -296,8 +305,8 @@ public class AuthServiceImplimentation implements AuthService {
 
         } catch (MessagingException exception) {
             exception.printStackTrace();
-        } 
-        catch (Exception exception) {
+            
+        } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }

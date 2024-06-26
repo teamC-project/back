@@ -33,7 +33,9 @@ public class CustomOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {return this.id;}
+
     public boolean isStatus() {return this.status;}
+    
     public String getJoinPath() {return this.joinPath;}
 
 }

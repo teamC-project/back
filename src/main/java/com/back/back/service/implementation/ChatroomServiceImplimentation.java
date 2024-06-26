@@ -24,9 +24,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ChatroomServiceImplimentation implements ChatroomService {
 
+    private final UserRepository userRepository;
     private final ChatroomRepository chatroomRepository;
     private final ChatMessageRepository chatMessageRepository;
-    private final UserRepository userRepository;
 
     @Override
     public ResponseEntity<ResponseDto> postChatroom(PostChatroomRequestDto dto, String userId, String roomName) {
@@ -37,9 +37,8 @@ public class ChatroomServiceImplimentation implements ChatroomService {
             return ResponseDto.authenticationFailed();
 
             UserEntity user = userRepository.findById(userId).orElse(null); 
-            if (user == null || !user.getUserRole().equals("ROLE_CUSTOMER"))  {
+            if (user == null || !user.getUserRole().equals("ROLE_CUSTOMER")) 
             return ResponseDto.authorizationFailed();
-            }
 
             ChatroomEntity chatroom = new ChatroomEntity(dto.getCustomerId(), dto.getDesignerId(), dto.getRoomName());
             chatroomRepository.save(chatroom);

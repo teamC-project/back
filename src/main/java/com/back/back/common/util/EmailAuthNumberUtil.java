@@ -29,6 +29,7 @@ public class EmailAuthNumberUtil {
             boolean flag = random.nextBoolean();
             if (flag) authChar[index] = (char)(random.nextInt(10)+48);
         }
+        
         return null;
     }
     

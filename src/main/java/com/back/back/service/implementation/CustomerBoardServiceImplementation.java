@@ -170,11 +170,13 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
         try {
             CustomerBoardEntity customerBoardEntity =  customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
+
             if (customerBoardEntity == null) 
             return ResponseDto.noExistBoard();
 
             String writerId = customerBoardEntity != null ? customerBoardEntity.getCustomerBoardWriterId() : null;
             boolean isWriter = writerId != null && userId.equals(writerId);
+
             if (!isWriter) 
             return ResponseDto.authorizationFailed();
 
@@ -193,11 +195,13 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
         try {
             CustomerBoardCommentEntity customerBoardCommentEntity = customerBoardCommentRepository.findByCustomerBoardCommentNumber(customerBoardCommentNumber);
+
             if (customerBoardCommentEntity == null) 
             return ResponseDto.noExistBoard();
 
             String writerId = customerBoardCommentEntity != null ? customerBoardCommentEntity.getCustomerBoardCommentWriterId() :null;
             boolean isWriter = writerId != null && userId.equals(writerId);
+
             if (!isWriter) 
             return ResponseDto.authorizationFailed();
 
@@ -216,15 +220,18 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
         try {
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
+
             if (customerBoardEntity == null) 
             return ResponseDto.noExistBoard();
 
             UserEntity userEntity = userRepository.findByUserId(userId);
+
             if (userEntity == null) 
             return ResponseDto.authenticationFailed();
 
             String writerId = customerBoardEntity.getCustomerBoardWriterId();
             String userRole = userEntity.getUserRole();
+
             boolean isWriter = userId.equals(writerId);
             boolean isAdmin = userRole.equals("ROLE_ADMIN");
 
@@ -244,15 +251,18 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         try {
             CustomerBoardCommentEntity customerBoardCommentEntity = 
             customerBoardCommentRepository.findByCustomerBoardCommentNumber(customerBoardCommentNumber);
+
             if (customerBoardCommentEntity == null) 
             return ResponseDto.noExistBoard();
     
             UserEntity userEntity = userRepository.findByUserId(userId);
+
             if (userEntity == null) 
             return ResponseDto.authenticationFailed();
     
             String writerId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
             String userRole = userEntity.getUserRole();
+
             boolean isWriter = userId.equals(writerId);
             boolean isAdmin = userRole.equals("ROLE_ADMIN");
     
@@ -273,6 +283,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
         try {
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
+            
             if (customerBoardEntity == null) 
             return ResponseDto.noExistBoard();
 
