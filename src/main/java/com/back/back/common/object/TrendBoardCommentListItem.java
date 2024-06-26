@@ -10,38 +10,39 @@ import lombok.Getter;
 
 @Getter
 public class TrendBoardCommentListItem {
+
     private Integer trendBoardCommentNumber;
-    private Integer trendBoardNumber;
     private String trendBoardCommentWriterId;
-    private String trendBoardCommentWriteDatetime;
     private String trendBoardCommentContents;
-    private String originalTrendBoardCommentWriterId;
+    private String trendBoardCommentWriteDatetime;
+    private String trendBoardParentCommentNumber;
 
     private TrendBoardCommentListItem(TrendBoardCommentEntity trendBoardCommentEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil
-        .changeYYMMDD(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
 
-    String writerId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
-    writerId = writerId.substring(0, 1) +
-        "*".repeat(writerId.length() - 1);
+        String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
 
-    this.trendBoardCommentNumber = trendBoardCommentEntity.getTrendBoardCommentNumber();
-    this.trendBoardCommentWriterId = writerId;
-    this.trendBoardCommentWriteDatetime = writeDatetime;
-    this.trendBoardCommentContents = trendBoardCommentEntity.getTrendBoardCommentContents();
-    this.originalTrendBoardCommentWriterId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
+        String writerId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
+        writerId = writerId.substring(0, 1) + "*".repeat(writerId.length() - 1);
+
+        this.trendBoardCommentNumber = trendBoardCommentEntity.getTrendBoardCommentNumber();
+        this.trendBoardCommentWriterId = writerId;
+        this.trendBoardCommentContents = trendBoardCommentEntity.getTrendBoardCommentContents();
+        this.trendBoardCommentWriteDatetime = writeDatetime;
+        this.trendBoardParentCommentNumber = trendBoardCommentEntity.getTrendBoardCommentWriterId();
 
     }
 
-    public static List<TrendBoardCommentListItem> getList(List<TrendBoardCommentEntity> trendBoardCommentEntities)
-    throws Exception {
-    List<TrendBoardCommentListItem> trendBoardCommentList = new ArrayList<>();
+    public static List<TrendBoardCommentListItem> getList(List<TrendBoardCommentEntity> trendBoardCommentEntities) throws Exception {
 
-    for (TrendBoardCommentEntity trendBoardCommentEntity : trendBoardCommentEntities) {
-    TrendBoardCommentListItem trendBoardCommentListItem = new TrendBoardCommentListItem(trendBoardCommentEntity);
-    trendBoardCommentList.add(trendBoardCommentListItem);
+        List<TrendBoardCommentListItem> trendBoardCommentList = new ArrayList<>();
+
+        for (TrendBoardCommentEntity trendBoardCommentEntity : trendBoardCommentEntities) {
+            
+            TrendBoardCommentListItem trendBoardCommentListItem = new TrendBoardCommentListItem(trendBoardCommentEntity);
+            trendBoardCommentList.add(trendBoardCommentListItem);
+        }
+
+        return trendBoardCommentList;
     }
 
-    return trendBoardCommentList;
-    }
 }

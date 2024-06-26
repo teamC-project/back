@@ -1,5 +1,7 @@
 package com.back.back.dto.request.auth;
 
+import com.back.back.common.util.EmailPatternUtil;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -12,7 +14,7 @@ import lombok.Setter;
 public class IdFoundRequestDto {
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\\.[a-zA-Z]{2,4}$")
+    @Pattern(regexp = EmailPatternUtil.EMAILPATTERN)
     private String userEmail;
     
     @NotBlank

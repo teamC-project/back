@@ -10,34 +10,35 @@ import lombok.Getter;
 
 @Getter
 public class CustomerBoardCommentListItem {
-  private Integer customerBoardCommentNumber;
-  private Integer customerBoardNumber;
-  private String customerBoardCommentWriterId;
-  private String customerBoardCommentWriteDatetime;
-  private String customerBoardCommentContents;
-  private Integer customerBoardParentCommentNumber;
 
-  private CustomerBoardCommentListItem(CustomerBoardCommentEntity customerBoardCommentEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil
-        .changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
+    private Integer customerBoardCommentNumber;
+    private String customerBoardCommentWriterId;
+    private String customerBoardCommentContents;
+    private String customerBoardCommentWriteDatetime;
+    private Integer customerBoardParentCommentNumber;
 
-    this.customerBoardCommentNumber = customerBoardCommentEntity.getCustomerBoardCommentNumber();
-    this.customerBoardCommentWriterId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
-    this.customerBoardCommentWriteDatetime = writeDatetime;
-    this.customerBoardCommentContents = customerBoardCommentEntity.getCustomerBoardCommentContents();
-    this.customerBoardParentCommentNumber = customerBoardCommentEntity.getCustomerBoardParentCommentNumber(); // 부모 댓글
-  }
+    private CustomerBoardCommentListItem(CustomerBoardCommentEntity customerBoardCommentEntity) throws Exception {
 
-  public static List<CustomerBoardCommentListItem> getList(
-      List<CustomerBoardCommentEntity> customerBoardCommentEntities) throws Exception {
-    List<CustomerBoardCommentListItem> customerBoardCommentList = new ArrayList<>();
+        String writeDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
 
-    for (CustomerBoardCommentEntity customerBoardCommentEntity : customerBoardCommentEntities) {
-      CustomerBoardCommentListItem customerBoardCommentListItem = new CustomerBoardCommentListItem(
-          customerBoardCommentEntity);
-      customerBoardCommentList.add(customerBoardCommentListItem);
+        this.customerBoardCommentNumber = customerBoardCommentEntity.getCustomerBoardCommentNumber();
+        this.customerBoardCommentWriterId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
+        this.customerBoardCommentContents = customerBoardCommentEntity.getCustomerBoardCommentContents();
+        this.customerBoardCommentWriteDatetime = writeDatetime;
+        this.customerBoardParentCommentNumber = customerBoardCommentEntity.getCustomerBoardParentCommentNumber(); 
     }
 
-    return customerBoardCommentList;
-  }
+    public static List<CustomerBoardCommentListItem> getList(List<CustomerBoardCommentEntity> customerBoardCommentEntities) throws Exception {
+
+        List<CustomerBoardCommentListItem> customerBoardCommentList = new ArrayList<>();
+
+        for (CustomerBoardCommentEntity customerBoardCommentEntity : customerBoardCommentEntities) {
+            
+            CustomerBoardCommentListItem customerBoardCommentListItem = new CustomerBoardCommentListItem(customerBoardCommentEntity);
+            customerBoardCommentList.add(customerBoardCommentListItem);
+        }
+
+        return customerBoardCommentList;
+    }
+
 }

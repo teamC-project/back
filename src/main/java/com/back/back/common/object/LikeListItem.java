@@ -10,18 +10,24 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LikeListItem {
+
 	private String userId;
 
 	public LikeListItem(LikeEntity likeEntity) {
+
 		this.userId = likeEntity.getUserId();
 	}
 
 	public static List<LikeListItem>  getLikeList(List<LikeEntity> likeEntities) {
+
 		List<LikeListItem> list = new ArrayList<>();
+
 		for (LikeEntity likeEntity : likeEntities) {
 			LikeListItem likeListItem = new LikeListItem(likeEntity);
 			list.add(likeListItem);
 		}
+		
 		return list;
 	}
+
 }
