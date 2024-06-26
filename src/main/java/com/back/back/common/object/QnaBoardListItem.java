@@ -1,10 +1,10 @@
 package com.back.back.common.object;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.QnaBoardEntity;
+import com.back.back.common.util.ChangeDateFormatUtil;
 
 import lombok.Getter;
 
@@ -34,8 +34,8 @@ public class QnaBoardListItem {
     public static List<QnaBoardListItem> getQnaBoardList(List<QnaBoardEntity> qnaBoardEntities) throws Exception {
 
         List<QnaBoardListItem> qnaBoardList = new ArrayList<>();
-
         for (QnaBoardEntity qnaBoardEntity : qnaBoardEntities) {
+
             QnaBoardListItem qnaBoardListItem = new QnaBoardListItem(qnaBoardEntity);
             qnaBoardList.add(qnaBoardListItem);
         }

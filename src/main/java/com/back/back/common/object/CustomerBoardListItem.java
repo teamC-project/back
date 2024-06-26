@@ -1,10 +1,10 @@
 package com.back.back.common.object;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.CustomerBoardEntity;
+import com.back.back.common.util.ChangeDateFormatUtil;
 
 import lombok.Getter;
 
@@ -31,7 +31,6 @@ public class CustomerBoardListItem {
     public static List<CustomerBoardListItem> getList(List<CustomerBoardEntity> customerBoardEntities) throws Exception {
 
         List<CustomerBoardListItem> customerBoardList = new ArrayList<>();
-
         for (CustomerBoardEntity customerBoardEntity : customerBoardEntities) {
             
             CustomerBoardListItem customerBoardListItem = new CustomerBoardListItem(customerBoardEntity);

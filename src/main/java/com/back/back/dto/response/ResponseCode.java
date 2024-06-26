@@ -1,5 +1,6 @@
 package com.back.back.dto.response;
 public interface ResponseCode {
+    
     String SUCCESS = "SU";
     String VALIDATION_FAILED = "VF";
     String DUPLICATED_ID = "DI";
@@ -14,8 +15,7 @@ public interface ResponseCode {
     String AUTHORIZATION_FAILED = "AF";
     String PAGE_NOT_FOUND = "PNF";
     String TOKEN_CREATION_FAILED = "TF";
-    String MAIL_SEND_FAILED = "MF";
     String DATABASE_ERROR = "DBE";
     String INVALID_ROOM_ID = "IRI";
-    String INTERNAL_SERVER_ERROR = "ISE";
+
 }

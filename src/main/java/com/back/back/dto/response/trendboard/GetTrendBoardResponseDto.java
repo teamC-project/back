@@ -3,11 +3,11 @@ package com.back.back.dto.response.trendboard;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.back.back.common.util.ChangeDateFormatUtil;
-import com.back.back.dto.response.ResponseCode;
-import com.back.back.dto.response.ResponseDto;
-import com.back.back.dto.response.ResponseMessage;
 import com.back.back.entity.TrendBoardEntity;
+import com.back.back.dto.response.ResponseDto;
+import com.back.back.dto.response.ResponseCode;
+import com.back.back.dto.response.ResponseMessage;
+import com.back.back.common.util.ChangeDateFormatUtil;
 
 import lombok.Getter;
 
@@ -24,8 +24,8 @@ public class GetTrendBoardResponseDto extends ResponseDto {
 
 
 	private GetTrendBoardResponseDto(TrendBoardEntity trendBoardEntity ) throws Exception {
-		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 
+		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 		this.trendBoardNumber = trendBoardEntity.getTrendBoardNumber();
 		this.trendBoardTitle = trendBoardEntity.getTrendBoardTitle();
 		this.trendBoardContents = trendBoardEntity.getTrendBoardContents();
@@ -36,7 +36,9 @@ public class GetTrendBoardResponseDto extends ResponseDto {
 	}
 
 	public static ResponseEntity <GetTrendBoardResponseDto> success (TrendBoardEntity trendBoardEntity) throws Exception {
+
 		GetTrendBoardResponseDto responseBody = new GetTrendBoardResponseDto(trendBoardEntity);
 		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
 	}
+	
 }

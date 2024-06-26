@@ -1,15 +1,15 @@
 package com.back.back.controller;
 
-import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.web.multipart.MultipartFile;
 import com.back.back.service.TrendBoardImageService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class TrendBoardImageController {
 	public String upload(
 		@RequestParam("file") MultipartFile file
 		) {
-		String url = trendBoardImageService.upload(file);
+			String url = trendBoardImageService.upload(file);
 		return url;
 	}
 
@@ -33,7 +33,8 @@ public class TrendBoardImageController {
 	public Resource getFile(
 		@PathVariable("fileName") String fileName
 		) {
-		Resource resource = trendBoardImageService.getFile(fileName);
+			Resource resource = trendBoardImageService.getFile(fileName);
 		return resource;
 	}
+	
 }

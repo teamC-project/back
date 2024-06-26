@@ -1,7 +1,7 @@
 package com.back.back.common.object;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.back.back.entity.ChatroomEntity;
 
@@ -26,7 +26,6 @@ public class ChatroomListItem {
     public static List<ChatroomListItem> getList(List<ChatroomEntity> chatroomEntities) throws Exception {
 
         List<ChatroomListItem> chatroomList = new ArrayList<>();
-        
         for (ChatroomEntity chatroomEntity : chatroomEntities) {
             
             ChatroomListItem chatroomListItem = new ChatroomListItem(chatroomEntity);
