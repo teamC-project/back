@@ -11,13 +11,14 @@ public class SocketIOServerConfig {
 
     @Bean
     protected SocketIOServer socketIOServer() {
-    Configuration config = new Configuration();
+        
+        Configuration config = new Configuration();
 
-    config.setHostname("localhost"); 
-    config.setPort(9092); 
-    config.setTransports(Transport.POLLING, Transport.WEBSOCKET);
+        config.setHostname("localhost"); 
+        config.setPort(9092); 
+        config.setTransports(Transport.POLLING, Transport.WEBSOCKET);
 
-    return new SocketIOServer(config);
+        return new SocketIOServer(config);
     }
 
 }
