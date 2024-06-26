@@ -36,7 +36,7 @@ public class ChatroomServiceImplimentation implements ChatroomService {
             if (!isExistUser)
             return ResponseDto.authenticationFailed();
 
-            UserEntity user = userRepository.findById(userId).orElse(null);  // ??
+            UserEntity user = userRepository.findById(userId).orElse(null); 
             if (user == null || !user.getUserRole().equals("ROLE_CUSTOMER"))  {
             return ResponseDto.authorizationFailed();
             }
