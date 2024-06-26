@@ -15,6 +15,7 @@ import lombok.Getter;
 
 @Getter
 public class GetQnaBoardListResponseDto extends ResponseDto {
+
 	private List<QnaBoardListItem> qnaBoardList;
 
 	private GetQnaBoardListResponseDto(List<QnaBoardEntity> qnaBoardEntities) throws Exception {
@@ -23,7 +24,7 @@ public class GetQnaBoardListResponseDto extends ResponseDto {
 	}
 
 	public static ResponseEntity<GetQnaBoardListResponseDto> success(List<QnaBoardEntity> qnaBoardEntities) throws Exception{
-							GetQnaBoardListResponseDto responseBody = new GetQnaBoardListResponseDto(qnaBoardEntities);
-					return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+		GetQnaBoardListResponseDto responseBody = new GetQnaBoardListResponseDto(qnaBoardEntities);
+		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
 	}
-	}
+}

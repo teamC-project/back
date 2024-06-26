@@ -11,6 +11,7 @@ import lombok.Getter;
 
 @Getter
 public class GetCustomerBoardCommentListResponseDto extends ResponseDto {
+    
     private List<CustomerBoardCommentListItem> customerBoardCommentList;
 
     private GetCustomerBoardCommentListResponseDto (List<CustomerBoardCommentEntity> customerBoardCommentEntities) throws Exception {

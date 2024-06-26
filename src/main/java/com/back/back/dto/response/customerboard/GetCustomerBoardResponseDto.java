@@ -14,6 +14,7 @@ import lombok.Getter;
 
 @Getter
 public class GetCustomerBoardResponseDto extends ResponseDto {
+    
     private Integer customerBoardNumber;
     private String customerBoardTitle;
     private String customerBoardContents;

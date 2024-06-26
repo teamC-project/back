@@ -11,7 +11,6 @@ public class SocketIOServerConfig {
 
     @Bean
     protected SocketIOServer socketIOServer() {
-
     Configuration config = new Configuration();
 
     config.setHostname("localhost"); 

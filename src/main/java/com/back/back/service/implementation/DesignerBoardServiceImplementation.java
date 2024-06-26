@@ -3,29 +3,33 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import com.back.back.dto.request.designer.PostDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PostDesignerBoardRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardCommentRequestDto;
 import com.back.back.dto.request.designer.PutDesignerBoardRequestDto;
+
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardCommentListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardCommentResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardListResponseDto;
 import com.back.back.dto.response.designerboard.GetDesignerBoardResponseDto;
 import com.back.back.dto.response.designerboard.GetSearchDesignerBoardListResponseDto;
+
 import com.back.back.entity.DesignerBoardCommentEntity;
 import com.back.back.entity.DesignerBoardEntity;
 import com.back.back.entity.UserEntity;
+
 import com.back.back.repository.DesignerBoardCommentRepository;
 import com.back.back.repository.DesignerBoardRepository;
 import com.back.back.repository.UserRepository;
+
 import com.back.back.service.DesignerBoardService;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class DesignerBoardServiceImplementation implements DesignerBoardService {
-
     private final DesignerBoardRepository designerBoardRepository;
     private final DesignerBoardCommentRepository designerBoardCommentRepository;
     private final UserRepository userRepository;
@@ -38,7 +42,8 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             DesignerBoardEntity designerBoardEntity = new DesignerBoardEntity(dto, userId);
             designerBoardRepository.save(designerBoardEntity);
             
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -50,9 +55,11 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         try {
             boolean isExistUser = userRepository.existsById(userId);
             if (!isExistUser) return ResponseDto.authenticationFailed();
+
             Optional<DesignerBoardEntity> designerBoardOptional = designerBoardRepository.findById(designerBoardNumber);
             if (!designerBoardOptional.isPresent())
             return ResponseDto.noExistBoard();
+
             DesignerBoardCommentEntity designerBoardCommentEntity;
             if (dto.getDesignerBoardParentCommentNumber() != null) {
                 Optional<DesignerBoardCommentEntity> parentCommentOptional = designerBoardCommentRepository.findById(dto.getDesignerBoardParentCommentNumber());
@@ -61,9 +68,9 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             } else {
                 designerBoardCommentEntity = new DesignerBoardCommentEntity(dto, designerBoardNumber, userId, null); 
             }
-
             designerBoardCommentRepository.save(designerBoardCommentEntity); 
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -75,8 +82,8 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         try {
             List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByOrderByDesignerBoardNumberDesc();
             return GetDesignerBoardListResponseDto.success(designerBoardEntities);
-
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -87,8 +94,8 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         try {
             List<DesignerBoardEntity> designerBoardEntities = designerBoardRepository.findByDesignerBoardTitleContainsOrderByDesignerBoardNumberDesc(designersearchWord);
             return GetSearchDesignerBoardListResponseDto.success(designerBoardEntities);
-            
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -99,9 +106,9 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
         try {
             DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
             if (designerBoardEntity == null) return ResponseDto.noExistBoard();
-
             return GetDesignerBoardResponseDto.success(designerBoardEntity);
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -109,30 +116,28 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
     
         @Override
-    public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(
-        int designerBoardNumber
-    ) {  
+    public ResponseEntity<? super GetDesignerBoardCommentListResponseDto> getDesignerBoardCommentList(int designerBoardNumber) 
+	{  
         try {
         List<DesignerBoardCommentEntity> designerBoardCommentEntities = designerBoardCommentRepository.findByDesignerBoardNumberOrderByDesignerBoardCommentNumberDesc(designerBoardNumber);
         return GetDesignerBoardCommentListResponseDto.success(designerBoardCommentEntities);
-        
-        } catch (Exception  exception) {
+        } 
+		catch (Exception  exception) {
         exception.printStackTrace();
         return ResponseDto.databaseError();
         }
     }
 
     @Override
-    public ResponseEntity<? super GetDesignerBoardCommentResponseDto> getDesignerBoardComment(
-        int designerBoardCommentNumber) {
+    public ResponseEntity<? super GetDesignerBoardCommentResponseDto> getDesignerBoardComment(int designerBoardCommentNumber) 
+	{
             try {
             DesignerBoardCommentEntity designerBoardCommentEntity = designerBoardCommentRepository.findByDesignerBoardCommentNumber(designerBoardCommentNumber);
             if (designerBoardCommentEntity == null)
                 return ResponseDto.noExistBoard();
-
             return GetDesignerBoardCommentResponseDto.success(designerBoardCommentEntity);
-            
-            } catch (Exception exception) {
+            } 
+			catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
             }
@@ -140,7 +145,6 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
     @Override
     public ResponseEntity<ResponseDto> putDesignerBoard(PutDesignerBoardRequestDto dto, int designerBoardNumber, String userId) {
-        
         try {
             DesignerBoardEntity designerBoardEntity =  designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
             if (designerBoardEntity == null) return ResponseDto.noExistBoard();
@@ -152,7 +156,8 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             designerBoardEntity.update(dto);
             designerBoardRepository.save(designerBoardEntity);
             
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -162,7 +167,6 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
     
     @Override
     public ResponseEntity<ResponseDto> putDesignerBoardComment(PutDesignerBoardCommentRequestDto dto, int designerBoardCommentNumber, String userId) {
-        
         try {
             DesignerBoardCommentEntity designerBoardCommentEntity = designerBoardCommentRepository.findByDesignerBoardCommentNumber(designerBoardCommentNumber);
             if (designerBoardCommentEntity == null) return ResponseDto.noExistBoard();
@@ -174,18 +178,16 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             designerBoardCommentEntity.update(dto);
             designerBoardCommentRepository.save(designerBoardCommentEntity);
             
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
-
         return ResponseDto.success();
     }
 
-
     @Override
     public ResponseEntity<ResponseDto> deleteDesignerBoard(int designerBoardNumber, String userId) {
-        
         try {
             DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
             if (designerBoardEntity == null) return ResponseDto.noExistBoard();
@@ -199,10 +201,9 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             boolean isAdmin = userRole.equals("ROLE_ADMIN");
 
             if (!isWriter && !isAdmin) return ResponseDto.authorizationFailed();
-
             designerBoardRepository.delete(designerBoardEntity);
-            
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -211,7 +212,6 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
     @Override
     public ResponseEntity<ResponseDto> deleteDesignerBoardComment(int designerBoardCommentNumber, String userId) {
-        
         try {
             DesignerBoardCommentEntity designerBoardCommentEntity = 
             designerBoardCommentRepository.findByDesignerBoardCommentNumber(designerBoardCommentNumber);
@@ -228,8 +228,8 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             if (!isWriter && !isAdmin) return ResponseDto.authorizationFailed();
 
             designerBoardCommentRepository.delete(designerBoardCommentEntity);
-            
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -238,15 +238,14 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
     @Override
     public ResponseEntity<ResponseDto> increaseViewCount(int designerBoardNumber) {
-        
         try {
             DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
             if (designerBoardEntity == null) return ResponseDto.noExistBoard();
 
             designerBoardEntity.designerIncreaseViewCount();
             designerBoardRepository.save(designerBoardEntity);
-            
-        } catch (Exception exception) {
+        } 
+		catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }

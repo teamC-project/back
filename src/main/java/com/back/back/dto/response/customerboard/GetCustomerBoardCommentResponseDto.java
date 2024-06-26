@@ -9,6 +9,7 @@ import com.back.back.entity.CustomerBoardCommentEntity;
 import lombok.Getter;
 @Getter
 public class GetCustomerBoardCommentResponseDto extends ResponseDto {
+    
     private Integer customerBoardCommentNumber;
     private String customerBoardCommentWriterId;
     private String customerBoardCommentWriteDatetime;

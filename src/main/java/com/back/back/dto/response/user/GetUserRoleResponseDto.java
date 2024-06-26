@@ -13,17 +13,17 @@ import lombok.Getter;
 @Getter
 public class GetUserRoleResponseDto extends ResponseDto {
   
-  private String userId;
-  private String userRole;
+    private String userId;
+    private String userRole;
 
-  private GetUserRoleResponseDto(UserEntity userEntity) {
-    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    this.userId = userEntity.getUserId();
-    this.userRole = userEntity.getUserRole();
-  }
+    private GetUserRoleResponseDto(UserEntity userEntity) {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        this.userId = userEntity.getUserId();
+        this.userRole = userEntity.getUserRole();
+    }
 
-  public static ResponseEntity<GetUserRoleResponseDto> success (UserEntity userEntity) throws Exception {
-    GetUserRoleResponseDto responseBody = new GetUserRoleResponseDto(userEntity);
-    return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-  }
+    public static ResponseEntity<GetUserRoleResponseDto> success (UserEntity userEntity) throws Exception {
+        GetUserRoleResponseDto responseBody = new GetUserRoleResponseDto(userEntity);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
 }

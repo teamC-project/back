@@ -9,6 +9,7 @@ import com.back.back.entity.DesignerBoardEntity;
 import lombok.Getter;
 @Getter
 public class GetDesignerBoardResponseDto extends ResponseDto {
+    
     private Integer designerBoardNumber;
     private String designerBoardTitle;
     private String designerBoardContents;
@@ -18,7 +19,6 @@ public class GetDesignerBoardResponseDto extends ResponseDto {
 
     private GetDesignerBoardResponseDto(DesignerBoardEntity designerBoardEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        // String designerWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(designerBoardEntity.getDesignerBoardWriteDatetime());
 
         this.designerBoardNumber = designerBoardEntity.getDesignerBoardNumber();
         this.designerBoardTitle = designerBoardEntity.getDesignerBoardTitle();

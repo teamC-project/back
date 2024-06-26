@@ -20,7 +20,7 @@ public class QnaBoardListItem {
   private String qnaBoardComment;
 
   private QnaBoardListItem(QnaBoardEntity qnaBoardEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(qnaBoardEntity.getQnaBoardWriteDatetime());
+    String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(qnaBoardEntity.getQnaBoardWriteDatetime());
 
     String qnaBoardWriterId = qnaBoardEntity.getQnaBoardWriterId();
     qnaBoardWriterId = qnaBoardWriterId.substring(0, 1) + " +".repeat(qnaBoardWriterId.length() - 1);

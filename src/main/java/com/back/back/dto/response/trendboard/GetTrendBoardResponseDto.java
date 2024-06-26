@@ -13,6 +13,7 @@ import lombok.Getter;
 
 @Getter
 public class GetTrendBoardResponseDto extends ResponseDto {
+	
 	private Integer trendBoardNumber;
 	private String trendBoardTitle;
 	private String trendBoardContents;

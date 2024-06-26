@@ -15,6 +15,7 @@ import lombok.Getter;
 
 @Getter
 public class GetTrendBoardLikeListResponseDto extends ResponseDto {
+	
 	private List<String> likeList;
 
 	private GetTrendBoardLikeListResponseDto(String code, String message, List<LikeEntity> likeEntities) {

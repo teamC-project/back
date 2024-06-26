@@ -16,7 +16,6 @@ import lombok.Getter;
 @Getter
 public class GetSearchDesignerBoardListResponseDto extends ResponseDto {
     
-
     private List<DesignerBoardListItem> designerBoardList;
 
     private GetSearchDesignerBoardListResponseDto (List<DesignerBoardEntity> designerBoardEntities) throws Exception {

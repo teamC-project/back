@@ -26,6 +26,4 @@ public class GetCustomerBoardListResponseDto extends ResponseDto {
         GetCustomerBoardListResponseDto responseBody = new GetCustomerBoardListResponseDto(customerBoardEntities);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
-
-    
 } 

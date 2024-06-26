@@ -14,16 +14,17 @@ import lombok.Getter;
 
 @Getter
 public class GetTrendBoardListResponseDto extends ResponseDto {
+
 	private List<TrendBoardListItem> trendBoardList;
 
 	private GetTrendBoardListResponseDto(List<TrendBoardEntity> trendBoardEntities	) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 		this.trendBoardList = TrendBoardListItem.getTrendBoardList(trendBoardEntities);
-}
+    }
 
-public static ResponseEntity<GetTrendBoardListResponseDto>
-success(List<TrendBoardEntity> trendBoardEntities) throws Exception {
-	GetTrendBoardListResponseDto responseBody = new GetTrendBoardListResponseDto(trendBoardEntities);
-	return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-	}
+    public static ResponseEntity<GetTrendBoardListResponseDto>
+        success(List<TrendBoardEntity> trendBoardEntities) throws Exception {
+	        GetTrendBoardListResponseDto responseBody = new GetTrendBoardListResponseDto(trendBoardEntities);
+	        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+	        }
 }
