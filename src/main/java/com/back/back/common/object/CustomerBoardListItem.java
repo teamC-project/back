@@ -19,13 +19,11 @@ public class CustomerBoardListItem {
     private Boolean secret;
 
     private CustomerBoardListItem(CustomerBoardEntity customerBoardEntity) throws Exception {
-        
-        String writeDatetime = ChangeDateFormatUtil.changeCustomerListDateFormat(customerBoardEntity.getCustomerBoardWriteDatetime());
 
         this.customerBoardNumber = customerBoardEntity.getCustomerBoardNumber();
         this.customerBoardTitle = customerBoardEntity.getCustomerBoardTitle();
         this.customerBoardWriterId = customerBoardEntity.getCustomerBoardWriterId();
-        this.customerBoardWriteDatetime = writeDatetime;
+        this.customerBoardWriteDatetime = ChangeDateFormatUtil.changeListDateFormat(customerBoardEntity.getCustomerBoardWriteDatetime());
         this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
         this.secret = customerBoardEntity.getSecret();
     }

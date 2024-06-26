@@ -19,12 +19,10 @@ public class DesignerBoardListItem {
 
     private DesignerBoardListItem(DesignerBoardEntity designerBoardEntity) throws Exception {
 
-        String writeDatetime = ChangeDateFormatUtil.changeDesignerListDateFormat(designerBoardEntity.getDesignerBoardWriteDatetime());
-
         this.designerBoardNumber = designerBoardEntity.getDesignerBoardNumber();
         this.designerBoardTitle = designerBoardEntity.getDesignerBoardTitle();
         this.designerBoardWriterId = designerBoardEntity.getDesignerBoardWriterId();
-        this.designerBoardWriteDatetime = writeDatetime;
+        this.designerBoardWriteDatetime = ChangeDateFormatUtil.changeListDateFormat(designerBoardEntity.getDesignerBoardWriteDatetime());
         this.designerBoardViewCount = designerBoardEntity.getDesignerBoardViewCount();
     }
 
@@ -33,6 +31,7 @@ public class DesignerBoardListItem {
         List<DesignerBoardListItem> designerBoardList = new ArrayList<>();
 
         for (DesignerBoardEntity designerBoardEntity : designerBoardEntities) {
+
             DesignerBoardListItem designerBoardListItem = new DesignerBoardListItem(designerBoardEntity);
             designerBoardList.add(designerBoardListItem);
         }

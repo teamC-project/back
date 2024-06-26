@@ -11,10 +11,10 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 public class CustomOAuth2User implements OAuth2User {
 
     private String id;
+    private String joinPath;
+    private boolean status;
     private Map<String, Object> attributes;
     private Collection<? extends GrantedAuthority> authorities;
-    private boolean status;
-    private String joinPath;
 
     public CustomOAuth2User(String id, Map<String, Object> attributes, boolean status, String joinPath) {
         

@@ -19,12 +19,10 @@ public class AnnouncementBoardListItem {
 
 	private AnnouncementBoardListItem(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
 
-		String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
-
 		this.announcementBoardNumber = announcementBoardEntity.getAnnouncementBoardNumber();
 		this.announcementBoardTitle = announcementBoardEntity.getAnnouncementBoardTitle();
 		this.announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
-		this.announcementBoardWriteDatetime = writeDatetime;
+		this.announcementBoardWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
 		this.announcementBoardViewCount = announcementBoardEntity.getAnnouncementBoardViewCount();
 	}
 

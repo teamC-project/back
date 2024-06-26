@@ -19,12 +19,10 @@ public class CustomerBoardCommentListItem {
 
     private CustomerBoardCommentListItem(CustomerBoardCommentEntity customerBoardCommentEntity) throws Exception {
 
-        String writeDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
-
         this.customerBoardCommentNumber = customerBoardCommentEntity.getCustomerBoardCommentNumber();
         this.customerBoardCommentWriterId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
         this.customerBoardCommentContents = customerBoardCommentEntity.getCustomerBoardCommentContents();
-        this.customerBoardCommentWriteDatetime = writeDatetime;
+        this.customerBoardCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
         this.customerBoardParentCommentNumber = customerBoardCommentEntity.getCustomerBoardParentCommentNumber(); 
     }
 

@@ -23,6 +23,7 @@ public class LikeListItem {
 		List<LikeListItem> list = new ArrayList<>();
 
 		for (LikeEntity likeEntity : likeEntities) {
+			
 			LikeListItem likeListItem = new LikeListItem(likeEntity);
 			list.add(likeListItem);
 		}

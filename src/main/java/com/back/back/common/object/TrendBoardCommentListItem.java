@@ -19,17 +19,11 @@ public class TrendBoardCommentListItem {
 
     private TrendBoardCommentListItem(TrendBoardCommentEntity trendBoardCommentEntity) throws Exception {
 
-        String writeDatetime = ChangeDateFormatUtil.changeYYMMDD(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
-
-        String writerId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
-        writerId = writerId.substring(0, 1) + "*".repeat(writerId.length() - 1);
-
         this.trendBoardCommentNumber = trendBoardCommentEntity.getTrendBoardCommentNumber();
-        this.trendBoardCommentWriterId = writerId;
+        this.trendBoardCommentWriterId = trendBoardCommentEntity.getTrendBoardCommentWriterId();
         this.trendBoardCommentContents = trendBoardCommentEntity.getTrendBoardCommentContents();
-        this.trendBoardCommentWriteDatetime = writeDatetime;
+        this.trendBoardCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(trendBoardCommentEntity.getTrendBoardCommentWriteDatetime());
         this.trendBoardParentCommentNumber = trendBoardCommentEntity.getTrendBoardCommentWriterId();
-
     }
 
     public static List<TrendBoardCommentListItem> getList(List<TrendBoardCommentEntity> trendBoardCommentEntities) throws Exception {

@@ -16,11 +16,10 @@ public class GetDesignerBoardCommentResponseDto extends ResponseDto {
     private String designerBoardCommentContents;
     private GetDesignerBoardCommentResponseDto (DesignerBoardCommentEntity designerBoardCommentEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        String designerCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(designerBoardCommentEntity.getDesignerBoardCommentWriteDatetime());
 
         this.designerBoardCommentNumber = designerBoardCommentEntity.getDesignerBoardCommentNumber();
         this.designerBoardCommentWriterId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
-        this.designerBoardCommentWriteDatetime = designerCommentWriteDatetime;
+        this.designerBoardCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(designerBoardCommentEntity.getDesignerBoardCommentWriteDatetime());
         this.designerBoardCommentContents = designerBoardCommentEntity.getDesignerBoardCommentContents();
     }
 

@@ -19,12 +19,11 @@ public class GetDesignerBoardResponseDto extends ResponseDto {
 
     private GetDesignerBoardResponseDto(DesignerBoardEntity designerBoardEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        String designerWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDD(designerBoardEntity.getDesignerBoardWriteDatetime());
 
         this.designerBoardNumber = designerBoardEntity.getDesignerBoardNumber();
         this.designerBoardTitle = designerBoardEntity.getDesignerBoardTitle();
         this.designerBoardWriterId = designerBoardEntity.getDesignerBoardWriterId();
-        this.designerBoardWriteDatetime = designerWriteDatetime;
+        this.designerBoardWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(designerBoardEntity.getDesignerBoardWriteDatetime());
         this.designerBoardViewCount = designerBoardEntity.getDesignerBoardViewCount();
         this.designerBoardContents = designerBoardEntity.getDesignerBoardContents();
     }
