@@ -1,5 +1,8 @@
 package com.back.back.dto.request.auth;
 
+import com.back.back.common.util.EmailPatternUtil;
+import com.back.back.common.util.PasswordPatternUtil;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -15,11 +18,11 @@ public class CustomerSignUpRequestDto {
     private String userId;
 
     @NotBlank
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$")
+    @Pattern(regexp = PasswordPatternUtil.PASSWORDPATTERN)
     private String userPassword;
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\\.[a-zA-Z]{2,4}$")
+    @Pattern(regexp = EmailPatternUtil.EMAILPATTERN)
     private String userEmail;
 
     @NotBlank

@@ -13,8 +13,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatMessage {
-  private Integer chatroomId;
-  private String senderId;
-  private String message;
-  private String sendDatetime;
+
+    private Integer chatroomId;
+    private String senderId;
+    private String message;
+    private String sendDatetime;
+
 }

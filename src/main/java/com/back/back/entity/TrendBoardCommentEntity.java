@@ -29,17 +29,19 @@ public class TrendBoardCommentEntity {
     private String trendBoardCommentWriterId;
     private String trendBoardCommentContents;
     private String trendBoardCommentWriteDatetime;
+    private Integer trendBoardParentCommentNumber;
 
-    public TrendBoardCommentEntity(
-        PostTrendBoardCommentRequestDto dto, Integer trendBoardNumber, String userId) {
+    public TrendBoardCommentEntity(PostTrendBoardCommentRequestDto dto, Integer trendBoardNumber, String userId) {
 
         this.trendBoardNumber = trendBoardNumber;
         this.trendBoardCommentContents = dto.getTrendBoardCommentContents();
         this.trendBoardCommentWriterId = userId;
         this.trendBoardCommentWriteDatetime = ChangeDateFormatUtil.getCurrentDatetiem();
+        this.trendBoardParentCommentNumber = null;
     }
 
     public void update(PutTrendBoardCommentRequestDto dto) {
     this.trendBoardCommentContents = dto.getTrendBoardCommentContents();
     }
+    
 }

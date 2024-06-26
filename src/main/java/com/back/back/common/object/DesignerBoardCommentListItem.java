@@ -10,34 +10,35 @@ import lombok.Getter;
 
 @Getter
 public class DesignerBoardCommentListItem {
-  private Integer designerBoardCommentNumber;
-  private Integer designerBoardNumber;
-  private String designerBoardCommentWriterId;
-  private String designerBoardCommentWriteDatetime;
-  private String designerBoardCommentContents;
-  private Integer designerBoardParentCommentNumber;
 
-  private DesignerBoardCommentListItem(DesignerBoardCommentEntity designerBoardCommentEntity) throws Exception {
-    String writeDatetime = ChangeDateFormatUtil
-        .changeYYYYMMDDHHMM(designerBoardCommentEntity.getDesignerBoardCommentWriteDatetime());
+    private Integer designerBoardCommentNumber;
+    private String designerBoardCommentWriterId;
+    private String designerBoardCommentContents;
+    private String designerBoardCommentWriteDatetime;
+    private Integer designerBoardParentCommentNumber;
 
-    this.designerBoardCommentNumber = designerBoardCommentEntity.getDesignerBoardCommentNumber();
-    this.designerBoardCommentWriterId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
-    this.designerBoardCommentWriteDatetime = writeDatetime;
-    this.designerBoardCommentContents = designerBoardCommentEntity.getDesignerBoardCommentContents();
-    this.designerBoardParentCommentNumber = designerBoardCommentEntity.getDesignerBoardParentCommentNumber(); // 부모 댓글
-  }
+    private DesignerBoardCommentListItem(DesignerBoardCommentEntity designerBoardCommentEntity) throws Exception {
 
-  public static List<DesignerBoardCommentListItem> getList(
-      List<DesignerBoardCommentEntity> designerBoardCommentEntities) throws Exception {
-    List<DesignerBoardCommentListItem> designerBoardCommentList = new ArrayList<>();
-
-    for (DesignerBoardCommentEntity designerBoardCommentEntity : designerBoardCommentEntities) {
-      DesignerBoardCommentListItem designerBoardCommentListItem = new DesignerBoardCommentListItem(
-          designerBoardCommentEntity);
-      designerBoardCommentList.add(designerBoardCommentListItem);
+        this.designerBoardCommentNumber = designerBoardCommentEntity.getDesignerBoardCommentNumber();
+        this.designerBoardCommentWriterId = designerBoardCommentEntity.getDesignerBoardCommentWriterId();
+        this.designerBoardCommentContents = designerBoardCommentEntity.getDesignerBoardCommentContents();
+        this.designerBoardCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(designerBoardCommentEntity.getDesignerBoardCommentWriteDatetime());
+        this.designerBoardParentCommentNumber = designerBoardCommentEntity.getDesignerBoardParentCommentNumber();
     }
 
-    return designerBoardCommentList;
-  }
+    public static List<DesignerBoardCommentListItem> getList(
+
+        List<DesignerBoardCommentEntity> designerBoardCommentEntities) throws Exception {
+            
+        List<DesignerBoardCommentListItem> designerBoardCommentList = new ArrayList<>();
+
+        for (DesignerBoardCommentEntity designerBoardCommentEntity : designerBoardCommentEntities) {
+
+            DesignerBoardCommentListItem designerBoardCommentListItem = new DesignerBoardCommentListItem(designerBoardCommentEntity);
+            designerBoardCommentList.add(designerBoardCommentListItem);
+        }
+
+        return designerBoardCommentList;
+    }
+
 }

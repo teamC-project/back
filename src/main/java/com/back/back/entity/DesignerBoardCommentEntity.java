@@ -53,4 +53,5 @@ public class DesignerBoardCommentEntity {
     public void update (PutDesignerBoardCommentRequestDto dto) {
         this.designerBoardCommentContents = dto.getDesignerBoardCommentContents();
     }
+    
 }

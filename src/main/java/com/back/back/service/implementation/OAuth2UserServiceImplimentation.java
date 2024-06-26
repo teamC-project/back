@@ -2,7 +2,6 @@ package com.back.back.service.implementation;
 
 import java.util.Map;
 
-
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -29,10 +28,10 @@ public class OAuth2UserServiceImplimentation extends DefaultOAuth2UserService {
 
         if (userEntity == null) {
             return new CustomOAuth2User(id, oAuth2User.getAttributes(), false, oAuthClientName);
-    } 
-	    else {
+        } 
+        else {
             return new CustomOAuth2User(userEntity.getUserId(), oAuth2User.getAttributes(), true, null);
-    }
+        }
     }
 
     private String getId(OAuth2User oAuth2User, String oAuthClientName) {
