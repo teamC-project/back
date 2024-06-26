@@ -36,7 +36,8 @@ public class OAuth2UserServiceImplimentation extends DefaultOAuth2UserService {
     }
 
     private String getId(OAuth2User oAuth2User, String oAuthClientName) {
-    String id = null;
+
+        String id = null;
 
         if (oAuthClientName.equals("KAKAO")) {
             Long longId = (Long) oAuth2User.getAttributes().get("id");

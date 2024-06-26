@@ -30,12 +30,13 @@ import lombok.RequiredArgsConstructor;
 
         try {
             boolean isExistUser = userRepository.existsByUserId(userId);
-            if(!isExistUser) return ResponseDto.authenticationFailed();
+            if(!isExistUser) 
+            return ResponseDto.authenticationFailed();
 
             AnnouncementBoardEntity announcementBoardEntity = new AnnouncementBoardEntity(dto, userId);
             announcementBoardRepository.save(announcementBoardEntity); 
-        }
-		catch (Exception exception) {
+
+        } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -48,8 +49,8 @@ import lombok.RequiredArgsConstructor;
         try {
             List<AnnouncementBoardEntity> announcementBoardEntities = announcementBoardRepository.findByOrderByAnnouncementBoardNumberDesc();
             return GetAnnouncementBoardListResponseDto.success(announcementBoardEntities);
-        } 
-		catch (Exception exception) {
+
+        } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
@@ -61,8 +62,8 @@ import lombok.RequiredArgsConstructor;
 		try {
 			List<AnnouncementBoardEntity> announcementBoardEntities = announcementBoardRepository.findByAnnouncementBoardTitleContainsOrderByAnnouncementBoardNumberDesc(announcementBoardSearchWord);
 			return GetSearchAnnouncementBoardListResponseDto.success(announcementBoardEntities);
-        } 
-        catch (Exception exception) {
+
+        } catch (Exception exception) {
 			exception.printStackTrace();
 			return ResponseDto.databaseError();
         }
@@ -75,8 +76,8 @@ import lombok.RequiredArgsConstructor;
 			AnnouncementBoardEntity announcementBoardEntity = announcementBoardRepository.findByAnnouncementBoardNumber(announcementBoardNumber);
             if (announcementBoardEntity == null) return ResponseDto.noExistBoard();
             return GetAnnouncementBoardResponseDto.success(announcementBoardEntity);
-		} 
-		catch (Exception exception) {
+
+		} catch (Exception exception) {
 			exception.printStackTrace();
 			return ResponseDto.databaseError();
 		}
@@ -98,6 +99,7 @@ import lombok.RequiredArgsConstructor;
 
             announcementBoardEntity.updateAnnouncementBoard(dto);
             announcementBoardRepository.save(announcementBoardEntity);
+            
             } catch (Exception exception) {
                 exception.printStackTrace();
                 return ResponseDto.databaseError();
@@ -109,7 +111,6 @@ import lombok.RequiredArgsConstructor;
     public ResponseEntity<ResponseDto> increaseAnnouncementBoardViewCount(int announcementBoardNumber) {
 
         try {
-
             AnnouncementBoardEntity announcementBoardEntity = announcementBoardRepository.findByAnnouncementBoardNumber(announcementBoardNumber);
             if (announcementBoardEntity == null) 
             return ResponseDto.noExistBoard();
@@ -126,6 +127,7 @@ import lombok.RequiredArgsConstructor;
 
 	@Override
 	public ResponseEntity<ResponseDto> deleteAnnouncementBoard(int announcementBoardNumber, String userId) {
+        
 		try {
 			AnnouncementBoardEntity announcementBoardEntity = announcementBoardRepository.findByAnnouncementBoardNumber(announcementBoardNumber);
 			if (announcementBoardEntity == null) 
@@ -137,6 +139,7 @@ import lombok.RequiredArgsConstructor;
 			return ResponseDto.authorizationFailed();
 
 			announcementBoardRepository.delete(announcementBoardEntity);
+
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			return ResponseDto.databaseError();

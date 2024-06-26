@@ -70,7 +70,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
                 return ResponseDto.noExistBoard();
                 customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, dto.getCustomerBoardParentCommentNumber());
             } else {
-                customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, null); // null을 명시적으로 전달
+                customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, null);
             }
 
             customerBoardCommentRepository.save(customerBoardCommentEntity); 

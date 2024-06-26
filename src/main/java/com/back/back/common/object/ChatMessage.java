@@ -17,6 +17,5 @@ public class ChatMessage {
     private Integer chatroomId;
     private String senderId;
     private String message;
-    private String sendDatetime;
 
 }

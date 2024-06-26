@@ -30,9 +30,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DesignerBoardServiceImplementation implements DesignerBoardService {
 
+    private final UserRepository userRepository;
     private final DesignerBoardRepository designerBoardRepository;
     private final DesignerBoardCommentRepository designerBoardCommentRepository;
-    private final UserRepository userRepository;
 
     @Override
     public ResponseEntity<ResponseDto> postDesignerBoard(PostDesignerBoardRequestDto dto, String userId) {
@@ -112,7 +112,8 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
         try {
             DesignerBoardEntity designerBoardEntity = designerBoardRepository.findByDesignerBoardNumber(designerBoardNumber);
-            if (designerBoardEntity == null) return ResponseDto.noExistBoard();
+            if (designerBoardEntity == null) 
+            return ResponseDto.noExistBoard();
             return GetDesignerBoardResponseDto.success(designerBoardEntity);
 
         } catch (Exception exception) {
@@ -243,6 +244,7 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
             return ResponseDto.authorizationFailed();
 
             designerBoardCommentRepository.delete(designerBoardCommentEntity);
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -260,10 +262,12 @@ public class DesignerBoardServiceImplementation implements DesignerBoardService 
 
             designerBoardEntity.designerIncreaseViewCount();
             designerBoardRepository.save(designerBoardEntity);
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
         return ResponseDto.success();
     }
+
 }

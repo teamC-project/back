@@ -1,6 +1,6 @@
 package com.back.back.dto.request.user;
 
-import com.back.back.common.util.PasswordPatternUtil;
+import com.back.back.common.constant.PatternConstant;
 
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.NotBlank;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class PasswordChangeRequestDto {
 
     @NotBlank
-    @Pattern(regexp = PasswordPatternUtil.PASSWORDPATTERN)
+    @Pattern(regexp = PatternConstant.PASSWORDPATTERN)
     private String userPassword;
 
 }

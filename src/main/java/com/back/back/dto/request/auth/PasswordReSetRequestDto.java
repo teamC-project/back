@@ -1,6 +1,6 @@
 package com.back.back.dto.request.auth;
 
-import com.back.back.common.util.PasswordPatternUtil;
+import com.back.back.common.constant.PatternConstant;
 
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.NotBlank;
@@ -18,7 +18,7 @@ public class PasswordReSetRequestDto {
     private String userId;
     
     @NotBlank
-    @Pattern(regexp = PasswordPatternUtil.PASSWORDPATTERN)
+    @Pattern(regexp = PatternConstant.PASSWORDPATTERN)
     private String userPassword;
 
 }
