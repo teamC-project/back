@@ -10,6 +10,7 @@ import com.back.back.common.util.ChangeDateFormatUtil;
 import com.back.back.entity.CustomerBoardCommentEntity;
 
 import lombok.Getter;
+
 @Getter
 public class GetCustomerBoardCommentResponseDto extends ResponseDto {
     
