@@ -1,5 +1,7 @@
 package com.back.back.dto.request.user;
 
+import com.back.back.common.util.PasswordPatternUtil;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -12,6 +14,6 @@ import lombok.Setter;
 public class PasswordChangeRequestDto {
 
     @NotBlank
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$")
+    @Pattern(regexp = PasswordPatternUtil.PASSWORDPATTERN)
     private String userPassword;
 }
