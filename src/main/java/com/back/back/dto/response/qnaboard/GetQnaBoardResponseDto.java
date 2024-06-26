@@ -13,6 +13,7 @@ import lombok.Getter;
 
 @Getter
 public class GetQnaBoardResponseDto extends ResponseDto{
+	
 	private Integer qnaBoardNumber;
 	private Boolean qnaBoardStatus;
 	private String qnaBoardTitle;
@@ -24,13 +25,12 @@ public class GetQnaBoardResponseDto extends ResponseDto{
 
 	private GetQnaBoardResponseDto(QnaBoardEntity qnaBoardEntity) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDatetime = ChangeDateFormatUtil.changeYYYYMMDD(qnaBoardEntity.getQnaBoardWriteDatetime());
 
 		this.qnaBoardNumber = qnaBoardEntity.getQnaBoardNumber();
 		this.qnaBoardStatus = qnaBoardEntity.getQnaBoardStatus();
 		this.qnaBoardTitle = qnaBoardEntity.getQnaBoardTitle();
 		this.qnaBoardWriterId = qnaBoardEntity.getQnaBoardWriterId();
-		this.qnaBoardWriteDatetime = writeDatetime;
+		this.qnaBoardWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(qnaBoardEntity.getQnaBoardWriteDatetime());
 		this.qnaBoardViewCount = qnaBoardEntity.getQnaBoardViewCount();
 		this.qnaBoardContents = qnaBoardEntity.getQnaBoardContents();
 		this.qnaBoardComment = qnaBoardEntity.getQnaBoardComment();

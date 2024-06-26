@@ -19,5 +19,4 @@ public class PutLikeResponseDto extends ResponseDto {
 		PutLikeResponseDto responseBody = new PutLikeResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
 	}
-
 }

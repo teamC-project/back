@@ -11,15 +11,16 @@ import lombok.Getter;
 
 @Getter
 public class GetFindPasswordResponseDto extends ResponseDto {
-  private String userPassword;
 
-  private GetFindPasswordResponseDto(String userPassword) {
-    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    this.userPassword = userPassword;
-  }
+    private String userPassword;
+
+    private GetFindPasswordResponseDto(String userPassword) {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        this.userPassword = userPassword;
+    }
 
     public static ResponseEntity<GetFindPasswordResponseDto> success(String userPassword) {
-    GetFindPasswordResponseDto responseBody = new GetFindPasswordResponseDto(userPassword);
-    return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-  }
+        GetFindPasswordResponseDto responseBody = new GetFindPasswordResponseDto(userPassword);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
 }

@@ -12,15 +12,15 @@ import lombok.Getter;
 @Getter
 public class GetVisitorsTodayResponseDto extends ResponseDto {
 
-  private Integer visitorsToday;
+    private Integer visitorsToday;
 
-  public GetVisitorsTodayResponseDto(Integer visitorsToday) {
-    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    this.visitorsToday = visitorsToday;
-  }
+    public GetVisitorsTodayResponseDto(Integer visitorsToday) {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        this.visitorsToday = visitorsToday;
+    }
 
-  public static ResponseEntity<GetVisitorsTodayResponseDto> success(Integer visitorsToday) {
-    GetVisitorsTodayResponseDto responseBody = new GetVisitorsTodayResponseDto(visitorsToday);
-    return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-  }
+    public static ResponseEntity<GetVisitorsTodayResponseDto> success(Integer visitorsToday) {
+        GetVisitorsTodayResponseDto responseBody = new GetVisitorsTodayResponseDto(visitorsToday);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
 }

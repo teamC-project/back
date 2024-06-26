@@ -13,6 +13,7 @@ import lombok.Getter;
 
 @Getter
 public class GetAnnouncementBoardResponseDto extends ResponseDto {
+	
 	private Integer announcementBoardNumber;
 	private String announcementBoardTitle;
 	private String announcementBoardContents;
@@ -22,12 +23,11 @@ public class GetAnnouncementBoardResponseDto extends ResponseDto {
 
 	private GetAnnouncementBoardResponseDto(AnnouncementBoardEntity announcementBoardEntity) throws Exception {
 		super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-		String writeDateTime = ChangeDateFormatUtil.changeYYYYMMDD(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
 
 		this.announcementBoardNumber = announcementBoardEntity.getAnnouncementBoardNumber();
 		this.announcementBoardTitle = announcementBoardEntity.getAnnouncementBoardTitle();
 		this.announcementBoardWriterId = announcementBoardEntity.getAnnouncementBoardWriterId();
-		this.announcementBoardWriteDatetime = writeDateTime;
+		this.announcementBoardWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(announcementBoardEntity.getAnnouncementBoardWriteDatetime());
 		this.announcementBoardViewCount = announcementBoardEntity.getAnnouncementBoardViewCount();
 		this.announcementBoardContents = announcementBoardEntity.getAnnouncementBoardContents();
 	}

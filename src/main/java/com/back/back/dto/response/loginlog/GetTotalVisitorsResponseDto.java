@@ -12,15 +12,15 @@ import lombok.Getter;
 @Getter
 public class GetTotalVisitorsResponseDto extends ResponseDto {
 
-  private Integer totalVisitors;
+    private Integer totalVisitors;
 
-  public GetTotalVisitorsResponseDto(Integer totalVisitors) {
-    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-    this.totalVisitors = totalVisitors;
-  }
+    public GetTotalVisitorsResponseDto(Integer totalVisitors) {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        this.totalVisitors = totalVisitors;
+    }
 
-  public static ResponseEntity<GetTotalVisitorsResponseDto> success(Integer totalVisitors) {
-    GetTotalVisitorsResponseDto responseBody = new GetTotalVisitorsResponseDto(totalVisitors);
-    return ResponseEntity.status(HttpStatus.OK).body(responseBody);
-  }
+    public static ResponseEntity<GetTotalVisitorsResponseDto> success(Integer totalVisitors) {
+        GetTotalVisitorsResponseDto responseBody = new GetTotalVisitorsResponseDto(totalVisitors);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
 }

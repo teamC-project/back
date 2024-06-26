@@ -9,6 +9,7 @@ import com.back.back.entity.TrendBoardEntity;
 
 @Repository
 public interface TrendBoardRepository extends JpaRepository<TrendBoardEntity, Integer> {
+<<<<<<< HEAD
     
 	boolean existsByTrendBoardNumber(Integer trendBoardNumber);
 
@@ -17,4 +18,10 @@ public interface TrendBoardRepository extends JpaRepository<TrendBoardEntity, In
     List<TrendBoardEntity> findByOrderByTrendBoardNumberDesc();
     List<TrendBoardEntity> findByTrendBoardTitleOrderByTrendBoardNumberDesc(String trendBoardTitle);
     
+=======
+	List<TrendBoardEntity> findByOrderByTrendBoardNumberDesc();
+	List<TrendBoardEntity> findByTrendBoardTitleOrderByTrendBoardNumberDesc(String trendBoardTitle);
+	TrendBoardEntity findByTrendBoardNumber(Integer trendBoardNumber);
+	boolean existsByTrendBoardNumber(Integer trendBoardNumber);
+>>>>>>> c430ef6b1f8c23f3c951503c8b3025ca2245200a
 }

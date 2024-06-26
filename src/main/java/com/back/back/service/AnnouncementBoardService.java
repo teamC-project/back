@@ -10,6 +10,7 @@ import com.back.back.dto.response.announcementboard.GetAnnouncementBoardResponse
 import com.back.back.dto.response.announcementboard.GetSearchAnnouncementBoardListResponseDto;
 
 public interface AnnouncementBoardService {
+<<<<<<< HEAD
 
     ResponseEntity<ResponseDto> postAnnouncementBoard(PostAnnouncementBoardRequestDto dto , String userId);
     ResponseEntity<ResponseDto> putAnnouncementBoard(PutAnnouncementBoardRequestDto dto, int announcementBoardNumber, String userId);
@@ -20,4 +21,13 @@ public interface AnnouncementBoardService {
     ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord);
     ResponseEntity<? super GetAnnouncementBoardResponseDto> getAnnouncementBoard(int announcementBoardNumber);
     
+=======
+	ResponseEntity<ResponseDto> postAnnouncementBoard(PostAnnouncementBoardRequestDto dto , String userId);
+	ResponseEntity<? super GetAnnouncementBoardListResponseDto> getAnnouncementBoardList();
+	ResponseEntity<? super GetSearchAnnouncementBoardListResponseDto> getSearchAnnouncementBoardList(String announcementBoardSearchWord);
+	ResponseEntity<? super GetAnnouncementBoardResponseDto> getAnnouncementBoard(int announcementBoardNumber);
+	ResponseEntity<ResponseDto> putAnnouncementBoard(PutAnnouncementBoardRequestDto dto, int announcementBoardNumber, String userId);
+	ResponseEntity<ResponseDto> deleteAnnouncementBoard(int announcementBoardNumber, String userId);
+	ResponseEntity<ResponseDto> increaseAnnouncementBoardViewCount(int announcementBoardNumber);
+>>>>>>> c430ef6b1f8c23f3c951503c8b3025ca2245200a
 }

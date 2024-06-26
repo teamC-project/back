@@ -14,6 +14,7 @@ import lombok.Getter;
 
 @Getter
 public class GetCustomerBoardResponseDto extends ResponseDto {
+    
     private Integer customerBoardNumber;
     private String customerBoardTitle;
     private String customerBoardContents;
@@ -24,12 +25,11 @@ public class GetCustomerBoardResponseDto extends ResponseDto {
 
     private GetCustomerBoardResponseDto(CustomerBoardEntity customerBoardEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        String customerWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardEntity.getCustomerBoardWriteDatetime());
 
         this.customerBoardNumber = customerBoardEntity.getCustomerBoardNumber();
         this.customerBoardTitle = customerBoardEntity.getCustomerBoardTitle();
         this.customerBoardWriterId = customerBoardEntity.getCustomerBoardWriterId();
-        this.customerBoardWriteDatetime = customerWriteDatetime;
+        this.customerBoardWriteDatetime =  ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardEntity.getCustomerBoardWriteDatetime());
         this.customerBoardViewCount = customerBoardEntity.getCustomerBoardViewCount();
         this.customerBoardContents = customerBoardEntity.getCustomerBoardContents();
         this.isSecret = customerBoardEntity.getSecret();

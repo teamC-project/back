@@ -9,17 +9,17 @@ import com.back.back.entity.CustomerBoardCommentEntity;
 import lombok.Getter;
 @Getter
 public class GetCustomerBoardCommentResponseDto extends ResponseDto {
+    
     private Integer customerBoardCommentNumber;
     private String customerBoardCommentWriterId;
     private String customerBoardCommentWriteDatetime;
     private String customerBoardCommentContents;
     private GetCustomerBoardCommentResponseDto (CustomerBoardCommentEntity customerBoardCommentEntity) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        String customerCommentWriteDatetime = ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
 
         this.customerBoardCommentNumber = customerBoardCommentEntity.getCustomerBoardCommentNumber();
         this.customerBoardCommentWriterId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
-        this.customerBoardCommentWriteDatetime = customerCommentWriteDatetime;
+        this.customerBoardCommentWriteDatetime =  ChangeDateFormatUtil.changeYYYYMMDDHHMM(customerBoardCommentEntity.getCustomerBoardCommentWriteDatetime());
         this.customerBoardCommentContents = customerBoardCommentEntity.getCustomerBoardCommentContents();
     }
 
