@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 public class PostChatroomRequestDto {
 
-    @NotBlank(message = "Customer ID is required")
+    @NotBlank
     private String customerId;
 
-    @NotBlank(message = "Designer ID is required")
+    @NotBlank
     private String designerId;
 
     @NotBlank

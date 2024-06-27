@@ -55,7 +55,6 @@ public class AnnouncementBoardController {
         return response;
     }
 
-
     @PostMapping("/write")
     public ResponseEntity<ResponseDto> postAnnouncementBoard (
         @RequestBody @Valid PostAnnouncementBoardRequestDto requestBody,

@@ -6,23 +6,23 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.http.ResponseEntity;
 
-import com.back.back.entity.UserEntity;
-import com.back.back.dto.response.ResponseDto;
-import com.back.back.repository.UserRepository;
-import com.back.back.entity.CustomerBoardEntity;
-import com.back.back.service.CustomerBoardService;
-import com.back.back.entity.CustomerBoardCommentEntity;
-import com.back.back.repository.CustomerBoardRepository;
-import com.back.back.repository.CustomerBoardCommentRepository;
-import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
-import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
-import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
 import com.back.back.dto.request.customer.PostCustomerBoardCommentRequestDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
-import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseDto;
-import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
+import com.back.back.dto.request.customer.PostCustomerBoardRequestDto;
+import com.back.back.dto.request.customer.PutCustomerBoardCommentRequestDto;
+import com.back.back.dto.request.customer.PutCustomerBoardRequestDto;
+import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.response.customerboard.GetCustomerBoardCommentListResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardCommentResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardListResponseDto;
+import com.back.back.dto.response.customerboard.GetCustomerBoardResponseDto;
+import com.back.back.dto.response.customerboard.GetSearchCustomerBoardListResponseDto;
+import com.back.back.entity.CustomerBoardCommentEntity;
+import com.back.back.entity.CustomerBoardEntity;
+import com.back.back.entity.UserEntity;
+import com.back.back.repository.CustomerBoardCommentRepository;
+import com.back.back.repository.CustomerBoardRepository;
+import com.back.back.repository.UserRepository;
+import com.back.back.service.CustomerBoardService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -70,7 +70,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
                 return ResponseDto.noExistBoard();
                 customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, dto.getCustomerBoardParentCommentNumber());
             } else {
-                customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, null); // null을 명시적으로 전달
+                customerBoardCommentEntity = new CustomerBoardCommentEntity(dto, customerBoardNumber, userId, null); 
             }
 
             customerBoardCommentRepository.save(customerBoardCommentEntity); 
@@ -170,11 +170,13 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
         try {
             CustomerBoardEntity customerBoardEntity =  customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
+
             if (customerBoardEntity == null) 
             return ResponseDto.noExistBoard();
 
             String writerId = customerBoardEntity != null ? customerBoardEntity.getCustomerBoardWriterId() : null;
             boolean isWriter = writerId != null && userId.equals(writerId);
+
             if (!isWriter) 
             return ResponseDto.authorizationFailed();
 
@@ -193,11 +195,13 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
         try {
             CustomerBoardCommentEntity customerBoardCommentEntity = customerBoardCommentRepository.findByCustomerBoardCommentNumber(customerBoardCommentNumber);
+
             if (customerBoardCommentEntity == null) 
             return ResponseDto.noExistBoard();
 
             String writerId = customerBoardCommentEntity != null ? customerBoardCommentEntity.getCustomerBoardCommentWriterId() :null;
             boolean isWriter = writerId != null && userId.equals(writerId);
+
             if (!isWriter) 
             return ResponseDto.authorizationFailed();
 
@@ -216,15 +220,18 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
         try {
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
+
             if (customerBoardEntity == null) 
             return ResponseDto.noExistBoard();
 
             UserEntity userEntity = userRepository.findByUserId(userId);
+
             if (userEntity == null) 
             return ResponseDto.authenticationFailed();
 
             String writerId = customerBoardEntity.getCustomerBoardWriterId();
             String userRole = userEntity.getUserRole();
+
             boolean isWriter = userId.equals(writerId);
             boolean isAdmin = userRole.equals("ROLE_ADMIN");
 
@@ -244,15 +251,18 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
         try {
             CustomerBoardCommentEntity customerBoardCommentEntity = 
             customerBoardCommentRepository.findByCustomerBoardCommentNumber(customerBoardCommentNumber);
+
             if (customerBoardCommentEntity == null) 
             return ResponseDto.noExistBoard();
     
             UserEntity userEntity = userRepository.findByUserId(userId);
+
             if (userEntity == null) 
             return ResponseDto.authenticationFailed();
     
             String writerId = customerBoardCommentEntity.getCustomerBoardCommentWriterId();
             String userRole = userEntity.getUserRole();
+
             boolean isWriter = userId.equals(writerId);
             boolean isAdmin = userRole.equals("ROLE_ADMIN");
     
@@ -273,6 +283,7 @@ public class CustomerBoardServiceImplementation implements CustomerBoardService 
 
         try {
             CustomerBoardEntity customerBoardEntity = customerBoardRepository.findByCustomerBoardNumber(customerBoardNumber);
+            
             if (customerBoardEntity == null) 
             return ResponseDto.noExistBoard();
 

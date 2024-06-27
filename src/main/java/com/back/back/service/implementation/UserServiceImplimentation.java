@@ -9,10 +9,10 @@ import com.back.back.entity.UserEntity;
 import com.back.back.service.UserService;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.repository.UserRepository;
+import com.back.back.dto.response.user.GetUserRoleResponseDto;
 import com.back.back.dto.request.user.CustomerUpdateRequestDto;
 import com.back.back.dto.request.user.DesignerUpdateRequestDto;
 import com.back.back.dto.request.user.PasswordChangeRequestDto;
-import com.back.back.dto.response.user.GetUserRoleResponseDto;
 import com.back.back.dto.response.user.GetSignInUserResponseDto;
 
 import lombok.RequiredArgsConstructor;
@@ -100,18 +100,16 @@ public class UserServiceImplimentation implements UserService {
 		try {
 			UserEntity userEntity = userRepository.findByUserId(userId);
 
-			if (userEntity == null) {
+			if (userEntity == null) 
 			return ResponseDto.noExistId();
-			}
-
+			
 			String userPassword =dto.getUserPassword();
 			String encodedPassword = passwordEncoder.encode(userPassword);
 			userEntity.setUserPassword(encodedPassword);
 			
 			userRepository.save(userEntity);
 
-		} 
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			exception.printStackTrace();
 			return ResponseDto.databaseError();
 		}
@@ -123,9 +121,8 @@ public class UserServiceImplimentation implements UserService {
 
 		try {
 			UserEntity userEntity = userRepository.findByUserId(userId);
-			if (userEntity == null) {
-				return ResponseDto.noExistId();
-			}
+			if (userEntity == null) 
+			return ResponseDto.noExistId();
 			return GetUserRoleResponseDto.success(userEntity);
 
 		} catch (Exception exception) {

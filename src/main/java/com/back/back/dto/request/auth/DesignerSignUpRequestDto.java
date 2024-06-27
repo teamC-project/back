@@ -1,7 +1,6 @@
 package com.back.back.dto.request.auth;
 
-import com.back.back.common.util.EmailPatternUtil;
-import com.back.back.common.util.PasswordPatternUtil;
+import com.back.back.common.constant.PatternConstant;
 
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.NotBlank;
@@ -19,11 +18,11 @@ public class DesignerSignUpRequestDto {
     private String userId;
 
     @NotBlank
-    @Pattern(regexp = PasswordPatternUtil.PASSWORDPATTERN)
+    @Pattern(regexp = PatternConstant.PASSWORDPATTERN)
     private String userPassword;
 
     @NotBlank
-    @Pattern(regexp = EmailPatternUtil.EMAILPATTERN)
+    @Pattern(regexp = PatternConstant.EMAILPATTERN)
     private String userEmail;
 
     @NotBlank
