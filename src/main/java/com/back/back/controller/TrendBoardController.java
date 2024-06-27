@@ -17,7 +17,6 @@ import com.back.back.dto.response.ResponseDto;
 import com.back.back.service.TrendBoardService;
 import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
 import com.back.back.dto.request.trend.PostTrendBoardRequestDto;
-import com.back.back.dto.response.trendboard.PutLikeResponseDto;
 import com.back.back.dto.request.trend.PutTrendBoardCommentRequestDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.dto.request.trend.PostTrendBoardCommentRequestDto;
@@ -115,11 +114,11 @@ public class TrendBoardController {
     }
 
 	@PutMapping("/{trendBoardNumber}/like")
-	public ResponseEntity <? super PutLikeResponseDto> putTrendBoardLike (
+	public ResponseEntity <? super ResponseDto> putTrendBoardLike (
         @PathVariable("trendBoardNumber") Integer trendBoardNumber,
         @AuthenticationPrincipal String userId
         ) {
-            ResponseEntity <? super PutLikeResponseDto> response = trendBoardService.putTrendBoardLike(trendBoardNumber, userId);
+            ResponseEntity <? super ResponseDto> response = trendBoardService.putTrendBoardLike(trendBoardNumber, userId);
         return response;
 	}
 

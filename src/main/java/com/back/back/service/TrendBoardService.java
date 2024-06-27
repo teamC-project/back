@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import com.back.back.dto.response.ResponseDto;
 import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
 import com.back.back.dto.request.trend.PostTrendBoardRequestDto;
-import com.back.back.dto.response.trendboard.PutLikeResponseDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
 import com.back.back.dto.request.trend.PutTrendBoardCommentRequestDto;
 import com.back.back.dto.request.trend.PostTrendBoardCommentRequestDto;
@@ -28,7 +27,7 @@ public interface TrendBoardService {
 
 	ResponseEntity<? super GetTrendBoardListResponseDto> getTrendBoardList();
 	ResponseEntity<? super GetTrendBoardResponseDto> getTrendBoard(int trendBoardNumber);
-	ResponseEntity<? super PutLikeResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId);
+	ResponseEntity<ResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId);
 	ResponseEntity<? super GetTrendBoardLikeListResponseDto> getTrendBoardLikeList(Integer trendBoardNumber);
     ResponseEntity<? super GetTrendBoardCommentResponseDto> getTrendBoardComment(int trendBoardCommentNumber);
     ResponseEntity<? super GetTrendBoardCommentListResponseDto> getTrendBoardCommentList(int trendBoardNumber);
