@@ -15,13 +15,18 @@ import lombok.Getter;
 public class GetTrendBoardResponseDto extends ResponseDto {
 	
 	private Integer trendBoardNumber;
-	private String trendBoardTitle;
-	private String trendBoardContents;
-	private String trendBoardWriterId;
-	private String trendBoardWriteDateTime;
-	private Integer trendBoardLikeCount;
-	private Integer trendBoardViewCount;
 
+	private String trendBoardTitle;
+
+	private String trendBoardContents;
+
+	private String trendBoardWriterId;
+
+	private String trendBoardWriteDateTime;
+
+	private Integer trendBoardLikeCount;
+	
+	private Integer trendBoardViewCount;
 
 	private GetTrendBoardResponseDto(TrendBoardEntity trendBoardEntity ) throws Exception {
 

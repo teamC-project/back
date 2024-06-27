@@ -17,7 +17,6 @@ import com.back.back.entity.TrendBoardCommentEntity;
 import com.back.back.repository.TrendBoardRepository;
 import com.back.back.repository.TrendBoardCommentRepository;
 import com.back.back.dto.request.trend.PutTrendBoardRequestDto;
-import com.back.back.dto.response.trendboard.PutLikeResponseDto;
 import com.back.back.dto.request.trend.PostTrendBoardRequestDto;
 import com.back.back.dto.request.trend.PutTrendBoardCommentRequestDto;
 import com.back.back.dto.response.trendboard.GetTrendBoardResponseDto;
@@ -238,7 +237,7 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
     }
 
 	@Override
-	public ResponseEntity<? super PutLikeResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId) {
+	public ResponseEntity<ResponseDto> putTrendBoardLike(Integer trendBoardNumber, String userId) {
 
 		try {
 			TrendBoardEntity trendBoardEntity = trendBoardRepository.findByTrendBoardNumber(trendBoardNumber);
@@ -266,7 +265,7 @@ public class TrendBoardServiceImplementation implements TrendBoardService {
 			exception.printStackTrace();
 			return ResponseDto.databaseError();
 		}
-		return PutLikeResponseDto.success();
+		return ResponseDto.success();
 	}
 
 	@Override
