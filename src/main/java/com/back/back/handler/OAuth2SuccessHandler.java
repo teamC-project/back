@@ -19,30 +19,31 @@ import jakarta.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    private final JwtProvider jwtProvider;
+  private final JwtProvider jwtProvider;
 
-    @Value("${localhost}")
-    private String localhost;
+  @Value("${localhost}")
+  private String localhost;
 
-    @Value("$(callback)")
-    private String callback;
-    
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+  @Value("${callback}")
+  private String callback;
 
-        CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+  @Override
+  public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+      Authentication authentication) throws IOException, ServletException {
 
-        boolean isStatus = oAuth2User.isStatus();
+    CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
 
-        if (isStatus) {
-            String userId = oAuth2User.getName();
-            String token = jwtProvider.create(userId);
-            response.sendRedirect("localhost" + token + "/3200");
-        } else {
-            String snsId = oAuth2User.getName();
-            String joinPath = oAuth2User.getJoinPath();
-            response.sendRedirect("callback" + snsId + "&joinPath=" + joinPath);
-        }
+    boolean isStatus = oAuth2User.isStatus();
+
+    if (isStatus) {
+      String userId = oAuth2User.getName();
+      String token = jwtProvider.create(userId);
+      response.sendRedirect(localhost + token + "/3200");
+    } else {
+      String snsId = oAuth2User.getName();
+      String joinPath = oAuth2User.getJoinPath();
+      response.sendRedirect(callback + snsId + "&joinPath=" + joinPath);
     }
+  }
 
 }
